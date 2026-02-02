@@ -1,89 +1,259 @@
 /**
- * QuoteCarousel Component
- * Displays quotes in a scrollable carousel format
+ * QuoteCarousel Component - "The Scholarly Disruptor"
+ *
+ * Compact editorial quote panel
+ * - Horizontal author tabs for navigation
+ * - Slim, space-efficient layout
+ * - Magazine sidebar aesthetic
  */
 import React, { useState } from 'react';
+import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE } from '../design-tokens';
 
 const QuoteCarousel = ({ quotes }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   if (!quotes || quotes.length === 0) return null;
 
+  const activeQuote = quotes[activeIndex];
+
   return (
-    <div className="my-10 bg-gradient-to-br from-indigo-900 to-slate-900 rounded-2xl p-8 text-white">
-      <h4 className="text-center text-lg font-medium text-indigo-300 mb-8">
-        What Industry Leaders Are Saying
-      </h4>
+    <div
+      style={{
+        marginTop: SPACE[6],
+        marginBottom: SPACE[6],
+      }}
+    >
+      {/* Section label - inline with accent */}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: SPACE[3],
+          marginBottom: SPACE[4],
+        }}
+      >
+        <div
+          style={{
+            width: '24px',
+            height: '2px',
+            background: COLORS.accent.primary,
+          }}
+        />
+        <span
+          style={{
+            fontFamily: FONTS.mono,
+            fontSize: '0.6875rem',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            color: COLORS.ink[400],
+          }}
+        >
+          Industry Perspectives
+        </span>
+      </div>
 
-      {/* Quote display */}
-      <div className="relative min-h-[200px]">
-        {quotes.map((quote, i) => (
+      {/* Main panel - compact dark strip */}
+      <div
+        style={{
+          background: COLORS.surface.dark,
+          borderRadius: EFFECTS.radius.lg,
+          overflow: 'hidden',
+        }}
+      >
+        {/* Author tabs - horizontal navigation */}
+        <div
+          style={{
+            display: 'flex',
+            borderBottom: `1px solid ${COLORS.ink[700]}`,
+          }}
+        >
+          {quotes.map((quote, i) => {
+            const isActive = i === activeIndex;
+            // Extract first name or short version
+            const shortName = quote.author.split(' ')[0];
+
+            return (
+              <button
+                key={i}
+                onClick={() => setActiveIndex(i)}
+                style={{
+                  flex: 1,
+                  padding: `${SPACE[3]} ${SPACE[3]}`,
+                  background: isActive ? COLORS.ink[800] : 'transparent',
+                  border: 'none',
+                  borderBottom: isActive ? `2px solid ${COLORS.accent.primary}` : '2px solid transparent',
+                  cursor: 'pointer',
+                  transition: EFFECTS.transition.base,
+                  position: 'relative',
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: FONTS.ui,
+                    fontSize: TYPE_SCALE.ui.xs.size,
+                    fontWeight: isActive ? 600 : 400,
+                    color: isActive ? COLORS.ink[100] : COLORS.ink[400],
+                    display: 'block',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}
+                >
+                  {shortName}
+                </span>
+                <span
+                  style={{
+                    fontFamily: FONTS.mono,
+                    fontSize: '0.625rem',
+                    color: isActive ? COLORS.accent.muted : COLORS.ink[500],
+                    display: 'block',
+                    marginTop: '2px',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}
+                >
+                  {quote.title.split(',')[0]}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Quote content - compact */}
+        <div
+          style={{
+            padding: `${SPACE[4]} ${SPACE[5]}`,
+            display: 'flex',
+            gap: SPACE[4],
+            alignItems: 'flex-start',
+          }}
+        >
+          {/* Large quote mark */}
           <div
-            key={i}
-            className={`transition-all duration-500 ${
-              i === activeIndex ? 'opacity-100' : 'opacity-0 absolute inset-0'
-            }`}
+            style={{
+              fontFamily: FONTS.display,
+              fontSize: '3rem',
+              lineHeight: 1,
+              color: COLORS.accent.primary,
+              opacity: 0.4,
+              marginTop: '-0.25rem',
+              flexShrink: 0,
+            }}
           >
-            {/* Quote icon */}
-            <div className="text-center mb-6">
-              <svg className="w-12 h-12 mx-auto text-indigo-400 opacity-50" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-              </svg>
-            </div>
+            "
+          </div>
 
-            {/* Quote text */}
-            <blockquote className="text-xl md:text-2xl text-center font-light leading-relaxed mb-6 px-4">
-              "{quote.quote}"
+          {/* Quote text and attribution */}
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <blockquote
+              style={{
+                fontFamily: FONTS.body,
+                fontSize: TYPE_SCALE.body.sm.size,
+                fontStyle: 'italic',
+                lineHeight: 1.6,
+                color: COLORS.ink[200],
+                margin: 0,
+                marginBottom: SPACE[3],
+              }}
+            >
+              {activeQuote.quote}
             </blockquote>
 
-            {/* Attribution */}
-            <div className="text-center">
-              <p className="font-semibold text-white">{quote.author}</p>
-              <p className="text-indigo-300 text-sm">{quote.title}</p>
-              {quote.cite && (
-                <p className="text-indigo-400 text-xs mt-1">[{quote.cite}]</p>
+            {/* Compact attribution row */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'baseline',
+                gap: SPACE[2],
+                flexWrap: 'wrap',
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: FONTS.ui,
+                  fontSize: TYPE_SCALE.ui.sm.size,
+                  fontWeight: 600,
+                  color: COLORS.ink[300],
+                }}
+              >
+                {activeQuote.author}
+              </span>
+              <span
+                style={{
+                  fontFamily: FONTS.ui,
+                  fontSize: TYPE_SCALE.ui.xs.size,
+                  color: COLORS.ink[500],
+                }}
+              >
+                {activeQuote.title}
+              </span>
+              {activeQuote.cite && (
+                <span
+                  style={{
+                    fontFamily: FONTS.mono,
+                    fontSize: '0.625rem',
+                    color: COLORS.accent.muted,
+                    marginLeft: 'auto',
+                  }}
+                >
+                  [{activeQuote.cite}]
+                </span>
               )}
             </div>
           </div>
-        ))}
-      </div>
 
-      {/* Navigation dots */}
-      <div className="flex justify-center gap-2 mt-8">
-        {quotes.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setActiveIndex(i)}
-            className={`w-3 h-3 rounded-full transition-all ${
-              i === activeIndex
-                ? 'bg-indigo-400 w-8'
-                : 'bg-slate-600 hover:bg-slate-500'
-            }`}
-            aria-label={`View quote ${i + 1}`}
-          />
-        ))}
-      </div>
-
-      {/* Arrow navigation */}
-      <div className="flex justify-center gap-4 mt-4">
-        <button
-          onClick={() => setActiveIndex(i => (i - 1 + quotes.length) % quotes.length)}
-          className="p-2 rounded-full bg-slate-800 hover:bg-slate-700 transition-colors"
-          aria-label="Previous quote"
-        >
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <button
-          onClick={() => setActiveIndex(i => (i + 1) % quotes.length)}
-          className="p-2 rounded-full bg-slate-800 hover:bg-slate-700 transition-colors"
-          aria-label="Next quote"
-        >
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
+          {/* Navigation arrows - compact */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '4px',
+              flexShrink: 0,
+            }}
+          >
+            <button
+              onClick={() => setActiveIndex(i => (i - 1 + quotes.length) % quotes.length)}
+              style={{
+                width: '28px',
+                height: '28px',
+                borderRadius: EFFECTS.radius.sm,
+                background: COLORS.ink[800],
+                border: `1px solid ${COLORS.ink[600]}`,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: EFFECTS.transition.base,
+              }}
+              aria-label="Previous quote"
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={COLORS.ink[400]} strokeWidth="2">
+                <path d="M18 15l-6-6-6 6" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            <button
+              onClick={() => setActiveIndex(i => (i + 1) % quotes.length)}
+              style={{
+                width: '28px',
+                height: '28px',
+                borderRadius: EFFECTS.radius.sm,
+                background: COLORS.ink[800],
+                border: `1px solid ${COLORS.ink[600]}`,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: EFFECTS.transition.base,
+              }}
+              aria-label="Next quote"
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={COLORS.ink[400]} strokeWidth="2">
+                <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

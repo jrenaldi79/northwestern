@@ -1,64 +1,166 @@
 /**
- * Convergence Component
- * Shows role convergence diagram with animated arrows
+ * Convergence Component - "The Scholarly Disruptor"
+ *
+ * Editorial magazine aesthetic
+ * - Clean flow diagram
+ * - Confident typography
+ * - Restrained visual hierarchy
  */
 import React from 'react';
+import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE } from '../design-tokens';
 
 const Convergence = ({ roles }) => {
   if (!roles || roles.length === 0) return null;
 
-  const roleColors = {
-    'PMs': { bg: 'bg-blue-100', text: 'text-blue-700', border: 'border-blue-300' },
-    'Designers': { bg: 'bg-purple-100', text: 'text-purple-700', border: 'border-purple-300' },
-    'Engineers': { bg: 'bg-emerald-100', text: 'text-emerald-700', border: 'border-emerald-300' },
-  };
-
-  const targetColors = {
-    'Engineering': { bg: 'bg-blue-600', text: 'text-white' },
-    'Eng & PM': { bg: 'bg-purple-600', text: 'text-white' },
-    'Product': { bg: 'bg-emerald-600', text: 'text-white' },
-  };
-
   return (
-    <div className="my-10 bg-gradient-to-br from-slate-50 to-indigo-50 rounded-2xl p-8 border border-slate-200">
-      <h4 className="text-center text-lg font-semibold text-slate-800 mb-8">
+    <div
+      style={{
+        marginTop: SPACE[10],
+        marginBottom: SPACE[10],
+        background: COLORS.surface.inset,
+        borderRadius: EFFECTS.radius.lg,
+        padding: SPACE[8],
+        border: `1px solid ${COLORS.ink[100]}`,
+      }}
+    >
+      {/* Header */}
+      <h4
+        style={{
+          textAlign: 'center',
+          fontFamily: FONTS.headline,
+          fontSize: TYPE_SCALE.headline.sm.size,
+          fontWeight: TYPE_SCALE.headline.sm.weight,
+          color: COLORS.ink[800],
+          marginBottom: SPACE[8],
+        }}
+      >
         The Convergence: Roles Are Merging
       </h4>
 
-      <div className="space-y-6">
-        {roles.map((role, i) => {
-          const fromColor = roleColors[role.from] || { bg: 'bg-slate-100', text: 'text-slate-700', border: 'border-slate-300' };
-          const toColor = targetColors[role.to] || { bg: 'bg-indigo-600', text: 'text-white' };
-
-          return (
-            <div key={i} className="flex items-center gap-4">
-              {/* From role */}
-              <div className={`flex-shrink-0 w-28 px-4 py-3 rounded-lg border-2 ${fromColor.bg} ${fromColor.text} ${fromColor.border} font-semibold text-center`}>
+      {/* Flow diagram - enhanced with depth and hover potential */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: SPACE[5] }}>
+        {roles.map((role, i) => (
+          <div
+            key={i}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: SPACE[4],
+              padding: SPACE[3],
+              borderRadius: EFFECTS.radius.md,
+              transition: 'all 0.3s ease',
+            }}
+          >
+            {/* From role */}
+            <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
+              <span
+                style={{
+                  display: 'inline-block',
+                  background: COLORS.surface.elevated,
+                  color: COLORS.ink[600],
+                  padding: `${SPACE[4]} ${SPACE[6]}`,
+                  borderRadius: EFFECTS.radius.lg,
+                  border: `1px solid ${COLORS.ink[200]}`,
+                  fontFamily: FONTS.ui,
+                  fontSize: TYPE_SCALE.ui.md.size,
+                  fontWeight: 600,
+                  boxShadow: EFFECTS.shadow.sm,
+                  transition: 'all 0.3s ease',
+                }}
+              >
                 {role.from}
-              </div>
+              </span>
+            </div>
 
-              {/* Arrow and description */}
-              <div className="flex-1 flex items-center gap-3">
-                <div className="flex-1 h-0.5 bg-gradient-to-r from-slate-300 to-indigo-400" />
-                <svg className="w-6 h-6 text-indigo-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            {/* Arrow - enhanced with glow and animation hint */}
+            <div
+              style={{
+                flexShrink: 0,
+                display: 'flex',
+                alignItems: 'center',
+                gap: SPACE[1],
+              }}
+            >
+              <div
+                style={{
+                  width: '32px',
+                  height: '2px',
+                  background: `linear-gradient(90deg, ${COLORS.ink[300]} 0%, ${COLORS.accent.primary} 100%)`,
+                  borderRadius: '1px',
+                }}
+              />
+              <div
+                style={{
+                  width: '28px',
+                  height: '28px',
+                  borderRadius: EFFECTS.radius.full,
+                  background: `linear-gradient(135deg, ${COLORS.accent.primary} 0%, ${COLORS.accent.muted} 100%)`,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: `0 4px 12px ${COLORS.accent.primary}30`,
+                }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={COLORS.surface.paper} strokeWidth="2.5">
+                  <polyline points="9 5 16 12 9 19"/>
                 </svg>
               </div>
-
-              {/* To role */}
-              <div className={`flex-shrink-0 w-28 px-4 py-3 rounded-lg ${toColor.bg} ${toColor.text} font-semibold text-center shadow-md`}>
-                {role.to}
-              </div>
+              <div
+                style={{
+                  width: '16px',
+                  height: '2px',
+                  background: COLORS.accent.primary,
+                  borderRadius: '1px',
+                }}
+              />
             </div>
-          );
-        })}
+
+            {/* To role */}
+            <div style={{ flex: 1 }}>
+              <span
+                style={{
+                  display: 'inline-block',
+                  background: `linear-gradient(135deg, ${COLORS.accent.primary} 0%, ${COLORS.accent.muted} 100%)`,
+                  color: COLORS.surface.paper,
+                  padding: `${SPACE[4]} ${SPACE[6]}`,
+                  borderRadius: EFFECTS.radius.lg,
+                  fontFamily: FONTS.ui,
+                  fontSize: TYPE_SCALE.ui.md.size,
+                  fontWeight: 600,
+                  boxShadow: `0 4px 16px ${COLORS.accent.primary}25`,
+                  transition: 'all 0.3s ease',
+                }}
+              >
+                {role.to}
+              </span>
+            </div>
+          </div>
+        ))}
       </div>
 
       {/* Descriptions */}
-      <div className="mt-8 grid md:grid-cols-3 gap-4">
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+          gap: SPACE[5],
+          marginTop: SPACE[8],
+          paddingTop: SPACE[6],
+          borderTop: `1px solid ${COLORS.ink[100]}`,
+        }}
+      >
         {roles.map((role, i) => (
-          <div key={i} className="text-center px-4">
-            <p className="text-sm text-slate-600 leading-relaxed">
+          <div key={i} style={{ textAlign: 'center', padding: `0 ${SPACE[4]}` }}>
+            <p
+              style={{
+                fontFamily: FONTS.body,
+                fontSize: TYPE_SCALE.body.sm.size,
+                lineHeight: TYPE_SCALE.body.sm.lineHeight,
+                color: COLORS.ink[500],
+                margin: 0,
+              }}
+            >
               {role.description}
             </p>
           </div>

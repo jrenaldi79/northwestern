@@ -18,6 +18,7 @@ MARKERS:
 @pullquote       - Featured pull quote for visual emphasis (inline content)
 @cards           - Card grid with @card items (icon, title, content) - types: profile, feature, topic
 @chart           - Data visualizations (see CHART TYPES below)
+@terminal        - macOS-style terminal window for section summaries (title, command, variant, lines)
 
 CHART TYPES:
 ------------
@@ -85,9 +86,8 @@ Output:          as shown in research <Citation id="1"/><Citation id="2"/>
 -->
 
 <!-- @header -->
-<!-- @to name="Christopher A. Schuh" title="Dean, McCormick School of Engineering" -->
-<!-- @from name="John Renaldi" email="jrenaldi79@gmail.com" -->
-<!-- @headshot url="https://media.licdn.com/dms/image/v2/D5603AQFUsK3qbahONA/profile-displayphoto-shrink_400_400/B56ZrwKFmfHkAc-/0/1738015769267?e=1743638400&v=beta&t=MKHyOB7K-PZZdSc0xc2QDUYSMyM009nFvmZbiWoOz8I" -->
+<!-- @from name="John Renaldi" email="jrenaldi@northwestern.edu" linkedin="https://linkedin.com/in/jrenaldi" github="https://github.com/jrenaldi" -->
+<!-- @headshot url="https://media.licdn.com/dms/image/v2/D5603AQFUsK3qbahONA/profile-displayphoto-crop_800_800/B56ZrwKFmfLsAM-/0/1764965769267?e=1771459200&v=beta&t=MKHyOB7K-PZZdSc0xc2QDUYSMyM009nFvmZbiWoOz8I" -->
 <!-- @date value="February 2026" -->
 <!-- @title value="The Product Engineer" -->
 <!-- @subtitle value="Preparing McCormick students for the convergence of design, product, and engineering in the age of AI." -->
@@ -125,17 +125,6 @@ At Anthropic, the company behind Claude, internal research shows [1][2]:
 <!-- @stat value="10 days" label="To Ship New Products" source="Cowork built with AI tools" -->
 <!-- /@stats -->
 
-<!-- @chart type="growth" title="AI Adoption at Anthropic" subtitle="Year-over-year change" -->
-<!-- @series label="Engineers Using AI" -->
-<!-- @point year="2024" value="28" -->
-<!-- @point year="2025" value="59" -->
-<!-- /@series -->
-<!-- @series label="Productivity Gains" -->
-<!-- @point year="2024" value="20" -->
-<!-- @point year="2025" value="50" -->
-<!-- /@series -->
-<!-- /@chart -->
-
 -   Engineers use Claude in **59% of their work**, up from 28% a year ago
 -   They report **50% productivity gains**, up from 20% the year before
 -   **90% of Claude Code's codebase was written by Claude Code itself**
@@ -148,19 +137,19 @@ McCormick students will enter this world in 2-3 years. We need to prepare them n
 
 ### The Triad: Design, Product, and Engineering Are Merging
 
-Role boundaries are collapsing. Designers, product managers, and engineers are moving toward each other:
-
-<!-- @convergence -->
-<!-- @role from="PMs" to="Engineering" description="Today, most PMs ship at least one pull request per month. At Anthropic, PMs ship features directly." -->
-<!-- @role from="Designers" to="Eng & PM" description="Designers no longer hand off static mockups. They prototype in production code." -->
-<!-- @role from="Engineers" to="Product" description="When implementation becomes easy, the valuable skill becomes knowing what to build." -->
-<!-- /@convergence -->
+Role boundaries are collapsing. Designers, product managers, and engineers are moving toward each other—and AI tools are accelerating the convergence.
 
 -   **PMs → Engineers:** Six months ago, most product managers shipped zero code. Today, most PMs ship at least one pull request per month. At Anthropic, PMs ship features directly. By end of 2026, PMs may write 10-20% of production code.
 
 -   **Designers → Engineers & PMs:** Designers no longer hand off static mockups. With AI tools, they prototype in production code, make product decisions in real-time, and understand the systems they design for.
 
 -   **Engineers → Product:** When implementation becomes easy, the valuable skill becomes knowing what to build. Engineers who understand customer problems, market dynamics, and business models are worth more than those who only execute specs.
+
+<!-- @convergence -->
+<!-- @role from="PMs" to="Engineering" description="Today, most PMs ship at least one pull request per month. At Anthropic, PMs ship features directly." -->
+<!-- @role from="Designers" to="Eng & PM" description="Designers no longer hand off static mockups. They prototype in production code." -->
+<!-- @role from="Engineers" to="Product" description="When implementation becomes easy, the valuable skill becomes knowing what to build." -->
+<!-- /@convergence -->
 
 The tools are converging too. **Claude Code** lets engineers ship features by describing intent. **Figma AI** generates production-ready components from design specs. **Bolt** (which hit $40M ARR in five months [14]) and **Lovable** let anyone describe a feature and watch it appear. These tools do not replace judgment. They automate the translation layer between idea and implementation. The role that remains is the one who knows what to build and why.
 
@@ -188,12 +177,6 @@ Tech companies are redefining roles around this reality. Innovation happens when
 <!-- /@chart -->
 
 ### The Junior Developer Role Is Disappearing
-
-<!-- @chart type="bar" title="AI Impact on Development" subtitle="Industry research findings" -->
-<!-- @bar label="Developers Using AI Tools" value="84" unit="%" source="Stack Overflow 2025" cite="4" -->
-<!-- @bar label="Task Completion Speed" value="55.8" unit="% faster" source="GitHub Research" cite="5" -->
-<!-- @bar label="Code Quality Improvement" value="40" unit="%" source="McKinsey" cite="6" -->
-<!-- /@chart -->
 
 The traditional entry-level developer role is vanishing. Today, **84% of developers** use AI tools [4], and GitHub research shows they complete tasks **55.8% faster** [5]. McKinsey reports **35-45% improvements in software quality** [6]. As Magdalena Balazinska of UW's Allen School puts it: *"Coding, or the translation of a precise design into software instructions, is dead. AI can do that."* [11]
 
@@ -232,11 +215,32 @@ Skills are moving up: from writing code to orchestrating systems, from syntax to
 
 **The Opportunity:** Employers now prioritize **problem-solving (~90%)** over GPA. [13] McCormick can lead in teaching students to use AI to build systems that solve real problems.
 
+<!-- @terminal title="Key Takeaways: The Market Shift" command="" -->
+- **59%** of engineers now use AI daily, up from 28%
+- **50%** productivity gains reported across teams
+- **90%** of code written by AI tools themselves
+- Role boundaries are collapsing across PM, Design, Engineering
+- Junior developer roles are disappearing
+- New premium skills: judgment, orchestration, strategy
+<!-- /@terminal -->
+
 ---
 
 ## 2. Strategic Alignment with McCormick's Vision
 
 This proposal aligns directly with McCormick's three strategic pillars and addresses AI as one of the school's four grand challenge focus areas.
+
+<!-- @cards type="feature" columns="3" section="2" -->
+<!-- @card icon="zap" title="Pillar 1: Revolutionize Methods" -->
+AI-augmented development is becoming the default method for how engineers work. This curriculum teaches those methods before they become table stakes.
+<!-- /@card -->
+<!-- @card icon="graduation" title="Pillar 2: Transform Education" -->
+"Whole-brain" engineering that pairs technical depth with innovation, design, and entrepreneurial thinking. Students become the bridge between lab and marketplace.
+<!-- /@card -->
+<!-- @card icon="target" title="Pillar 3: Advance Applications" -->
+AI is one of McCormick's four grand challenge focus areas. This curriculum advances AI as both method and application domain.
+<!-- /@card -->
+<!-- /@cards -->
 
 ### Pillar 1: Revolutionize the Methods of Engineering
 
@@ -264,13 +268,13 @@ Dean Schuh has expressed interest in "once-in-a-generation ideas and goals that 
 
 ---
 
-## 3. Who Should Teach This
+## 3. Who Should Teach This — and Why Me
 
 If McCormick wants to prepare students for the "Product Engineer" role, the faculty member teaching it needs a specific profile. This is not a traditional academic hire. It requires someone who operates across boundaries that do not usually overlap.
 
-### The Profile
+### The Profile Required
 
-<!-- @cards type="profile" columns="3" -->
+<!-- @cards type="profile" columns="3" section="3" -->
 <!-- @card icon="briefcase" title="Executive Credibility" -->
 Someone who has led teams at scale across design, product, and engineering, and understands how decisions get made in large organizations.
 <!-- /@card -->
@@ -307,117 +311,11 @@ Industry connectivity also means access. The right instructor can bring their ne
 
 **Teaching experience.** Someone who has already taught at the graduate level across engineering and business schools, and who has trained corporate teams from entry-level to executive.
 
-This combination is rare. Most executives do not build. Most builders have not led at scale. Most founders have not taught. Finding someone who does all of these, and is actively working in AI today, is the challenge. Section 5 addresses why I believe I fit this profile.
+This combination is rare. Most executives do not build. Most builders have not led at scale. Most founders have not taught. Finding someone who does all of these, and is actively working in AI today, is the challenge.
 
 <!-- @pullquote -->Most executives do not build. Most builders have not led at scale. Most founders have not taught.<!-- /@pullquote -->
 
----
-
-## 4. What I Can Teach
-
-The "Product Engineer" needs to move from idea to shipped product. This is not a single course. It is a set of capabilities that can be woven into existing McCormick and Segal curriculum wherever they fit. I am already piloting parts of this in my current classes.
-
-| Teaching Area | Core Skills | Target Audience |
-|--------------|-------------|-----------------|
-| AI-Augmented Discovery | Interview analysis, theme extraction, research synthesis | All engineering disciplines |
-| Generative Prototyping | Synthetic users, rapid validation, LLM personas | Product-focused engineers, designers |
-| Agentic Systems | MCP servers, multi-agent orchestration, evals | CS, software engineers |
-| Agentic Development | Production workflows, debugging, cost management | Practicing engineers |
-| Context Engineering | RAG, memory systems, long-running agents | Advanced AI practitioners |
-| AI Infrastructure | Deployment, APIs, real-time systems | Full-stack engineers |
-| Entrepreneurship | Fundraising, venture dynamics, exits | Founders, MBAs |
-
-Below are the areas where I can contribute:
-
-### AI-Augmented Qualitative Discovery
-
-Traditional user research takes weeks: recruiting participants, scheduling interviews, transcribing conversations, coding themes. AI collapses this timeline while expanding depth.
-
-Students learn to use AI as a research amplifier: real-time transcription during interviews, instant theme extraction across dozens of transcripts, pattern recognition across disparate data sources. The goal is not to replace human judgment but to multiply researcher capacity. An interview that once took days to analyze now yields insights in minutes. A corpus of customer support tickets becomes a searchable knowledge base of user pain.
-
-**What I Teach:** Interview analysis pipelines, theme extraction prompts, cross-source pattern matching, building research repositories that agents can query, integrating voice transcription (Assembly AI) into live research sessions
-
-**Technologies:** Assembly AI, Whisper, LLM-based theme extraction, embedding-based similarity search, research corpus management
-
-### Quantitative Discovery
-
-Replace intuition with data. Turn qualitative *Jobs to be Done (JTBD)* research into quantitative datasets. Students learn to validate ideas before building.
-
-**Technologies:** Python, Scikit-learn, Pandas, clustering algorithms, SQL, data visualization
-
-### Generative Prototyping
-
-Turn requirements into testable artifacts quickly. Use AI tools to generate wireframes from rough sketches. Build **synthetic user personas** that simulate customer feedback, letting students test positioning and product concepts against LLM-generated personas before writing code.
-
-**Technologies:** LLM foundational models (OpenAI, Anthropic, Gemini), image generation, prompt engineering
-
-### Agentic Systems
-
-Move beyond chatbots to autonomous, goal-directed systems. Build servers that standardize agent connectivity. Design memory systems so agents maintain state across sessions. Shift from manual QA to **"Evals"** that test AI outputs against safety and quality guardrails.
-
-**Technologies:** MCP servers, LangChain, ReAct frameworks, vector databases, RAG pipelines, multi-agent orchestration
-
-### Agentic Development: From "Vibing" to Production
-
-There is a gap between prompting ChatGPT and shipping production AI systems. Most tutorials stop at "vibing," the casual, exploratory prompting that works in demos but fails in production. Students need to learn the hard parts: deterministic behavior, error handling, cost management, and integration with existing systems.
-
-<!-- @pullquote -->There is a gap between prompting ChatGPT and shipping production AI systems.<!-- /@pullquote -->
-
-**What I Teach:**
-
--   **Development Best Practices:** How to use tools like Claude Code, Cursor, and Windsurf effectively. Writing CLAUDE.md files and AGENTS.md specifications that give AI agents the context they need. Prompt engineering that produces consistent, testable outputs.
-
--   **Infrastructure Requirements:** Rate limiting, API gateway management, cost tracking, latency budgets. How to build systems that gracefully degrade when AI services fail. Caching strategies for expensive model calls.
-
--   **Operational Changes:** AI development requires different workflows than traditional software. Students learn: how to review AI-generated code, when to trust agent outputs vs. verify them, how to debug systems where the logic is partially opaque.
-
--   **Planning Tool Integration:** Connecting agents to project management systems (Linear, Jira, Asana), documentation platforms, and CI/CD pipelines. Building agents that understand your codebase through proper indexing and retrieval.
-
--   **Agent Swarms & Orchestration:** When single agents are not enough, you coordinate multiple specialized agents that divide work, share context, and merge results. Handoff protocols, conflict resolution, and resource allocation.
-
--   **Memory Systems:** Building procedural memory so agents learn from past interactions. Failure-to-success pattern detection, root cause analysis, and retrieval architectures that surface relevant context at the right time.
-
-**Technologies:** Claude Code, Cursor, Windsurf, API gateways, CI/CD integration
-
-### Context Engineering
-
-AI agents fail when they run out of context. A 200k token window sounds large until your agent needs to understand a codebase, remember a conversation history, and execute a multi-step plan simultaneously. Context engineering is the discipline of managing what information agents have access to and when.
-
-**What I Teach:**
-
--   **Long-Running Systems:** Agents that operate over hours or days, not single-turn interactions. Session management, state persistence, and graceful recovery from interruptions.
-
--   **Deep Agents:** Building agents that can explore complex domains: reading documentation, navigating codebases, researching across multiple sources. These agents need strategies for prioritizing information and knowing when to stop.
-
--   **Context Window Management:** Summarization strategies, dynamic context loading, and retrieval-augmented generation (RAG) that pulls relevant information on demand rather than stuffing everything into the prompt.
-
--   **Hierarchical Context:** Some information is always relevant (system instructions, core identity). Some is session-specific. Some is task-specific. Students learn to structure context in layers that maximize utility while minimizing token waste.
-
--   **Tool Design for Context:** Building MCP servers and tool interfaces that provide rich context to agents without overwhelming them. Pagination, filtering, and progressive disclosure patterns.
-
-**Technologies:** RAG architectures, context summarization, session state management, hierarchical prompt design
-
-### AI Infrastructure
-
-Deploy AI systems on Day 1. Manage API gateways for rate limits, cost, and latency. Connect AI models to real-world data sources and device hardware. These are skills I use daily with clients and students.
-
-**Technologies:** React/TypeScript, serverless APIs, GCP, Websockets, real-time voice transcription, multimodal streaming
-
-### Entrepreneurship & Venture Dynamics
-
-I have lived the full startup arc: from idea to Techstars to product-market fit to nine-figure exit. I can teach this from experience, not textbooks.
-
-**What I bring:** I founded Jiobit, raised venture capital, navigated hardware manufacturing, won SBIR contracts, scaled a team, and sold to a public company. I have sat on both sides of the table, as a founder raising money and as an investor evaluating deals. I serve on the Techstars Selection Committee, mentor at mHUB (hardtech) and iVenture Accelerator, and am an LP in four venture funds including LongJump (Chicago's most active pre-seed fund). I have invested in 20+ companies.
-
-**Topics:** Cap table structures, fundraising mechanics, term sheets, due diligence processes. How investors evaluate technical stacks and IP. When to build vs. buy. How to think about defensibility when AI commoditizes implementation. How to tell a story that raises money. How to build a company that people want to join and stay at.
-
-### A Note on Applicability
-
-While the examples above reference software, these skills transfer across engineering disciplines. AI is accelerating PCB design, materials discovery, clinical literature analysis, and structural optimization. Dean Schuh's own field has seen rapid adoption of machine learning for alloy design. The core skills—judgment about what to build, fluency with AI tools, and translation between technical capability and human need—prepare engineers for any field where AI is reshaping practice.
-
----
-
-## 5. Why Me
+### Why I Fit This Profile
 
 <!-- @credentials -->
 <!-- @credential value="9+" label="U.S. Patents" -->
@@ -545,11 +443,138 @@ I lead teams across **Design, UXR, Product, and Engineering (Firmware to Cloud)*
 
 ### Industry Visibility
 
-My investing and ecosystem work (detailed in Section 4) give me a unique vantage point—I see where the industry is heading **8 to 16 months before it becomes mainstream**. That foresight shapes my curriculum. As a UIUC alumnus and founding member of **Illini Angels**, I can position McCormick as a talent pipeline for Chicago tech.
+My investing and ecosystem work give me a unique vantage point—I see where the industry is heading **8 to 16 months before it becomes mainstream**. That foresight shapes my curriculum. As a UIUC alumnus and founding member of **Illini Angels**, I can position McCormick as a talent pipeline for Chicago tech.
 
 ---
 
-## 6. What Others Say
+## 4. What I Can Teach
+
+The "Product Engineer" needs to move from idea to shipped product. This is not a single course. It is a set of capabilities that can be woven into existing McCormick and Segal curriculum wherever they fit. I am already piloting parts of this in my current classes.
+
+<!-- @cards type="topic" columns="3" section="4" -->
+<!-- @card icon="search" title="Discovery" audience="All engineering disciplines" -->
+Interview analysis, theme extraction, research synthesis. Turn qualitative research into quantitative datasets.
+<!-- /@card -->
+<!-- @card icon="palette" title="Generative Prototyping" audience="Product-focused engineers, designers" -->
+Synthetic users, rapid validation, LLM personas. Test positioning before writing code.
+<!-- /@card -->
+<!-- @card icon="cpu" title="Agentic Systems" audience="CS, software engineers" -->
+MCP servers, multi-agent orchestration, evals. Build autonomous, goal-directed systems.
+<!-- /@card -->
+<!-- @card icon="zap" title="Agentic Development" audience="Practicing engineers" -->
+Production workflows, debugging, cost management. From "vibing" to shipping real systems.
+<!-- /@card -->
+<!-- @card icon="layers" title="Context Engineering" audience="Advanced AI practitioners" -->
+RAG, memory systems, long-running agents. Manage what information agents access and when.
+<!-- /@card -->
+<!-- @card icon="database" title="AI Infrastructure" audience="Full-stack engineers" -->
+Deployment, APIs, real-time systems. Connect AI models to real-world data and hardware.
+<!-- /@card -->
+<!-- @card icon="rocket" title="Entrepreneurship" audience="Founders, MBAs" -->
+Fundraising, venture dynamics, exits. From idea to Techstars to nine-figure exit.
+<!-- /@card -->
+<!-- /@cards -->
+
+Below are the areas where I can contribute:
+
+### AI-Augmented Qualitative Discovery
+
+Traditional user research takes weeks: recruiting participants, scheduling interviews, transcribing conversations, coding themes. AI collapses this timeline while expanding depth.
+
+Students learn to use AI as a research amplifier: real-time transcription during interviews, instant theme extraction across dozens of transcripts, pattern recognition across disparate data sources. The goal is not to replace human judgment but to multiply researcher capacity. An interview that once took days to analyze now yields insights in minutes. A corpus of customer support tickets becomes a searchable knowledge base of user pain.
+
+**What I Teach:** Interview analysis pipelines, theme extraction prompts, cross-source pattern matching, building research repositories that agents can query, integrating voice transcription (Assembly AI) into live research sessions
+
+**Technologies:** Assembly AI, Whisper, LLM-based theme extraction, embedding-based similarity search, research corpus management
+
+### Quantitative Discovery
+
+Replace intuition with data. Turn qualitative *Jobs to be Done (JTBD)* research into quantitative datasets. Students learn to validate ideas before building.
+
+**Technologies:** Python, Scikit-learn, Pandas, clustering algorithms, SQL, data visualization
+
+### Generative Prototyping
+
+Turn requirements into testable artifacts quickly. Use AI tools to generate wireframes from rough sketches. Build **synthetic user personas** that simulate customer feedback, letting students test positioning and product concepts against LLM-generated personas before writing code.
+
+**Technologies:** LLM foundational models (OpenAI, Anthropic, Gemini), image generation, prompt engineering
+
+### Agentic Systems
+
+Move beyond chatbots to autonomous, goal-directed systems. Build servers that standardize agent connectivity. Design memory systems so agents maintain state across sessions. Shift from manual QA to **"Evals"** that test AI outputs against safety and quality guardrails.
+
+**Technologies:** MCP servers, LangChain, ReAct frameworks, vector databases, RAG pipelines, multi-agent orchestration
+
+### Agentic Development: From "Vibing" to Production
+
+There is a gap between prompting ChatGPT and shipping production AI systems. Most tutorials stop at "vibing," the casual, exploratory prompting that works in demos but fails in production. Students need to learn the hard parts: deterministic behavior, error handling, cost management, and integration with existing systems.
+
+<!-- @pullquote -->There is a gap between prompting ChatGPT and shipping production AI systems.<!-- /@pullquote -->
+
+**What I Teach:**
+
+-   **Development Best Practices:** How to use tools like Claude Code, Cursor, and Windsurf effectively. Writing CLAUDE.md files and AGENTS.md specifications that give AI agents the context they need. Prompt engineering that produces consistent, testable outputs.
+
+-   **Infrastructure Requirements:** Rate limiting, API gateway management, cost tracking, latency budgets. How to build systems that gracefully degrade when AI services fail. Caching strategies for expensive model calls.
+
+-   **Operational Changes:** AI development requires different workflows than traditional software. Students learn: how to review AI-generated code, when to trust agent outputs vs. verify them, how to debug systems where the logic is partially opaque.
+
+-   **Planning Tool Integration:** Connecting agents to project management systems (Linear, Jira, Asana), documentation platforms, and CI/CD pipelines. Building agents that understand your codebase through proper indexing and retrieval.
+
+-   **Agent Swarms & Orchestration:** When single agents are not enough, you coordinate multiple specialized agents that divide work, share context, and merge results. Handoff protocols, conflict resolution, and resource allocation.
+
+-   **Memory Systems:** Building procedural memory so agents learn from past interactions. Failure-to-success pattern detection, root cause analysis, and retrieval architectures that surface relevant context at the right time.
+
+**Technologies:** Claude Code, Cursor, Windsurf, API gateways, CI/CD integration
+
+### Context Engineering
+
+AI agents fail when they run out of context. A 200k token window sounds large until your agent needs to understand a codebase, remember a conversation history, and execute a multi-step plan simultaneously. Context engineering is the discipline of managing what information agents have access to and when.
+
+**What I Teach:**
+
+-   **Long-Running Systems:** Agents that operate over hours or days, not single-turn interactions. Session management, state persistence, and graceful recovery from interruptions.
+
+-   **Deep Agents:** Building agents that can explore complex domains: reading documentation, navigating codebases, researching across multiple sources. These agents need strategies for prioritizing information and knowing when to stop.
+
+-   **Context Window Management:** Summarization strategies, dynamic context loading, and retrieval-augmented generation (RAG) that pulls relevant information on demand rather than stuffing everything into the prompt.
+
+-   **Hierarchical Context:** Some information is always relevant (system instructions, core identity). Some is session-specific. Some is task-specific. Students learn to structure context in layers that maximize utility while minimizing token waste.
+
+-   **Tool Design for Context:** Building MCP servers and tool interfaces that provide rich context to agents without overwhelming them. Pagination, filtering, and progressive disclosure patterns.
+
+**Technologies:** RAG architectures, context summarization, session state management, hierarchical prompt design
+
+### AI Infrastructure
+
+Deploy AI systems on Day 1. Manage API gateways for rate limits, cost, and latency. Connect AI models to real-world data sources and device hardware. These are skills I use daily with clients and students.
+
+**Technologies:** React/TypeScript, serverless APIs, GCP, Websockets, real-time voice transcription, multimodal streaming
+
+### Entrepreneurship & Venture Dynamics
+
+I have lived the full startup arc: from idea to Techstars to product-market fit to nine-figure exit. I can teach this from experience, not textbooks.
+
+**What I bring:** I founded Jiobit, raised venture capital, navigated hardware manufacturing, won SBIR contracts, scaled a team, and sold to a public company. I have sat on both sides of the table, as a founder raising money and as an investor evaluating deals. I serve on the Techstars Selection Committee, mentor at mHUB (hardtech) and iVenture Accelerator, and am an LP in four venture funds including LongJump (Chicago's most active pre-seed fund). I have invested in 20+ companies.
+
+**Topics:** Cap table structures, fundraising mechanics, term sheets, due diligence processes. How investors evaluate technical stacks and IP. When to build vs. buy. How to think about defensibility when AI commoditizes implementation. How to tell a story that raises money. How to build a company that people want to join and stay at.
+
+### A Note on Applicability
+
+While the examples above reference software, these skills transfer across engineering disciplines. AI is accelerating PCB design, materials discovery, clinical literature analysis, and structural optimization. Dean Schuh's own field has seen rapid adoption of machine learning for alloy design. The core skills—judgment about what to build, fluency with AI tools, and translation between technical capability and human need—prepare engineers for any field where AI is reshaping practice.
+
+<!-- @terminal title="What I Can Teach" command="" variant="compact" -->
+- **Discovery** → AI-powered research & user insights
+- **Prototyping** → Synthetic users, rapid validation
+- **Agentic Systems** → Multi-agent orchestration
+- **Context Engineering** → Memory & retrieval systems
+- **AI Infrastructure** → Production deployment
+- **Venture Dynamics** → Fundraising & exits
+<!-- /@terminal -->
+
+---
+
+## 5. What Others Say
 
 <!-- @testimonials type="leadership" -->
 <!-- @testimonial author="Logan LaHive" title="Managing Director, Techstars Chicago" -->
@@ -624,7 +649,7 @@ I come from a non-technical background but was surprised I kept up!
 
 ---
 
-## 7. The Path Forward
+## 6. The Path Forward
 
 The "Product Engineer" is the future. McCormick can lead in teaching it.
 

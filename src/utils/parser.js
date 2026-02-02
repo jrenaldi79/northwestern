@@ -45,18 +45,18 @@ function extractHeader(content) {
   if (!headerMatch) return null;
 
   const block = headerMatch[0];
-  const toMatch = block.match(/<!-- @to name="([^"]*)" title="([^"]*)" -->/);
-  const fromMatch = block.match(/<!-- @from name="([^"]*)" email="([^"]*)" -->/);
+  // Updated regex to capture optional linkedin and github attributes
+  const fromMatch = block.match(/<!-- @from name="([^"]*)" email="([^"]*)"(?: linkedin="([^"]*)")?(?: github="([^"]*)")? -->/);
   const headshotMatch = block.match(/<!-- @headshot url="([^"]*)" -->/);
   const dateMatch = block.match(/<!-- @date value="([^"]*)" -->/);
   const titleMatch = block.match(/<!-- @title value="([^"]*)" -->/);
   const subtitleMatch = block.match(/<!-- @subtitle value="([^"]*)" -->/);
 
   return {
-    to: toMatch ? toMatch[1] : '',
-    toTitle: toMatch ? toMatch[2] : '',
     from: fromMatch ? fromMatch[1] : '',
     fromEmail: fromMatch ? fromMatch[2] : '',
+    linkedin: fromMatch && fromMatch[3] ? fromMatch[3] : '',
+    github: fromMatch && fromMatch[4] ? fromMatch[4] : '',
     headshot: headshotMatch ? headshotMatch[1] : '',
     date: dateMatch ? dateMatch[1] : '',
     title: titleMatch ? titleMatch[1] : '',
@@ -229,27 +229,30 @@ function extractPullQuotes(content) {
 // Extract @cards block
 function extractCards(content) {
   const cardsGroups = [];
-  const cardsRegex = /<!-- @cards type="([^"]*)"(?: columns="([^"]*)")? -->[\s\S]*?<!-- \/@cards -->/g;
+  const cardsRegex = /<!-- @cards type="([^"]*)"(?: columns="([^"]*)")?(?: section="([^"]*)")? -->[\s\S]*?<!-- \/@cards -->/g;
   let match;
 
   while ((match = cardsRegex.exec(content)) !== null) {
     const type = match[1];
     const columns = parseInt(match[2] || '3', 10);
+    const section = match[3] || null;
     const block = match[0];
 
     const cards = [];
-    const cardRegex = /<!-- @card icon="([^"]*)" title="([^"]*)" -->\s*([\s\S]*?)<!-- \/@card -->/g;
+    // Updated regex to capture optional audience attribute
+    const cardRegex = /<!-- @card icon="([^"]*)" title="([^"]*)"(?: audience="([^"]*)")? -->\s*([\s\S]*?)<!-- \/@card -->/g;
     let cardMatch;
 
     while ((cardMatch = cardRegex.exec(block)) !== null) {
       cards.push({
         icon: cardMatch[1],
         title: cardMatch[2],
-        content: cleanText(cardMatch[3]),
+        audience: cardMatch[3] || '',
+        content: cleanText(cardMatch[4]),
       });
     }
 
-    cardsGroups.push({ type, columns, cards });
+    cardsGroups.push({ type, columns, section, cards });
   }
 
   return cardsGroups;
@@ -415,6 +418,43 @@ function extractSections(content) {
   return sections;
 }
 
+// Extract @terminal blocks
+function extractTerminals(content) {
+  const terminals = [];
+  const terminalRegex = /<!-- @terminal title="([^"]*)"(?: command="([^"]*)")?(?: variant="([^"]*)")? -->\s*([\s\S]*?)<!-- \/@terminal -->/g;
+  let match;
+
+  while ((match = terminalRegex.exec(content)) !== null) {
+    const title = match[1];
+    const command = match[2] || 'cat';
+    const variant = match[3] || 'default';
+    const contentBlock = match[4].trim();
+
+    // Parse content into lines
+    // Support both plain lines and list items (- or *)
+    const lines = contentBlock
+      .split('\n')
+      .map(line => line.trim())
+      .filter(line => line && !line.startsWith('<!--'))
+      .map(line => {
+        // Convert markdown list items to bullet format
+        if (line.startsWith('- ') || line.startsWith('* ')) {
+          return '• ' + line.slice(2);
+        }
+        return line;
+      });
+
+    terminals.push({
+      title,
+      command,
+      variant,
+      lines,
+    });
+  }
+
+  return terminals;
+}
+
 // Extract citations
 function extractCitations(content) {
   const citationsMatch = content.match(/## Citations\s*\n([\s\S]*?)$/);
@@ -464,6 +504,7 @@ function extractContent(markdown) {
     timeline: extractTimeline(markdown),
     testimonials: extractTestimonials(markdown),
     tables: extractTables(markdown),
+    terminals: extractTerminals(markdown),
     sections: extractSections(markdown),
     citations: extractCitations(markdown),
   };
@@ -508,6 +549,7 @@ function main() {
   console.log(`- Timeline entries: ${content.timeline.length}`);
   console.log(`- Testimonial groups: ${content.testimonials.length}`);
   console.log(`- Tables: ${content.tables.length}`);
+  console.log(`- Terminals: ${content.terminals.length}`);
   console.log(`- Sections: ${content.sections.length}`);
   console.log(`- Citations: ${content.citations.length}`);
 }

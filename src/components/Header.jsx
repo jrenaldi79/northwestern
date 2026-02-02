@@ -1,57 +1,548 @@
 /**
- * Header Component
- * Displays the proposal header with metadata and hero section
+ * Header Component - "The Scholarly Disruptor"
+ *
+ * Editorial magazine aesthetic - lighter, more compelling
+ * - Cream/paper background with subtle warmth
+ * - Bold asymmetric typography
+ * - Geometric accent elements
+ * - Magazine cover composition
  */
-import React from 'react';
+import React, { useState } from 'react';
+import { COLORS, FONTS, TYPE_SCALE, EFFECTS, LAYOUT, SPACE } from '../design-tokens';
 
-const Header = ({ data }) => {
-  const { to, toTitle, from, fromEmail, headshot, date, title, subtitle } = data;
+const Header = ({ data, stats }) => {
+  const { from, fromEmail, linkedin, github, headshot, date, subtitle } = data;
+  const [imageError, setImageError] = useState(false);
+
+  // Get initials for fallback
+  const getInitials = (name) => {
+    return name
+      .split(' ')
+      .map(word => word[0])
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
+  };
 
   return (
-    <header className="relative bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white overflow-hidden">
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 25px 25px, white 2px, transparent 0)`,
-          backgroundSize: '50px 50px'
-        }} />
+    <header
+      style={{
+        position: 'relative',
+        overflow: 'hidden',
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        background: `linear-gradient(165deg, ${COLORS.surface.paper} 0%, ${COLORS.ink[100]} 50%, ${COLORS.surface.paper} 100%)`,
+      }}
+    >
+      {/* Subtle grid pattern overlay */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: `
+            linear-gradient(${COLORS.ink[200]}20 1px, transparent 1px),
+            linear-gradient(90deg, ${COLORS.ink[200]}20 1px, transparent 1px)
+          `,
+          backgroundSize: '60px 60px',
+          opacity: 0.4,
+          pointerEvents: 'none',
+        }}
+      />
+
+      {/* Large decorative number/year */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '10%',
+          right: '-5%',
+          fontFamily: FONTS.display,
+          fontSize: 'clamp(15rem, 35vw, 28rem)',
+          fontWeight: 300,
+          color: COLORS.ink[200],
+          opacity: 0.15,
+          lineHeight: 0.8,
+          pointerEvents: 'none',
+          userSelect: 'none',
+        }}
+      >
+        26
       </div>
 
-      {/* Content */}
-      <div className="relative max-w-5xl mx-auto px-8 py-16">
-        {/* Meta info */}
-        <div className="flex items-start justify-between mb-12">
-          <div className="space-y-1 text-slate-300 text-sm">
-            <p><span className="text-slate-500">TO:</span> {to}</p>
-            <p className="text-slate-400 text-xs ml-8">{toTitle}</p>
-            <p className="mt-2"><span className="text-slate-500">FROM:</span> {from}</p>
-            <p><span className="text-slate-500">DATE:</span> {date}</p>
+
+      {/* Top navigation bar */}
+      <nav
+        style={{
+          position: 'relative',
+          zIndex: 10,
+          padding: '1.5rem 0',
+          borderBottom: `1px solid ${COLORS.ink[200]}`,
+        }}
+      >
+        <div
+          style={{
+            maxWidth: LAYOUT.maxWidth.wide,
+            margin: '0 auto',
+            padding: `0 ${LAYOUT.margin}`,
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          {/* Logo/Brand mark */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <div
+              style={{
+                width: '40px',
+                height: '40px',
+                background: COLORS.accent.primary,
+                borderRadius: EFFECTS.radius.md,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: `0 4px 12px ${COLORS.accent.primary}40`,
+              }}
+            >
+              <span
+                style={{
+                  color: 'white',
+                  fontFamily: FONTS.display,
+                  fontSize: '1.25rem',
+                  fontWeight: 500,
+                }}
+              >
+                M
+              </span>
+            </div>
+            <div>
+              <span
+                style={{
+                  fontFamily: FONTS.ui,
+                  fontSize: TYPE_SCALE.ui.sm.size,
+                  fontWeight: 600,
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                  color: COLORS.ink[700],
+                  display: 'block',
+                }}
+              >
+                McCormick School
+              </span>
+              <span
+                style={{
+                  fontFamily: FONTS.ui,
+                  fontSize: TYPE_SCALE.ui.xs.size,
+                  letterSpacing: '0.05em',
+                  color: COLORS.ink[400],
+                  textTransform: 'uppercase',
+                }}
+              >
+                Northwestern University
+              </span>
+            </div>
           </div>
-          {headshot && (
-            <img
-              src={headshot}
-              alt={from}
-              className="w-24 h-24 rounded-full border-4 border-white/20 shadow-xl"
+
+          {/* Date badge */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.75rem',
+              padding: '0.5rem 1rem',
+              background: COLORS.surface.elevated,
+              borderRadius: EFFECTS.radius.full,
+              border: `1px solid ${COLORS.ink[200]}`,
+              boxShadow: EFFECTS.shadow.sm,
+            }}
+          >
+            <div
+              style={{
+                width: '8px',
+                height: '8px',
+                borderRadius: EFFECTS.radius.full,
+                background: COLORS.accent.primary,
+              }}
             />
-          )}
+            <span
+              style={{
+                fontFamily: FONTS.mono,
+                fontSize: TYPE_SCALE.mono.sm.size,
+                color: COLORS.ink[600],
+                letterSpacing: '0.02em',
+              }}
+            >
+              {date}
+            </span>
+          </div>
         </div>
+      </nav>
 
-        {/* Title */}
-        <div className="space-y-4">
-          <p className="text-indigo-400 font-medium tracking-wider uppercase text-sm">
-            Proposal for Clinical Faculty Appointment
-          </p>
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-            {title}
-          </h1>
-          <p className="text-xl text-slate-300 max-w-3xl leading-relaxed">
-            {subtitle}
-          </p>
+      {/* Main hero content */}
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 10,
+          flex: 1,
+          display: 'flex',
+          alignItems: 'center',
+          maxWidth: LAYOUT.maxWidth.wide,
+          width: '100%',
+          margin: '0 auto',
+          padding: `${SPACE[10]} ${LAYOUT.margin}`,
+        }}
+      >
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(12, 1fr)',
+            gap: '2rem',
+            width: '100%',
+            alignItems: 'center',
+          }}
+        >
+          {/* Left column - Main content */}
+          <div style={{ gridColumn: 'span 8' }}>
+            {/* Kicker/Category */}
+            <div
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                marginBottom: '2rem',
+              }}
+            >
+              <div
+                style={{
+                  width: '32px',
+                  height: '2px',
+                  background: COLORS.accent.primary,
+                }}
+              />
+              <span
+                style={{
+                  fontFamily: FONTS.ui,
+                  fontSize: TYPE_SCALE.ui.sm.size,
+                  fontWeight: 600,
+                  letterSpacing: '0.15em',
+                  textTransform: 'uppercase',
+                  color: COLORS.accent.primary,
+                }}
+              >
+                Faculty Proposal
+              </span>
+            </div>
+
+            {/* Main title */}
+            <h1
+              style={{
+                fontFamily: FONTS.display,
+                fontSize: 'clamp(3rem, 8vw, 6rem)',
+                fontWeight: 400,
+                lineHeight: 0.95,
+                letterSpacing: '-0.03em',
+                color: COLORS.ink[900],
+                marginBottom: '1.5rem',
+              }}
+            >
+              <span style={{ display: 'block' }}>The</span>
+              <span
+                style={{
+                  display: 'block',
+                  background: `linear-gradient(135deg, ${COLORS.accent.primary} 0%, ${COLORS.accent.light} 100%)`,
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                Product
+              </span>
+              <span
+                style={{
+                  display: 'block',
+                  fontStyle: 'italic',
+                }}
+              >
+                Engineer
+              </span>
+            </h1>
+
+            {/* Subtitle/Dek */}
+            <p
+              style={{
+                fontFamily: FONTS.body,
+                fontSize: 'clamp(1.125rem, 2vw, 1.375rem)',
+                lineHeight: 1.6,
+                color: COLORS.ink[500],
+                maxWidth: '36rem',
+                marginBottom: '3rem',
+              }}
+            >
+              {subtitle}
+            </p>
+
+            {/* Author info - horizontal card */}
+            <div
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '1.25rem',
+                padding: '1rem 1.5rem',
+                background: COLORS.surface.elevated,
+                borderRadius: EFFECTS.radius.xl,
+                border: `1px solid ${COLORS.ink[200]}`,
+                boxShadow: EFFECTS.shadow.lg,
+              }}
+            >
+              {/* Headshot with fallback */}
+              <div
+                style={{
+                  width: '56px',
+                  height: '56px',
+                  borderRadius: EFFECTS.radius.full,
+                  overflow: 'hidden',
+                  border: `3px solid ${COLORS.accent.primary}`,
+                  background: imageError
+                    ? `linear-gradient(135deg, ${COLORS.accent.primary} 0%, ${COLORS.accent.light} 100%)`
+                    : COLORS.ink[100],
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}
+              >
+                {!imageError && headshot ? (
+                  <img
+                    src={headshot}
+                    alt={from}
+                    onError={() => setImageError(true)}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                    }}
+                  />
+                ) : (
+                  <span
+                    style={{
+                      fontFamily: FONTS.ui,
+                      fontSize: '1.25rem',
+                      fontWeight: 600,
+                      color: 'white',
+                    }}
+                  >
+                    {getInitials(from)}
+                  </span>
+                )}
+              </div>
+
+              <div>
+                <p
+                  style={{
+                    fontFamily: FONTS.ui,
+                    fontSize: TYPE_SCALE.ui.lg.size,
+                    fontWeight: 600,
+                    color: COLORS.ink[800],
+                    marginBottom: '0.25rem',
+                  }}
+                >
+                  {from}
+                </p>
+                {fromEmail && (
+                  <a
+                    href={`mailto:${fromEmail}`}
+                    style={{
+                      fontFamily: FONTS.mono,
+                      fontSize: TYPE_SCALE.mono.sm.size,
+                      color: COLORS.ink[500],
+                      textDecoration: 'none',
+                      display: 'block',
+                      marginBottom: '0.5rem',
+                    }}
+                  >
+                    {fromEmail}
+                  </a>
+                )}
+                {/* Social links */}
+                <div style={{ display: 'flex', gap: '0.75rem' }}>
+                  {linkedin && (
+                    <a
+                      href={linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        width: '28px',
+                        height: '28px',
+                        borderRadius: EFFECTS.radius.md,
+                        background: COLORS.ink[100],
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: COLORS.ink[500],
+                        textDecoration: 'none',
+                        transition: 'all 0.2s ease',
+                      }}
+                      title="LinkedIn"
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                      </svg>
+                    </a>
+                  )}
+                  {github && (
+                    <a
+                      href={github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        width: '28px',
+                        height: '28px',
+                        borderRadius: EFFECTS.radius.md,
+                        background: COLORS.ink[100],
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: COLORS.ink[500],
+                        textDecoration: 'none',
+                        transition: 'all 0.2s ease',
+                      }}
+                      title="GitHub"
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                      </svg>
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right column - Visual element */}
+          <div
+            style={{
+              gridColumn: 'span 4',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-end',
+              gap: '1.5rem',
+            }}
+          >
+            {/* Stats preview cards */}
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.75rem',
+                width: '100%',
+                maxWidth: '280px',
+              }}
+            >
+              {(stats || []).slice(0, 3).map((stat, i) => (
+                <div
+                  key={i}
+                  style={{
+                    padding: '1.25rem 1.5rem',
+                    background: i === 0
+                      ? `linear-gradient(135deg, ${COLORS.accent.primary} 0%, ${COLORS.accent.light} 100%)`
+                      : COLORS.surface.elevated,
+                    borderRadius: EFFECTS.radius.lg,
+                    border: i === 0 ? 'none' : `1px solid ${COLORS.ink[200]}`,
+                    boxShadow: i === 0
+                      ? `0 8px 32px ${COLORS.accent.primary}30`
+                      : EFFECTS.shadow.md,
+                    transform: `translateX(${i * -20}px)`,
+                  }}
+                >
+                  <p
+                    style={{
+                      fontFamily: FONTS.mono,
+                      fontSize: '2rem',
+                      fontWeight: 600,
+                      color: i === 0 ? 'white' : COLORS.accent.primary,
+                      marginBottom: '0.25rem',
+                    }}
+                  >
+                    {stat.value}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: FONTS.ui,
+                      fontSize: TYPE_SCALE.ui.sm.size,
+                      color: i === 0 ? 'rgba(255,255,255,0.8)' : COLORS.ink[500],
+                    }}
+                  >
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-
-        {/* Decorative element */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500" />
       </div>
+
+      {/* Scroll indicator */}
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 10,
+          padding: `0 ${LAYOUT.margin} 3rem`,
+        }}
+      >
+        <div
+          style={{
+            maxWidth: LAYOUT.maxWidth.wide,
+            margin: '0 auto',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1rem',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+          >
+            <div
+              style={{
+                width: '1px',
+                height: '40px',
+                background: `linear-gradient(to bottom, ${COLORS.accent.primary}, transparent)`,
+              }}
+            />
+            <div
+              style={{
+                width: '8px',
+                height: '8px',
+                borderRadius: EFFECTS.radius.full,
+                background: COLORS.accent.primary,
+                animation: 'pulse 2s ease-in-out infinite',
+              }}
+            />
+          </div>
+          <span
+            style={{
+              fontFamily: FONTS.mono,
+              fontSize: TYPE_SCALE.mono.sm.size,
+              color: COLORS.ink[400],
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+            }}
+          >
+            Scroll to explore
+          </span>
+        </div>
+      </div>
+
+      {/* CSS animation */}
+      <style>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.5; transform: scale(0.8); }
+        }
+      `}</style>
     </header>
   );
 };

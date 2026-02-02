@@ -1,66 +1,54 @@
 /**
- * Table Component
- * Renders markdown tables with various styling variants
+ * Table Component - "The Scholarly Disruptor"
+ *
+ * Editorial magazine aesthetic
+ * - Clean, minimal tables
+ * - Confident typography
+ * - Print-inspired styling
  */
 import React from 'react';
 import RichText from './RichText';
+import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE } from '../design-tokens';
 
 const Table = ({ headers, rows, variant = 'default' }) => {
   if (!headers || !rows || rows.length === 0) return null;
 
-  // Variant-specific styling
-  const variants = {
-    default: {
-      container: 'bg-white border border-slate-200 rounded-xl overflow-hidden',
-      header: 'bg-slate-50 text-slate-700',
-      headerCell: 'px-6 py-4 text-left text-sm font-semibold',
-      row: 'border-t border-slate-100 hover:bg-slate-50 transition-colors',
-      cell: 'px-6 py-4 text-sm text-slate-600',
-    },
-    comparison: {
-      container: 'bg-white border border-slate-200 rounded-xl overflow-hidden',
-      header: 'bg-gradient-to-r from-slate-100 to-indigo-50 text-slate-800',
-      headerCell: 'px-6 py-4 text-center text-sm font-bold',
-      row: 'border-t border-slate-100',
-      cell: 'px-6 py-4 text-sm text-slate-600 text-center',
-      firstCell: 'text-left font-medium text-slate-700 bg-slate-50',
-    },
-    data: {
-      container: 'bg-white border border-slate-200 rounded-xl overflow-hidden font-mono',
-      header: 'bg-slate-800 text-white',
-      headerCell: 'px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider',
-      row: 'border-t border-slate-100 even:bg-slate-50',
-      cell: 'px-6 py-3 text-sm text-slate-600',
-    },
-    checklist: {
-      container: 'bg-white border border-slate-200 rounded-xl overflow-hidden',
-      header: 'bg-indigo-50 text-indigo-800',
-      headerCell: 'px-6 py-4 text-left text-sm font-semibold',
-      row: 'border-t border-slate-100',
-      cell: 'px-6 py-4 text-sm text-slate-600',
-    },
-    timeline: {
-      container: 'bg-gradient-to-r from-slate-50 to-indigo-50 border border-slate-200 rounded-xl overflow-hidden',
-      header: 'bg-slate-800 text-white',
-      headerCell: 'px-4 py-3 text-center text-xs font-semibold uppercase',
-      row: '',
-      cell: 'px-4 py-4 text-sm text-slate-600 text-center border-r border-slate-200 last:border-r-0',
-    },
-  };
+  // Normalize rows to match header count (trim extra empty columns)
+  const numCols = headers.length;
+  const normalizedRows = rows.map(row => {
+    // Take only as many cells as there are headers
+    return row.slice(0, numCols);
+  });
 
-  const styles = variants[variant] || variants.default;
-
-  // Check if a cell content looks like a checkmark or comparison indicator
-  const renderCellContent = (content, cellIndex) => {
-    // For comparison variant, highlight the first column
-    const isFirstCol = variant === 'comparison' && cellIndex === 0;
-    const cellStyle = isFirstCol ? styles.firstCell : '';
+  // Render cell content
+  const renderCellContent = (content, cellIndex, totalCols) => {
+    const isLastCol = cellIndex === totalCols - 1;
 
     // Handle checkmark patterns
     if (content === '✓' || content === '✔' || content.toLowerCase() === 'yes') {
       return (
-        <td key={cellIndex} className={`${styles.cell} ${cellStyle}`}>
-          <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-100 text-green-600">
+        <td
+          key={cellIndex}
+          style={{
+            padding: SPACE[4],
+            textAlign: 'left',
+            verticalAlign: 'top',
+          }}
+        >
+          <span
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '24px',
+              height: '24px',
+              borderRadius: EFFECTS.radius.full,
+              background: COLORS.accent.wash,
+              color: COLORS.accent.primary,
+              fontSize: '0.75rem',
+              fontWeight: 700,
+            }}
+          >
             ✓
           </span>
         </td>
@@ -69,8 +57,27 @@ const Table = ({ headers, rows, variant = 'default' }) => {
 
     if (content === '✗' || content === '✘' || content.toLowerCase() === 'no') {
       return (
-        <td key={cellIndex} className={`${styles.cell} ${cellStyle}`}>
-          <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-red-100 text-red-600">
+        <td
+          key={cellIndex}
+          style={{
+            padding: SPACE[4],
+            textAlign: 'left',
+            verticalAlign: 'top',
+          }}
+        >
+          <span
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '24px',
+              height: '24px',
+              borderRadius: EFFECTS.radius.full,
+              background: COLORS.ink[100],
+              color: COLORS.ink[400],
+              fontSize: '0.75rem',
+            }}
+          >
             ✗
           </span>
         </td>
@@ -78,28 +85,77 @@ const Table = ({ headers, rows, variant = 'default' }) => {
     }
 
     return (
-      <td key={cellIndex} className={`${styles.cell} ${cellStyle}`}>
+      <td
+        key={cellIndex}
+        style={{
+          padding: SPACE[4],
+          fontFamily: FONTS.body,
+          fontSize: TYPE_SCALE.body.sm.size,
+          lineHeight: 1.5,
+          color: isLastCol ? COLORS.ink[500] : COLORS.ink[700],
+          textAlign: 'left',
+          verticalAlign: 'top',
+          fontWeight: isLastCol ? 400 : 500,
+        }}
+      >
         <RichText>{content}</RichText>
       </td>
     );
   };
 
   return (
-    <div className={`my-8 overflow-x-auto ${styles.container}`}>
-      <table className="w-full">
-        <thead className={styles.header}>
-          <tr>
-            {headers.map((header, i) => (
-              <th key={i} className={styles.headerCell}>
-                {header}
-              </th>
-            ))}
+    <div
+      style={{
+        marginTop: SPACE[6],
+        marginBottom: SPACE[6],
+        overflowX: 'auto',
+        background: COLORS.surface.elevated,
+        borderRadius: EFFECTS.radius.lg,
+        border: `1px solid ${COLORS.ink[100]}`,
+      }}
+    >
+      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <thead>
+          <tr
+            style={{
+              background: COLORS.surface.inset,
+              borderBottom: `1px solid ${COLORS.ink[200]}`,
+            }}
+          >
+            {headers.map((header, i) => {
+              const isHighlighted = i === headers.length - 1;
+              const colWidth = `${100 / headers.length}%`;
+
+              return (
+                <th
+                  key={i}
+                  style={{
+                    width: colWidth,
+                    padding: `${SPACE[3]} ${SPACE[4]}`,
+                    fontFamily: FONTS.ui,
+                    fontSize: TYPE_SCALE.ui.sm.size,
+                    fontWeight: 600,
+                    color: isHighlighted ? COLORS.accent.primary : COLORS.ink[700],
+                    textAlign: 'left',
+                    letterSpacing: '0.01em',
+                    borderBottom: isHighlighted ? `2px solid ${COLORS.accent.primary}` : 'none',
+                  }}
+                >
+                  {header}
+                </th>
+              );
+            })}
           </tr>
         </thead>
         <tbody>
-          {rows.map((row, rowIndex) => (
-            <tr key={rowIndex} className={styles.row}>
-              {row.map((cell, cellIndex) => renderCellContent(cell, cellIndex))}
+          {normalizedRows.map((row, rowIndex) => (
+            <tr
+              key={rowIndex}
+              style={{
+                borderBottom: rowIndex < normalizedRows.length - 1 ? `1px solid ${COLORS.ink[100]}` : 'none',
+              }}
+            >
+              {row.map((cell, cellIndex) => renderCellContent(cell, cellIndex, numCols))}
             </tr>
           ))}
         </tbody>

@@ -15,5 +15,6 @@ export { default as Credentials } from './Credentials';
 export { default as Timeline } from './Timeline';
 export { default as Testimonials, LeadershipTestimonials, TeachingTestimonials, StudentTestimonials } from './Testimonials';
 export { default as Table } from './Table';
-export { default as Section, Subsection, Paragraph, BulletList } from './Section';
+export { default as Section, SectionDivider, Subsection, Paragraph, BulletList } from './Section';
 export { default as Citations } from './Citations';
+export { default as TerminalWindow } from './TerminalWindow';

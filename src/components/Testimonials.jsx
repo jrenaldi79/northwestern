@@ -1,32 +1,98 @@
 /**
- * Testimonials Component
- * Displays testimonial cards with different layouts based on type
+ * Testimonials Component - "The Scholarly Disruptor"
+ *
+ * Editorial magazine aesthetic
+ * - Clean card layouts
+ * - Confident typography
+ * - Restrained visual hierarchy
  */
 import React from 'react';
+import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE } from '../design-tokens';
 
 // Leadership testimonials - larger, more prominent
 const LeadershipTestimonials = ({ testimonials }) => (
-  <div className="my-10 space-y-6">
+  <div style={{ display: 'flex', flexDirection: 'column', gap: SPACE[5], marginTop: SPACE[8], marginBottom: SPACE[8] }}>
     {testimonials.map((t, i) => (
-      <div key={i} className="bg-white rounded-xl border border-slate-200 p-8 shadow-sm hover:shadow-md transition-shadow">
-        <div className="flex items-start gap-6">
-          {/* Avatar placeholder */}
-          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+      <div
+        key={i}
+        style={{
+          background: COLORS.surface.elevated,
+          borderRadius: EFFECTS.radius.lg,
+          border: `1px solid ${COLORS.ink[100]}`,
+          padding: SPACE[7],
+          boxShadow: EFFECTS.shadow.sm,
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: SPACE[5] }}>
+          {/* Initial avatar */}
+          <div
+            style={{
+              width: '56px',
+              height: '56px',
+              borderRadius: EFFECTS.radius.full,
+              background: COLORS.accent.wash,
+              border: `1px solid ${COLORS.accent.glow}`,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: COLORS.accent.primary,
+              fontFamily: FONTS.display,
+              fontWeight: 600,
+              fontSize: '1.25rem',
+              flexShrink: 0,
+            }}
+          >
             {t.author?.charAt(0) || '?'}
           </div>
 
-          <div className="flex-1">
+          <div style={{ flex: 1 }}>
             {/* Quote */}
-            <blockquote className="text-slate-700 leading-relaxed mb-4 text-lg">
+            <blockquote
+              style={{
+                fontFamily: FONTS.body,
+                fontSize: TYPE_SCALE.body.md.size,
+                color: COLORS.ink[500],
+                lineHeight: TYPE_SCALE.body.md.lineHeight,
+                marginBottom: SPACE[4],
+                fontStyle: 'italic',
+              }}
+            >
               "{t.content}"
             </blockquote>
 
             {/* Attribution */}
             <div>
-              <p className="font-semibold text-slate-800">{t.author}</p>
-              <p className="text-sm text-slate-500">{t.title}</p>
+              <p
+                style={{
+                  fontFamily: FONTS.ui,
+                  fontWeight: 600,
+                  fontSize: TYPE_SCALE.ui.md.size,
+                  color: COLORS.ink[700],
+                  marginBottom: SPACE[1],
+                }}
+              >
+                {t.author}
+              </p>
+              <p
+                style={{
+                  fontFamily: FONTS.ui,
+                  fontSize: TYPE_SCALE.ui.sm.size,
+                  color: COLORS.ink[400],
+                }}
+              >
+                {t.title}
+              </p>
               {t.subtitle && (
-                <p className="text-xs text-slate-400 italic">{t.subtitle}</p>
+                <p
+                  style={{
+                    fontFamily: FONTS.mono,
+                    fontSize: TYPE_SCALE.mono.sm.size,
+                    color: COLORS.accent.muted,
+                    marginTop: SPACE[1],
+                  }}
+                >
+                  {t.subtitle}
+                </p>
               )}
             </div>
           </div>
@@ -38,22 +104,78 @@ const LeadershipTestimonials = ({ testimonials }) => (
 
 // Teaching testimonials - medium size, professional
 const TeachingTestimonials = ({ testimonials }) => (
-  <div className="my-10 grid md:grid-cols-2 gap-6">
+  <div
+    style={{
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+      gap: SPACE[5],
+      marginTop: SPACE[8],
+      marginBottom: SPACE[8],
+    }}
+  >
     {testimonials.map((t, i) => (
-      <div key={i} className="bg-gradient-to-br from-slate-50 to-indigo-50 rounded-xl border border-slate-200 p-6">
+      <div
+        key={i}
+        style={{
+          background: i % 2 === 0 ? COLORS.surface.elevated : COLORS.surface.inset,
+          borderRadius: EFFECTS.radius.lg,
+          border: `1px solid ${COLORS.ink[100]}`,
+          padding: SPACE[6],
+        }}
+      >
         {/* Quote */}
-        <blockquote className="text-slate-700 leading-relaxed mb-4">
+        <blockquote
+          style={{
+            fontFamily: FONTS.body,
+            fontSize: TYPE_SCALE.body.sm.size,
+            color: COLORS.ink[500],
+            lineHeight: TYPE_SCALE.body.sm.lineHeight,
+            marginBottom: SPACE[5],
+            fontStyle: 'italic',
+          }}
+        >
           "{t.content}"
         </blockquote>
 
         {/* Attribution */}
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-semibold">
+        <div style={{ display: 'flex', alignItems: 'center', gap: SPACE[3] }}>
+          <div
+            style={{
+              width: '36px',
+              height: '36px',
+              borderRadius: EFFECTS.radius.md,
+              background: COLORS.accent.wash,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: COLORS.accent.primary,
+              fontFamily: FONTS.ui,
+              fontWeight: 600,
+              fontSize: '0.875rem',
+            }}
+          >
             {t.author?.charAt(0) || '?'}
           </div>
           <div>
-            <p className="font-semibold text-slate-800 text-sm">{t.author}</p>
-            <p className="text-xs text-slate-500">{t.title}</p>
+            <p
+              style={{
+                fontFamily: FONTS.ui,
+                fontWeight: 600,
+                fontSize: TYPE_SCALE.ui.sm.size,
+                color: COLORS.ink[700],
+              }}
+            >
+              {t.author}
+            </p>
+            <p
+              style={{
+                fontFamily: FONTS.mono,
+                fontSize: TYPE_SCALE.mono.sm.size,
+                color: COLORS.ink[400],
+              }}
+            >
+              {t.title}
+            </p>
           </div>
         </div>
       </div>
@@ -61,24 +183,104 @@ const TeachingTestimonials = ({ testimonials }) => (
   </div>
 );
 
-// Student testimonials - compact, grid layout
+// Student testimonials - compact, grid layout with enhanced card styling
 const StudentTestimonials = ({ testimonials, source }) => (
-  <div className="my-10 bg-slate-50 rounded-2xl p-8 border border-slate-200">
+  <div
+    style={{
+      marginTop: SPACE[8],
+      marginBottom: SPACE[8],
+      background: COLORS.surface.inset,
+      borderRadius: EFFECTS.radius.lg,
+      padding: SPACE[7],
+      border: `1px solid ${COLORS.ink[100]}`,
+      position: 'relative',
+      overflow: 'hidden',
+    }}
+  >
+    {/* Subtle gradient accent at top */}
+    <div
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        height: '2px',
+        background: `linear-gradient(90deg, ${COLORS.accent.primary}40 0%, ${COLORS.accent.muted}40 50%, transparent 100%)`,
+      }}
+    />
+
     {source && (
-      <h4 className="text-center text-sm font-medium text-slate-500 mb-6">
+      <h4
+        style={{
+          textAlign: 'center',
+          fontFamily: FONTS.mono,
+          fontSize: TYPE_SCALE.mono.sm.size,
+          letterSpacing: '0.1em',
+          textTransform: 'uppercase',
+          color: COLORS.ink[400],
+          marginBottom: SPACE[6],
+        }}
+      >
         Student Feedback — {source}
       </h4>
     )}
 
-    <div className="grid md:grid-cols-2 gap-4">
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+        gap: SPACE[5],
+      }}
+    >
       {testimonials.map((t, i) => (
-        <div key={i} className="bg-white rounded-lg p-4 border border-slate-200 shadow-sm">
-          {/* Quote icon */}
-          <svg className="w-6 h-6 text-indigo-300 mb-2" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-          </svg>
+        <div
+          key={i}
+          style={{
+            background: COLORS.surface.elevated,
+            borderRadius: EFFECTS.radius.lg,
+            padding: SPACE[6],
+            border: `1px solid ${COLORS.ink[150] || COLORS.ink[100]}`,
+            boxShadow: EFFECTS.shadow.sm,
+            position: 'relative',
+            transition: 'all 0.2s ease',
+          }}
+        >
+          {/* Purple accent line at top of each card */}
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: SPACE[4],
+              width: '24px',
+              height: '3px',
+              background: COLORS.accent.primary,
+              borderRadius: '0 0 2px 2px',
+            }}
+          />
 
-          <blockquote className="text-sm text-slate-600 italic">
+          {/* Em dash quote indicator */}
+          <div
+            style={{
+              fontFamily: FONTS.mono,
+              fontSize: '1rem',
+              color: COLORS.accent.primary,
+              marginBottom: SPACE[3],
+              marginTop: SPACE[2],
+            }}
+          >
+            —
+          </div>
+
+          <blockquote
+            style={{
+              fontFamily: FONTS.body,
+              fontSize: TYPE_SCALE.body.sm.size,
+              color: COLORS.ink[500],
+              lineHeight: TYPE_SCALE.body.sm.lineHeight,
+              fontStyle: 'italic',
+              margin: 0,
+            }}
+          >
             "{t.content}"
           </blockquote>
         </div>

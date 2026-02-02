@@ -44,9 +44,34 @@ function readApp() {
   return fs.readFileSync(filePath, 'utf-8');
 }
 
+// Read design tokens file
+function readDesignTokens() {
+  const filePath = path.join(SRC_DIR, 'design-tokens.js');
+  if (!fs.existsSync(filePath)) {
+    console.error('Error: design-tokens.js not found.');
+    process.exit(1);
+  }
+  return fs.readFileSync(filePath, 'utf-8');
+}
+
+// Extract design tokens code (remove imports/exports for inline bundling)
+function extractDesignTokensCode(source) {
+  let code = source;
+
+  // Remove import statements
+  code = code.replace(/^import.*$/gm, '');
+
+  // Remove export keywords but keep the declarations
+  code = code.replace(/^export const /gm, 'const ');
+  code = code.replace(/^export default .*$/gm, '');
+  code = code.replace(/^export \{[^}]*\};?\s*$/gm, '');
+
+  return code.trim();
+}
+
 // Extract component code (remove imports/exports for inline bundling)
 function extractComponentCode(source, componentName) {
-  // Remove import statements
+  // Remove import statements (including design-tokens imports)
   let code = source.replace(/^import.*$/gm, '');
 
   // Remove export default
@@ -67,26 +92,32 @@ function build() {
     fs.mkdirSync(DIST_DIR, { recursive: true });
   }
 
-  // Component order matters for dependencies
+  // Read design tokens first (single source of truth)
+  console.log('  Reading design-tokens...');
+  const designTokensSource = readDesignTokens();
+  const designTokensCode = extractDesignTokensCode(designTokensSource);
+
+  // Component order (no longer matters for dependencies since tokens are centralized)
   const components = [
     'RichText',
     'Header',
+    'CardGrid',
     'StatsGrid',
     'Chart',
     'Convergence',
     'QuoteCarousel',
     'PullQuote',
-    'CardGrid',
     'Credentials',
     'Timeline',
     'Testimonials',
     'Table',
     'Section',
     'Citations',
+    'TerminalWindow',
   ];
 
   // Read all components
-  const componentCode = components.map(name => {
+  const componentCode = components.map((name) => {
     console.log(`  Reading ${name}...`);
     const source = readComponent(name);
     return extractComponentCode(source, name);
@@ -111,6 +142,8 @@ function build() {
   app = app.replace(/export default App;?\s*$/gm, '');
 
   // Build the final bundle
+  // Note: For ES module environments, uncomment: import React, { useState } from 'react';
+  // For browser UMD environments (like preview.html), React and useState should be globals
   const bundle = `/**
  * Product Engineer Proposal - Single File Bundle
  * Generated: ${new Date().toISOString()}
@@ -118,14 +151,19 @@ function build() {
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
  */
-
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 
 // ============================================================================
 // CONTENT DATA
 // ============================================================================
 
 ${content}
+
+// ============================================================================
+// DESIGN TOKENS (Single Source of Truth)
+// ============================================================================
+
+${designTokensCode}
 
 // ============================================================================
 // COMPONENTS

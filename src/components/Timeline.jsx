@@ -1,50 +1,119 @@
 /**
- * Timeline Component
- * Displays career timeline with highlighted entries
+ * Timeline Component - "The Scholarly Disruptor"
+ *
+ * Editorial magazine aesthetic
+ * - Clean vertical timeline
+ * - Confident typography
+ * - Restrained visual hierarchy
  */
 import React from 'react';
 import RichText from './RichText';
+import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE } from '../design-tokens';
 
 const Timeline = ({ entries }) => {
   if (!entries || entries.length === 0) return null;
 
   return (
-    <div className="my-10">
-      <div className="relative">
+    <div style={{ marginTop: SPACE[8], marginBottom: SPACE[8] }}>
+      <div style={{ position: 'relative' }}>
         {/* Vertical line */}
-        <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-indigo-500 via-purple-500 to-slate-300" />
+        <div
+          style={{
+            position: 'absolute',
+            left: '31px',
+            top: '8px',
+            bottom: '8px',
+            width: '2px',
+            background: COLORS.ink[200],
+          }}
+        />
 
         {/* Entries */}
-        <div className="space-y-8">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: SPACE[6] }}>
           {entries.map((entry, i) => (
-            <div key={i} className="relative pl-20">
+            <div key={i} style={{ position: 'relative', paddingLeft: '80px' }}>
               {/* Year marker */}
-              <div className={`absolute left-0 w-16 h-16 rounded-xl flex items-center justify-center font-bold text-sm shadow-lg ${
-                entry.highlight
-                  ? 'bg-gradient-to-br from-indigo-500 to-purple-600 text-white'
-                  : 'bg-white border-2 border-slate-200 text-slate-600'
-              }`}>
+              <div
+                style={{
+                  position: 'absolute',
+                  left: '0',
+                  width: '64px',
+                  height: '64px',
+                  borderRadius: EFFECTS.radius.md,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontFamily: FONTS.mono,
+                  fontWeight: 600,
+                  fontSize: TYPE_SCALE.mono.md.size,
+                  background: entry.highlight ? COLORS.accent.primary : COLORS.surface.elevated,
+                  color: entry.highlight ? COLORS.surface.paper : COLORS.ink[600],
+                  border: entry.highlight ? 'none' : `1px solid ${COLORS.ink[200]}`,
+                }}
+              >
                 {entry.year}
               </div>
 
               {/* Content card */}
-              <div className={`rounded-xl p-6 ${
-                entry.highlight
-                  ? 'bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200'
-                  : 'bg-slate-50 border border-slate-200'
-              }`}>
-                <div className="flex items-start justify-between mb-2">
+              <div
+                style={{
+                  background: entry.highlight ? COLORS.accent.wash : COLORS.surface.elevated,
+                  borderRadius: EFFECTS.radius.lg,
+                  border: `1px solid ${entry.highlight ? COLORS.accent.glow : COLORS.ink[100]}`,
+                  padding: SPACE[6],
+                  boxShadow: EFFECTS.shadow.sm,
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: SPACE[3] }}>
                   <div>
-                    <h4 className="font-bold text-slate-800">{entry.title}</h4>
-                    <p className="text-sm text-slate-500">{entry.company}</p>
+                    <h4
+                      style={{
+                        fontFamily: FONTS.ui,
+                        fontWeight: 600,
+                        fontSize: TYPE_SCALE.ui.md.size,
+                        color: COLORS.ink[800],
+                        marginBottom: SPACE[1],
+                      }}
+                    >
+                      {entry.title}
+                    </h4>
+                    <p
+                      style={{
+                        fontFamily: FONTS.mono,
+                        fontSize: TYPE_SCALE.mono.sm.size,
+                        color: COLORS.ink[400],
+                      }}
+                    >
+                      {entry.company}
+                    </p>
                   </div>
                   {entry.highlight && (
-                    <span className="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded-full">
-                      Key Milestone
+                    <span
+                      style={{
+                        padding: `${SPACE[1]} ${SPACE[3]}`,
+                        background: COLORS.accent.primary,
+                        color: COLORS.surface.paper,
+                        fontFamily: FONTS.mono,
+                        fontSize: TYPE_SCALE.mono.sm.size,
+                        fontWeight: 500,
+                        borderRadius: EFFECTS.radius.sm,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em',
+                      }}
+                    >
+                      Key
                     </span>
                   )}
                 </div>
-                <p className="text-slate-600 leading-relaxed">
+                <p
+                  style={{
+                    fontFamily: FONTS.body,
+                    fontSize: TYPE_SCALE.body.sm.size,
+                    lineHeight: TYPE_SCALE.body.sm.lineHeight,
+                    color: COLORS.ink[500],
+                    margin: 0,
+                  }}
+                >
                   <RichText>{entry.content}</RichText>
                 </p>
               </div>

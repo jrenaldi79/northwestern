@@ -1,34 +1,75 @@
 /**
- * PullQuote Component
- * A featured/highlighted quote for visual emphasis
+ * PullQuote Component - "The Scholarly Disruptor"
+ *
+ * Editorial magazine aesthetic
+ * - Confident serif typography
+ * - Dramatic scale
+ * - Print-inspired layout
  */
 import React from 'react';
+import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE, LAYOUT } from '../design-tokens';
 
 const PullQuote = ({ children, align = 'center' }) => {
-  const alignmentClasses = {
-    left: 'text-left border-l-4 pl-6',
-    center: 'text-center border-l-0',
-    right: 'text-right border-r-4 pr-6',
-  };
+  const isCenter = align === 'center';
+  const isLeft = align === 'left';
 
   return (
-    <aside className={`my-10 py-8 px-6 ${alignmentClasses[align]} border-indigo-500 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg`}>
-      <blockquote className="relative">
-        {/* Opening quote mark */}
-        <span className="absolute -top-4 -left-2 text-6xl text-indigo-200 font-serif leading-none">
-          "
-        </span>
+    <aside
+      style={{
+        marginTop: SPACE[6],
+        marginBottom: SPACE[6],
+        paddingTop: SPACE[4],
+        paddingBottom: SPACE[4],
+        paddingLeft: isLeft ? SPACE[6] : 0,
+        paddingRight: !isLeft && !isCenter ? SPACE[6] : 0,
+        borderLeft: isLeft ? `2px solid ${COLORS.accent.primary}` : 'none',
+        borderRight: !isLeft && !isCenter ? `2px solid ${COLORS.accent.primary}` : 'none',
+        position: 'relative',
+        maxWidth: LAYOUT.maxWidth.prose,
+      }}
+    >
+      {/* Centered top accent line */}
+      {isCenter && (
+        <div
+          style={{
+            width: '48px',
+            height: '2px',
+            background: COLORS.accent.primary,
+            margin: `0 auto ${SPACE[4]}`,
+          }}
+        />
+      )}
 
-        {/* Quote text */}
-        <p className="text-xl md:text-2xl font-medium text-slate-800 leading-relaxed italic relative z-10">
-          {children}
+      <blockquote style={{ position: 'relative' }}>
+        {/* Quote text - dramatic serif */}
+        <p
+          style={{
+            fontFamily: FONTS.display,
+            fontSize: TYPE_SCALE.display.md.size,
+            fontWeight: TYPE_SCALE.display.md.weight,
+            fontStyle: 'italic',
+            color: COLORS.ink[800],
+            lineHeight: TYPE_SCALE.display.md.lineHeight,
+            letterSpacing: TYPE_SCALE.display.md.letterSpacing,
+            textAlign: align,
+            margin: 0,
+          }}
+        >
+          "{children}"
         </p>
-
-        {/* Closing quote mark */}
-        <span className="absolute -bottom-8 right-0 text-6xl text-indigo-200 font-serif leading-none">
-          "
-        </span>
       </blockquote>
+
+      {/* Bottom accent line for center alignment */}
+      {isCenter && (
+        <div
+          style={{
+            width: '48px',
+            height: '2px',
+            background: COLORS.ink[200],
+            margin: `${SPACE[4]} auto 0`,
+          }}
+        />
+      )}
     </aside>
   );
 };
