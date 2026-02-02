@@ -1,0 +1,19 @@
+{
+  "name": "product-engineer-proposal",
+  "version": "1.0.0",
+  "description": "Product Engineer Proposal - Modular React component system",
+  "main": "dist/ProductEngineerProposal.jsx",
+  "scripts": {
+    "parse": "node src/utils/parser.js",
+    "build": "node src/utils/build.js",
+    "verify": "node scripts/verify-artifact.js",
+    "all": "npm run parse && npm run build && npm run verify"
+  },
+  "keywords": [
+    "proposal",
+    "react",
+    "components"
+  ],
+  "author": "John Renaldi",
+  "license": "MIT"
+}

@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+test-render/node_modules/
+
+# Build outputs (generated, can be rebuilt)
+dist/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Test coverage
+coverage/
+
+# Temporary files
+*.tmp
+*.temp
