@@ -79,3 +79,8 @@ const prodHTML = generateHTML({
 fs.writeFileSync(productionFile, prodHTML);
 const prodSize = (fs.statSync(productionFile).size / 1024).toFixed(1);
 console.log(`✓ dist/index.html updated (production build, ${prodSize} KB)`);
+
+// Also copy to root index.html for GitHub Pages (serves from repo root)
+const rootIndexFile = path.resolve(__dirname, '../index.html');
+fs.writeFileSync(rootIndexFile, prodHTML);
+console.log(`✓ index.html updated (synced with dist)`);
