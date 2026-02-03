@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-02-03T06:09:33.344Z
+// Generated: 2026-02-03T06:17:06.376Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -222,7 +222,7 @@ const CONTENT = {
           "title": "Teaching Experience",
           "audience": "",
           "content": "Someone who has taught at the graduate level across engineering and business schools, and trained corporate teams from entry-level to executive.",
-          "expandedContent": "Teaching is a skill that requires deliberate practice. Someone who has taught MBAs understands how to frame technical concepts for strategic decision-makers. Someone who has taught engineers understands how to maintain technical rigor. Someone who has trained corporate teams knows how to adapt content for different experience levels in the same room. This pedagogical range is essential for the Product Engineer curriculum. John teaches at McCormick (MPD²), Kellogg (MMM), and UIUC (Applied AI), and runs corporate training from entry-level to executive."
+          "expandedContent": "Teaching is a skill that requires deliberate practice. Someone who has taught MBAs understands how to frame technical concepts for strategic decision-makers. Someone who has taught engineers understands how to maintain technical rigor. Someone who has trained corporate teams knows how to adapt content for different experience levels in the same room. This pedagogical range is essential for the Product Engineer curriculum. John teaches at McCormick (MPD²), Kellogg/Segal (MMM), and UIUC Grainger (Applied AI), and runs corporate training from entry-level to executive."
         }
       ]
     },
@@ -309,7 +309,7 @@ const CONTENT = {
     },
     {
       "value": "Teacher",
-      "label": "MPD², MMM, UIUC Applied AI"
+      "label": "MPD², MMM, UIUC Grainger"
     },
     {
       "value": "Investor",
@@ -326,10 +326,10 @@ const CONTENT = {
     },
     {
       "year": "Current",
-      "company": "Northwestern / UIUC",
+      "company": "Northwestern / UIUC Grainger",
       "title": "Faculty",
       "highlight": true,
-      "content": "Teaching product management, AI-augmented development, and innovation at McCormick (MPD²), Kellogg (MMM), and UIUC (Applied AI)."
+      "content": "Teaching product management, AI-augmented development, and innovation at McCormick (MPD²), Kellogg/Segal (MMM), and UIUC Grainger (Applied AI)."
     },
     {
       "year": "2014-2024",
@@ -417,7 +417,7 @@ const CONTENT = {
     },
     {
       "type": "students",
-      "source": "Kellogg MMM",
+      "source": "Kellogg/Segal MMM",
       "testimonials": [
         {
           "author": "",
@@ -1060,7 +1060,7 @@ const CONTENT = {
           "blocks": [
             {
               "type": "paragraph",
-              "text": "John teaches at **McCormick (Segal)**, **Kellogg (MMM)**, and **University of Illinois** (Applied AI), working across engineering and business at multiple institutions. His courses integrate AI into design thinking and product development, including building custom agents and incorporating synthetic users into research. He led **Northwestern's Business Innovation Lab (Winter 2025)** in partnership with **Google DeepMind** and served as a key panelist at **Kearney's 2024 Executive Panel on AI in Product Design**."
+              "text": "John teaches at **McCormick (Segal)**, **Kellogg/Segal (MMM)**, and **University of Illinois** (Applied AI), working across engineering and business at multiple institutions. His courses integrate AI into design thinking and product development, including building custom agents and incorporating synthetic users into research. He led **Northwestern's Business Innovation Lab (Winter 2025)** in partnership with **Google DeepMind** and served as a key panelist at **Kearney's 2024 Executive Panel on AI in Product Design**."
             },
             {
               "type": "paragraph",

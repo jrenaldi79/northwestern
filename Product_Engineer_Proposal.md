@@ -353,7 +353,7 @@ Someone who has taught at the graduate level across engineering and business sch
 <!-- @expanded -->
 Teaching is a skill that requires deliberate practice. Someone who has taught MBAs understands how to frame technical concepts for strategic decision-makers. Someone who has taught engineers understands how to maintain technical rigor. Someone who has trained corporate teams knows how to adapt content for different experience levels in the same room. This pedagogical range is essential for the Product Engineer curriculum.
 
-John teaches at McCormick (MPD²), Kellogg (MMM), and UIUC (Applied AI), and runs corporate training from entry-level to executive.
+John teaches at McCormick (MPD²), Kellogg/Segal (MMM), and UIUC Grainger (Applied AI), and runs corporate training from entry-level to executive.
 <!-- /@card -->
 <!-- /@cards -->
 
@@ -366,7 +366,7 @@ John is an unusual combination: a former Google executive who still ships code d
 <!-- @credential value="Product" label="VP/GM at Google & Motorola" -->
 <!-- @credential value="Engineering" label="9+ patents, ships code daily" -->
 <!-- @credential value="Founder" label="9-figure exit (Life360)" -->
-<!-- @credential value="Teacher" label="MPD², MMM, UIUC Applied AI" -->
+<!-- @credential value="Teacher" label="MPD², MMM, UIUC Grainger" -->
 <!-- @credential value="Investor" label="20+ portfolio companies" -->
 <!-- /@credentials -->
 
@@ -379,8 +379,8 @@ John's career spans executive leadership, entrepreneurship, and technical buildi
 <!-- @entry year="Current" company="Presto Consulting" title="Founder & AI Consultant" highlight="true" -->
 AI strategy and hands-on development for clients including Realtor.com, Life360, Paynearme. Building production AI systems daily.
 <!-- /@entry -->
-<!-- @entry year="Current" company="Northwestern / UIUC" title="Faculty" highlight="true" -->
-Teaching product management, AI-augmented development, and innovation at McCormick (MPD²), Kellogg (MMM), and UIUC (Applied AI).
+<!-- @entry year="Current" company="Northwestern / UIUC Grainger" title="Faculty" highlight="true" -->
+Teaching product management, AI-augmented development, and innovation at McCormick (MPD²), Kellogg/Segal (MMM), and UIUC Grainger (Applied AI).
 <!-- /@entry -->
 <!-- @entry year="2014-2024" company="Google" title="General Manager" highlight="false" -->
 Led global wearable software strategy across design, product management, and research for Google's wearable ecosystem. Instrumental in major Wear OS platform developments including interface updates for innovative hardware architectures. Spearheaded one of Google Android's first AI innovation product teams.
@@ -466,7 +466,7 @@ John maintains 16 public repositories on GitHub (github.com/jrenaldi79), includi
 
 ### Teaching & Academic Leadership
 
-John teaches at **McCormick (Segal)**, **Kellogg (MMM)**, and **University of Illinois** (Applied AI), working across engineering and business at multiple institutions. His courses integrate AI into design thinking and product development, including building custom agents and incorporating synthetic users into research. He led **Northwestern's Business Innovation Lab (Winter 2025)** in partnership with **Google DeepMind** and served as a key panelist at **Kearney's 2024 Executive Panel on AI in Product Design**.
+John teaches at **McCormick (Segal)**, **Kellogg/Segal (MMM)**, and **University of Illinois** (Applied AI), working across engineering and business at multiple institutions. His courses integrate AI into design thinking and product development, including building custom agents and incorporating synthetic users into research. He led **Northwestern's Business Innovation Lab (Winter 2025)** in partnership with **Google DeepMind** and served as a key panelist at **Kearney's 2024 Executive Panel on AI in Product Design**.
 
 He works alongside **Jim Wicks** (Segal Design Institute founder) and **Mike Edmonds** (Microsoft) in the classroom. His philosophy in the **MPD² program**: outcomes over outputs. He teaches students to be **"missionaries, not mercenaries."**
 
@@ -622,7 +622,7 @@ Thank you so much for the AI Product course. I hate to admit that your predictio
 <!-- /@testimonial -->
 <!-- /@testimonials -->
 
-<!-- @testimonials type="students" source="Kellogg MMM" -->
+<!-- @testimonials type="students" source="Kellogg/Segal MMM" -->
 <!-- @testimonial -->
 The course provides a comprehensive overview of Agentic AI and how it works. Highly recommended for anyone interested in learning the technology beyond the basics.
 <!-- /@testimonial -->
