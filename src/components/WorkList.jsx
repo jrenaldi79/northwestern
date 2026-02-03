@@ -26,13 +26,12 @@ const WorkItem = ({ item, index, inView }) => {
 
   return (
     <div
+      className={isHero ? 'work-item-hero' : 'work-item'}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
-        display: 'grid',
-        gridTemplateColumns: isHero ? '1fr' : '72px 1fr',
-        gap: SPACE[5],
-        padding: isHero ? SPACE[6] : `${SPACE[5]} ${SPACE[5]} ${SPACE[5]} 0`,
+        gap: SPACE[4],
+        padding: isHero ? SPACE[5] : `${SPACE[4]} ${SPACE[4]} ${SPACE[4]} 0`,
         background: isHero
           ? COLORS.ink[900]
           : (isHovered ? COLORS.surface.elevated : 'transparent'),
@@ -66,14 +65,15 @@ const WorkItem = ({ item, index, inView }) => {
 
       {/* Number badge - positioned absolutely for hero */}
       <div
+        className="work-item-number-col"
         style={{
           position: isHero ? 'absolute' : 'relative',
-          top: isHero ? SPACE[4] : 0,
-          right: isHero ? SPACE[4] : 'auto',
+          top: isHero ? SPACE[3] : 0,
+          right: isHero ? SPACE[3] : 'auto',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: SPACE[2],
+          gap: SPACE[1],
         }}
       >
         {/* Number */}
@@ -92,9 +92,10 @@ const WorkItem = ({ item, index, inView }) => {
         {/* Icon container - only for non-hero */}
         {!isHero && (
           <div
+            className="work-item-icon"
             style={{
-              width: '48px',
-              height: '48px',
+              width: '40px',
+              height: '40px',
               borderRadius: EFFECTS.radius.md,
               background: isHovered
                 ? `linear-gradient(135deg, ${COLORS.accent.wash} 0%, ${COLORS.surface.elevated} 100%)`
@@ -243,7 +244,8 @@ const WorkItem = ({ item, index, inView }) => {
 // WORK LIST - Portfolio showcase grid
 // =============================================================================
 const WorkList = ({ items }) => {
-  const [ref, inView] = useInView();
+  // Use lower threshold for tall component - trigger when just top edge is visible
+  const [ref, inView] = useInView({ threshold: 0.05, rootMargin: '0px' });
 
   if (!items || items.length === 0) return null;
 
@@ -255,6 +257,36 @@ const WorkList = ({ items }) => {
         marginBottom: SPACE[6],
       }}
     >
+      {/* Responsive styles for work items */}
+      <style>{`
+        .work-item {
+          display: grid;
+          grid-template-columns: 56px 1fr;
+        }
+        .work-item-hero {
+          display: grid;
+          grid-template-columns: 1fr;
+        }
+        @media (max-width: 600px) {
+          .work-item,
+          .work-item-hero {
+            grid-template-columns: 1fr !important;
+            opacity: 1 !important;
+            transform: none !important;
+          }
+          .work-item-number-col {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            gap: 10px !important;
+            margin-bottom: 8px !important;
+          }
+          .work-item-number-col .work-item-icon {
+            width: 36px !important;
+            height: 36px !important;
+          }
+        }
+      `}</style>
       {/* Section label */}
       <div
         style={{

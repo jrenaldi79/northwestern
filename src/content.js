@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-02-03T06:17:06.376Z
+// Generated: 2026-02-03T07:16:43.056Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -148,7 +148,7 @@ const CONTENT = {
     {
       "author": "",
       "title": "",
-      "quote": "The shift is analogous to when CAD replaced drafting tables or when simulation replaced physical prototyping."
+      "quote": "The shift is comparable to when CAD replaced drafting tables or when simulation replaced physical prototyping."
     }
   ],
   "cards": [
@@ -340,10 +340,10 @@ const CONTENT = {
     },
     {
       "year": "2021",
-      "company": "Jiobit",
-      "title": "Acquired by Life360",
+      "company": "Life360",
+      "title": "Jiobit Acquired",
       "highlight": true,
-      "content": "Nine-figure exit (NASDAQ: LIF). All 25 employees joined Life360. Built encryption trusted by federal agencies."
+      "content": "Nine-figure exit (NASDAQ: LIF). The entire team joined Life360. Built encryption trusted by federal agencies."
     },
     {
       "year": "2015",
@@ -358,6 +358,20 @@ const CONTENT = {
       "title": "VP Global eCommerce",
       "highlight": false,
       "content": "Created Moto Maker. 10x YoY growth, 50% fewer returns, Webby Awards, Best of CES, Red Dot Design Award."
+    },
+    {
+      "year": "2001-2004",
+      "company": "Deloitte",
+      "title": "Consultant",
+      "highlight": false,
+      "content": "Enterprise consulting with telecommunications and retail clients. Foundation in requirements gathering and system delivery."
+    },
+    {
+      "year": "2000-2001",
+      "company": "Motorola Solutions",
+      "title": "Product & Engineering",
+      "highlight": false,
+      "content": "Built enterprise software platforms. Developed requirements gathering discipline and delivery processes for large-scale systems."
     }
   ],
   "testimonials": [
@@ -373,8 +387,8 @@ const CONTENT = {
         },
         {
           "author": "Lior Ron",
-          "title": "Founder of Uber Freight, Former Moto/Google Executive",
-          "subtitle": "",
+          "title": "Chairman/Founder of Uber Freight, COO of Waabi",
+          "subtitle": "John reported to Lior",
           "content": "John is obsessed with understanding customer needs and can rally great technical talent around solving real user problems... I've seen John balance that successfully again and again."
         },
         {
@@ -790,7 +804,7 @@ const CONTENT = {
           "blocks": [
             {
               "type": "paragraph",
-              "text": "As AI makes senior engineers more productive, it's eliminating the entry points where new engineers used to learn their craft."
+              "text": "As AI makes senior engineers more productive, it eliminates the entry points where new engineers used to learn their craft."
             },
             {
               "type": "component",
@@ -799,31 +813,31 @@ const CONTENT = {
             },
             {
               "type": "paragraph",
-              "text": "The numbers are stark. Entry-level tech hiring has dropped **73%** in the past year alone. [27] The **Bureau of Labor Statistics** reports overall programmer employment declined **27.5%** from 2023-2025. CS graduate unemployment has hit **6.1%**, well above the national average of 4.8%, with **16.5% underemployment** (graduates working in roles below their qualification level). [28] A **Harvard study of 62 million workers** found that when companies adopt generative AI, junior developer employment drops **9-10% within six quarters**, while senior employment barely changes."
+              "text": "Entry-level tech hiring has dropped **73%** in the past year. [27] The Bureau of Labor Statistics reports programmer employment declined **27.5%** from 2023-2025. CS graduate unemployment has hit **6.1%** (well above the national average of 4.8%) with **16.5% underemployment**. [28] A Harvard study of 62 million workers found that when companies adopt generative AI, junior developer employment drops **9-10% within six quarters**. Senior employment barely changes."
             },
             {
               "type": "paragraph",
-              "text": "This isn't cyclical. It's structural."
+              "text": "This is not a cycle. It is a structural shift."
             },
             {
               "type": "paragraph",
-              "text": "At Davos 2026, the CEOs of the two leading AI labs said the quiet part out loud. Anthropic's **Dario Amodei** predicted AI could handle *\"most, maybe all\"* coding work within 6-12 months. DeepMind's **Demis Hassabis** added: *\"I think we're going to see this year the beginnings of maybe it impacting the junior level\"*, explicitly naming entry-level roles and internships as vulnerable. [29]"
+              "text": "At Davos 2026, Anthropic's **Dario Amodei** predicted AI could handle *\"most, maybe all\"* coding work within 6-12 months. DeepMind's **Demis Hassabis** named entry-level roles and internships as vulnerable. [29]"
             },
             {
               "type": "paragraph",
-              "text": "**Stanford's Digital Economy Lab** quantified the damage: employment for software developers aged 22-25 has **declined nearly 20%** from its 2022 peak. Early-career workers in AI-exposed occupations experienced a **16% relative employment decline** between October 2022 and September 2025, while employment for workers 30+ in the same fields actually *grew* 6-12%. [30] The \"learning curve\" itself is being automated, leaving early-career professionals stranded between AI agents that handle simple tasks and senior workers who handle complex architecture."
+              "text": "Stanford's Digital Economy Lab found employment for software developers aged 22-25 has **declined nearly 20%** from its 2022 peak. Early-career workers in AI-exposed jobs experienced a **16% relative employment decline** between October 2022 and September 2025. Workers 30+ in the same fields actually grew 6-12%. [30] The apprenticeship layer is being automated. Early-career professionals are stranded between AI agents that handle simple tasks and senior workers who handle complex architecture."
             },
             {
               "type": "paragraph",
-              "text": "The work that used to train junior developers is now automated. GitHub found developers using AI assistants complete tasks **56% faster**. CRUD operations, boilerplate code, unit tests, documentation, and routine bug fixes, the apprenticeship work that once trained new engineers, is increasingly AI-generated. As one developer put it: *\"We're the first generation who have to be Seniors before we're allowed to be Juniors.\"*"
+              "text": "The work that used to train junior developers is now automated. GitHub found developers using AI assistants complete tasks **56% faster**. CRUD operations, boilerplate code, unit tests, documentation, routine bug fixes: this was the apprenticeship work that trained new engineers. It is increasingly AI-generated."
             },
             {
               "type": "paragraph",
-              "text": "AWS CEO **Matt Garman** called the trend *\"one of the dumbest things I've ever heard,\"* warning that companies eliminating junior roles are destroying their talent pipeline. The industry is creating a structural problem that will hit in 2029-2031 when mass senior retirements meet the shortage of developers who were never hired in the first place."
+              "text": "AWS CEO **Matt Garman** called the trend *\"one of the dumbest things I've ever heard.\"* Companies eliminating junior roles are destroying their talent pipeline. The industry is creating a problem that will hit in 2029-2031 when mass senior retirements meet the shortage of developers who were never hired."
             },
             {
               "type": "paragraph",
-              "text": "As Magdalena Balazinska of UW's Allen School puts it: *\"Coding, or the translation of a precise design into software instructions, is dead. AI can do that.\"* [11] The question is: what replaces it?"
+              "text": "As Magdalena Balazinska of UW's Allen School puts it: *\"Coding, or the translation of a precise design into software instructions, is dead. AI can do that.\"* [11] The question is what replaces it."
             }
           ]
         },
@@ -900,13 +914,13 @@ const CONTENT = {
               "text": "AI-augmented development is becoming the default method for how engineers work. Context engineering, agentic systems, and production AI workflows are the tools engineers will use across every discipline. This curriculum teaches those methods before they become standard."
             },
             {
-              "type": "paragraph",
-              "text": "The shift is comparable to when CAD replaced drafting tables or when simulation replaced physical prototyping. Engineers who master AI-augmented methods will define the next generation of engineering practice. McCormick can lead in codifying these methods rather than adopting them later."
-            },
-            {
               "type": "component",
               "component": "pullquote",
-              "param": "The shift is analogous to when CAD replaced drafti"
+              "param": "The shift is comparable to when CAD replaced draft"
+            },
+            {
+              "type": "paragraph",
+              "text": "Engineers who master AI-augmented methods will define the next generation of engineering practice. McCormick can lead in codifying these methods rather than adopting them later."
             }
           ]
         },
@@ -915,11 +929,11 @@ const CONTENT = {
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Dean Schuh has called for \"whole-brain\" engineering that pairs technical depth with innovation, design, and entrepreneurial thinking. The Product Engineer curriculum delivers this integration. Students learn to move between user research, technical implementation, and business strategy. They don't just build systems; they understand why those systems matter and who they serve."
+              "text": "Dean Schuh has called for \"whole-brain\" engineering that pairs technical depth with innovation, design, and entrepreneurial thinking. The Product Engineer curriculum does this. Students learn to move between user research, technical implementation, and business strategy. They do not just build systems. They understand why those systems matter and who they serve."
             },
             {
               "type": "paragraph",
-              "text": "This prepares engineers to function as what Dean Schuh describes as \"the fulcrum between the research lab and the marketplace.\" The marketplace represents humanity and its needs. Engineers serve as the bridge. This curriculum teaches students to be that bridge."
+              "text": "Dean Schuh describes the goal as engineers becoming \"the fulcrum between the research lab and the marketplace.\" This curriculum teaches students to be that fulcrum."
             }
           ]
         },
@@ -932,16 +946,16 @@ const CONTENT = {
             },
             {
               "type": "paragraph",
-              "text": "The skills taught here also amplify work in the other three focus areas. Climate researchers use AI agents to process satellite data. Health engineers use LLMs to analyze clinical literature. Sustainability teams use generative tools to model resource flows. The Product Engineer mindset and AI fluency accelerate progress across all four challenges."
+              "text": "The skills taught here also apply to the other three focus areas. Climate researchers use AI agents to process satellite data. Health engineers use LLMs to analyze clinical literature. Sustainability teams use generative tools to model resource flows."
             }
           ]
         },
         {
-          "title": "The Window Is Now",
+          "title": "Why Now",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Dean Schuh has expressed interest in \"once-in-a-generation ideas and goals that can carry us into the future together.\" The AI shift in engineering practice qualifies. The window to establish McCormick as a leader in AI-augmented engineering education is now, while methods are still being defined and before competitors codify their own approaches."
+              "text": "Dean Schuh has expressed interest in ideas that \"carry us into the future together.\" The AI shift in engineering practice qualifies. The window to establish McCormick as a leader in AI-augmented engineering education is open now, while methods are still being defined and before competitors establish their own approaches."
             }
           ]
         }
@@ -949,7 +963,7 @@ const CONTENT = {
       "intro": [
         {
           "type": "paragraph",
-          "text": "This proposal maps to McCormick's three strategic pillars and addresses AI as one of the school's four grand challenge focus areas."
+          "text": "This proposal addresses McCormick's three strategic pillars and AI as one of the school's four grand challenge focus areas."
         },
         {
           "type": "component",
@@ -1023,15 +1037,15 @@ const CONTENT = {
           "blocks": [
             {
               "type": "paragraph",
-              "text": "John founded Jiobit after briefly losing his son in a crowded Chicago park. *\"I believe no parent should experience that panic.\"* The team built a device with encryption strong enough to be **trusted by federal government and law enforcement** for sensitive location tracking. Security as an architectural decision."
+              "text": "John founded Jiobit in 2015 after losing his six-year-old son for 30 minutes at Maggie Daley Park in Chicago. He searched every playground, every bathroom, growing more frantic. The boy was fine, just playing, unaware, but the panic stayed."
             },
             {
               "type": "paragraph",
-              "text": "The hardware was hard: the team packed Cellular, GPS, Wi-Fi, and BLE into a cookie-sized device. As John told *Inventors Digest*: *\"For any of this to work... we had to nail this custom system architecture and the sensor fusion technology.\"* He is named inventor on **9+ issued U.S. patents** covering location tracking, power management, and machine learning systems."
+              "text": "He and co-founder Roger Ady built what they couldn't find: low-power location beacons small enough to disappear into everyday life, secure enough for federal agencies. What started as a consumer product expanded into government contracts. The U.S. Air Force awarded Jiobit an SBIR Phase II contract for sensitive tracking applications. [21]"
             },
             {
               "type": "paragraph",
-              "text": "The outcome: SBIR Phase II Award (Air Force) [21], 200% YoY revenue growth, sold out in the 2018 holiday season, and acquired by **Life360 (NASDAQ: LIF)** in a deal that appreciated to **nine figures**. All 25 employees joined Life360 after the deal. [18][19]"
+              "text": "Life360 (NASDAQ: LIF) acquired the company in 2021. The entire team joined. The technology John built to find his son now powers location services for millions of families worldwide. [18][19]"
             }
           ]
         },

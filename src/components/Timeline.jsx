@@ -14,6 +14,85 @@ import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE } from '../design-tokens';
 
 // useInView hook is defined in Section.jsx and shared across all components
 
+// Company logos - using hosted images
+const LOGO_URLS = {
+  google: 'https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg',
+  motorola: 'https://companieslogo.com/img/orig/MSI-7283da32.png?t=1720244493',
+  northwestern: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Northwestern_Wildcats_logo.svg',
+  jiobit: 'https://scontent-msp1-1.xx.fbcdn.net/v/t39.30808-6/340589024_215341371187184_8666081397309431624_n.png?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=yr-3nsBJxCkQ7kNvwF5bdJM&_nc_oc=Adl1hMf7vFJhtT5u7Yz4ikqhmGy81TA2BKafytFl1nn0SlnjeYiAEVLROusALvyM9JQ&_nc_zt=23&_nc_ht=scontent-msp1-1.xx&_nc_gid=8AGPPNy0-_164oiDubIaEQ&oh=00_AftbkbK3p5Il6ik_aF4-DRad5XgXJuV9s6pdiymx3UnCcg&oe=69876213',
+  life360: 'https://companieslogo.com/img/orig/LIF.D-177fa734.png?t=1720244492',
+  deloitte: 'https://companieslogo.com/img/orig/deloitte-d98ace3a.png?t=1720244494',
+};
+
+// Fallback SVG logos for companies without hosted URLs
+const COMPANY_LOGOS = {
+  // Jiobit - teal brand color
+  jiobit: ({ size = 24 }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <rect x="2" y="2" width="20" height="20" rx="4" fill="#00B5AD"/>
+      <path d="M14 6v9c0 2-1.5 3-3.5 3S7 17 7 15" stroke="white" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+      <circle cx="14" cy="6" r="1.5" fill="white"/>
+    </svg>
+  ),
+  // Life360 - purple brand (#762EEB)
+  life360: ({ size = 24 }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="10" fill="#762EEB"/>
+      <circle cx="12" cy="10" r="6" stroke="white" strokeWidth="1.5" fill="none" opacity="0.4"/>
+      <circle cx="12" cy="10" r="3" stroke="white" strokeWidth="1.5" fill="none" opacity="0.7"/>
+      <circle cx="12" cy="10" r="1.5" fill="white"/>
+      <path d="M12 16l-3 4h6l-3-4z" fill="white" opacity="0.9"/>
+    </svg>
+  ),
+  // Presto Consulting
+  presto: ({ size = 24 }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <rect x="2" y="2" width="20" height="20" rx="4" fill={COLORS.accent.primary}/>
+      <path d="M7 8h6c1.5 0 3 1 3 3s-1.5 3-3 3h-4v4H7V8z" fill="white"/>
+    </svg>
+  ),
+  // Deloitte - green brand color
+  deloitte: ({ size = 24 }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <rect x="2" y="2" width="20" height="20" rx="4" fill="#86BC25"/>
+      <circle cx="12" cy="12" r="6" fill="white"/>
+      <circle cx="12" cy="12" r="3" fill="#86BC25"/>
+    </svg>
+  ),
+};
+
+// Get logo for company - returns an img element for hosted URLs or SVG component fallback
+const getCompanyLogo = (company, size = 20) => {
+  const name = company.toLowerCase();
+
+  // Hosted image logos
+  if (name.includes('google') && !name.includes('motorola')) {
+    return <img src={LOGO_URLS.google} alt="Google" width={size} height={size} style={{ objectFit: 'contain' }} />;
+  }
+  if (name.includes('motorola')) {
+    return <img src={LOGO_URLS.motorola} alt="Motorola" width={size} height={size} style={{ objectFit: 'contain' }} />;
+  }
+  if (name.includes('northwestern') || name.includes('uiuc')) {
+    return <img src={LOGO_URLS.northwestern} alt="Northwestern" width={size} height={size} style={{ objectFit: 'contain' }} />;
+  }
+  if (name.includes('jiobit')) {
+    return <img src={LOGO_URLS.jiobit} alt="Jiobit" width={size} height={size} style={{ objectFit: 'contain' }} />;
+  }
+  if (name.includes('life360')) {
+    return <img src={LOGO_URLS.life360} alt="Life360" width={size} height={size} style={{ objectFit: 'contain' }} />;
+  }
+
+  // Deloitte hosted logo
+  if (name.includes('deloitte')) {
+    return <img src={LOGO_URLS.deloitte} alt="Deloitte" width={size} height={size} style={{ objectFit: 'contain' }} />;
+  }
+
+  // SVG component fallbacks
+  if (name.includes('presto')) return COMPANY_LOGOS.presto({ size });
+
+  return null;
+};
+
 const TimelineEntry = ({ entry, index, total }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [ref, inView] = useInView();
@@ -24,6 +103,7 @@ const TimelineEntry = ({ entry, index, total }) => {
   return (
     <div
       ref={ref}
+      className="timeline-entry"
       style={{
         display: 'grid',
         gridTemplateColumns: '1fr 80px 1fr',
@@ -37,6 +117,7 @@ const TimelineEntry = ({ entry, index, total }) => {
     >
       {/* Left content area */}
       <div
+        className="timeline-left"
         style={{
           display: 'flex',
           justifyContent: 'flex-end',
@@ -56,6 +137,7 @@ const TimelineEntry = ({ entry, index, total }) => {
 
       {/* Center spine */}
       <div
+        className="timeline-spine"
         style={{
           position: 'relative',
           display: 'flex',
@@ -177,8 +259,9 @@ const TimelineEntry = ({ entry, index, total }) => {
         )}
       </div>
 
-      {/* Right content area */}
+      {/* Right content area - shows all cards on mobile */}
       <div
+        className="timeline-right"
         style={{
           display: 'flex',
           justifyContent: 'flex-start',
@@ -186,14 +269,15 @@ const TimelineEntry = ({ entry, index, total }) => {
           paddingTop: SPACE[2],
         }}
       >
-        {!isLeft && (
+        {/* Desktop: show only right-aligned cards. Mobile: show ALL cards via CSS */}
+        <div className={isLeft ? 'timeline-mobile-only' : ''}>
           <TimelineCard
             entry={entry}
             isHovered={isHovered}
             setIsHovered={setIsHovered}
             align="left"
           />
-        )}
+        </div>
       </div>
     </div>
   );
@@ -202,6 +286,7 @@ const TimelineEntry = ({ entry, index, total }) => {
 const TimelineCard = ({ entry, isHovered, setIsHovered, align }) => {
   return (
     <div
+      className="timeline-card"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
@@ -237,6 +322,7 @@ const TimelineCard = ({ entry, isHovered, setIsHovered, align }) => {
 
       {/* Pointer arrow */}
       <div
+        className="timeline-card-arrow"
         style={{
           position: 'absolute',
           top: '28px',
@@ -254,7 +340,7 @@ const TimelineCard = ({ entry, isHovered, setIsHovered, align }) => {
         }}
       />
 
-      {/* Company & badge row */}
+      {/* Company logo & badge row */}
       <div
         style={{
           display: 'flex',
@@ -267,56 +353,53 @@ const TimelineCard = ({ entry, isHovered, setIsHovered, align }) => {
       >
         <div
           style={{
-            padding: `${SPACE[1]} ${SPACE[3]}`,
-            background: entry.highlight ? COLORS.ink[800] : COLORS.surface.inset,
-            borderRadius: EFFECTS.radius.sm,
+            display: 'flex',
+            alignItems: 'center',
+            gap: SPACE[2],
           }}
         >
-          <span
-            style={{
-              fontFamily: FONTS.mono,
-              fontSize: TYPE_SCALE.mono.sm.size,
-              fontWeight: 600,
-              letterSpacing: '0.05em',
-              color: entry.highlight ? COLORS.accent.light : COLORS.ink[500],
-              textTransform: 'uppercase',
-            }}
-          >
-            {entry.company}
-          </span>
-        </div>
-
-        {entry.highlight && (
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: SPACE[1],
-            }}
-          >
+          {/* Company logo */}
+          {getCompanyLogo(entry.company) && (
             <div
               style={{
-                width: '6px',
-                height: '6px',
-                borderRadius: EFFECTS.radius.full,
-                background: COLORS.accent.primary,
-                boxShadow: `0 0 8px ${COLORS.accent.primary}`,
+                width: '32px',
+                height: '32px',
+                borderRadius: EFFECTS.radius.md,
+                background: entry.highlight ? COLORS.ink[800] : COLORS.surface.elevated,
+                border: `1px solid ${entry.highlight ? COLORS.ink[700] : COLORS.ink[200]}`,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
               }}
-            />
+            >
+              {getCompanyLogo(entry.company, 20)}
+            </div>
+          )}
+
+          {/* Company name badge */}
+          <div
+            style={{
+              padding: `${SPACE[1]} ${SPACE[3]}`,
+              background: entry.highlight ? COLORS.ink[800] : COLORS.surface.inset,
+              borderRadius: EFFECTS.radius.sm,
+            }}
+          >
             <span
               style={{
                 fontFamily: FONTS.mono,
-                fontSize: '0.625rem',
+                fontSize: TYPE_SCALE.mono.sm.size,
                 fontWeight: 600,
-                letterSpacing: '0.08em',
+                letterSpacing: '0.05em',
+                color: entry.highlight ? COLORS.accent.light : COLORS.ink[500],
                 textTransform: 'uppercase',
-                color: COLORS.accent.muted,
               }}
             >
-              Milestone
+              {entry.company}
             </span>
           </div>
-        )}
+        </div>
+
       </div>
 
       {/* Title */}
@@ -363,6 +446,39 @@ const Timeline = ({ entries }) => {
         marginBottom: SPACE[8],
       }}
     >
+      {/* Responsive styles for mobile timeline */}
+      <style>{`
+        /* Desktop: hide mobile-only cards */
+        .timeline-mobile-only {
+          display: none;
+        }
+
+        @media (max-width: 768px) {
+          .timeline-entry {
+            grid-template-columns: 60px 1fr !important;
+            min-height: auto !important;
+            gap: 12px !important;
+          }
+          .timeline-left {
+            display: none !important;
+          }
+          .timeline-right {
+            display: block !important;
+          }
+          .timeline-mobile-only {
+            display: block !important;
+          }
+          .timeline-spine {
+            order: -1;
+          }
+          .timeline-card {
+            max-width: 100% !important;
+          }
+          .timeline-card-arrow {
+            display: none !important;
+          }
+        }
+      `}</style>
       {/* Section header */}
       <div
         style={{

@@ -422,8 +422,17 @@ const Section = ({ number, title, children, className = '' }) => {
 };
 
 // Subsection component for ### headers - simple fade-in, no typewriter
+// Company logo URLs for subsection treatments
+const SUBSECTION_LOGOS = {
+  anthropic: 'https://companieslogo.com/img/orig/anthropic_BIG.D-03f4a309.png?t=1720244494',
+};
+
 const Subsection = ({ title, children }) => {
   const [ref, inView] = useInView({ threshold: 0.05, rootMargin: '0px' });
+
+  // Check if this subsection should show a company logo
+  const isAnthropicSection = title?.toLowerCase().includes('anthropic');
+  const logoUrl = isAnthropicSection ? SUBSECTION_LOGOS.anthropic : null;
 
   return (
     <div ref={ref} style={{ marginTop: SPACE[9], marginBottom: SPACE[6] }}>
@@ -451,6 +460,38 @@ const Subsection = ({ title, children }) => {
           }}
         />
         <div style={{ flex: 1 }}>
+          {/* Company logo treatment */}
+          {logoUrl && (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: SPACE[3],
+                marginBottom: SPACE[3],
+              }}
+            >
+              <img
+                src={logoUrl}
+                alt="Anthropic"
+                style={{
+                  height: '28px',
+                  width: 'auto',
+                  objectFit: 'contain',
+                }}
+              />
+              <span
+                style={{
+                  fontFamily: FONTS.mono,
+                  fontSize: TYPE_SCALE.mono.sm.size,
+                  color: COLORS.ink[400],
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em',
+                }}
+              >
+                Case Study
+              </span>
+            </div>
+          )}
           <h3
             style={{
               fontFamily: FONTS.headline,

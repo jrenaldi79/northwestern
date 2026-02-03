@@ -7,7 +7,7 @@
  * - Geometric accent elements
  * - Magazine cover composition
  */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { COLORS, FONTS, TYPE_SCALE, EFFECTS, LAYOUT, SPACE } from '../design-tokens';
 
 const Header = ({ data, heroQuote }) => {
@@ -19,6 +19,35 @@ const Header = ({ data, heroQuote }) => {
     title: '',
   };
   const [imageError, setImageError] = useState(false);
+
+  // Typewriter animation state
+  const [typedText, setTypedText] = useState('');
+  const [isTyping, setIsTyping] = useState(true);
+
+  // Typewriter effect for subtitle
+  useEffect(() => {
+    if (!subtitle) return;
+
+    let currentIndex = 0;
+    const typingSpeed = 35; // milliseconds per character
+
+    // Start typing after a short delay
+    const startDelay = setTimeout(() => {
+      const typeInterval = setInterval(() => {
+        if (currentIndex < subtitle.length) {
+          setTypedText(subtitle.slice(0, currentIndex + 1));
+          currentIndex++;
+        } else {
+          clearInterval(typeInterval);
+          setIsTyping(false);
+        }
+      }, typingSpeed);
+
+      return () => clearInterval(typeInterval);
+    }, 800);
+
+    return () => clearTimeout(startDelay);
+  }, [subtitle]);
 
   // Get initials for fallback
   const getInitials = (name) => {
@@ -214,6 +243,7 @@ const Header = ({ data, heroQuote }) => {
         }}
       >
         <div
+          className="hero-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(12, 1fr)',
@@ -223,7 +253,7 @@ const Header = ({ data, heroQuote }) => {
           }}
         >
           {/* Left column - Main content */}
-          <div style={{ gridColumn: 'span 8' }}>
+          <div className="hero-main" style={{ gridColumn: 'span 8' }}>
             {/* Kicker/Category */}
             <div
               style={{
@@ -288,18 +318,32 @@ const Header = ({ data, heroQuote }) => {
               </span>
             </h1>
 
-            {/* Subtitle/Dek */}
+            {/* Subtitle/Dek - Typewriter animation */}
             <p
               style={{
-                fontFamily: FONTS.body,
-                fontSize: 'clamp(1.125rem, 2vw, 1.375rem)',
+                fontFamily: FONTS.mono,
+                fontSize: 'clamp(1rem, 1.8vw, 1.25rem)',
                 lineHeight: 1.6,
-                color: COLORS.ink[500],
-                maxWidth: '36rem',
+                color: COLORS.ink[600],
+                maxWidth: '38rem',
                 marginBottom: '3rem',
+                minHeight: '3.5rem',
               }}
             >
-              {subtitle}
+              <span style={{ color: COLORS.accent.primary, marginRight: '0.5rem' }}>{'>'}</span>
+              {typedText}
+              <span
+                className="typing-cursor"
+                style={{
+                  display: 'inline-block',
+                  width: '2px',
+                  height: '1.2em',
+                  background: isTyping ? COLORS.accent.primary : COLORS.ink[400],
+                  marginLeft: '2px',
+                  verticalAlign: 'text-bottom',
+                  animation: 'blink 1s step-end infinite',
+                }}
+              />
             </p>
 
             {/* Author info - horizontal card */}
@@ -441,6 +485,7 @@ const Header = ({ data, heroQuote }) => {
 
           {/* Right column - Hero quote */}
           <div
+            className="hero-quote"
             style={{
               gridColumn: 'span 4',
               display: 'flex',
@@ -601,11 +646,30 @@ const Header = ({ data, heroQuote }) => {
         </div>
       </div>
 
-      {/* CSS animation */}
+      {/* CSS animation and responsive styles */}
       <style>{`
         @keyframes pulse {
           0%, 100% { opacity: 1; transform: scale(1); }
           50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        @keyframes blink {
+          0%, 50% { opacity: 1; }
+          51%, 100% { opacity: 0; }
+        }
+
+        /* Mobile responsive styles */
+        @media (max-width: 768px) {
+          .hero-grid {
+            grid-template-columns: 1fr !important;
+            gap: 2rem !important;
+          }
+          .hero-main {
+            grid-column: span 1 !important;
+          }
+          .hero-quote {
+            grid-column: span 1 !important;
+          }
         }
       `}</style>
     </header>

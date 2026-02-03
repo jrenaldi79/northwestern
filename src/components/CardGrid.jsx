@@ -651,14 +651,15 @@ const CardGrid = ({ type = 'profile', columns = 3, cards }) => {
   const hasExpandableProfiles = type === 'profile' && cards.some(c => c.expandedContent);
 
   // Grid configuration based on card type
+  // Feature cards use a class for responsive behavior
   const gridConfig = {
     feature: {
-      gridTemplateColumns: 'repeat(3, 1fr)',
+      className: 'feature-card-grid',
       gap: SPACE[5],
     },
     profile: {
       // Single column for expandable profiles (like topic cards)
-      gridTemplateColumns: hasExpandableProfiles ? '1fr' : 'repeat(auto-fit, minmax(300px, 1fr))',
+      gridTemplateColumns: hasExpandableProfiles ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))',
       gap: hasExpandableProfiles ? SPACE[3] : SPACE[4],
     },
     topic: {
@@ -735,10 +736,32 @@ const CardGrid = ({ type = 'profile', columns = 3, cards }) => {
         </div>
       )}
 
+      {/* Responsive CSS for feature cards */}
+      {type === 'feature' && (
+        <style>{`
+          .feature-card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+          }
+          @media (max-width: 900px) {
+            .feature-card-grid {
+              grid-template-columns: repeat(2, 1fr) !important;
+            }
+          }
+          @media (max-width: 600px) {
+            .feature-card-grid {
+              grid-template-columns: 1fr !important;
+            }
+          }
+        `}</style>
+      )}
+
       <div
+        className={config.className || ''}
         style={{
           display: 'grid',
-          ...config,
+          gridTemplateColumns: config.gridTemplateColumns,
+          gap: config.gap,
           alignItems: hasExpandableProfiles ? 'start' : undefined,
         }}
       >
