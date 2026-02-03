@@ -26,7 +26,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-02-03T07:06:28.193Z
+ * Generated: 2026-02-03T07:24:16.081Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -37,7 +37,7 @@
 // ============================================================================
 
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-02-03T07:06:28.090Z
+// Generated: 2026-02-03T07:24:15.979Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -5725,13 +5725,14 @@ const Credentials = ({ credentials }) => {
 
 // useInView hook is defined in Section.jsx and shared across all components
 
-// Company logos - using hosted images
+// Company logos - served locally for reliability
 const LOGO_URLS = {
-  google: 'https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg',
-  motorola: 'https://images.seeklogo.com/logo-png/9/1/motorola-logo-png_seeklogo-95176.png',
-  northwestern: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Northwestern_Wildcats_logo.svg',
-  jiobit: 'https://cdn.prod.website-files.com/58e7d4ae6077c264e391112a/60021dec8dc79d79967826e0_Jiobit%20Logo%20Teal.png',
-  life360: 'https://upload.wikimedia.org/wikipedia/commons/f/f3/Life360_logo.svg',
+  google: 'assets/logos/google.svg',
+  motorola: 'assets/logos/motorola.png',
+  northwestern: 'assets/logos/northwestern.svg',
+  jiobit: 'assets/logos/jiobit.png',
+  life360: 'assets/logos/life360.png',
+  deloitte: 'assets/logos/deloitte.png',
 };
 
 // Fallback SVG logos for companies without hosted URLs
@@ -5785,16 +5786,19 @@ const getCompanyLogo = (company, size = 20) => {
   if (name.includes('northwestern') || name.includes('uiuc')) {
     return <img src={LOGO_URLS.northwestern} alt="Northwestern" width={size} height={size} style={{ objectFit: 'contain' }} />;
   }
+  // Local image logos
   if (name.includes('jiobit')) {
     return <img src={LOGO_URLS.jiobit} alt="Jiobit" width={size} height={size} style={{ objectFit: 'contain' }} />;
   }
   if (name.includes('life360')) {
     return <img src={LOGO_URLS.life360} alt="Life360" width={size} height={size} style={{ objectFit: 'contain' }} />;
   }
+  if (name.includes('deloitte')) {
+    return <img src={LOGO_URLS.deloitte} alt="Deloitte" width={size} height={size} style={{ objectFit: 'contain' }} />;
+  }
 
-  // SVG component fallbacks
+  // SVG component fallback
   if (name.includes('presto')) return COMPANY_LOGOS.presto({ size });
-  if (name.includes('deloitte')) return COMPANY_LOGOS.deloitte({ size });
 
   return null;
 };
