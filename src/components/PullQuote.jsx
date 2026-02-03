@@ -6,11 +6,16 @@
  * - Dramatic scale
  * - Print-inspired layout
  * - Optional author attribution for 3rd party quotes
+ * - Scroll-triggered entrance animation
  */
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE, LAYOUT } from '../design-tokens';
 
+// useInView hook is defined in Section.jsx and shared across all components
+
 const PullQuote = ({ children, quote, author, title, align = 'center' }) => {
+  const [ref, inView] = useInView();
+
   // Support both string children (backwards compat) and quote object
   const quoteText = quote || children;
   const hasAttribution = author && author.length > 0;
@@ -20,6 +25,7 @@ const PullQuote = ({ children, quote, author, title, align = 'center' }) => {
 
   return (
     <aside
+      ref={ref}
       style={{
         marginTop: SPACE[6],
         marginBottom: SPACE[6],
@@ -31,6 +37,9 @@ const PullQuote = ({ children, quote, author, title, align = 'center' }) => {
         borderRight: !isLeft && !isCenter ? `2px solid ${COLORS.accent.primary}` : 'none',
         position: 'relative',
         maxWidth: LAYOUT.maxWidth.prose,
+        opacity: inView ? 1 : 0,
+        transform: inView ? 'translateX(0)' : (isLeft ? 'translateX(-20px)' : 'translateX(20px)'),
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
       }}
     >
       {/* Centered top accent line */}

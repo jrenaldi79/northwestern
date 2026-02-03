@@ -97,8 +97,9 @@ function build() {
   const designTokensSource = readDesignTokens();
   const designTokensCode = extractDesignTokensCode(designTokensSource);
 
-  // Component order (no longer matters for dependencies since tokens are centralized)
+  // Component order - Section must come first as it defines shared useInView hook
   const components = [
+    'Section',      // Must be first - defines useInView hook used by other components
     'RichText',
     'Header',
     'CardGrid',
@@ -111,7 +112,6 @@ function build() {
     'Timeline',
     'Testimonials',
     'Table',
-    'Section',
     'Citations',
     'TerminalWindow',
     'SectionNav',

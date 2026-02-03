@@ -5,10 +5,13 @@
  * - Feature: Bold editorial callouts with dramatic numbering
  * - Profile: Refined requirement cards with vertical rhythm
  * - Topic: Expandable curriculum cards with audience tags
+ * - Staggered scroll animations for entrance effects
  */
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import RichText from './RichText';
 import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE, getIcon } from '../design-tokens';
+
+// useInView hook is defined in Section.jsx and shared across all components
 
 // =============================================================================
 // FEATURE CARD - Bold editorial callouts for strategic pillars
@@ -642,11 +645,27 @@ const TopicCard = ({ card, index, isExpanded, onToggle }) => {
 };
 
 // =============================================================================
+// ANIMATED CARD WRAPPER
+// =============================================================================
+const AnimatedCard = ({ children, index, inView }) => (
+  <div
+    style={{
+      opacity: inView ? 1 : 0,
+      transform: inView ? 'translateY(0)' : 'translateY(20px)',
+      transition: `opacity 0.5s ease-out ${index * 0.1}s, transform 0.5s ease-out ${index * 0.1}s`,
+    }}
+  >
+    {children}
+  </div>
+);
+
+// =============================================================================
 // MAIN CARD GRID
 // =============================================================================
 const CardGrid = ({ type = 'profile', columns = 3, cards }) => {
   const [expandedIndex, setExpandedIndex] = React.useState(0); // First expanded by default
   const [profileExpandedIndex, setProfileExpandedIndex] = React.useState(null);
+  const [gridRef, inView] = useInView();
 
   if (!cards || cards.length === 0) return null;
 
@@ -674,7 +693,7 @@ const CardGrid = ({ type = 'profile', columns = 3, cards }) => {
   const config = gridConfig[type] || gridConfig.profile;
 
   return (
-    <div style={{ marginTop: SPACE[6], marginBottom: SPACE[6] }}>
+    <div ref={gridRef} style={{ marginTop: SPACE[6], marginBottom: SPACE[6] }}>
       {/* Section label for topic cards */}
       {type === 'topic' && (
         <div
@@ -749,28 +768,34 @@ const CardGrid = ({ type = 'profile', columns = 3, cards }) => {
         {cards.map((card, i) => {
           switch (type) {
             case 'feature':
-              return <FeatureCard key={i} card={card} index={i} />;
+              return (
+                <AnimatedCard key={i} index={i} inView={inView}>
+                  <FeatureCard card={card} index={i} />
+                </AnimatedCard>
+              );
             case 'topic':
               return (
-                <TopicCard
-                  key={i}
-                  card={card}
-                  index={i}
-                  isExpanded={expandedIndex === i}
-                  onToggle={() => setExpandedIndex(expandedIndex === i ? null : i)}
-                />
+                <AnimatedCard key={i} index={i} inView={inView}>
+                  <TopicCard
+                    card={card}
+                    index={i}
+                    isExpanded={expandedIndex === i}
+                    onToggle={() => setExpandedIndex(expandedIndex === i ? null : i)}
+                  />
+                </AnimatedCard>
               );
             case 'profile':
             default:
               return (
-                <ProfileCard
-                  key={i}
-                  card={card}
-                  index={i}
-                  isExpanded={profileExpandedIndex === i}
-                  onToggle={() => setProfileExpandedIndex(profileExpandedIndex === i ? null : i)}
-                  hasExpandedContent={hasExpandableProfiles}
-                />
+                <AnimatedCard key={i} index={i} inView={inView}>
+                  <ProfileCard
+                    card={card}
+                    index={i}
+                    isExpanded={profileExpandedIndex === i}
+                    onToggle={() => setProfileExpandedIndex(profileExpandedIndex === i ? null : i)}
+                    hasExpandedContent={hasExpandableProfiles}
+                  />
+                </AnimatedCard>
               );
           }
         })}

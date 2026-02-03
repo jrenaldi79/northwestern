@@ -3,12 +3,16 @@
  *
  * Triangular convergence diagram showing PM, Designer, and Engineer
  * roles merging toward a central "Product Engineer" hub
+ * - Scroll-triggered entrance animation
  */
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE } from '../design-tokens';
+
+// useInView hook is defined in Section.jsx and shared across all components
 
 const Convergence = ({ roles }) => {
   const [hoveredRole, setHoveredRole] = useState(null);
+  const [ref, inView] = useInView();
 
   if (!roles || roles.length === 0) return null;
 
@@ -21,6 +25,7 @@ const Convergence = ({ roles }) => {
 
   return (
     <div
+      ref={ref}
       style={{
         marginTop: SPACE[10],
         marginBottom: SPACE[10],
@@ -30,6 +35,9 @@ const Convergence = ({ roles }) => {
         border: `1px solid ${COLORS.ink[100]}`,
         position: 'relative',
         overflow: 'hidden',
+        opacity: inView ? 1 : 0,
+        transform: inView ? 'translateY(0) scale(1)' : 'translateY(40px) scale(0.95)',
+        transition: 'opacity 0.7s ease-out, transform 0.7s ease-out',
       }}
     >
       {/* Subtle background pattern */}

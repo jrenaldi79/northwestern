@@ -5,12 +5,16 @@
  * - Horizontal author tabs for navigation
  * - Slim, space-efficient layout
  * - Magazine sidebar aesthetic
+ * - Scroll-triggered entrance animation
  */
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE } from '../design-tokens';
+
+// useInView hook is defined in Section.jsx and shared across all components
 
 const QuoteCarousel = ({ quotes }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [ref, inView] = useInView();
 
   if (!quotes || quotes.length === 0) return null;
 
@@ -18,9 +22,13 @@ const QuoteCarousel = ({ quotes }) => {
 
   return (
     <div
+      ref={ref}
       style={{
         marginTop: SPACE[6],
         marginBottom: SPACE[6],
+        opacity: inView ? 1 : 0,
+        transform: inView ? 'translateY(0)' : 'translateY(20px)',
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
       }}
     >
       {/* Section label - inline with accent */}

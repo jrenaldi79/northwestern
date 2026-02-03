@@ -6,14 +6,17 @@
  * - Large background decorative numbers
  * - Delta/change emphasis (the story is in the change)
  * - Consistent with Feature/Profile card aesthetics
+ * - Staggered scroll animations
  */
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE } from '../design-tokens';
+
+// useInView hook is defined in Section.jsx and shared across all components
 
 // =============================================================================
 // STAT CARD - Editorial treatment with background numbers
 // =============================================================================
-const StatCard = ({ stat, index, isHero }) => {
+const StatCard = ({ stat, index, isHero, animationDelay = 0, inView = true }) => {
   // Extract numeric value for background display
   const bgNumber = stat.value.replace(/[^0-9]/g, '');
 
@@ -38,6 +41,9 @@ const StatCard = ({ stat, index, isHero }) => {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'flex-end',
+          opacity: inView ? 1 : 0,
+          transform: inView ? 'translateY(0)' : 'translateY(24px)',
+          transition: `opacity 0.6s ease-out ${animationDelay}s, transform 0.6s ease-out ${animationDelay}s`,
         }}
       >
         {/* Large background number */}
@@ -160,6 +166,9 @@ const StatCard = ({ stat, index, isHero }) => {
         display: 'flex',
         flexDirection: 'column',
         minHeight: '140px',
+        opacity: inView ? 1 : 0,
+        transform: inView ? 'translateY(0)' : 'translateY(20px)',
+        transition: `opacity 0.5s ease-out ${animationDelay}s, transform 0.5s ease-out ${animationDelay}s`,
       }}
     >
       {/* Subtle background number */}
@@ -284,9 +293,11 @@ const StatCard = ({ stat, index, isHero }) => {
 };
 
 // =============================================================================
-// STATS GRID - Editorial layout
+// STATS GRID - Editorial layout with scroll animations
 // =============================================================================
 const StatsGrid = ({ stats }) => {
+  const [ref, inView] = useInView();
+
   if (!stats || stats.length === 0) return null;
 
   // For 4 stats: first is hero (spans 2), rest are in row below
@@ -294,6 +305,7 @@ const StatsGrid = ({ stats }) => {
 
   return (
     <div
+      ref={ref}
       style={{
         marginTop: SPACE[6],
         marginBottom: SPACE[6],
@@ -340,18 +352,18 @@ const StatsGrid = ({ stats }) => {
         >
           {/* Hero stat spans first row */}
           <div style={{ gridColumn: 'span 2' }}>
-            <StatCard stat={stats[0]} index={0} isHero={true} />
+            <StatCard stat={stats[0]} index={0} isHero={true} inView={inView} animationDelay={0} />
           </div>
 
           {/* Second stat in right column of first row */}
-          <StatCard stat={stats[1]} index={1} isHero={false} />
+          <StatCard stat={stats[1]} index={1} isHero={false} inView={inView} animationDelay={0.1} />
 
           {/* Third stat */}
-          <StatCard stat={stats[2]} index={2} isHero={false} />
+          <StatCard stat={stats[2]} index={2} isHero={false} inView={inView} animationDelay={0.2} />
 
           {/* Fourth stat spans remaining columns */}
           <div style={{ gridColumn: 'span 2' }}>
-            <StatCard stat={stats[3]} index={3} isHero={false} />
+            <StatCard stat={stats[3]} index={3} isHero={false} inView={inView} animationDelay={0.3} />
           </div>
         </div>
       ) : (
@@ -364,7 +376,7 @@ const StatsGrid = ({ stats }) => {
           }}
         >
           {stats.map((stat, index) => (
-            <StatCard key={index} stat={stat} index={index} isHero={false} />
+            <StatCard key={index} stat={stat} index={index} isHero={false} inView={inView} animationDelay={index * 0.1} />
           ))}
         </div>
       )}

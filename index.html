@@ -26,7 +26,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-02-03T01:35:23.208Z
+ * Generated: 2026-02-03T01:40:19.572Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -37,7 +37,7 @@
 // ============================================================================
 
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-02-03T01:35:23.112Z
+// Generated: 2026-02-03T01:40:19.468Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -1549,6 +1549,551 @@ const TOKENS = {
 // ============================================================================
 
 /**
+ * Section Component - "The Scholarly Disruptor"
+ *
+ * Editorial magazine aesthetic with distinctive chapter markers
+ * - Asymmetric rule treatments inspired by print design
+ * - Generous white space with purposeful rhythm
+ * - Visual hierarchy through typographic and linear elements
+ * - Terminal-style typewriter animations on scroll
+ */
+
+
+
+
+// Keyframes for cursor blink - injected once
+const injectKeyframes = (() => {
+  let injected = false;
+  return () => {
+    if (injected || typeof document === 'undefined') return;
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes terminalBlink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+      }
+      @keyframes lineGrow {
+        from { width: 0; opacity: 0; }
+        to { width: 100%; opacity: 1; }
+      }
+      @keyframes fadeSlideIn {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    `;
+    document.head.appendChild(style);
+    injected = true;
+  };
+})();
+
+// Terminal Typewriter Hook
+const useTypewriter = (text, { speed = 50, startDelay = 0, enabled = true } = {}) => {
+  const [displayText, setDisplayText] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
+  const [isDone, setIsDone] = useState(false);
+
+  useEffect(() => {
+    if (!enabled) {
+      setDisplayText(text);
+      setIsDone(true);
+      return;
+    }
+
+    setDisplayText('');
+    setIsTyping(false);
+    setIsDone(false);
+
+    const startTimeout = setTimeout(() => {
+      setIsTyping(true);
+      let currentIndex = 0;
+
+      const typeInterval = setInterval(() => {
+        if (currentIndex < text.length) {
+          setDisplayText(text.slice(0, currentIndex + 1));
+          currentIndex++;
+        } else {
+          clearInterval(typeInterval);
+          setIsTyping(false);
+          setIsDone(true);
+        }
+      }, speed);
+
+      return () => clearInterval(typeInterval);
+    }, startDelay);
+
+    return () => clearTimeout(startTimeout);
+  }, [text, speed, startDelay, enabled]);
+
+  return { displayText, isTyping, isDone };
+};
+
+// Intersection Observer Hook
+const useInView = (options = {}) => {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setInView(true);
+          setHasAnimated(true);
+        }
+      },
+      { threshold: 0.2, rootMargin: '-50px', ...options }
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [hasAnimated, options]);
+
+  return [ref, inView];
+};
+
+// Terminal Cursor Component - always blinks when visible
+const TerminalCursor = ({ visible = true, blink = true, color = COLORS.accent.primary }) => (
+  <span
+    style={{
+      display: 'inline-block',
+      width: '3px',
+      height: '1.15em',
+      background: color,
+      marginLeft: '3px',
+      verticalAlign: 'text-bottom',
+      animation: blink ? 'terminalBlink 0.8s step-end infinite' : 'none',
+      opacity: visible ? 1 : 0,
+      boxShadow: `0 0 4px ${color}40`,
+    }}
+  />
+);
+
+// Section Divider - Editorial chapter break with animation
+const SectionDivider = ({ variant = 'default' }) => {
+  const [ref, inView] = useInView({ threshold: 0.5 });
+
+  if (variant === 'subtle') {
+    // Minimal spacing divider
+    return (
+      <div
+        ref={ref}
+        style={{
+          maxWidth: LAYOUT.maxWidth.content,
+          margin: '0 auto',
+          padding: `${SPACE[8]} ${LAYOUT.margin}`,
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: SPACE[4],
+            overflow: 'hidden',
+          }}
+        >
+          <div
+            style={{
+              flex: 1,
+              height: '1px',
+              background: `linear-gradient(to right, ${COLORS.ink[200]}, transparent)`,
+              transform: inView ? 'scaleX(1)' : 'scaleX(0)',
+              transformOrigin: 'left',
+              transition: 'transform 0.6s ease-out',
+            }}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  // Default: Editorial chapter break with asymmetric flourish
+  return (
+    <div
+      ref={ref}
+      style={{
+        maxWidth: LAYOUT.maxWidth.content,
+        margin: '0 auto',
+        padding: `${SPACE[10]} ${LAYOUT.margin}`,
+        position: 'relative',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: SPACE[5],
+        }}
+      >
+        {/* Left line - short, accent colored - grows in */}
+        <div
+          style={{
+            width: inView ? '48px' : '0px',
+            height: '2px',
+            background: COLORS.accent.primary,
+            borderRadius: EFFECTS.radius.sm,
+            transition: 'width 0.4s ease-out',
+          }}
+        />
+        {/* Center diamond marker - scales in */}
+        <div
+          style={{
+            width: '6px',
+            height: '6px',
+            background: COLORS.accent.primary,
+            transform: inView ? 'rotate(45deg) scale(1)' : 'rotate(45deg) scale(0)',
+            flexShrink: 0,
+            transition: 'transform 0.3s ease-out',
+            transitionDelay: '0.3s',
+          }}
+        />
+        {/* Right line - extends further, fades out - grows in */}
+        <div
+          style={{
+            flex: 1,
+            maxWidth: '200px',
+            height: '1px',
+            overflow: 'hidden',
+          }}
+        >
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+              background: `linear-gradient(to right, ${COLORS.ink[300]}, transparent)`,
+              transform: inView ? 'scaleX(1)' : 'scaleX(0)',
+              transformOrigin: 'left',
+              transition: 'transform 0.5s ease-out',
+              transitionDelay: '0.4s',
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Section = ({ number, title, children, className = '' }) => {
+  // Inject keyframes on mount
+  useEffect(() => {
+    injectKeyframes();
+  }, []);
+
+  // Intersection observer for scroll trigger
+  const [headerRef, inView] = useInView();
+
+  // Typewriter for section label - fast terminal typing
+  const sectionLabel = `section_`;
+  const { displayText: labelText } = useTypewriter(
+    sectionLabel,
+    { speed: 45, startDelay: 200, enabled: inView }
+  );
+
+  // Typewriter for section number - appears after label
+  const sectionNum = String(number).padStart(2, '0');
+  const { displayText: numText } = useTypewriter(
+    sectionNum,
+    { speed: 70, startDelay: 200 + sectionLabel.length * 45 + 100, enabled: inView }
+  );
+
+  // Typewriter for title - starts after terminal badge completes
+  const terminalDuration = 200 + sectionLabel.length * 45 + 100 + sectionNum.length * 70;
+  const { displayText: titleText } = useTypewriter(
+    title,
+    { speed: 28, startDelay: terminalDuration + 300, enabled: inView }
+  );
+
+  return (
+    <section
+      className={className}
+      data-section={number}
+      style={{
+        background: COLORS.surface.paper,
+        paddingTop: SPACE[10],
+        paddingBottom: SPACE[10],
+      }}
+    >
+      <div
+        style={{
+          maxWidth: LAYOUT.maxWidth.content,
+          margin: '0 auto',
+          padding: `0 ${LAYOUT.margin}`,
+        }}
+      >
+        {/* Section header with editorial treatment */}
+        <header
+          ref={headerRef}
+          style={{
+            marginBottom: SPACE[7],
+            position: 'relative',
+          }}
+        >
+          {/* Top rule - asymmetric accent line */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              marginBottom: SPACE[5],
+              gap: SPACE[4],
+            }}
+          >
+            {/* Primary accent bar - animates in */}
+            <div
+              style={{
+                width: EFFECTS.radius.md,
+                height: inView ? '32px' : '0px',
+                background: COLORS.accent.primary,
+                borderRadius: EFFECTS.radius.sm,
+                transition: 'height 0.3s ease-out',
+              }}
+            />
+            {/* Section number badge - terminal style */}
+            {number && (
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0',
+                  background: COLORS.ink[900],
+                  padding: `${SPACE[2]} ${SPACE[4]}`,
+                  borderRadius: EFFECTS.radius.md,
+                  border: `1px solid ${COLORS.ink[700]}`,
+                  boxShadow: `${EFFECTS.shadow.md}, ${EFFECTS.shadow.inset}`,
+                }}
+              >
+                {/* Terminal prompt */}
+                <span
+                  style={{
+                    fontFamily: FONTS.mono,
+                    fontSize: '0.75rem',
+                    fontWeight: 500,
+                    color: COLORS.accent.muted,
+                    marginRight: SPACE[2],
+                  }}
+                >
+                  {'> '}
+                </span>
+                {/* Section label - types out */}
+                <span
+                  style={{
+                    fontFamily: FONTS.mono,
+                    fontSize: '0.75rem',
+                    fontWeight: 500,
+                    color: COLORS.ink[300],
+                    letterSpacing: '0.02em',
+                  }}
+                >
+                  {labelText}
+                </span>
+                {/* Section number - types out */}
+                <span
+                  style={{
+                    fontFamily: FONTS.mono,
+                    fontSize: '0.875rem',
+                    fontWeight: 700,
+                    color: COLORS.accent.light,
+                    letterSpacing: '-0.02em',
+                  }}
+                >
+                  {numText}
+                </span>
+                {/* Blinking cursor - stays blinking after done */}
+                <TerminalCursor
+                  visible={inView}
+                  blink={true}
+                  color={COLORS.accent.light}
+                />
+              </div>
+            )}
+            {/* Extending line - grows in */}
+            <div
+              style={{
+                flex: 1,
+                height: '1px',
+                maxWidth: '300px',
+                overflow: 'hidden',
+              }}
+            >
+              <div
+                style={{
+                  width: inView ? '100%' : '0%',
+                  height: '100%',
+                  background: `linear-gradient(to right, ${COLORS.ink[200]} 0%, ${COLORS.ink[100]} 50%, transparent 100%)`,
+                  transition: 'width 0.6s ease-out',
+                  transitionDelay: '0.2s',
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Title with bottom rule - typewriter effect */}
+          <h2
+            style={{
+              fontFamily: FONTS.headline,
+              fontSize: TYPE_SCALE.headline.lg.size,
+              fontWeight: TYPE_SCALE.headline.lg.weight,
+              lineHeight: TYPE_SCALE.headline.lg.lineHeight,
+              letterSpacing: TYPE_SCALE.headline.lg.letterSpacing,
+              color: COLORS.ink[800],
+              margin: 0,
+              paddingBottom: SPACE[4],
+              borderBottom: `1px solid ${COLORS.ink[100]}`,
+              minHeight: '2.5rem', // Prevent layout shift
+            }}
+          >
+            {titleText}
+            <TerminalCursor
+              visible={inView}
+              blink={true}
+              color={COLORS.ink[500]}
+            />
+          </h2>
+        </header>
+
+        {/* Section content - fades in when section is in view */}
+        <div
+          style={{
+            fontFamily: FONTS.body,
+            fontSize: TYPE_SCALE.body.md.size,
+            lineHeight: TYPE_SCALE.body.md.lineHeight,
+            color: COLORS.ink[500],
+            opacity: inView ? 1 : 0,
+            transform: inView ? 'translateY(0)' : 'translateY(12px)',
+            transition: 'opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s',
+          }}
+        >
+          {children}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Subsection component for ### headers - simple fade-in, no typewriter
+const Subsection = ({ title, children }) => {
+  const [ref, inView] = useInView({ threshold: 0.05, rootMargin: '0px' });
+
+  return (
+    <div ref={ref} style={{ marginTop: SPACE[9], marginBottom: SPACE[6] }}>
+      {/* Subsection header with inline marker */}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'flex-start',
+          gap: SPACE[4],
+          marginBottom: SPACE[5],
+          opacity: inView ? 1 : 0.15,
+          transform: inView ? 'translateY(0)' : 'translateY(8px)',
+          transition: 'opacity 0.4s ease-out, transform 0.4s ease-out',
+        }}
+      >
+        {/* Vertical accent marker */}
+        <div
+          style={{
+            width: EFFECTS.radius.sm,
+            height: '1.5rem',
+            background: `linear-gradient(to bottom, ${COLORS.accent.muted}, transparent)`,
+            borderRadius: EFFECTS.radius.sm,
+            flexShrink: 0,
+            marginTop: '0.25rem',
+          }}
+        />
+        <div style={{ flex: 1 }}>
+          <h3
+            style={{
+              fontFamily: FONTS.headline,
+              fontSize: TYPE_SCALE.headline.sm.size,
+              fontWeight: TYPE_SCALE.headline.sm.weight,
+              lineHeight: TYPE_SCALE.headline.sm.lineHeight,
+              color: COLORS.ink[700],
+              margin: 0,
+              paddingBottom: SPACE[3],
+              borderBottom: `1px solid ${COLORS.ink[100]}`,
+            }}
+          >
+            {title}
+          </h3>
+        </div>
+      </div>
+      <div
+        style={{
+          opacity: inView ? 1 : 0.15,
+          transform: inView ? 'translateY(0)' : 'translateY(6px)',
+          transition: 'opacity 0.35s ease-out 0.1s, transform 0.35s ease-out 0.1s',
+        }}
+      >
+        {children}
+      </div>
+    </div>
+  );
+};
+
+// Paragraph component with rich text support
+const Paragraph = ({ children }) => (
+  <p
+    style={{
+      fontFamily: FONTS.body,
+      fontSize: TYPE_SCALE.body.md.size,
+      lineHeight: TYPE_SCALE.body.md.lineHeight,
+      letterSpacing: TYPE_SCALE.body.md.letterSpacing,
+      color: COLORS.ink[500],
+      marginBottom: SPACE[5],
+      maxWidth: LAYOUT.maxWidth.prose,
+    }}
+  >
+    <RichText>{children}</RichText>
+  </p>
+);
+
+// Bullet list component with styled markers
+const BulletList = ({ items }) => (
+  <ul
+    style={{
+      listStyle: 'none',
+      padding: 0,
+      margin: `${SPACE[5]} 0`,
+      maxWidth: LAYOUT.maxWidth.prose,
+    }}
+  >
+    {items.map((item, i) => (
+      <li
+        key={i}
+        style={{
+          display: 'flex',
+          gap: SPACE[4],
+          marginBottom: SPACE[4],
+          alignItems: 'baseline',
+        }}
+      >
+        <span
+          style={{
+            fontFamily: FONTS.mono,
+            fontSize: '0.75rem',
+            color: COLORS.accent.primary,
+            flexShrink: 0,
+            marginTop: '0.125rem',
+          }}
+        >
+          —
+        </span>
+        <span
+          style={{
+            fontFamily: FONTS.body,
+            fontSize: TYPE_SCALE.body.sm.size,
+            lineHeight: TYPE_SCALE.body.sm.lineHeight,
+            color: COLORS.ink[500],
+          }}
+        >
+          <RichText>{item}</RichText>
+        </span>
+      </li>
+    ))}
+  </ul>
+);
+
+/**
  * RichText Component
  * Parses markdown-style formatting into React elements
  */
@@ -2268,10 +2813,13 @@ const Header = ({ data, heroQuote }) => {
  * - Feature: Bold editorial callouts with dramatic numbering
  * - Profile: Refined requirement cards with vertical rhythm
  * - Topic: Expandable curriculum cards with audience tags
+ * - Staggered scroll animations for entrance effects
  */
 
 
 
+
+// useInView hook is defined in Section.jsx and shared across all components
 
 // =============================================================================
 // FEATURE CARD - Bold editorial callouts for strategic pillars
@@ -2905,11 +3453,27 @@ const TopicCard = ({ card, index, isExpanded, onToggle }) => {
 };
 
 // =============================================================================
+// ANIMATED CARD WRAPPER
+// =============================================================================
+const AnimatedCard = ({ children, index, inView }) => (
+  <div
+    style={{
+      opacity: inView ? 1 : 0,
+      transform: inView ? 'translateY(0)' : 'translateY(20px)',
+      transition: `opacity 0.5s ease-out ${index * 0.1}s, transform 0.5s ease-out ${index * 0.1}s`,
+    }}
+  >
+    {children}
+  </div>
+);
+
+// =============================================================================
 // MAIN CARD GRID
 // =============================================================================
 const CardGrid = ({ type = 'profile', columns = 3, cards }) => {
   const [expandedIndex, setExpandedIndex] = React.useState(0); // First expanded by default
   const [profileExpandedIndex, setProfileExpandedIndex] = React.useState(null);
+  const [gridRef, inView] = useInView();
 
   if (!cards || cards.length === 0) return null;
 
@@ -2937,7 +3501,7 @@ const CardGrid = ({ type = 'profile', columns = 3, cards }) => {
   const config = gridConfig[type] || gridConfig.profile;
 
   return (
-    <div style={{ marginTop: SPACE[6], marginBottom: SPACE[6] }}>
+    <div ref={gridRef} style={{ marginTop: SPACE[6], marginBottom: SPACE[6] }}>
       {/* Section label for topic cards */}
       {type === 'topic' && (
         <div
@@ -3012,28 +3576,34 @@ const CardGrid = ({ type = 'profile', columns = 3, cards }) => {
         {cards.map((card, i) => {
           switch (type) {
             case 'feature':
-              return <FeatureCard key={i} card={card} index={i} />;
+              return (
+                <AnimatedCard key={i} index={i} inView={inView}>
+                  <FeatureCard card={card} index={i} />
+                </AnimatedCard>
+              );
             case 'topic':
               return (
-                <TopicCard
-                  key={i}
-                  card={card}
-                  index={i}
-                  isExpanded={expandedIndex === i}
-                  onToggle={() => setExpandedIndex(expandedIndex === i ? null : i)}
-                />
+                <AnimatedCard key={i} index={i} inView={inView}>
+                  <TopicCard
+                    card={card}
+                    index={i}
+                    isExpanded={expandedIndex === i}
+                    onToggle={() => setExpandedIndex(expandedIndex === i ? null : i)}
+                  />
+                </AnimatedCard>
               );
             case 'profile':
             default:
               return (
-                <ProfileCard
-                  key={i}
-                  card={card}
-                  index={i}
-                  isExpanded={profileExpandedIndex === i}
-                  onToggle={() => setProfileExpandedIndex(profileExpandedIndex === i ? null : i)}
-                  hasExpandedContent={hasExpandableProfiles}
-                />
+                <AnimatedCard key={i} index={i} inView={inView}>
+                  <ProfileCard
+                    card={card}
+                    index={i}
+                    isExpanded={profileExpandedIndex === i}
+                    onToggle={() => setProfileExpandedIndex(profileExpandedIndex === i ? null : i)}
+                    hasExpandedContent={hasExpandableProfiles}
+                  />
+                </AnimatedCard>
               );
           }
         })}
@@ -3050,14 +3620,17 @@ const CardGrid = ({ type = 'profile', columns = 3, cards }) => {
  * - Large background decorative numbers
  * - Delta/change emphasis (the story is in the change)
  * - Consistent with Feature/Profile card aesthetics
+ * - Staggered scroll animations
  */
 
 
 
+// useInView hook is defined in Section.jsx and shared across all components
+
 // =============================================================================
 // STAT CARD - Editorial treatment with background numbers
 // =============================================================================
-const StatCard = ({ stat, index, isHero }) => {
+const StatCard = ({ stat, index, isHero, animationDelay = 0, inView = true }) => {
   // Extract numeric value for background display
   const bgNumber = stat.value.replace(/[^0-9]/g, '');
 
@@ -3082,6 +3655,9 @@ const StatCard = ({ stat, index, isHero }) => {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'flex-end',
+          opacity: inView ? 1 : 0,
+          transform: inView ? 'translateY(0)' : 'translateY(24px)',
+          transition: `opacity 0.6s ease-out ${animationDelay}s, transform 0.6s ease-out ${animationDelay}s`,
         }}
       >
         {/* Large background number */}
@@ -3204,6 +3780,9 @@ const StatCard = ({ stat, index, isHero }) => {
         display: 'flex',
         flexDirection: 'column',
         minHeight: '140px',
+        opacity: inView ? 1 : 0,
+        transform: inView ? 'translateY(0)' : 'translateY(20px)',
+        transition: `opacity 0.5s ease-out ${animationDelay}s, transform 0.5s ease-out ${animationDelay}s`,
       }}
     >
       {/* Subtle background number */}
@@ -3328,9 +3907,11 @@ const StatCard = ({ stat, index, isHero }) => {
 };
 
 // =============================================================================
-// STATS GRID - Editorial layout
+// STATS GRID - Editorial layout with scroll animations
 // =============================================================================
 const StatsGrid = ({ stats }) => {
+  const [ref, inView] = useInView();
+
   if (!stats || stats.length === 0) return null;
 
   // For 4 stats: first is hero (spans 2), rest are in row below
@@ -3338,6 +3919,7 @@ const StatsGrid = ({ stats }) => {
 
   return (
     <div
+      ref={ref}
       style={{
         marginTop: SPACE[6],
         marginBottom: SPACE[6],
@@ -3384,18 +3966,18 @@ const StatsGrid = ({ stats }) => {
         >
           {/* Hero stat spans first row */}
           <div style={{ gridColumn: 'span 2' }}>
-            <StatCard stat={stats[0]} index={0} isHero={true} />
+            <StatCard stat={stats[0]} index={0} isHero={true} inView={inView} animationDelay={0} />
           </div>
 
           {/* Second stat in right column of first row */}
-          <StatCard stat={stats[1]} index={1} isHero={false} />
+          <StatCard stat={stats[1]} index={1} isHero={false} inView={inView} animationDelay={0.1} />
 
           {/* Third stat */}
-          <StatCard stat={stats[2]} index={2} isHero={false} />
+          <StatCard stat={stats[2]} index={2} isHero={false} inView={inView} animationDelay={0.2} />
 
           {/* Fourth stat spans remaining columns */}
           <div style={{ gridColumn: 'span 2' }}>
-            <StatCard stat={stats[3]} index={3} isHero={false} />
+            <StatCard stat={stats[3]} index={3} isHero={false} inView={inView} animationDelay={0.3} />
           </div>
         </div>
       ) : (
@@ -3408,7 +3990,7 @@ const StatsGrid = ({ stats }) => {
           }}
         >
           {stats.map((stat, index) => (
-            <StatCard key={index} stat={stat} index={index} isHero={false} />
+            <StatCard key={index} stat={stat} index={index} isHero={false} inView={inView} animationDelay={index * 0.1} />
           ))}
         </div>
       )}
@@ -4049,12 +4631,16 @@ const Chart = ({ type, data }) => {
  *
  * Triangular convergence diagram showing PM, Designer, and Engineer
  * roles merging toward a central "Product Engineer" hub
+ * - Scroll-triggered entrance animation
  */
 
 
 
+// useInView hook is defined in Section.jsx and shared across all components
+
 const Convergence = ({ roles }) => {
   const [hoveredRole, setHoveredRole] = useState(null);
+  const [ref, inView] = useInView();
 
   if (!roles || roles.length === 0) return null;
 
@@ -4067,6 +4653,7 @@ const Convergence = ({ roles }) => {
 
   return (
     <div
+      ref={ref}
       style={{
         marginTop: SPACE[10],
         marginBottom: SPACE[10],
@@ -4076,6 +4663,9 @@ const Convergence = ({ roles }) => {
         border: `1px solid ${COLORS.ink[100]}`,
         position: 'relative',
         overflow: 'hidden',
+        opacity: inView ? 1 : 0,
+        transform: inView ? 'translateY(0) scale(1)' : 'translateY(40px) scale(0.95)',
+        transition: 'opacity 0.7s ease-out, transform 0.7s ease-out',
       }}
     >
       {/* Subtle background pattern */}
@@ -4401,12 +4991,16 @@ const Convergence = ({ roles }) => {
  * - Horizontal author tabs for navigation
  * - Slim, space-efficient layout
  * - Magazine sidebar aesthetic
+ * - Scroll-triggered entrance animation
  */
 
 
 
+// useInView hook is defined in Section.jsx and shared across all components
+
 const QuoteCarousel = ({ quotes }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [ref, inView] = useInView();
 
   if (!quotes || quotes.length === 0) return null;
 
@@ -4414,9 +5008,13 @@ const QuoteCarousel = ({ quotes }) => {
 
   return (
     <div
+      ref={ref}
       style={{
         marginTop: SPACE[6],
         marginBottom: SPACE[6],
+        opacity: inView ? 1 : 0,
+        transform: inView ? 'translateY(0)' : 'translateY(20px)',
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
       }}
     >
       {/* Section label - inline with accent */}
@@ -4695,11 +5293,16 @@ const QuoteCarousel = ({ quotes }) => {
  * - Dramatic scale
  * - Print-inspired layout
  * - Optional author attribution for 3rd party quotes
+ * - Scroll-triggered entrance animation
  */
 
 
 
+// useInView hook is defined in Section.jsx and shared across all components
+
 const PullQuote = ({ children, quote, author, title, align = 'center' }) => {
+  const [ref, inView] = useInView();
+
   // Support both string children (backwards compat) and quote object
   const quoteText = quote || children;
   const hasAttribution = author && author.length > 0;
@@ -4709,6 +5312,7 @@ const PullQuote = ({ children, quote, author, title, align = 'center' }) => {
 
   return (
     <aside
+      ref={ref}
       style={{
         marginTop: SPACE[6],
         marginBottom: SPACE[6],
@@ -4720,6 +5324,9 @@ const PullQuote = ({ children, quote, author, title, align = 'center' }) => {
         borderRight: !isLeft && !isCenter ? `2px solid ${COLORS.accent.primary}` : 'none',
         position: 'relative',
         maxWidth: LAYOUT.maxWidth.prose,
+        opacity: inView ? 1 : 0,
+        transform: inView ? 'translateX(0)' : (isLeft ? 'translateX(-20px)' : 'translateX(20px)'),
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
       }}
     >
       {/* Centered top accent line */}
@@ -4815,15 +5422,21 @@ const PullQuote = ({ children, quote, author, title, align = 'center' }) => {
  * - Display typography for categories
  * - Dark background for contrast
  * - 3x2 grid for 6 credentials
+ * - Scroll-triggered entrance animation
  */
 
 
 
+// useInView hook is defined in Section.jsx and shared across all components
+
 const Credentials = ({ credentials }) => {
+  const [ref, inView] = useInView();
+
   if (!credentials || credentials.length === 0) return null;
 
   return (
     <div
+      ref={ref}
       style={{
         marginTop: SPACE[8],
         marginBottom: SPACE[8],
@@ -4832,6 +5445,9 @@ const Credentials = ({ credentials }) => {
         padding: `${SPACE[7]} ${SPACE[6]}`,
         position: 'relative',
         overflow: 'hidden',
+        opacity: inView ? 1 : 0,
+        transform: inView ? 'translateY(0) scale(1)' : 'translateY(30px) scale(0.98)',
+        transition: 'opacity 0.7s ease-out, transform 0.7s ease-out',
       }}
     >
       {/* Subtle noise texture */}
@@ -4932,25 +5548,33 @@ const Credentials = ({ credentials }) => {
  * - Alternating left/right cards for rhythm
  * - Elegant connecting spine
  * - Rich hover interactions
+ * - Staggered scroll animations per entry
  */
 
 
 
 
+// useInView hook is defined in Section.jsx and shared across all components
+
 const TimelineEntry = ({ entry, index, total }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [ref, inView] = useInView();
   const isLeft = index % 2 === 0;
   const isFirst = index === 0;
   const isLast = index === total - 1;
 
   return (
     <div
+      ref={ref}
       style={{
         display: 'grid',
         gridTemplateColumns: '1fr 80px 1fr',
         gap: SPACE[4],
         position: 'relative',
         minHeight: '200px',
+        opacity: inView ? 1 : 0,
+        transform: inView ? 'translateY(0)' : 'translateY(30px)',
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
       }}
     >
       {/* Left content area */}
@@ -5837,551 +6461,6 @@ const Table = ({ headers, rows, variant = 'default' }) => {
     </div>
   );
 };
-
-/**
- * Section Component - "The Scholarly Disruptor"
- *
- * Editorial magazine aesthetic with distinctive chapter markers
- * - Asymmetric rule treatments inspired by print design
- * - Generous white space with purposeful rhythm
- * - Visual hierarchy through typographic and linear elements
- * - Terminal-style typewriter animations on scroll
- */
-
-
-
-
-// Keyframes for cursor blink - injected once
-const injectKeyframes = (() => {
-  let injected = false;
-  return () => {
-    if (injected || typeof document === 'undefined') return;
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes terminalBlink {
-        0%, 50% { opacity: 1; }
-        51%, 100% { opacity: 0; }
-      }
-      @keyframes lineGrow {
-        from { width: 0; opacity: 0; }
-        to { width: 100%; opacity: 1; }
-      }
-      @keyframes fadeSlideIn {
-        from { opacity: 0; transform: translateY(8px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-    `;
-    document.head.appendChild(style);
-    injected = true;
-  };
-})();
-
-// Terminal Typewriter Hook
-const useTypewriter = (text, { speed = 50, startDelay = 0, enabled = true } = {}) => {
-  const [displayText, setDisplayText] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
-  const [isDone, setIsDone] = useState(false);
-
-  useEffect(() => {
-    if (!enabled) {
-      setDisplayText(text);
-      setIsDone(true);
-      return;
-    }
-
-    setDisplayText('');
-    setIsTyping(false);
-    setIsDone(false);
-
-    const startTimeout = setTimeout(() => {
-      setIsTyping(true);
-      let currentIndex = 0;
-
-      const typeInterval = setInterval(() => {
-        if (currentIndex < text.length) {
-          setDisplayText(text.slice(0, currentIndex + 1));
-          currentIndex++;
-        } else {
-          clearInterval(typeInterval);
-          setIsTyping(false);
-          setIsDone(true);
-        }
-      }, speed);
-
-      return () => clearInterval(typeInterval);
-    }, startDelay);
-
-    return () => clearTimeout(startTimeout);
-  }, [text, speed, startDelay, enabled]);
-
-  return { displayText, isTyping, isDone };
-};
-
-// Intersection Observer Hook
-const useInView = (options = {}) => {
-  const ref = useRef(null);
-  const [inView, setInView] = useState(false);
-  const [hasAnimated, setHasAnimated] = useState(false);
-
-  useEffect(() => {
-    const element = ref.current;
-    if (!element) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setInView(true);
-          setHasAnimated(true);
-        }
-      },
-      { threshold: 0.2, rootMargin: '-50px', ...options }
-    );
-
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, [hasAnimated, options]);
-
-  return [ref, inView];
-};
-
-// Terminal Cursor Component - always blinks when visible
-const TerminalCursor = ({ visible = true, blink = true, color = COLORS.accent.primary }) => (
-  <span
-    style={{
-      display: 'inline-block',
-      width: '3px',
-      height: '1.15em',
-      background: color,
-      marginLeft: '3px',
-      verticalAlign: 'text-bottom',
-      animation: blink ? 'terminalBlink 0.8s step-end infinite' : 'none',
-      opacity: visible ? 1 : 0,
-      boxShadow: `0 0 4px ${color}40`,
-    }}
-  />
-);
-
-// Section Divider - Editorial chapter break with animation
-const SectionDivider = ({ variant = 'default' }) => {
-  const [ref, inView] = useInView({ threshold: 0.5 });
-
-  if (variant === 'subtle') {
-    // Minimal spacing divider
-    return (
-      <div
-        ref={ref}
-        style={{
-          maxWidth: LAYOUT.maxWidth.content,
-          margin: '0 auto',
-          padding: `${SPACE[8]} ${LAYOUT.margin}`,
-        }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: SPACE[4],
-            overflow: 'hidden',
-          }}
-        >
-          <div
-            style={{
-              flex: 1,
-              height: '1px',
-              background: `linear-gradient(to right, ${COLORS.ink[200]}, transparent)`,
-              transform: inView ? 'scaleX(1)' : 'scaleX(0)',
-              transformOrigin: 'left',
-              transition: 'transform 0.6s ease-out',
-            }}
-          />
-        </div>
-      </div>
-    );
-  }
-
-  // Default: Editorial chapter break with asymmetric flourish
-  return (
-    <div
-      ref={ref}
-      style={{
-        maxWidth: LAYOUT.maxWidth.content,
-        margin: '0 auto',
-        padding: `${SPACE[10]} ${LAYOUT.margin}`,
-        position: 'relative',
-      }}
-    >
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: SPACE[5],
-        }}
-      >
-        {/* Left line - short, accent colored - grows in */}
-        <div
-          style={{
-            width: inView ? '48px' : '0px',
-            height: '2px',
-            background: COLORS.accent.primary,
-            borderRadius: EFFECTS.radius.sm,
-            transition: 'width 0.4s ease-out',
-          }}
-        />
-        {/* Center diamond marker - scales in */}
-        <div
-          style={{
-            width: '6px',
-            height: '6px',
-            background: COLORS.accent.primary,
-            transform: inView ? 'rotate(45deg) scale(1)' : 'rotate(45deg) scale(0)',
-            flexShrink: 0,
-            transition: 'transform 0.3s ease-out',
-            transitionDelay: '0.3s',
-          }}
-        />
-        {/* Right line - extends further, fades out - grows in */}
-        <div
-          style={{
-            flex: 1,
-            maxWidth: '200px',
-            height: '1px',
-            overflow: 'hidden',
-          }}
-        >
-          <div
-            style={{
-              width: '100%',
-              height: '100%',
-              background: `linear-gradient(to right, ${COLORS.ink[300]}, transparent)`,
-              transform: inView ? 'scaleX(1)' : 'scaleX(0)',
-              transformOrigin: 'left',
-              transition: 'transform 0.5s ease-out',
-              transitionDelay: '0.4s',
-            }}
-          />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const Section = ({ number, title, children, className = '' }) => {
-  // Inject keyframes on mount
-  useEffect(() => {
-    injectKeyframes();
-  }, []);
-
-  // Intersection observer for scroll trigger
-  const [headerRef, inView] = useInView();
-
-  // Typewriter for section label - fast terminal typing
-  const sectionLabel = `section_`;
-  const { displayText: labelText } = useTypewriter(
-    sectionLabel,
-    { speed: 45, startDelay: 200, enabled: inView }
-  );
-
-  // Typewriter for section number - appears after label
-  const sectionNum = String(number).padStart(2, '0');
-  const { displayText: numText } = useTypewriter(
-    sectionNum,
-    { speed: 70, startDelay: 200 + sectionLabel.length * 45 + 100, enabled: inView }
-  );
-
-  // Typewriter for title - starts after terminal badge completes
-  const terminalDuration = 200 + sectionLabel.length * 45 + 100 + sectionNum.length * 70;
-  const { displayText: titleText } = useTypewriter(
-    title,
-    { speed: 28, startDelay: terminalDuration + 300, enabled: inView }
-  );
-
-  return (
-    <section
-      className={className}
-      data-section={number}
-      style={{
-        background: COLORS.surface.paper,
-        paddingTop: SPACE[10],
-        paddingBottom: SPACE[10],
-      }}
-    >
-      <div
-        style={{
-          maxWidth: LAYOUT.maxWidth.content,
-          margin: '0 auto',
-          padding: `0 ${LAYOUT.margin}`,
-        }}
-      >
-        {/* Section header with editorial treatment */}
-        <header
-          ref={headerRef}
-          style={{
-            marginBottom: SPACE[7],
-            position: 'relative',
-          }}
-        >
-          {/* Top rule - asymmetric accent line */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              marginBottom: SPACE[5],
-              gap: SPACE[4],
-            }}
-          >
-            {/* Primary accent bar - animates in */}
-            <div
-              style={{
-                width: EFFECTS.radius.md,
-                height: inView ? '32px' : '0px',
-                background: COLORS.accent.primary,
-                borderRadius: EFFECTS.radius.sm,
-                transition: 'height 0.3s ease-out',
-              }}
-            />
-            {/* Section number badge - terminal style */}
-            {number && (
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0',
-                  background: COLORS.ink[900],
-                  padding: `${SPACE[2]} ${SPACE[4]}`,
-                  borderRadius: EFFECTS.radius.md,
-                  border: `1px solid ${COLORS.ink[700]}`,
-                  boxShadow: `${EFFECTS.shadow.md}, ${EFFECTS.shadow.inset}`,
-                }}
-              >
-                {/* Terminal prompt */}
-                <span
-                  style={{
-                    fontFamily: FONTS.mono,
-                    fontSize: '0.75rem',
-                    fontWeight: 500,
-                    color: COLORS.accent.muted,
-                    marginRight: SPACE[2],
-                  }}
-                >
-                  {'> '}
-                </span>
-                {/* Section label - types out */}
-                <span
-                  style={{
-                    fontFamily: FONTS.mono,
-                    fontSize: '0.75rem',
-                    fontWeight: 500,
-                    color: COLORS.ink[300],
-                    letterSpacing: '0.02em',
-                  }}
-                >
-                  {labelText}
-                </span>
-                {/* Section number - types out */}
-                <span
-                  style={{
-                    fontFamily: FONTS.mono,
-                    fontSize: '0.875rem',
-                    fontWeight: 700,
-                    color: COLORS.accent.light,
-                    letterSpacing: '-0.02em',
-                  }}
-                >
-                  {numText}
-                </span>
-                {/* Blinking cursor - stays blinking after done */}
-                <TerminalCursor
-                  visible={inView}
-                  blink={true}
-                  color={COLORS.accent.light}
-                />
-              </div>
-            )}
-            {/* Extending line - grows in */}
-            <div
-              style={{
-                flex: 1,
-                height: '1px',
-                maxWidth: '300px',
-                overflow: 'hidden',
-              }}
-            >
-              <div
-                style={{
-                  width: inView ? '100%' : '0%',
-                  height: '100%',
-                  background: `linear-gradient(to right, ${COLORS.ink[200]} 0%, ${COLORS.ink[100]} 50%, transparent 100%)`,
-                  transition: 'width 0.6s ease-out',
-                  transitionDelay: '0.2s',
-                }}
-              />
-            </div>
-          </div>
-
-          {/* Title with bottom rule - typewriter effect */}
-          <h2
-            style={{
-              fontFamily: FONTS.headline,
-              fontSize: TYPE_SCALE.headline.lg.size,
-              fontWeight: TYPE_SCALE.headline.lg.weight,
-              lineHeight: TYPE_SCALE.headline.lg.lineHeight,
-              letterSpacing: TYPE_SCALE.headline.lg.letterSpacing,
-              color: COLORS.ink[800],
-              margin: 0,
-              paddingBottom: SPACE[4],
-              borderBottom: `1px solid ${COLORS.ink[100]}`,
-              minHeight: '2.5rem', // Prevent layout shift
-            }}
-          >
-            {titleText}
-            <TerminalCursor
-              visible={inView}
-              blink={true}
-              color={COLORS.ink[500]}
-            />
-          </h2>
-        </header>
-
-        {/* Section content - fades in when section is in view */}
-        <div
-          style={{
-            fontFamily: FONTS.body,
-            fontSize: TYPE_SCALE.body.md.size,
-            lineHeight: TYPE_SCALE.body.md.lineHeight,
-            color: COLORS.ink[500],
-            opacity: inView ? 1 : 0,
-            transform: inView ? 'translateY(0)' : 'translateY(12px)',
-            transition: 'opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s',
-          }}
-        >
-          {children}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// Subsection component for ### headers - simple fade-in, no typewriter
-const Subsection = ({ title, children }) => {
-  const [ref, inView] = useInView({ threshold: 0.05, rootMargin: '0px' });
-
-  return (
-    <div ref={ref} style={{ marginTop: SPACE[9], marginBottom: SPACE[6] }}>
-      {/* Subsection header with inline marker */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'flex-start',
-          gap: SPACE[4],
-          marginBottom: SPACE[5],
-          opacity: inView ? 1 : 0.15,
-          transform: inView ? 'translateY(0)' : 'translateY(8px)',
-          transition: 'opacity 0.4s ease-out, transform 0.4s ease-out',
-        }}
-      >
-        {/* Vertical accent marker */}
-        <div
-          style={{
-            width: EFFECTS.radius.sm,
-            height: '1.5rem',
-            background: `linear-gradient(to bottom, ${COLORS.accent.muted}, transparent)`,
-            borderRadius: EFFECTS.radius.sm,
-            flexShrink: 0,
-            marginTop: '0.25rem',
-          }}
-        />
-        <div style={{ flex: 1 }}>
-          <h3
-            style={{
-              fontFamily: FONTS.headline,
-              fontSize: TYPE_SCALE.headline.sm.size,
-              fontWeight: TYPE_SCALE.headline.sm.weight,
-              lineHeight: TYPE_SCALE.headline.sm.lineHeight,
-              color: COLORS.ink[700],
-              margin: 0,
-              paddingBottom: SPACE[3],
-              borderBottom: `1px solid ${COLORS.ink[100]}`,
-            }}
-          >
-            {title}
-          </h3>
-        </div>
-      </div>
-      <div
-        style={{
-          opacity: inView ? 1 : 0.15,
-          transform: inView ? 'translateY(0)' : 'translateY(6px)',
-          transition: 'opacity 0.35s ease-out 0.1s, transform 0.35s ease-out 0.1s',
-        }}
-      >
-        {children}
-      </div>
-    </div>
-  );
-};
-
-// Paragraph component with rich text support
-const Paragraph = ({ children }) => (
-  <p
-    style={{
-      fontFamily: FONTS.body,
-      fontSize: TYPE_SCALE.body.md.size,
-      lineHeight: TYPE_SCALE.body.md.lineHeight,
-      letterSpacing: TYPE_SCALE.body.md.letterSpacing,
-      color: COLORS.ink[500],
-      marginBottom: SPACE[5],
-      maxWidth: LAYOUT.maxWidth.prose,
-    }}
-  >
-    <RichText>{children}</RichText>
-  </p>
-);
-
-// Bullet list component with styled markers
-const BulletList = ({ items }) => (
-  <ul
-    style={{
-      listStyle: 'none',
-      padding: 0,
-      margin: `${SPACE[5]} 0`,
-      maxWidth: LAYOUT.maxWidth.prose,
-    }}
-  >
-    {items.map((item, i) => (
-      <li
-        key={i}
-        style={{
-          display: 'flex',
-          gap: SPACE[4],
-          marginBottom: SPACE[4],
-          alignItems: 'baseline',
-        }}
-      >
-        <span
-          style={{
-            fontFamily: FONTS.mono,
-            fontSize: '0.75rem',
-            color: COLORS.accent.primary,
-            flexShrink: 0,
-            marginTop: '0.125rem',
-          }}
-        >
-          —
-        </span>
-        <span
-          style={{
-            fontFamily: FONTS.body,
-            fontSize: TYPE_SCALE.body.sm.size,
-            lineHeight: TYPE_SCALE.body.sm.lineHeight,
-            color: COLORS.ink[500],
-          }}
-        >
-          <RichText>{item}</RichText>
-        </span>
-      </li>
-    ))}
-  </ul>
-);
 
 /**
  * Citations Component - "The Scholarly Disruptor"

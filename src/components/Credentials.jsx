@@ -5,15 +5,21 @@
  * - Display typography for categories
  * - Dark background for contrast
  * - 3x2 grid for 6 credentials
+ * - Scroll-triggered entrance animation
  */
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE } from '../design-tokens';
 
+// useInView hook is defined in Section.jsx and shared across all components
+
 const Credentials = ({ credentials }) => {
+  const [ref, inView] = useInView();
+
   if (!credentials || credentials.length === 0) return null;
 
   return (
     <div
+      ref={ref}
       style={{
         marginTop: SPACE[8],
         marginBottom: SPACE[8],
@@ -22,6 +28,9 @@ const Credentials = ({ credentials }) => {
         padding: `${SPACE[7]} ${SPACE[6]}`,
         position: 'relative',
         overflow: 'hidden',
+        opacity: inView ? 1 : 0,
+        transform: inView ? 'translateY(0) scale(1)' : 'translateY(30px) scale(0.98)',
+        transition: 'opacity 0.7s ease-out, transform 0.7s ease-out',
       }}
     >
       {/* Subtle noise texture */}

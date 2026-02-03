@@ -6,25 +6,33 @@
  * - Alternating left/right cards for rhythm
  * - Elegant connecting spine
  * - Rich hover interactions
+ * - Staggered scroll animations per entry
  */
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import RichText from './RichText';
 import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE } from '../design-tokens';
 
+// useInView hook is defined in Section.jsx and shared across all components
+
 const TimelineEntry = ({ entry, index, total }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [ref, inView] = useInView();
   const isLeft = index % 2 === 0;
   const isFirst = index === 0;
   const isLast = index === total - 1;
 
   return (
     <div
+      ref={ref}
       style={{
         display: 'grid',
         gridTemplateColumns: '1fr 80px 1fr',
         gap: SPACE[4],
         position: 'relative',
         minHeight: '200px',
+        opacity: inView ? 1 : 0,
+        transform: inView ? 'translateY(0)' : 'translateY(30px)',
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
       }}
     >
       {/* Left content area */}
