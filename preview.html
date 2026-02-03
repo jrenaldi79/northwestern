@@ -26,7 +26,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-02-03T19:06:10.185Z
+ * Generated: 2026-02-03T19:35:08.985Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -37,7 +37,7 @@
 // ============================================================================
 
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-02-03T19:06:10.155Z
+// Generated: 2026-02-03T19:35:08.925Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -2258,7 +2258,7 @@ const RichText = ({ children, className = '' }) => {
         linkUrl = '';
       } else if (part === '___LINK_END___') {
         elements.push(
-          <a key={key++} href={linkUrl} className="text-indigo-600 hover:text-indigo-800 underline" target="_blank" rel="noopener noreferrer">
+          <a key={key++} href={linkUrl} className="text-indigo-600 hover:text-indigo-800 underline" target="_blank" rel="noopener noreferrer" style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}>
             {linkText}
           </a>
         );
@@ -6860,6 +6860,8 @@ const Citations = ({ citations }) => {
                       fontSize: TYPE_SCALE.body.sm.size,
                       lineHeight: TYPE_SCALE.body.sm.lineHeight,
                       color: COLORS.ink[500],
+                      wordBreak: 'break-word',
+                      overflowWrap: 'break-word',
                     }}
                   >
                     {cite}
@@ -7171,6 +7173,7 @@ const TerminalWindow = ({
                 opacity: index <= currentLineIndex ? 1 : 0,
                 transform: index <= currentLineIndex ? 'translateX(0)' : `translateX(-${SPACE[2]})`,
                 transition: 'opacity 0.2s, transform 0.2s',
+                wordBreak: 'break-all',
               }}
             >
               {/* Line content with syntax highlighting */}
@@ -8238,6 +8241,7 @@ const App = () => {
       style={{
         minHeight: '100vh',
         background: COLORS.surface.paper,
+        overflowX: 'hidden',
       }}
     >
       {/* Section Navigation */}

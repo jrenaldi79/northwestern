@@ -58,7 +58,7 @@ const RichText = ({ children, className = '' }) => {
         linkUrl = '';
       } else if (part === '___LINK_END___') {
         elements.push(
-          <a key={key++} href={linkUrl} className="text-indigo-600 hover:text-indigo-800 underline" target="_blank" rel="noopener noreferrer">
+          <a key={key++} href={linkUrl} className="text-indigo-600 hover:text-indigo-800 underline" target="_blank" rel="noopener noreferrer" style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}>
             {linkText}
           </a>
         );

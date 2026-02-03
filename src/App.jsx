@@ -276,6 +276,7 @@ const App = () => {
       style={{
         minHeight: '100vh',
         background: COLORS.surface.paper,
+        overflowX: 'hidden',
       }}
     >
       {/* Section Navigation */}

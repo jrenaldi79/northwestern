@@ -112,6 +112,8 @@ const Citations = ({ citations }) => {
                       fontSize: TYPE_SCALE.body.sm.size,
                       lineHeight: TYPE_SCALE.body.sm.lineHeight,
                       color: COLORS.ink[500],
+                      wordBreak: 'break-word',
+                      overflowWrap: 'break-word',
                     }}
                   >
                     {cite}

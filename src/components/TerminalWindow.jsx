@@ -295,6 +295,7 @@ const TerminalWindow = ({
                 opacity: index <= currentLineIndex ? 1 : 0,
                 transform: index <= currentLineIndex ? 'translateX(0)' : `translateX(-${SPACE[2]})`,
                 transition: 'opacity 0.2s, transform 0.2s',
+                wordBreak: 'break-all',
               }}
             >
               {/* Line content with syntax highlighting */}
