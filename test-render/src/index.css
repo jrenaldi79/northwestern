@@ -1,3 +1,6 @@
+@import "tailwindcss" source("../../dist");
+@import "tailwindcss" source("./");
+
 * {
   margin: 0;
   padding: 0;
