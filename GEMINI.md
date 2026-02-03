@@ -452,3 +452,24 @@ wc -c dist/ProductEngineerProposal.jsx
 | Architecture change | Overview diagram, Directory Structure |
 
 **After editing**: Run `npm run sync-docs` to keep CLAUDE.md, AGENTS.md, and GEMINI.md in sync.
+
+## GitHub Access
+
+**Use Desktop Commander for all git/gh operations.** The project lives at:
+```
+/Users/john_renaldi/Documents/ClaudeCowork/northwestern
+```
+
+Common commands (run via Desktop Commander):
+```bash
+# Push changes
+cd /Users/john_renaldi/Documents/ClaudeCowork/northwestern && git push
+
+# Check GitHub Pages status
+cd /Users/john_renaldi/Documents/ClaudeCowork/northwestern && gh api repos/jrenaldi79/northwestern/pages
+
+# View deployment status
+cd /Users/john_renaldi/Documents/ClaudeCowork/northwestern && gh run list --limit 5
+```
+
+**Live site**: https://jrenaldi79.github.io/northwestern/
