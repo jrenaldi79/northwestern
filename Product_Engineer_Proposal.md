@@ -400,7 +400,7 @@ Created Moto Maker. 10x YoY growth, 50% fewer returns, Webby Awards, Best of CES
 
 John served as **General Manager for Wear OS by Google**, leading global wearable software strategy across design, product management, and research for Google's entire wearable ecosystem. He was instrumental in **major developments for the Wear OS platform**, including interface updates to support innovative hardware architectures like the Pixel Watch. He spearheaded **one of the first AI innovation product teams within Google Android** and served as the **original product lead for an internal consumer multi-agent orchestration system** designed for building coding agents. He contributed intellectual property and led product teams developing machine learning algorithms for fitness, power management, and location services.
 
-He led teams across **Design, UXR, Product, and Engineering (Firmware to Cloud)**. He knows how to take prototype code and scale it globally. His time at **Deloitte** building enterprise web applications gave him discipline in requirements gathering and delivery.
+He led teams across **Design, UXR, Product, and Engineering (Firmware to Cloud)**. He knows how to take prototype code and scale it globally.
 
 ### Jiobit (0 to 1)
 

@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-02-03T06:06:44.765Z
+// Generated: 2026-02-03T06:09:33.344Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -1014,7 +1014,7 @@ const CONTENT = {
             },
             {
               "type": "paragraph",
-              "text": "He led teams across **Design, UXR, Product, and Engineering (Firmware to Cloud)**. He knows how to take prototype code and scale it globally. His time at **Deloitte** building enterprise web applications gave him discipline in requirements gathering and delivery."
+              "text": "He led teams across **Design, UXR, Product, and Engineering (Firmware to Cloud)**. He knows how to take prototype code and scale it globally."
             }
           ]
         },
