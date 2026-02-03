@@ -279,7 +279,7 @@ function extractTerminals(content) {
 
   while ((match = terminalRegex.exec(content)) !== null) {
     const title = match[1];
-    const command = match[2] ?? 'cat';
+    const command = match[2] || 'cat';
     const variant = match[3] || 'default';
     const contentBlock = match[4].trim();
     const lines = contentBlock.split('\n').map(line => line.trim()).filter(line => line && !line.startsWith('<!--'))
@@ -287,6 +287,38 @@ function extractTerminals(content) {
     terminals.push({ title, command, variant, lines });
   }
   return terminals;
+}
+
+function extractWorkLists(content) {
+  const workLists = [];
+  const workListRegex = /<!-- @worklist section="([^"]*)" -->\s*([\s\S]*?)<!-- \/@worklist -->/g;
+  let match;
+
+  while ((match = workListRegex.exec(content)) !== null) {
+    const section = match[1];
+    const block = match[2];
+    const items = [];
+
+    // Extract individual work items
+    const itemRegex = /<!-- @workitem icon="([^"]*)" title="([^"]*)"(?: technologies="([^"]*)")? -->\s*([\s\S]*?)<!-- \/@workitem -->/g;
+    let itemMatch;
+
+    while ((itemMatch = itemRegex.exec(block)) !== null) {
+      const icon = itemMatch[1];
+      const title = itemMatch[2];
+      const technologiesStr = itemMatch[3] || '';
+      const description = cleanText(itemMatch[4]);
+
+      const technologies = technologiesStr
+        ? technologiesStr.split(',').map(t => t.trim()).filter(t => t)
+        : [];
+
+      items.push({ icon, title, technologies, description });
+    }
+
+    workLists.push({ section, items });
+  }
+  return workLists;
 }
 
 function extractCitations(content) {
@@ -345,6 +377,10 @@ function parseContentBlocks(text) {
       return `<!--COMPONENT:testimonials:${typeMatch ? typeMatch[1] : ''}-->`;
     })
     .replace(/<!-- @terminal[^>]*-->[\s\S]*?<!-- \/@terminal -->/g, '<!--COMPONENT:terminal-->')
+    .replace(/<!-- @worklist[^>]*-->[\s\S]*?<!-- \/@worklist -->/g, (match) => {
+      const sectionMatch = match.match(/section="([^"]*)"/);
+      return `<!--COMPONENT:worklist:${sectionMatch ? sectionMatch[1] : ''}-->`;
+    })
     .replace(/<!-- @table[^>]*-->/g, '');
 
   // Split into paragraphs/elements
@@ -484,6 +520,7 @@ function extractContent(markdown) {
     testimonials: extractTestimonials(markdown),
     tables: extractTables(markdown),
     terminals: extractTerminals(markdown),
+    workLists: extractWorkLists(markdown),
     citations: extractCitations(markdown),
     document: extractDocument(markdown),
   };
@@ -526,6 +563,7 @@ function main() {
   console.log(`- Testimonial groups: ${content.testimonials.length}`);
   console.log(`- Tables: ${content.tables.length}`);
   console.log(`- Terminals: ${content.terminals.length}`);
+  console.log(`- Work lists: ${content.workLists.length}`);
   console.log(`- Citations: ${content.citations.length}`);
   console.log(`- Document sections: ${content.document.filter(d => d.type === 'section').length}`);
 }

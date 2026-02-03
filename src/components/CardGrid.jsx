@@ -7,7 +7,7 @@
  * - Topic: Expandable curriculum cards with audience tags
  * - Staggered scroll animations for entrance effects
  */
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import RichText from './RichText';
 import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE, getIcon } from '../design-tokens';
 
@@ -34,6 +34,7 @@ const FeatureCard = ({ card, index }) => {
         boxShadow: isHovered ? EFFECTS.shadow.lg : EFFECTS.shadow.md,
         overflow: 'hidden',
         minHeight: '280px',
+        height: '100%',
         display: 'flex',
         flexDirection: 'column',
         transform: isHovered ? 'translateY(-2px)' : 'translateY(0)',
@@ -110,61 +111,109 @@ const FeatureCard = ({ card, index }) => {
 
 // =============================================================================
 // PROFILE CARD - Refined requirement cards (expandable when has expandedContent)
-// Clean lines, subtle hierarchy, professional restraint
+// Aligned with TopicCard design: consistent expand button, structure, and styling
 // =============================================================================
 const ProfileCard = ({ card, index, isExpanded, onToggle, hasExpandedContent }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const isFirst = index === 0;
   const canExpand = hasExpandedContent && card.expandedContent;
 
-  const cardContent = (
+  return (
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
-        position: 'relative',
-        background: isFirst ? COLORS.ink[900] : COLORS.surface.elevated,
+        background: COLORS.surface.elevated,
         borderRadius: EFFECTS.radius.md,
-        border: isFirst ? 'none' : `1px solid ${isExpanded ? COLORS.accent.primary : (isHovered ? COLORS.ink[300] : COLORS.ink[200])}`,
-        boxShadow: isFirst ? EFFECTS.shadow.xl : (isExpanded || isHovered ? EFFECTS.shadow.md : EFFECTS.shadow.sm),
+        border: `1px solid ${isExpanded ? COLORS.accent.primary : (isHovered ? COLORS.ink[300] : COLORS.ink[200])}`,
         overflow: 'hidden',
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
-        transform: isHovered && !isExpanded && !isFirst ? 'translateY(-2px)' : 'translateY(0)',
+        boxShadow: isExpanded || isHovered ? EFFECTS.shadow.md : EFFECTS.shadow.sm,
+        transform: isHovered && !isExpanded ? 'translateY(-1px)' : 'translateY(0)',
         transition: `all ${EFFECTS.transition.base}`,
       }}
     >
-      {/* Clickable header area */}
-      <div
-        style={{
-          padding: SPACE[5],
-          cursor: canExpand ? 'pointer' : 'default',
-          flex: canExpand ? 'none' : 1,
-          display: 'flex',
-          flexDirection: 'column',
-        }}
+      {/* Header button - aligned with TopicCard */}
+      <button
         onClick={canExpand ? onToggle : undefined}
+        style={{
+          width: '100%',
+          padding: SPACE[5],
+          display: 'flex',
+          alignItems: 'center',
+          gap: SPACE[4],
+          textAlign: 'left',
+          background: isExpanded ? COLORS.accent.wash : 'transparent',
+          border: 'none',
+          cursor: canExpand ? 'pointer' : 'default',
+          transition: EFFECTS.transition.base,
+        }}
       >
-        {/* Header row with icon and title */}
-        <div
+        {/* Index number - matching TopicCard */}
+        <span
           style={{
-            display: 'flex',
-            alignItems: 'flex-start',
-            gap: SPACE[4],
-            marginBottom: SPACE[4],
+            fontFamily: FONTS.mono,
+            fontSize: TYPE_SCALE.mono.sm.size,
+            fontWeight: 600,
+            color: isExpanded ? COLORS.accent.primary : COLORS.ink[300],
+            width: '24px',
+            flexShrink: 0,
           }}
         >
-          {/* Icon container */}
+          {String(index + 1).padStart(2, '0')}
+        </span>
+
+        {/* Icon */}
+        <div
+          style={{
+            width: '36px',
+            height: '36px',
+            borderRadius: EFFECTS.radius.md,
+            background: isExpanded ? COLORS.accent.primary : COLORS.surface.inset,
+            border: `1px solid ${isExpanded ? COLORS.accent.primary : COLORS.ink[200]}`,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexShrink: 0,
+            transition: EFFECTS.transition.base,
+          }}
+        >
+          {getIcon(card.icon, isExpanded ? '#FFFFFF' : COLORS.ink[500])}
+        </div>
+
+        {/* Title and summary */}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <h4
+            style={{
+              fontFamily: FONTS.ui,
+              fontWeight: 600,
+              fontSize: TYPE_SCALE.ui.md.size,
+              color: COLORS.ink[800],
+              margin: 0,
+              marginBottom: SPACE[1],
+            }}
+          >
+            {card.title}
+          </h4>
+          <p
+            style={{
+              fontFamily: FONTS.body,
+              fontSize: TYPE_SCALE.body.sm.size,
+              lineHeight: TYPE_SCALE.body.sm.lineHeight,
+              color: COLORS.ink[500],
+              margin: 0,
+            }}
+          >
+            <RichText>{card.content}</RichText>
+          </p>
+        </div>
+
+        {/* Expand indicator - matching TopicCard */}
+        {canExpand && (
           <div
             style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: EFFECTS.radius.md,
-              background: isFirst
-                ? 'rgba(255,255,255,0.1)'
-                : (isExpanded ? COLORS.accent.wash : COLORS.surface.inset),
-              border: `1px solid ${isFirst ? 'rgba(255,255,255,0.15)' : (isExpanded ? COLORS.accent.primary + '40' : COLORS.ink[200])}`,
+              width: '28px',
+              height: '28px',
+              borderRadius: EFFECTS.radius.full,
+              background: isExpanded ? COLORS.accent.primary : COLORS.surface.inset,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -172,83 +221,29 @@ const ProfileCard = ({ card, index, isExpanded, onToggle, hasExpandedContent }) 
               transition: EFFECTS.transition.base,
             }}
           >
-            {getIcon(card.icon, isFirst ? 'rgba(255,255,255,0.9)' : (isExpanded ? COLORS.accent.primary : COLORS.ink[500]))}
-          </div>
-
-          {/* Title and expand indicator */}
-          <div style={{ flex: 1, display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: SPACE[2] }}>
-            <h4
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={isExpanded ? '#FFFFFF' : COLORS.ink[400]}
+              strokeWidth="2"
               style={{
-                fontFamily: FONTS.ui,
-                fontWeight: 600,
-                fontSize: TYPE_SCALE.ui.lg.size,
-                lineHeight: 1.3,
-                color: isFirst ? '#FFFFFF' : COLORS.ink[800],
-                margin: 0,
-                paddingTop: '0.25rem',
+                transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                transition: EFFECTS.transition.base,
               }}
             >
-              {card.title}
-            </h4>
-
-            {/* Expand indicator for expandable cards */}
-            {canExpand && (
-              <div
-                style={{
-                  width: '24px',
-                  height: '24px',
-                  borderRadius: EFFECTS.radius.full,
-                  background: isFirst
-                    ? 'rgba(255,255,255,0.15)'
-                    : (isExpanded ? COLORS.accent.primary : COLORS.surface.inset),
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
-                  transition: EFFECTS.transition.base,
-                  marginTop: '0.25rem',
-                }}
-              >
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke={isFirst ? 'rgba(255,255,255,0.8)' : (isExpanded ? '#FFFFFF' : COLORS.ink[400])}
-                  strokeWidth="2"
-                  style={{
-                    transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
-                    transition: EFFECTS.transition.base,
-                  }}
-                >
-                  <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-            )}
+              <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </div>
-        </div>
-
-        {/* Summary description */}
-        <p
-          style={{
-            fontFamily: FONTS.body,
-            fontSize: TYPE_SCALE.body.sm.size,
-            lineHeight: TYPE_SCALE.body.sm.lineHeight,
-            color: isFirst ? 'rgba(255,255,255,0.7)' : COLORS.ink[500],
-            margin: 0,
-            paddingLeft: `calc(40px + ${SPACE[4]})`,
-            flex: canExpand ? 'none' : 1,
-          }}
-        >
-          <RichText>{card.content}</RichText>
-        </p>
-      </div>
+        )}
+      </button>
 
       {/* Expanded content with smooth animation */}
       {canExpand && (
         <div
           style={{
-            maxHeight: isExpanded ? '500px' : '0px',
+            maxHeight: isExpanded ? '600px' : '0px',
             opacity: isExpanded ? 1 : 0,
             overflow: 'hidden',
             transition: `max-height ${EFFECTS.transition.expand}, opacity ${EFFECTS.transition.base}`,
@@ -256,20 +251,19 @@ const ProfileCard = ({ card, index, isExpanded, onToggle, hasExpandedContent }) 
         >
           <div
             style={{
-              padding: `0 ${SPACE[5]} ${SPACE[5]}`,
-              paddingLeft: `calc(40px + ${SPACE[4]} + ${SPACE[5]})`,
-              borderTop: `1px solid ${isFirst ? 'rgba(255,255,255,0.1)' : COLORS.ink[100]}`,
-              background: isFirst ? 'rgba(0,0,0,0.2)' : COLORS.surface.paper,
+              padding: SPACE[5],
+              paddingTop: SPACE[4],
+              borderTop: `1px solid ${COLORS.ink[100]}`,
+              background: COLORS.surface.paper,
             }}
           >
             <p
               style={{
                 fontFamily: FONTS.body,
-                fontSize: TYPE_SCALE.body.sm.size,
-                lineHeight: TYPE_SCALE.body.sm.lineHeight,
-                color: isFirst ? 'rgba(255,255,255,0.8)' : COLORS.ink[600],
+                fontSize: TYPE_SCALE.body.md.size,
+                lineHeight: TYPE_SCALE.body.md.lineHeight,
+                color: COLORS.ink[700],
                 margin: 0,
-                paddingTop: SPACE[4],
               }}
             >
               <RichText>{card.expandedContent}</RichText>
@@ -277,25 +271,8 @@ const ProfileCard = ({ card, index, isExpanded, onToggle, hasExpandedContent }) 
           </div>
         </div>
       )}
-
-      {/* Subtle bottom border accent for first card */}
-      {isFirst && (
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: SPACE[5],
-            right: SPACE[5],
-            height: '2px',
-            background: `linear-gradient(90deg, ${COLORS.accent.primary} 0%, ${COLORS.accent.light} 100%)`,
-            borderRadius: EFFECTS.radius.full,
-          }}
-        />
-      )}
     </div>
   );
-
-  return cardContent;
 };
 
 // =============================================================================
@@ -650,6 +627,7 @@ const TopicCard = ({ card, index, isExpanded, onToggle }) => {
 const AnimatedCard = ({ children, index, inView }) => (
   <div
     style={{
+      height: '100%',
       opacity: inView ? 1 : 0,
       transform: inView ? 'translateY(0)' : 'translateY(20px)',
       transition: `opacity 0.5s ease-out ${index * 0.1}s, transform 0.5s ease-out ${index * 0.1}s`,
@@ -679,10 +657,9 @@ const CardGrid = ({ type = 'profile', columns = 3, cards }) => {
       gap: SPACE[5],
     },
     profile: {
-      gridTemplateColumns: hasExpandableProfiles
-        ? 'repeat(auto-fit, minmax(340px, 1fr))'
-        : 'repeat(auto-fit, minmax(300px, 1fr))',
-      gap: SPACE[4],
+      // Single column for expandable profiles (like topic cards)
+      gridTemplateColumns: hasExpandableProfiles ? '1fr' : 'repeat(auto-fit, minmax(300px, 1fr))',
+      gap: hasExpandableProfiles ? SPACE[3] : SPACE[4],
     },
     topic: {
       gridTemplateColumns: '1fr',
@@ -726,7 +703,7 @@ const CardGrid = ({ type = 'profile', columns = 3, cards }) => {
         </div>
       )}
 
-      {/* Section label for expandable profile cards */}
+      {/* Section label for expandable profile cards - matching topic card style */}
       {hasExpandableProfiles && (
         <div
           style={{
@@ -753,7 +730,7 @@ const CardGrid = ({ type = 'profile', columns = 3, cards }) => {
               color: COLORS.ink[400],
             }}
           >
-            Click to expand
+            {cards.length} Qualifications
           </span>
         </div>
       )}

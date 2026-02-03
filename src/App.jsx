@@ -46,6 +46,7 @@ import {
   RichText,
   TerminalWindow,
   SectionNav,
+  WorkList,
 } from './components';
 
 
@@ -178,6 +179,13 @@ const renderComponent = (block, context) => {
             source={testimonialGroup.source}
           />
         );
+      }
+      return null;
+
+    case 'worklist':
+      const workList = CONTENT.workLists?.find(w => w.section === block.param);
+      if (workList && workList.items.length > 0) {
+        return <WorkList items={workList.items} />;
       }
       return null;
 
