@@ -86,7 +86,7 @@ Output:          as shown in research <Citation id="1"/><Citation id="2"/>
 -->
 
 <!-- @header -->
-<!-- @from name="John Renaldi" email="jrenaldi@northwestern.edu" linkedin="https://linkedin.com/in/jrenaldi" github="https://github.com/jrenaldi" -->
+<!-- @from name="John Renaldi" email="jrenaldi@northwestern.edu" linkedin="https://linkedin.com/in/renaldi" github="https://github.com/jrenaldi79" -->
 <!-- @headshot url="https://media.licdn.com/dms/image/v2/D5603AQFUsK3qbahONA/profile-displayphoto-crop_800_800/B56ZrwKFmfLsAM-/0/1764965769267?e=1771459200&v=beta&t=MKHyOB7K-PZZdSc0xc2QDUYSMyM009nFvmZbiWoOz8I" -->
 <!-- @date value="February 2026" -->
 <!-- @title value="The Product Engineer" -->

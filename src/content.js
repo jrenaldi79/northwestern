@@ -1,13 +1,13 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-02-03T02:58:59.831Z
+// Generated: 2026-02-03T06:06:44.765Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
   "header": {
     "from": "John Renaldi",
     "fromEmail": "jrenaldi@northwestern.edu",
-    "linkedin": "https://linkedin.com/in/jrenaldi",
-    "github": "https://github.com/jrenaldi",
+    "linkedin": "https://linkedin.com/in/renaldi",
+    "github": "https://github.com/jrenaldi79",
     "headshot": "https://media.licdn.com/dms/image/v2/D5603AQFUsK3qbahONA/profile-displayphoto-crop_800_800/B56ZrwKFmfLsAM-/0/1764965769267?e=1771459200&v=beta&t=MKHyOB7K-PZZdSc0xc2QDUYSMyM009nFvmZbiWoOz8I",
     "date": "February 2026",
     "title": "The Product Engineer",
