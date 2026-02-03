@@ -75,19 +75,10 @@ const getCompanyLogo = (company, size = 20) => {
   if (name.includes('northwestern') || name.includes('uiuc')) {
     return <img src={LOGO_URLS.northwestern} alt="Northwestern" width={size} height={size} style={{ objectFit: 'contain' }} />;
   }
-  if (name.includes('jiobit')) {
-    return <img src={LOGO_URLS.jiobit} alt="Jiobit" width={size} height={size} style={{ objectFit: 'contain' }} />;
-  }
-  if (name.includes('life360')) {
-    return <img src={LOGO_URLS.life360} alt="Life360" width={size} height={size} style={{ objectFit: 'contain' }} />;
-  }
-
-  // Deloitte hosted logo
-  if (name.includes('deloitte')) {
-    return <img src={LOGO_URLS.deloitte} alt="Deloitte" width={size} height={size} style={{ objectFit: 'contain' }} />;
-  }
-
-  // SVG component fallbacks
+  // SVG component logos (inline to avoid hotlinking issues)
+  if (name.includes('jiobit')) return COMPANY_LOGOS.jiobit({ size });
+  if (name.includes('life360')) return COMPANY_LOGOS.life360({ size });
+  if (name.includes('deloitte')) return COMPANY_LOGOS.deloitte({ size });
   if (name.includes('presto')) return COMPANY_LOGOS.presto({ size });
 
   return null;
