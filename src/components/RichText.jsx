@@ -69,9 +69,9 @@ const RichText = ({ children, className = '' }) => {
         citeNum = '';
       } else if (part === '___CITE_END___') {
         elements.push(
-          <sup key={key++} className="text-indigo-600 cursor-pointer hover:text-indigo-800 ml-0.5">
-            [{citeNum}]
-          </sup>
+          <a key={key++} href={`#citation-${citeNum}`} className="text-indigo-600 cursor-pointer hover:text-indigo-800 ml-0.5 no-underline">
+            <sup>[{citeNum}]</sup>
+          </a>
         );
         inCite = false;
       } else if (part) {

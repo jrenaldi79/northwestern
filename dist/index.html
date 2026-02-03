@@ -26,7 +26,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-02-03T01:33:58.735Z
+ * Generated: 2026-02-03T01:35:23.208Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -37,7 +37,7 @@
 // ============================================================================
 
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-02-03T01:33:58.634Z
+// Generated: 2026-02-03T01:35:23.112Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -1619,9 +1619,9 @@ const RichText = ({ children, className = '' }) => {
         citeNum = '';
       } else if (part === '___CITE_END___') {
         elements.push(
-          <sup key={key++} className="text-indigo-600 cursor-pointer hover:text-indigo-800 ml-0.5">
-            [{citeNum}]
-          </sup>
+          <a key={key++} href={`#citation-${citeNum}`} className="text-indigo-600 cursor-pointer hover:text-indigo-800 ml-0.5 no-underline">
+            <sup>[{citeNum}]</sup>
+          </a>
         );
         inCite = false;
       } else if (part) {
