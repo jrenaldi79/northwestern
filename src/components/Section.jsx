@@ -9,7 +9,7 @@
  */
 import { useState, useEffect, useRef } from 'react';
 import RichText from './RichText';
-import { COLORS, FONTS, TYPE_SCALE, LAYOUT, SPACE } from '../design-tokens';
+import { COLORS, FONTS, TYPE_SCALE, LAYOUT, SPACE, EFFECTS } from '../design-tokens';
 
 // Keyframes for cursor blink - injected once
 const injectKeyframes = (() => {
@@ -183,7 +183,7 @@ const SectionDivider = ({ variant = 'default' }) => {
             width: inView ? '48px' : '0px',
             height: '2px',
             background: COLORS.accent.primary,
-            borderRadius: '1px',
+            borderRadius: EFFECTS.radius.sm,
             transition: 'width 0.4s ease-out',
           }}
         />
@@ -258,10 +258,11 @@ const Section = ({ number, title, children, className = '' }) => {
   return (
     <section
       className={className}
+      data-section={number}
       style={{
         background: COLORS.surface.paper,
-        paddingTop: SPACE[8],
-        paddingBottom: SPACE.section,
+        paddingTop: SPACE[10],
+        paddingBottom: SPACE[10],
       }}
     >
       <div
@@ -291,10 +292,10 @@ const Section = ({ number, title, children, className = '' }) => {
             {/* Primary accent bar - animates in */}
             <div
               style={{
-                width: '4px',
+                width: EFFECTS.radius.md,
                 height: inView ? '32px' : '0px',
                 background: COLORS.accent.primary,
-                borderRadius: '2px',
+                borderRadius: EFFECTS.radius.sm,
                 transition: 'height 0.3s ease-out',
               }}
             />
@@ -307,9 +308,9 @@ const Section = ({ number, title, children, className = '' }) => {
                   gap: '0',
                   background: COLORS.ink[900],
                   padding: `${SPACE[2]} ${SPACE[4]}`,
-                  borderRadius: '4px',
+                  borderRadius: EFFECTS.radius.md,
                   border: `1px solid ${COLORS.ink[700]}`,
-                  boxShadow: `0 2px 8px rgba(0,0,0,0.15), inset 0 1px 0 ${COLORS.ink[800]}`,
+                  boxShadow: `${EFFECTS.shadow.md}, ${EFFECTS.shadow.inset}`,
                 }}
               >
                 {/* Terminal prompt */}
@@ -425,7 +426,7 @@ const Subsection = ({ title, children }) => {
   const [ref, inView] = useInView({ threshold: 0.05, rootMargin: '0px' });
 
   return (
-    <div ref={ref} style={{ marginTop: SPACE[8], marginBottom: SPACE[5] }}>
+    <div ref={ref} style={{ marginTop: SPACE[9], marginBottom: SPACE[6] }}>
       {/* Subsection header with inline marker */}
       <div
         style={{
@@ -441,10 +442,10 @@ const Subsection = ({ title, children }) => {
         {/* Vertical accent marker */}
         <div
           style={{
-            width: '2px',
+            width: EFFECTS.radius.sm,
             height: '1.5rem',
             background: `linear-gradient(to bottom, ${COLORS.accent.muted}, transparent)`,
-            borderRadius: '1px',
+            borderRadius: EFFECTS.radius.sm,
             flexShrink: 0,
             marginTop: '0.25rem',
           }}
@@ -468,7 +469,6 @@ const Subsection = ({ title, children }) => {
       </div>
       <div
         style={{
-          paddingLeft: SPACE[6],
           opacity: inView ? 1 : 0.15,
           transform: inView ? 'translateY(0)' : 'translateY(6px)',
           transition: 'opacity 0.35s ease-out 0.1s, transform 0.35s ease-out 0.1s',

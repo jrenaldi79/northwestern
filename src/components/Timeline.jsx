@@ -1,125 +1,440 @@
 /**
  * Timeline Component - "The Scholarly Disruptor"
  *
- * Editorial magazine aesthetic
- * - Clean vertical timeline
- * - Confident typography
- * - Restrained visual hierarchy
+ * Vertical editorial timeline with dramatic visual presence
+ * - Large year markers as visual anchors
+ * - Alternating left/right cards for rhythm
+ * - Elegant connecting spine
+ * - Rich hover interactions
  */
-import React from 'react';
+import React, { useState } from 'react';
 import RichText from './RichText';
 import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE } from '../design-tokens';
+
+const TimelineEntry = ({ entry, index, total }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const isLeft = index % 2 === 0;
+  const isFirst = index === 0;
+  const isLast = index === total - 1;
+
+  return (
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 80px 1fr',
+        gap: SPACE[4],
+        position: 'relative',
+        minHeight: '200px',
+      }}
+    >
+      {/* Left content area */}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          alignItems: 'flex-start',
+          paddingTop: SPACE[2],
+        }}
+      >
+        {isLeft && (
+          <TimelineCard
+            entry={entry}
+            isHovered={isHovered}
+            setIsHovered={setIsHovered}
+            align="right"
+          />
+        )}
+      </div>
+
+      {/* Center spine */}
+      <div
+        style={{
+          position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        {/* Vertical line - top segment */}
+        {!isFirst && (
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '2px',
+              height: SPACE[6],
+              background: `linear-gradient(180deg, ${COLORS.ink[200]} 0%, ${entry.highlight ? COLORS.accent.primary : COLORS.ink[300]} 100%)`,
+            }}
+          />
+        )}
+
+        {/* Year circle */}
+        <div
+          style={{
+            marginTop: isFirst ? 0 : SPACE[6],
+            width: '72px',
+            height: '72px',
+            borderRadius: EFFECTS.radius.full,
+            background: entry.highlight
+              ? `linear-gradient(135deg, ${COLORS.accent.primary} 0%, ${COLORS.accent.light} 100%)`
+              : COLORS.surface.elevated,
+            border: entry.highlight
+              ? 'none'
+              : `2px solid ${isHovered ? COLORS.ink[400] : COLORS.ink[200]}`,
+            boxShadow: entry.highlight
+              ? `0 4px 20px ${COLORS.accent.primary}40, ${EFFECTS.shadow.lg}`
+              : (isHovered ? EFFECTS.shadow.md : EFFECTS.shadow.sm),
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'relative',
+            zIndex: 2,
+            transition: `all ${EFFECTS.transition.base}`,
+            transform: isHovered ? 'scale(1.08)' : 'scale(1)',
+          }}
+        >
+          {/* Handle date ranges (e.g., "2014-2024") by stacking vertically */}
+          {entry.year.includes('-') && /^\d{4}-\d{4}$/.test(entry.year) ? (
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                lineHeight: 1.1,
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: FONTS.display,
+                  fontSize: '0.85rem',
+                  fontWeight: 500,
+                  fontStyle: 'italic',
+                  color: entry.highlight ? '#FFFFFF' : COLORS.ink[700],
+                  letterSpacing: '-0.02em',
+                }}
+              >
+                {entry.year.split('-')[0]}
+              </span>
+              <span
+                style={{
+                  fontFamily: FONTS.display,
+                  fontSize: '0.65rem',
+                  fontWeight: 400,
+                  color: entry.highlight ? 'rgba(255,255,255,0.6)' : COLORS.ink[400],
+                }}
+              >
+                –
+              </span>
+              <span
+                style={{
+                  fontFamily: FONTS.display,
+                  fontSize: '0.85rem',
+                  fontWeight: 500,
+                  fontStyle: 'italic',
+                  color: entry.highlight ? '#FFFFFF' : COLORS.ink[700],
+                  letterSpacing: '-0.02em',
+                }}
+              >
+                {entry.year.split('-')[1]}
+              </span>
+            </div>
+          ) : (
+            <span
+              style={{
+                fontFamily: FONTS.display,
+                fontSize: entry.year === 'Current' ? '0.875rem' : '1.25rem',
+                fontWeight: 500,
+                fontStyle: 'italic',
+                color: entry.highlight ? '#FFFFFF' : COLORS.ink[700],
+                letterSpacing: '-0.02em',
+              }}
+            >
+              {entry.year}
+            </span>
+          )}
+        </div>
+
+        {/* Vertical line - bottom segment */}
+        {!isLast && (
+          <div
+            style={{
+              flex: 1,
+              width: '2px',
+              background: `linear-gradient(180deg, ${entry.highlight ? COLORS.accent.primary : COLORS.ink[300]} 0%, ${COLORS.ink[200]} 100%)`,
+              marginTop: SPACE[1],
+            }}
+          />
+        )}
+      </div>
+
+      {/* Right content area */}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'flex-start',
+          alignItems: 'flex-start',
+          paddingTop: SPACE[2],
+        }}
+      >
+        {!isLeft && (
+          <TimelineCard
+            entry={entry}
+            isHovered={isHovered}
+            setIsHovered={setIsHovered}
+            align="left"
+          />
+        )}
+      </div>
+    </div>
+  );
+};
+
+const TimelineCard = ({ entry, isHovered, setIsHovered, align }) => {
+  return (
+    <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{
+        maxWidth: '340px',
+        width: '100%',
+        background: entry.highlight
+          ? COLORS.surface.dark
+          : COLORS.surface.elevated,
+        borderRadius: EFFECTS.radius.lg,
+        border: `1px solid ${entry.highlight ? COLORS.ink[700] : (isHovered ? COLORS.ink[300] : COLORS.ink[200])}`,
+        padding: SPACE[5],
+        boxShadow: isHovered ? EFFECTS.shadow.lg : EFFECTS.shadow.sm,
+        transform: isHovered ? 'translateY(-4px)' : 'translateY(0)',
+        transition: `all ${EFFECTS.transition.base}`,
+        position: 'relative',
+        overflow: 'hidden',
+        cursor: 'default',
+      }}
+    >
+      {/* Top accent for highlighted entries */}
+      {entry.highlight && (
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '3px',
+            background: `linear-gradient(90deg, ${COLORS.accent.primary} 0%, ${COLORS.accent.light} 100%)`,
+          }}
+        />
+      )}
+
+      {/* Pointer arrow */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '28px',
+          [align === 'right' ? 'right' : 'left']: '-8px',
+          width: '16px',
+          height: '16px',
+          background: entry.highlight ? COLORS.surface.dark : COLORS.surface.elevated,
+          border: `1px solid ${entry.highlight ? COLORS.ink[700] : (isHovered ? COLORS.ink[300] : COLORS.ink[200])}`,
+          borderRight: align === 'right' ? 'none' : undefined,
+          borderBottom: align === 'right' ? 'none' : undefined,
+          borderLeft: align === 'left' ? 'none' : undefined,
+          borderTop: align === 'left' ? 'none' : undefined,
+          transform: 'rotate(45deg)',
+          transition: `border-color ${EFFECTS.transition.base}`,
+        }}
+      />
+
+      {/* Company & badge row */}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginBottom: SPACE[3],
+          position: 'relative',
+          zIndex: 1,
+        }}
+      >
+        <div
+          style={{
+            padding: `${SPACE[1]} ${SPACE[3]}`,
+            background: entry.highlight ? COLORS.ink[800] : COLORS.surface.inset,
+            borderRadius: EFFECTS.radius.sm,
+          }}
+        >
+          <span
+            style={{
+              fontFamily: FONTS.mono,
+              fontSize: TYPE_SCALE.mono.sm.size,
+              fontWeight: 600,
+              letterSpacing: '0.05em',
+              color: entry.highlight ? COLORS.accent.light : COLORS.ink[500],
+              textTransform: 'uppercase',
+            }}
+          >
+            {entry.company}
+          </span>
+        </div>
+
+        {entry.highlight && (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: SPACE[1],
+            }}
+          >
+            <div
+              style={{
+                width: '6px',
+                height: '6px',
+                borderRadius: EFFECTS.radius.full,
+                background: COLORS.accent.primary,
+                boxShadow: `0 0 8px ${COLORS.accent.primary}`,
+              }}
+            />
+            <span
+              style={{
+                fontFamily: FONTS.mono,
+                fontSize: '0.625rem',
+                fontWeight: 600,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                color: COLORS.accent.muted,
+              }}
+            >
+              Milestone
+            </span>
+          </div>
+        )}
+      </div>
+
+      {/* Title */}
+      <h4
+        style={{
+          fontFamily: FONTS.headline,
+          fontWeight: 500,
+          fontSize: TYPE_SCALE.headline.sm.size,
+          lineHeight: 1.3,
+          color: entry.highlight ? COLORS.ink[50] : COLORS.ink[800],
+          marginBottom: SPACE[3],
+          position: 'relative',
+          zIndex: 1,
+        }}
+      >
+        {entry.title}
+      </h4>
+
+      {/* Description */}
+      <p
+        style={{
+          fontFamily: FONTS.body,
+          fontSize: TYPE_SCALE.body.sm.size,
+          lineHeight: TYPE_SCALE.body.sm.lineHeight,
+          color: entry.highlight ? COLORS.ink[300] : COLORS.ink[500],
+          margin: 0,
+          position: 'relative',
+          zIndex: 1,
+        }}
+      >
+        <RichText>{entry.content}</RichText>
+      </p>
+    </div>
+  );
+};
 
 const Timeline = ({ entries }) => {
   if (!entries || entries.length === 0) return null;
 
   return (
-    <div style={{ marginTop: SPACE[8], marginBottom: SPACE[8] }}>
-      <div style={{ position: 'relative' }}>
-        {/* Vertical line */}
+    <div
+      style={{
+        marginTop: SPACE[8],
+        marginBottom: SPACE[8],
+      }}
+    >
+      {/* Section header */}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: SPACE[4],
+          marginBottom: SPACE[8],
+        }}
+      >
         <div
           style={{
-            position: 'absolute',
-            left: '31px',
-            top: '8px',
-            bottom: '8px',
-            width: '2px',
-            background: COLORS.ink[200],
+            width: '32px',
+            height: '3px',
+            background: COLORS.accent.primary,
+            borderRadius: EFFECTS.radius.full,
           }}
         />
-
-        {/* Entries */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: SPACE[6] }}>
-          {entries.map((entry, i) => (
-            <div key={i} style={{ position: 'relative', paddingLeft: '80px' }}>
-              {/* Year marker */}
-              <div
-                style={{
-                  position: 'absolute',
-                  left: '0',
-                  width: '64px',
-                  height: '64px',
-                  borderRadius: EFFECTS.radius.md,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontFamily: FONTS.mono,
-                  fontWeight: 600,
-                  fontSize: TYPE_SCALE.mono.md.size,
-                  background: entry.highlight ? COLORS.accent.primary : COLORS.surface.elevated,
-                  color: entry.highlight ? COLORS.surface.paper : COLORS.ink[600],
-                  border: entry.highlight ? 'none' : `1px solid ${COLORS.ink[200]}`,
-                }}
-              >
-                {entry.year}
-              </div>
-
-              {/* Content card */}
-              <div
-                style={{
-                  background: entry.highlight ? COLORS.accent.wash : COLORS.surface.elevated,
-                  borderRadius: EFFECTS.radius.lg,
-                  border: `1px solid ${entry.highlight ? COLORS.accent.glow : COLORS.ink[100]}`,
-                  padding: SPACE[6],
-                  boxShadow: EFFECTS.shadow.sm,
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: SPACE[3] }}>
-                  <div>
-                    <h4
-                      style={{
-                        fontFamily: FONTS.ui,
-                        fontWeight: 600,
-                        fontSize: TYPE_SCALE.ui.md.size,
-                        color: COLORS.ink[800],
-                        marginBottom: SPACE[1],
-                      }}
-                    >
-                      {entry.title}
-                    </h4>
-                    <p
-                      style={{
-                        fontFamily: FONTS.mono,
-                        fontSize: TYPE_SCALE.mono.sm.size,
-                        color: COLORS.ink[400],
-                      }}
-                    >
-                      {entry.company}
-                    </p>
-                  </div>
-                  {entry.highlight && (
-                    <span
-                      style={{
-                        padding: `${SPACE[1]} ${SPACE[3]}`,
-                        background: COLORS.accent.primary,
-                        color: COLORS.surface.paper,
-                        fontFamily: FONTS.mono,
-                        fontSize: TYPE_SCALE.mono.sm.size,
-                        fontWeight: 500,
-                        borderRadius: EFFECTS.radius.sm,
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.05em',
-                      }}
-                    >
-                      Key
-                    </span>
-                  )}
-                </div>
-                <p
-                  style={{
-                    fontFamily: FONTS.body,
-                    fontSize: TYPE_SCALE.body.sm.size,
-                    lineHeight: TYPE_SCALE.body.sm.lineHeight,
-                    color: COLORS.ink[500],
-                    margin: 0,
-                  }}
-                >
-                  <RichText>{entry.content}</RichText>
-                </p>
-              </div>
-            </div>
-          ))}
+        <div>
+          <span
+            style={{
+              fontFamily: FONTS.mono,
+              fontSize: TYPE_SCALE.mono.sm.size,
+              fontWeight: 500,
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+              color: COLORS.ink[400],
+            }}
+          >
+            Career Timeline
+          </span>
+          <h3
+            style={{
+              fontFamily: FONTS.display,
+              fontSize: TYPE_SCALE.display.md.size,
+              fontWeight: 400,
+              fontStyle: 'italic',
+              letterSpacing: '-0.02em',
+              color: COLORS.ink[800],
+              marginTop: SPACE[1],
+              lineHeight: 1.1,
+            }}
+          >
+            The Journey
+          </h3>
         </div>
+      </div>
+
+      {/* Timeline entries */}
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        {entries.map((entry, i) => (
+          <TimelineEntry
+            key={i}
+            entry={entry}
+            index={i}
+            total={entries.length}
+          />
+        ))}
+      </div>
+
+      {/* Bottom flourish */}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginTop: SPACE[6],
+        }}
+      >
+        <div
+          style={{
+            width: '40px',
+            height: '4px',
+            background: `linear-gradient(90deg, transparent 0%, ${COLORS.ink[300]} 50%, transparent 100%)`,
+            borderRadius: EFFECTS.radius.full,
+          }}
+        />
       </div>
     </div>
   );

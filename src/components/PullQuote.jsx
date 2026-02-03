@@ -5,11 +5,16 @@
  * - Confident serif typography
  * - Dramatic scale
  * - Print-inspired layout
+ * - Optional author attribution for 3rd party quotes
  */
 import React from 'react';
 import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE, LAYOUT } from '../design-tokens';
 
-const PullQuote = ({ children, align = 'center' }) => {
+const PullQuote = ({ children, quote, author, title, align = 'center' }) => {
+  // Support both string children (backwards compat) and quote object
+  const quoteText = quote || children;
+  const hasAttribution = author && author.length > 0;
+
   const isCenter = align === 'center';
   const isLeft = align === 'left';
 
@@ -55,12 +60,52 @@ const PullQuote = ({ children, align = 'center' }) => {
             margin: 0,
           }}
         >
-          "{children}"
+          "{quoteText}"
         </p>
+
+        {/* Attribution */}
+        {hasAttribution && (
+          <footer
+            style={{
+              marginTop: SPACE[4],
+              textAlign: align,
+            }}
+          >
+            <cite
+              style={{
+                fontFamily: FONTS.ui,
+                fontSize: TYPE_SCALE.ui.md.size,
+                fontStyle: 'normal',
+                color: COLORS.ink[600],
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: isCenter ? 'center' : isLeft ? 'flex-start' : 'flex-end',
+                gap: SPACE[2],
+              }}
+            >
+              <span
+                style={{
+                  width: '16px',
+                  height: '1px',
+                  background: COLORS.ink[300],
+                }}
+              />
+              <span style={{ fontWeight: 600, color: COLORS.ink[700] }}>
+                {author}
+              </span>
+              {title && (
+                <>
+                  <span style={{ color: COLORS.ink[400] }}>·</span>
+                  <span style={{ color: COLORS.ink[500] }}>{title}</span>
+                </>
+              )}
+            </cite>
+          </footer>
+        )}
       </blockquote>
 
-      {/* Bottom accent line for center alignment */}
-      {isCenter && (
+      {/* Bottom accent line for center alignment (only if no attribution) */}
+      {isCenter && !hasAttribution && (
         <div
           style={{
             width: '48px',

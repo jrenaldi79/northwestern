@@ -334,28 +334,29 @@ const BarChart = ({ data }) => {
   );
 };
 
-// Hierarchy Chart - Flow diagram
+// Hierarchy Chart - Dramatic transformation visualization
 const HierarchyChart = ({ data }) => {
   const { title, subtitle, levels } = data;
 
   return (
     <div
       style={{
-        marginTop: SPACE[5],
-        marginBottom: SPACE[5],
-        padding: SPACE[5],
-        background: COLORS.surface.inset,
-        borderRadius: EFFECTS.radius.lg,
-        border: `1px solid ${COLORS.ink[200]}`,
+        marginTop: SPACE[6],
+        marginBottom: SPACE[6],
+        padding: SPACE[6],
+        background: COLORS.surface.paper,
+        borderRadius: EFFECTS.radius.xl,
+        border: `1px solid ${COLORS.ink[100]}`,
+        boxShadow: EFFECTS.shadow.lg,
       }}
     >
       {/* Header */}
-      <div style={{ marginBottom: SPACE[5], textAlign: 'center' }}>
+      <div style={{ marginBottom: SPACE[6], textAlign: 'center' }}>
         <h4
           style={{
             fontFamily: FONTS.headline,
-            fontSize: TYPE_SCALE.headline.sm.size,
-            fontWeight: TYPE_SCALE.headline.sm.weight,
+            fontSize: TYPE_SCALE.headline.md.size,
+            fontWeight: TYPE_SCALE.headline.md.weight,
             color: COLORS.ink[800],
             margin: 0,
           }}
@@ -369,7 +370,8 @@ const HierarchyChart = ({ data }) => {
               fontSize: TYPE_SCALE.mono.sm.size,
               color: COLORS.ink[400],
               margin: 0,
-              marginTop: SPACE[1],
+              marginTop: SPACE[2],
+              letterSpacing: '0.02em',
             }}
           >
             {subtitle}
@@ -377,51 +379,89 @@ const HierarchyChart = ({ data }) => {
         )}
       </div>
 
-      {/* Flow diagram */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: SPACE[3] }}>
+      {/* Transformation rows */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: SPACE[4] }}>
         {levels.map((level, i) => (
           <div
             key={i}
             style={{
-              display: 'flex',
+              display: 'grid',
+              gridTemplateColumns: '1fr auto 1fr',
               alignItems: 'center',
-              justifyContent: 'center',
               gap: SPACE[4],
+              padding: `${SPACE[4]} ${SPACE[5]}`,
+              background: i === 0 ? COLORS.accent.wash : COLORS.surface.inset,
+              borderRadius: EFFECTS.radius.lg,
+              border: `1px solid ${i === 0 ? COLORS.accent.primary + '20' : COLORS.ink[100]}`,
             }}
           >
-            <div style={{ flex: 1, textAlign: 'right' }}>
+            {/* FROM - faded, crossed out style */}
+            <div style={{ textAlign: 'right' }}>
               <span
                 style={{
-                  display: 'inline-block',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: SPACE[2],
                   padding: `${SPACE[2]} ${SPACE[4]}`,
-                  background: COLORS.surface.elevated,
-                  border: `1px solid ${COLORS.ink[200]}`,
-                  borderRadius: EFFECTS.radius.md,
                   fontFamily: FONTS.ui,
-                  fontSize: TYPE_SCALE.ui.sm.size,
-                  color: COLORS.ink[500],
+                  fontSize: TYPE_SCALE.ui.md.size,
+                  fontWeight: 400,
+                  color: COLORS.ink[400],
+                  textDecoration: 'line-through',
+                  textDecorationColor: COLORS.ink[300],
+                  opacity: 0.7,
                 }}
               >
                 {level.from}
               </span>
             </div>
-            <div style={{ flexShrink: 0, color: COLORS.accent.primary }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="5" y1="12" x2="19" y2="12"/>
-                <polyline points="12 5 19 12 12 19"/>
+
+            {/* Arrow - dramatic chevron */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '48px',
+                height: '48px',
+                background: `linear-gradient(135deg, ${COLORS.accent.primary} 0%, ${COLORS.accent.deep} 100%)`,
+                borderRadius: EFFECTS.radius.full,
+                boxShadow: `${EFFECTS.shadow.md}, ${EFFECTS.shadow.inset}`,
+              }}
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                style={{ color: 'white' }}
+              >
+                <path
+                  d="M9 6L15 12L9 18"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </div>
-            <div style={{ flex: 1 }}>
+
+            {/* TO - bold, emphasized */}
+            <div>
               <span
                 style={{
-                  display: 'inline-block',
-                  padding: `${SPACE[2]} ${SPACE[4]}`,
-                  background: COLORS.accent.primary,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: SPACE[2],
+                  padding: `${SPACE[3]} ${SPACE[5]}`,
+                  background: COLORS.surface.paper,
+                  border: `2px solid ${COLORS.accent.primary}`,
                   borderRadius: EFFECTS.radius.md,
-                  fontFamily: FONTS.ui,
-                  fontSize: TYPE_SCALE.ui.sm.size,
+                  fontFamily: FONTS.headline,
+                  fontSize: TYPE_SCALE.ui.lg.size,
                   fontWeight: 600,
-                  color: COLORS.surface.paper,
+                  color: COLORS.accent.deep,
+                  boxShadow: EFFECTS.shadow.sm,
                 }}
               >
                 {level.to}
@@ -430,6 +470,16 @@ const HierarchyChart = ({ data }) => {
           </div>
         ))}
       </div>
+
+      {/* Bottom accent line */}
+      <div
+        style={{
+          marginTop: SPACE[5],
+          height: '3px',
+          background: `linear-gradient(90deg, transparent 0%, ${COLORS.accent.primary}40 50%, transparent 100%)`,
+          borderRadius: EFFECTS.radius.sm,
+        }}
+      />
     </div>
   );
 };

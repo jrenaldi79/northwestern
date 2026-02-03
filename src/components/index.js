@@ -18,3 +18,5 @@ export { default as Table } from './Table';
 export { default as Section, SectionDivider, Subsection, Paragraph, BulletList } from './Section';
 export { default as Citations } from './Citations';
 export { default as TerminalWindow } from './TerminalWindow';
+export { default as MarkdownSection } from './MarkdownSection';
+export { default as SectionNav } from './SectionNav';

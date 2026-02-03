@@ -122,46 +122,46 @@ const TerminalWindowCursor = ({ visible = true }) => (
   <span
     style={{
       display: 'inline-block',
-      width: '8px',
+      width: SPACE[2],
       height: '1.1em',
       background: COLORS.accent.light,
-      marginLeft: '2px',
+      marginLeft: SPACE[1],
       verticalAlign: 'text-bottom',
       animation: visible ? 'terminalCursorBlink 0.9s step-end infinite' : 'none',
       opacity: visible ? 1 : 0,
-      boxShadow: `0 0 8px ${COLORS.accent.light}60`,
+      boxShadow: `0 0 ${SPACE[2]} ${COLORS.accent.light}60`,
     }}
   />
 );
 
 // Traffic light buttons
 const TrafficLights = () => (
-  <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+  <div style={{ display: 'flex', gap: SPACE[2], alignItems: 'center' }}>
     <div
       style={{
-        width: '12px',
-        height: '12px',
-        borderRadius: '50%',
+        width: SPACE[3],
+        height: SPACE[3],
+        borderRadius: EFFECTS.radius.full,
         background: '#FF5F57',
-        boxShadow: 'inset 0 -1px 1px rgba(0,0,0,0.2)',
+        boxShadow: EFFECTS.shadow.inset,
       }}
     />
     <div
       style={{
-        width: '12px',
-        height: '12px',
-        borderRadius: '50%',
+        width: SPACE[3],
+        height: SPACE[3],
+        borderRadius: EFFECTS.radius.full,
         background: '#FFBD2E',
-        boxShadow: 'inset 0 -1px 1px rgba(0,0,0,0.2)',
+        boxShadow: EFFECTS.shadow.inset,
       }}
     />
     <div
       style={{
-        width: '12px',
-        height: '12px',
-        borderRadius: '50%',
+        width: SPACE[3],
+        height: SPACE[3],
+        borderRadius: EFFECTS.radius.full,
         background: '#28CA41',
-        boxShadow: 'inset 0 -1px 1px rgba(0,0,0,0.2)',
+        boxShadow: EFFECTS.shadow.inset,
       }}
     />
   </div>
@@ -185,7 +185,7 @@ const TerminalWindow = ({
 
   const { displayLines, isDone, currentLineIndex } = useMultiLineTypewriter(
     contentLines,
-    { speed: 25, lineDelay: 200, enabled: inView }
+    { speed: 12, lineDelay: 80, enabled: inView }
   );
 
   const isCompact = variant === 'compact';
@@ -194,13 +194,14 @@ const TerminalWindow = ({
     <div
       ref={ref}
       style={{
-        maxWidth: isCompact ? '480px' : '640px',
+        maxWidth: isCompact ? '720px' : '100%',
+        width: '100%',
         margin: `${SPACE[7]} auto`,
-        borderRadius: '12px',
+        borderRadius: EFFECTS.radius.xl,
         overflow: 'hidden',
         background: '#1a1b26',
         boxShadow: inView
-          ? `0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.05), 0 0 30px ${COLORS.accent.primary}20`
+          ? `${EFFECTS.shadow.xl}, 0 0 0 1px rgba(255,255,255,0.05), 0 0 30px ${COLORS.accent.primary}20`
           : EFFECTS.shadow.lg,
         transform: inView ? 'translateY(0)' : 'translateY(20px)',
         opacity: inView ? 1 : 0,
@@ -212,10 +213,10 @@ const TerminalWindow = ({
       <div
         style={{
           background: 'linear-gradient(180deg, #3d3d4a 0%, #2d2d3a 100%)',
-          padding: '12px 16px',
+          padding: `${SPACE[3]} ${SPACE[4]}`,
           display: 'flex',
           alignItems: 'center',
-          gap: '12px',
+          gap: SPACE[3],
           borderBottom: '1px solid rgba(0,0,0,0.3)',
         }}
       >
@@ -240,7 +241,7 @@ const TerminalWindow = ({
       {/* Terminal content area */}
       <div
         style={{
-          padding: isCompact ? '16px 20px' : '20px 24px',
+          padding: isCompact ? `${SPACE[4]} ${SPACE[5]}` : `${SPACE[5]} ${SPACE[5]}`,
           minHeight: isCompact ? '100px' : '140px',
           position: 'relative',
           background: 'linear-gradient(180deg, #1a1b26 0%, #16161e 100%)',
@@ -265,10 +266,10 @@ const TerminalWindow = ({
             style={{
               fontFamily: FONTS.mono,
               fontSize: '14px',
-              marginBottom: '12px',
+              marginBottom: SPACE[3],
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
+              gap: SPACE[2],
             }}
           >
             <span style={{ color: COLORS.accent.muted }}>❯</span>
@@ -290,9 +291,9 @@ const TerminalWindow = ({
             <div
               key={index}
               style={{
-                marginBottom: '6px',
+                marginBottom: SPACE[1],
                 opacity: index <= currentLineIndex ? 1 : 0,
-                transform: index <= currentLineIndex ? 'translateX(0)' : 'translateX(-8px)',
+                transform: index <= currentLineIndex ? 'translateX(0)' : `translateX(-${SPACE[2]})`,
                 transition: 'opacity 0.2s, transform 0.2s',
               }}
             >
@@ -308,9 +309,22 @@ const TerminalWindow = ({
           ))}
           {/* Final cursor after all lines complete - only show if command mode */}
           {isDone && command && (
-            <div style={{ display: 'flex', marginTop: '8px' }}>
+            <div style={{ display: 'flex', marginTop: SPACE[2] }}>
               <span style={{ color: COLORS.accent.muted }}>❯</span>
               <TerminalWindowCursor visible={true} />
+            </div>
+          )}
+          {/* Simple done indicator when no command mode */}
+          {isDone && !command && (
+            <div style={{ marginTop: SPACE[3], opacity: 0.4 }}>
+              <span style={{
+                fontFamily: FONTS.mono,
+                fontSize: '11px',
+                color: COLORS.accent.muted,
+                letterSpacing: '0.05em',
+              }}>
+                ✓ summary
+              </span>
             </div>
           )}
         </div>
@@ -379,8 +393,8 @@ function highlightSyntax(text) {
           style={{
             color: COLORS.accent.muted,
             background: 'rgba(139, 92, 246, 0.15)',
-            padding: '1px 6px',
-            borderRadius: '3px',
+            padding: `${SPACE[0]} ${SPACE[1]}`,
+            borderRadius: EFFECTS.radius.sm,
           }}
         >
           {token}

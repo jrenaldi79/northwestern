@@ -10,8 +10,14 @@
 import React, { useState } from 'react';
 import { COLORS, FONTS, TYPE_SCALE, EFFECTS, LAYOUT, SPACE } from '../design-tokens';
 
-const Header = ({ data, stats }) => {
+const Header = ({ data, heroQuote }) => {
   const { from, fromEmail, linkedin, github, headshot, date, subtitle } = data;
+  // Default quote if none provided
+  const quote = heroQuote || {
+    quote: "The separation between 'people with ideas' and 'people who can build' is shrinking.",
+    author: '',
+    title: '',
+  };
   const [imageError, setImageError] = useState(false);
 
   // Get initials for fallback
@@ -32,7 +38,7 @@ const Header = ({ data, stats }) => {
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
-        background: `linear-gradient(165deg, ${COLORS.surface.paper} 0%, ${COLORS.ink[100]} 50%, ${COLORS.surface.paper} 100%)`,
+        background: `linear-gradient(170deg, #f8f9fc 0%, #eef1f8 30%, #e8edf5 60%, #f5f7fa 100%)`,
       }}
     >
       {/* Subtle grid pattern overlay */}
@@ -41,33 +47,49 @@ const Header = ({ data, stats }) => {
           position: 'absolute',
           inset: 0,
           backgroundImage: `
-            linear-gradient(${COLORS.ink[200]}20 1px, transparent 1px),
-            linear-gradient(90deg, ${COLORS.ink[200]}20 1px, transparent 1px)
+            linear-gradient(#94a3b820 1px, transparent 1px),
+            linear-gradient(90deg, #94a3b820 1px, transparent 1px)
           `,
           backgroundSize: '60px 60px',
-          opacity: 0.4,
+          opacity: 0.5,
           pointerEvents: 'none',
         }}
       />
 
-      {/* Large decorative number/year */}
+      {/* Gradient accent shapes - colorful */}
       <div
         style={{
           position: 'absolute',
-          top: '10%',
+          top: '-15%',
           right: '-5%',
-          fontFamily: FONTS.display,
-          fontSize: 'clamp(15rem, 35vw, 28rem)',
-          fontWeight: 300,
-          color: COLORS.ink[200],
-          opacity: 0.15,
-          lineHeight: 0.8,
+          width: '55%',
+          height: '70%',
+          background: `radial-gradient(ellipse at center, #6366f120 0%, #8b5cf615 40%, transparent 70%)`,
           pointerEvents: 'none',
-          userSelect: 'none',
         }}
-      >
-        26
-      </div>
+      />
+      <div
+        style={{
+          position: 'absolute',
+          top: '20%',
+          left: '-10%',
+          width: '45%',
+          height: '50%',
+          background: `radial-gradient(ellipse at center, #3b82f615 0%, #06b6d410 50%, transparent 70%)`,
+          pointerEvents: 'none',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '-5%',
+          right: '20%',
+          width: '40%',
+          height: '45%',
+          background: `radial-gradient(ellipse at center, #f59e0b10 0%, #f9731608 50%, transparent 65%)`,
+          pointerEvents: 'none',
+        }}
+      />
 
 
       {/* Top navigation bar */}
@@ -100,7 +122,7 @@ const Header = ({ data, stats }) => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: `0 4px 12px ${COLORS.accent.primary}40`,
+                boxShadow: EFFECTS.shadow.md,
               }}
             >
               <span
@@ -417,70 +439,121 @@ const Header = ({ data, stats }) => {
             </div>
           </div>
 
-          {/* Right column - Visual element */}
+          {/* Right column - Hero quote */}
           <div
             style={{
               gridColumn: 'span 4',
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'flex-end',
+              alignItems: 'flex-start',
               gap: '1.5rem',
             }}
           >
-            {/* Stats preview cards */}
+            {/* Hero quote */}
             <div
               style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '0.75rem',
-                width: '100%',
-                maxWidth: '280px',
+                position: 'relative',
+                padding: '2rem',
+                background: COLORS.surface.elevated,
+                borderRadius: EFFECTS.radius.xl,
+                border: `1px solid ${COLORS.ink[200]}`,
+                boxShadow: EFFECTS.shadow.lg,
               }}
             >
-              {(stats || []).slice(0, 3).map((stat, i) => (
+              {/* Large quotation mark */}
+              <div
+                style={{
+                  position: 'absolute',
+                  top: '-0.5rem',
+                  left: '1.5rem',
+                  fontFamily: FONTS.display,
+                  fontSize: '5rem',
+                  fontWeight: 400,
+                  lineHeight: 1,
+                  color: COLORS.accent.primary,
+                  opacity: 0.2,
+                  userSelect: 'none',
+                }}
+              >
+                "
+              </div>
+              <blockquote
+                style={{
+                  position: 'relative',
+                  fontFamily: FONTS.body,
+                  fontSize: 'clamp(1.125rem, 1.5vw, 1.375rem)',
+                  fontWeight: 400,
+                  lineHeight: 1.5,
+                  color: COLORS.ink[700],
+                  fontStyle: 'italic',
+                  margin: 0,
+                }}
+              >
+                {quote.quote}
+              </blockquote>
+
+              {/* Attribution */}
+              {quote.author && (
                 <div
-                  key={i}
                   style={{
-                    padding: '1.25rem 1.5rem',
-                    background: i === 0
-                      ? `linear-gradient(135deg, ${COLORS.accent.primary} 0%, ${COLORS.accent.light} 100%)`
-                      : COLORS.surface.elevated,
-                    borderRadius: EFFECTS.radius.lg,
-                    border: i === 0 ? 'none' : `1px solid ${COLORS.ink[200]}`,
-                    boxShadow: i === 0
-                      ? `0 8px 32px ${COLORS.accent.primary}30`
-                      : EFFECTS.shadow.md,
-                    transform: `translateX(${i * -20}px)`,
+                    marginTop: '1rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
                   }}
                 >
-                  <p
+                  <span
                     style={{
-                      fontFamily: FONTS.mono,
-                      fontSize: '2rem',
-                      fontWeight: 600,
-                      color: i === 0 ? 'white' : COLORS.accent.primary,
-                      marginBottom: '0.25rem',
+                      width: '12px',
+                      height: '1px',
+                      background: COLORS.ink[300],
                     }}
-                  >
-                    {stat.value}
-                  </p>
-                  <p
+                  />
+                  <span
                     style={{
                       fontFamily: FONTS.ui,
                       fontSize: TYPE_SCALE.ui.sm.size,
-                      color: i === 0 ? 'rgba(255,255,255,0.8)' : COLORS.ink[500],
+                      fontWeight: 600,
+                      color: COLORS.ink[600],
                     }}
                   >
-                    {stat.label}
-                  </p>
+                    {quote.author}
+                  </span>
+                  {quote.title && (
+                    <>
+                      <span style={{ color: COLORS.ink[300] }}>·</span>
+                      <span
+                        style={{
+                          fontFamily: FONTS.ui,
+                          fontSize: TYPE_SCALE.ui.sm.size,
+                          color: COLORS.ink[400],
+                        }}
+                      >
+                        {quote.title}
+                      </span>
+                    </>
+                  )}
                 </div>
-              ))}
+              )}
+
+              {/* Accent bar (only if no attribution) */}
+              {!quote.author && (
+                <div
+                  style={{
+                    marginTop: '1.25rem',
+                    width: '48px',
+                    height: '3px',
+                    background: `linear-gradient(90deg, ${COLORS.accent.primary} 0%, ${COLORS.accent.light} 100%)`,
+                    borderRadius: EFFECTS.radius.full,
+                  }}
+                />
+              )}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator - centered */}
       <div
         style={{
           position: 'relative',
@@ -493,35 +566,27 @@ const Header = ({ data, stats }) => {
             maxWidth: LAYOUT.maxWidth.wide,
             margin: '0 auto',
             display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
-            gap: '1rem',
+            gap: '0.75rem',
           }}
         >
           <div
             style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '0.5rem',
+              width: '1px',
+              height: '40px',
+              background: `linear-gradient(to bottom, ${COLORS.accent.primary}, transparent)`,
             }}
-          >
-            <div
-              style={{
-                width: '1px',
-                height: '40px',
-                background: `linear-gradient(to bottom, ${COLORS.accent.primary}, transparent)`,
-              }}
-            />
-            <div
-              style={{
-                width: '8px',
-                height: '8px',
-                borderRadius: EFFECTS.radius.full,
-                background: COLORS.accent.primary,
-                animation: 'pulse 2s ease-in-out infinite',
-              }}
-            />
-          </div>
+          />
+          <div
+            style={{
+              width: '8px',
+              height: '8px',
+              borderRadius: EFFECTS.radius.full,
+              background: COLORS.accent.primary,
+              animation: 'pulse 2s ease-in-out infinite',
+            }}
+          />
           <span
             style={{
               fontFamily: FONTS.mono,

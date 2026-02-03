@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-02-02T21:05:16.714Z
+// Generated: 2026-02-03T01:06:51.747Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -37,27 +37,6 @@ const CONTENT = {
   ],
   "charts": [
     {
-      "type": "range",
-      "title": "Product Engineer Compensation",
-      "subtitle": "Major tech hubs, 2025",
-      "ranges": [
-        {
-          "label": "Entry Level",
-          "min": 140,
-          "max": 170,
-          "unit": "k",
-          "highlight": false
-        },
-        {
-          "label": "Senior",
-          "min": 200,
-          "max": 250,
-          "unit": "k",
-          "highlight": true
-        }
-      ]
-    },
-    {
       "type": "hierarchy",
       "title": "The Skills Shift",
       "subtitle": "What matters now vs. what mattered before",
@@ -77,57 +56,100 @@ const CONTENT = {
       ]
     }
   ],
-  "convergence": [
-    {
-      "from": "PMs",
-      "to": "Engineering",
-      "description": "Today, most PMs ship at least one pull request per month. At Anthropic, PMs ship features directly."
-    },
-    {
-      "from": "Designers",
-      "to": "Eng & PM",
-      "description": "Designers no longer hand off static mockups. They prototype in production code."
-    },
-    {
-      "from": "Engineers",
-      "to": "Product",
-      "description": "When implementation becomes easy, the valuable skill becomes knowing what to build."
-    }
-  ],
+  "convergence": {
+    "position": "after",
+    "roles": [
+      {
+        "from": "PMs",
+        "to": "Engineering",
+        "description": "Today, most PMs ship at least one pull request per month. At Anthropic, PMs ship features directly."
+      },
+      {
+        "from": "Designers",
+        "to": "Eng & PM",
+        "description": "Designers no longer hand off static mockups. They prototype in production code."
+      },
+      {
+        "from": "Engineers",
+        "to": "Product",
+        "description": "When implementation becomes easy, the valuable skill becomes knowing what to build."
+      }
+    ]
+  },
   "quotes": [
+    {
+      "author": "Marty Cagan",
+      "title": "Partner, SVPG",
+      "cite": "25",
+      "quote": "Anyone actively shaping the product and tackling the product risks is a product creator... With the rise of generative AI-based tools, strong designers and engineers are starting to play this role. This represents a fundamental shift.",
+      "section": "triad"
+    },
+    {
+      "author": "Satya Nadella",
+      "title": "CEO, Microsoft",
+      "cite": "10",
+      "quote": "LinkedIn combined product manager, designer, frontend and backend engineer roles into a single 'full-stack builder' role.",
+      "section": "triad"
+    },
+    {
+      "author": "Guillermo Rauch",
+      "title": "CEO, Vercel",
+      "cite": "",
+      "quote": "The best engineers are becoming product engineers. They don't just write code—they understand the customer, the market, and why this feature matters.",
+      "section": "triad"
+    },
+    {
+      "author": "Marty Cagan",
+      "title": "Partner, SVPG",
+      "cite": "26",
+      "quote": "The little secret in product is that engineers are typically the best single source of innovation; yet, they are not even invited to the party in this process.",
+      "section": "triad"
+    },
     {
       "author": "Ethan Mollick",
       "title": "Wharton, Co-Intelligence",
       "cite": "7",
-      "quote": "AI skills are basically the skills of good managers: delegation, clear explanations, getting a sense of individual strengths & weaknesses, division of labor, project management, clear feedback."
+      "quote": "AI skills are basically the skills of good managers: delegation, clear explanations, getting a sense of individual strengths & weaknesses, division of labor, project management, clear feedback.",
+      "section": "skills"
     },
     {
       "author": "Andrej Karpathy",
       "title": "OpenAI co-founder, former Tesla AI",
       "cite": "8",
-      "quote": "I've never felt this much behind as a programmer. The profession is being dramatically refactored... There's a new programmable layer of abstraction to master involving agents, subagents, their prompts, contexts, memory, modes, permissions, tools, plugins, skills."
+      "quote": "I've never felt this much behind as a programmer. The profession is being dramatically refactored... There's a new programmable layer of abstraction to master involving agents, subagents, their prompts, contexts, memory, modes, permissions, tools, plugins, skills.",
+      "section": "skills"
     },
     {
       "author": "Jensen Huang",
       "title": "NVIDIA CEO",
       "cite": "9",
-      "quote": "There's a new programming language. It's called 'human.'"
+      "quote": "There's a new programming language. It's called 'human.'",
+      "section": "skills"
     },
     {
       "author": "Magdalena Balazinska",
       "title": "UW Allen School",
       "cite": "11",
-      "quote": "Coding, or the translation of a precise design into software instructions, is dead. AI can do that."
+      "quote": "Coding, or the translation of a precise design into software instructions, is dead. AI can do that.",
+      "section": "skills"
     }
   ],
   "pullquotes": [
-    "The separation between \"people with ideas\" and \"people who can build\" is shrinking.",
-    "AI lowers the floor to coding while raising the ceiling for engineering.",
-    "Skills are moving up: from writing code to orchestrating systems, from syntax to judgment, from execution to strategy.",
-    "The shift is analogous to when CAD replaced drafting tables or when simulation replaced physical prototyping.",
-    "Most executives do not build. Most builders have not led at scale. Most founders have not taught.",
-    "I model what we want students to become: someone who learns skills to solve problems, not someone who waits for credentials.",
-    "There is a gap between prompting ChatGPT and shipping production AI systems."
+    {
+      "author": "Jaana Dogan",
+      "title": "Principal Engineer, Google",
+      "quote": "I gave Claude Code a description of the problem, it generated what we built last year in an hour."
+    },
+    {
+      "author": "Malte Ubl",
+      "title": "CTO, Vercel",
+      "quote": "The cost of software production is trending towards zero."
+    },
+    {
+      "author": "",
+      "title": "",
+      "quote": "The shift is analogous to when CAD replaced drafting tables or when simulation replaced physical prototyping."
+    }
   ],
   "cards": [
     {
@@ -137,19 +159,19 @@ const CONTENT = {
       "cards": [
         {
           "icon": "zap",
-          "title": "Pillar 1: Revolutionize Methods",
+          "title": "Revolutionize Methods",
           "audience": "",
           "content": "AI-augmented development is becoming the default method for how engineers work. This curriculum teaches those methods before they become table stakes."
         },
         {
           "icon": "graduation",
-          "title": "Pillar 2: Transform Education",
+          "title": "Transform Education",
           "audience": "",
           "content": "\"Whole-brain\" engineering that pairs technical depth with innovation, design, and entrepreneurial thinking. Students become the bridge between lab and marketplace."
         },
         {
           "icon": "target",
-          "title": "Pillar 3: Advance Applications",
+          "title": "Advance Applications",
           "audience": "",
           "content": "AI is one of McCormick's four grand challenge focus areas. This curriculum advances AI as both method and application domain."
         }
@@ -164,37 +186,43 @@ const CONTENT = {
           "icon": "briefcase",
           "title": "Executive Credibility",
           "audience": "",
-          "content": "Someone who has led teams at scale across design, product, and engineering, and understands how decisions get made in large organizations."
+          "content": "Someone who has led teams at scale across design, product, and engineering, and understands how decisions get made in large organizations.",
+          "expandedContent": "Students need to learn not just how to build, but how to navigate the systems that ship products. An executive who has operated at scale understands the politics, the trade-offs, and the communication patterns that determine whether good ideas survive. This perspective cannot be learned from textbooks; it comes from having made decisions that affected thousands of people and millions of dollars. **John:** VP/GM at Google and Motorola; led cross-functional teams across design, product, and engineering at scale."
         },
         {
           "icon": "code",
           "title": "Hands-on Builder",
           "audience": "",
-          "content": "Not someone who \"used to code.\" Someone who builds production AI systems today. Students need an instructor who has shipped MCP servers and debugged LLM pipelines this month."
+          "content": "Not someone who \"used to code.\" Someone who builds production AI systems today.",
+          "expandedContent": "The tools are changing too fast for secondhand knowledge. Students need an instructor who has shipped MCP servers, built agentic systems, and debugged LLM pipelines this month. When a student asks \"how do I handle context windows for long-running agents?\" the answer should come from direct experience, not documentation. The instructor should be able to pair-program with students and review their code at a technical level. **John:** Ships production AI systems daily; 16 GitHub repos; MCP servers published to npm."
         },
         {
           "icon": "rocket",
           "title": "Startup Experience",
           "audience": "",
-          "content": "Someone who has founded a company, raised capital, and exited. A founder brings the full lifecycle perspective from idea to acquisition—and the scar tissue that comes with it."
+          "content": "Someone who has founded a company, raised capital, and exited.",
+          "expandedContent": "Entrepreneurship cannot be taught from case studies alone. AI has collapsed the cost of building, but not the hard parts: figuring out what to build, finding customers who will pay, navigating ambiguity with limited resources. Founders learn these skills through survival. In an era where anyone can prompt an AI to generate code, the differentiating skills are exactly what founders develop: judgment about what's worth building, speed of iteration, and the ability to operate when the path is unclear. A founder who has exited brings the full lifecycle perspective, and the scar tissue that comes with it. **John:** Founded Jiobit → nine-figure exit to Life360 (NASDAQ: LIF)."
         },
         {
           "icon": "palette",
           "title": "Design Fluency",
           "audience": "",
-          "content": "The instructor should have led UX and design teams, not just collaborated with them. They should understand what makes products feel right, not just function correctly."
+          "content": "The instructor should have led UX and design teams, not just collaborated with them.",
+          "expandedContent": "The Product Engineer role sits at the intersection of design, product, and engineering. They should understand what makes products feel right, not just function correctly. This means understanding user research methodologies, information architecture, interaction patterns, and visual design principles. When AI can generate functional code quickly, the human differentiator is taste: knowing what feels right and why. **John:** Led UX Research and UI/UX Design teams at Google; design-centric product leader at Motorola."
         },
         {
           "icon": "network",
           "title": "Industry Connectivity",
           "audience": "",
-          "content": "Someone embedded in the startup and venture ecosystem who sees where the industry is heading before it becomes mainstream."
+          "content": "Someone embedded in the startup and venture ecosystem who sees where the industry is heading before it becomes mainstream.",
+          "expandedContent": "Curriculum needs to reflect what employers will want in 2-3 years, not what they wanted when the textbook was written. Industry connectivity also means access. The right instructor can bring their network directly into the classroom: founders who just raised Series A, CTOs navigating AI adoption at scale, VCs evaluating the next wave of startups. Guest speakers become mentors. Class discussions become recruiting conversations. The instructor's network becomes the students' network. This turns a course into a bridge between McCormick and the companies students want to join. **John:** Techstars Selection Committee; LP in 4 VC funds; 20+ angel investments."
         },
         {
           "icon": "graduation",
           "title": "Teaching Experience",
           "audience": "",
-          "content": "Someone who has taught at the graduate level across engineering and business schools, and trained corporate teams from entry-level to executive."
+          "content": "Someone who has taught at the graduate level across engineering and business schools, and trained corporate teams from entry-level to executive.",
+          "expandedContent": "Teaching is a skill that requires deliberate practice. Someone who has taught MBAs understands how to frame technical concepts for strategic decision-makers. Someone who has taught engineers understands how to maintain technical rigor. Someone who has trained corporate teams knows how to adapt content for different experience levels in the same room. This pedagogical range is essential for the Product Engineer curriculum. **John:** McCormick (MPD²), Kellogg (MMM), UIUC (Applied AI); corporate training from entry-level to executive."
         }
       ]
     },
@@ -207,80 +235,108 @@ const CONTENT = {
           "icon": "search",
           "title": "Discovery",
           "audience": "All engineering disciplines",
-          "content": "Interview analysis, theme extraction, research synthesis. Turn qualitative research into quantitative datasets."
+          "content": "Interview analysis, theme extraction, research synthesis. Turn qualitative research into quantitative datasets.",
+          "expandedContent": "Traditional user research takes weeks: recruiting participants, scheduling interviews, transcribing conversations, coding themes. AI compresses this timeline while expanding depth. Students learn to use AI as a research amplifier: real-time transcription during interviews, theme extraction across dozens of transcripts, pattern recognition across disparate data sources. The goal is not to replace human judgment but to multiply researcher capacity. An interview that once took days to analyze now yields insights in minutes. **What John Teaches:** Interview analysis pipelines, theme extraction prompts, cross-source pattern matching, building research repositories that agents can query, integrating voice transcription into live research sessions. Replace intuition with data. Turn qualitative *Jobs to be Done (JTBD)* research into quantitative datasets. **Technologies:** Assembly AI, Whisper, LLM-based theme extraction, embedding-based similarity search, Python, Scikit-learn, Pandas, clustering algorithms"
         },
         {
           "icon": "palette",
           "title": "Generative Prototyping",
           "audience": "Product-focused engineers, designers",
-          "content": "Synthetic users, rapid validation, LLM personas. Test positioning before writing code."
+          "content": "Synthetic users, rapid validation, LLM personas. Test positioning before writing code.",
+          "expandedContent": "Turn requirements into testable artifacts quickly. Use AI tools to generate wireframes from rough sketches. Build **synthetic user personas** that simulate customer feedback, allowing students to test positioning and product concepts against LLM-generated personas before writing code. **What John Teaches:** Building synthetic personas that model real customer segments. Rapid prototyping workflows that generate testable artifacts in hours, not weeks. Validation frameworks that surface weak assumptions early. **Technologies:** LLM foundational models (OpenAI, Anthropic, Gemini), image generation, prompt engineering"
+        },
+        {
+          "icon": "compass",
+          "title": "Product Management & Innovation",
+          "audience": "MPD², MBAs, aspiring PMs",
+          "content": "Strategy, roadmaps, prioritization. Know what to build and why it matters.",
+          "expandedContent": "When AI makes building cheap, knowing *what* to build becomes the scarce skill. Product management is the discipline of translating user needs into roadmaps, aligning stakeholders, and shipping outcomes, not outputs. John teaches this in MPD² today. **What John Teaches:** • **Product Strategy:** Vision setting, competitive positioning, and the art of saying no. How to build products that matter, not features that ship. • **Innovation Frameworks:** Design thinking, Jobs to be Done (JTBD), lean startup methodology, and when to apply each. • **Prioritization:** RICE, MoSCoW, ICE scoring. Building roadmaps that balance user value, business impact, and technical feasibility. • **Stakeholder Management:** How to align engineering, design, sales, and executives around a shared vision. The politics of product. **Frameworks:** Design thinking, JTBD, Lean Startup, RICE/ICE prioritization, OKRs"
         },
         {
           "icon": "cpu",
           "title": "Agentic Systems",
           "audience": "CS, software engineers",
-          "content": "MCP servers, multi-agent orchestration, evals. Build autonomous, goal-directed systems."
+          "content": "MCP servers, multi-agent orchestration, evals. Build autonomous, goal-directed systems.",
+          "expandedContent": "Move beyond chatbots to autonomous, goal-directed systems. Build servers that standardize agent connectivity. Design memory systems so agents maintain state across sessions. Shift from manual QA to **evals** that test AI outputs against safety and quality guardrails. **What John Teaches:** MCP server architecture. Multi-agent coordination patterns. Building evaluation frameworks that test AI behavior against quality and safety criteria. Memory systems for stateful agents. **Technologies:** MCP servers, LangChain, ReAct frameworks, vector databases, RAG pipelines, multi-agent orchestration"
         },
         {
           "icon": "zap",
           "title": "Agentic Development",
           "audience": "Practicing engineers",
-          "content": "Production workflows, debugging, cost management. From \"vibing\" to shipping real systems."
+          "content": "Production workflows, debugging, cost management. From \"vibing\" to shipping real systems.",
+          "expandedContent": "There is a gap between prompting ChatGPT and shipping production AI systems. Most tutorials stop at \"vibing,\" the casual, exploratory prompting that works in demos but fails in production. Students need to learn the harder parts: deterministic behavior, error handling, cost management, and integration with existing systems. **What John Teaches:** • **Development Best Practices:** How to use tools like Claude Code, Cursor, and Windsurf effectively. Writing CLAUDE.md files and AGENTS.md specifications that give AI agents the context they need. • **Infrastructure Requirements:** Rate limiting, API gateway management, cost tracking, latency budgets. Building systems that gracefully degrade when AI services fail. • **Operational Changes:** How to review AI-generated code, when to trust agent outputs vs. verify them, how to debug systems where the logic is partially opaque. • **Agent Swarms & Orchestration:** Coordinating multiple specialized agents that divide work, share context, and merge results. **Technologies:** Claude Code, Cursor, Windsurf, API gateways, CI/CD integration"
         },
         {
           "icon": "layers",
           "title": "Context Engineering",
           "audience": "Advanced AI practitioners",
-          "content": "RAG, memory systems, long-running agents. Manage what information agents access and when."
+          "content": "RAG, memory systems, long-running agents. Manage what information agents access and when.",
+          "expandedContent": "AI agents fail when they run out of context. A 200k token window sounds large until your agent needs to understand a codebase, remember a conversation history, and execute a multi-step plan at the same time. Context engineering is the discipline of managing what information agents have access to and when. **What John Teaches:** • **Long-Running Systems:** Agents that operate over hours or days, not single-turn interactions. Session management, state persistence, and graceful recovery. • **Deep Agents:** Building agents that can explore complex domains: reading documentation, navigating codebases, researching across multiple sources. • **Context Window Management:** Summarization strategies, dynamic context loading, and RAG that pulls relevant information on demand. • **Tool Design for Context:** Building MCP servers and tool interfaces that provide rich context without overwhelming agents. **Technologies:** RAG architectures, context summarization, session state management, hierarchical prompt design"
         },
         {
           "icon": "database",
           "title": "AI Infrastructure",
           "audience": "Full-stack engineers",
-          "content": "Deployment, APIs, real-time systems. Connect AI models to real-world data and hardware."
+          "content": "Deployment, APIs, real-time systems. Connect AI models to real-world data and hardware.",
+          "expandedContent": "Deploy AI systems on day one. Manage API gateways for rate limits, cost, and latency. Connect AI models to real-world data sources and device hardware. These are skills John uses daily with clients and students. **What John Teaches:** Production deployment patterns. API gateway architecture for AI workloads. Real-time streaming with WebSockets. Multimodal input handling. Cost optimization strategies. **Technologies:** React/TypeScript, serverless APIs, GCP, Websockets, real-time voice transcription, multimodal streaming"
         },
         {
           "icon": "rocket",
-          "title": "Entrepreneurship",
+          "title": "Entrepreneurship & Business Modeling",
           "audience": "Founders, MBAs",
-          "content": "Fundraising, venture dynamics, exits. From idea to Techstars to nine-figure exit."
+          "content": "Fundraising, business models, venture dynamics. From idea to Techstars to nine-figure exit.",
+          "expandedContent": "John has lived the full startup arc: from idea to Techstars to product-market fit to nine-figure exit. He teaches this from experience, not textbooks. He teaches business modeling in MPD² today. **What John brings:** He founded Jiobit, raised venture capital, navigated hardware manufacturing, won SBIR contracts, scaled a team, and sold to a public company. He has sat on both sides of the table—as a founder raising money and as an investor evaluating deals. He serves on the Techstars Selection Committee, mentors at mHUB and iVenture Accelerator, and is an LP in four venture funds including LongJump. He has invested in 20+ companies. **Topics:** Business model canvas, revenue models, unit economics, pricing strategy. Cap table structures, fundraising mechanics, term sheets, due diligence processes. How investors evaluate technical stacks and IP. When to build vs. buy. How to think about defensibility when AI commoditizes implementation. Market sizing (TAM/SAM/SOM) and go-to-market strategy."
         }
       ]
     }
   ],
   "credentials": [
     {
-      "value": "9+",
-      "label": "U.S. Patents"
+      "value": "Design",
+      "label": "Led UXR & UI/UX at Google"
     },
     {
-      "value": "300K+",
-      "label": "Lines of Code"
+      "value": "Product",
+      "label": "VP/GM at Google & Motorola"
     },
     {
-      "value": "20+",
-      "label": "Companies Invested"
+      "value": "Engineering",
+      "label": "9+ patents, ships code daily"
     },
     {
-      "value": "13",
-      "label": "GitHub Repos"
+      "value": "Founder",
+      "label": "9-figure exit (Life360)"
     },
     {
-      "value": "4",
-      "label": "VC Fund LP"
+      "value": "Teacher",
+      "label": "MPD², MMM, UIUC Applied AI"
     },
     {
-      "value": "12-week",
-      "label": "Corporate AI Curriculum"
+      "value": "Investor",
+      "label": "20+ portfolio companies"
     }
   ],
   "timeline": [
     {
       "year": "Current",
-      "company": "Google",
-      "title": "Global Wearable Software Lead",
+      "company": "Presto Consulting",
+      "title": "Founder & AI Consultant",
       "highlight": true,
-      "content": "Lead Design, UXR, Product, and Engineering for wearable software and health platforms. Spearheaded AI innovation product teams."
+      "content": "AI strategy and hands-on development for clients including Realtor.com, Life360, Paynearme. Building production AI systems daily."
+    },
+    {
+      "year": "Current",
+      "company": "Northwestern / UIUC",
+      "title": "Faculty",
+      "highlight": true,
+      "content": "Teaching product management, AI-augmented development, and innovation at McCormick (MPD²), Kellogg (MMM), and UIUC (Applied AI)."
+    },
+    {
+      "year": "2014-2024",
+      "company": "Google",
+      "title": "General Manager",
+      "highlight": false,
+      "content": "Led global wearable software strategy across design, product management, and research for Google's wearable ecosystem. Instrumental in major Wear OS platform developments including interface updates for innovative hardware architectures. Spearheaded one of Google Android's first AI innovation product teams."
     },
     {
       "year": "2021",
@@ -361,7 +417,7 @@ const CONTENT = {
     },
     {
       "type": "students",
-      "source": "Kellogg",
+      "source": "Kellogg MMM",
       "testimonials": [
         {
           "author": "",
@@ -424,51 +480,12 @@ const CONTENT = {
         ]
       ],
       "variant": "default"
-    },
-    {
-      "headers": [
-        "Profile Requirement",
-        "My Experience"
-      ],
-      "rows": [
-        [
-          "Executive credibility",
-          "VP/GM at Google and Motorola; led cross-functional teams at scale",
-          ""
-        ],
-        [
-          "Hands-on builder",
-          "Ship production AI systems daily; 13 GitHub repos; MCP servers on npm",
-          ""
-        ],
-        [
-          "Startup experience",
-          "Founded Jiobit → nine-figure exit to Life360 (NASDAQ: LIF)",
-          ""
-        ],
-        [
-          "Design fluency",
-          "Led UX Research, UI/UX Design teams at Google; design-centric at Motorola",
-          ""
-        ],
-        [
-          "Industry connectivity",
-          "Techstars Selection Committee; LP in 4 VC funds; 20+ angel investments",
-          ""
-        ],
-        [
-          "Teaching experience",
-          "McCormick, Kellogg, UIUC; corporate training entry-level to executive",
-          ""
-        ]
-      ],
-      "variant": "default"
     }
   ],
   "terminals": [
     {
       "title": "Key Takeaways: The Market Shift",
-      "command": "cat",
+      "command": "",
       "variant": "default",
       "lines": [
         "• **59%** of engineers now use AI daily, up from 28%",
@@ -480,180 +497,18 @@ const CONTENT = {
       ]
     },
     {
-      "title": "What I Can Teach",
-      "command": "cat",
-      "variant": "compact",
+      "title": "~/john/stack",
+      "command": "tree",
+      "variant": "default",
       "lines": [
-        "• **Discovery** → AI-powered research & user insights",
-        "• **Prototyping** → Synthetic users, rapid validation",
-        "• **Agentic Systems** → Multi-agent orchestration",
-        "• **Context Engineering** → Memory & retrieval systems",
-        "• **AI Infrastructure** → Production deployment",
-        "• **Venture Dynamics** → Fundraising & exits"
+        "• `mcp-servers/` → Model Context Protocol integrations",
+        "• `agents/` → LangChain, n8n, ReAct orchestration",
+        "• `rag-pipeline/` → PGVector + BM25 + Cohere reranking",
+        "• `synthetic-users/` → Graph DB persona simulation",
+        "• `procedural-memory/` → Self-learning agent systems",
+        "• `multimodal/` → Voice, text, image processing",
+        "• `clients/` → Production code with Fortune 500 CTOs"
       ]
-    }
-  ],
-  "sections": [
-    {
-      "number": 1,
-      "title": "The Market & Student Need: Why Now",
-      "intro": "For decades, software economics worked one way: distributing software cost nearly nothing, but building it required expensive talent. That second part is changing.\n\nAI coding tools have lowered the cost of building software. Product managers can ship features. Designers can prototype in production code. Founders can build an MVP in a weekend. The separation between \"people with ideas\" and \"people who can build\" is shrinking.\n\n<!-- @pullquote -->The separation between \"people with ideas\" and \"people who can build\" is shrinking.<!-- /@pullquote -->\n\nThis is happening now, inside the companies building these tools.",
-      "subsections": [
-        {
-          "title": "The Anthropic Case Study",
-          "content": "At Anthropic, the company behind Claude, internal research shows [1][2]:\n\n<!-- @stats -->\n<!-- @stat value=\"59%\" label=\"Engineers Using AI Daily\" source=\"up from 28% a year ago\" -->\n<!-- @stat value=\"50%\" label=\"Productivity Gains\" source=\"up from 20% the year before\" -->\n<!-- @stat value=\"90%\" label=\"Code Written by AI\" source=\"Claude Code's own codebase\" -->\n<!-- @stat value=\"10 days\" label=\"To Ship New Products\" source=\"Cowork built with AI tools\" -->\n<!-- /@stats -->\n\n-   Engineers use Claude in **59% of their work**, up from 28% a year ago\n-   They report **50% productivity gains**, up from 20% the year before\n-   **90% of Claude Code's codebase was written by Claude Code itself**\n-   The team ships **60-100 internal releases per day**\n-   They built a new product (Cowork) in **about 10 days** using their own AI tools [3]\n\nAnthropic now **hires generalists over specialists** because \"many traditional programming skills are less relevant when AI handles implementation details.\" [1]\n\nMcCormick students will enter this world in 2-3 years. We need to prepare them now."
-        },
-        {
-          "title": "The Triad: Design, Product, and Engineering Are Merging",
-          "content": "Role boundaries are collapsing. Designers, product managers, and engineers are moving toward each other—and AI tools are accelerating the convergence.\n\n-   **PMs → Engineers:** Six months ago, most product managers shipped zero code. Today, most PMs ship at least one pull request per month. At Anthropic, PMs ship features directly. By end of 2026, PMs may write 10-20% of production code.\n\n-   **Designers → Engineers & PMs:** Designers no longer hand off static mockups. With AI tools, they prototype in production code, make product decisions in real-time, and understand the systems they design for.\n\n-   **Engineers → Product:** When implementation becomes easy, the valuable skill becomes knowing what to build. Engineers who understand customer problems, market dynamics, and business models are worth more than those who only execute specs.\n\n<!-- @convergence -->\n<!-- @role from=\"PMs\" to=\"Engineering\" description=\"Today, most PMs ship at least one pull request per month. At Anthropic, PMs ship features directly.\" -->\n<!-- @role from=\"Designers\" to=\"Eng & PM\" description=\"Designers no longer hand off static mockups. They prototype in production code.\" -->\n<!-- @role from=\"Engineers\" to=\"Product\" description=\"When implementation becomes easy, the valuable skill becomes knowing what to build.\" -->\n<!-- /@convergence -->\n\nThe tools are converging too. **Claude Code** lets engineers ship features by describing intent. **Figma AI** generates production-ready components from design specs. **Bolt** (which hit $40M ARR in five months [14]) and **Lovable** let anyone describe a feature and watch it appear. These tools do not replace judgment. They automate the translation layer between idea and implementation. The role that remains is the one who knows what to build and why.\n\n| Traditional Workflow | AI-Augmented Workflow |\n|---------------------|----------------------|\n| Designer creates mockups → hands off to engineer | Designer prototypes in production code directly |\n| PM writes specs → waits for implementation | PM ships features, describes intent to AI |\n| Engineer translates requirements to code | Engineer orchestrates AI agents, focuses on architecture |\n| Research takes weeks (recruiting, interviews, analysis) | AI extracts themes in minutes from transcripts |\n| Prototyping requires coding skills | Anyone can describe and generate working prototypes |\n\n**Synthetic users** represent another shift: AI personas that simulate customer feedback before a single line of code is written. Product teams can now test positioning, validate assumptions, and iterate on concepts using LLM-generated personas trained on real research data. This changes the research-to-build cycle entirely.\n\nAI lowers the floor to coding while raising the ceiling for engineering. The role that remains is the one who knows what to build and why.\n\n<!-- @pullquote -->AI lowers the floor to coding while raising the ceiling for engineering.<!-- /@pullquote -->"
-        },
-        {
-          "title": "The Rise of the \"Product Engineer\"",
-          "content": "Tech companies are redefining roles around this reality. Innovation happens when engineers have business context, and when PMs and designers can build. Companies like **Vercel** and **Linear** now hire \"Product Engineers\" who \"care more about outcomes and impact than the exact implementation.\" These roles command **$140-170k** at entry level in major tech hubs, with senior roles exceeding $200k—a premium that signals market demand.\n\n<!-- @chart type=\"range\" title=\"Product Engineer Compensation\" subtitle=\"Major tech hubs, 2025\" -->\n<!-- @range label=\"Entry Level\" min=\"140\" max=\"170\" unit=\"k\" -->\n<!-- @range label=\"Senior\" min=\"200\" max=\"250\" unit=\"k\" highlight=\"true\" -->\n<!-- /@chart -->"
-        },
-        {
-          "title": "The Junior Developer Role Is Disappearing",
-          "content": "The traditional entry-level developer role is vanishing. Today, **84% of developers** use AI tools [4], and GitHub research shows they complete tasks **55.8% faster** [5]. McKinsey reports **35-45% improvements in software quality** [6]. As Magdalena Balazinska of UW's Allen School puts it: *\"Coding, or the translation of a precise design into software instructions, is dead. AI can do that.\"* [11]"
-        },
-        {
-          "title": "The New Skills: What Industry Leaders Are Saying",
-          "content": "<!-- @quotes type=\"carousel\" -->\n<!-- @quote author=\"Ethan Mollick\" title=\"Wharton, Co-Intelligence\" cite=\"7\" -->\nAI skills are basically the skills of good managers: delegation, clear explanations, getting a sense of individual strengths & weaknesses, division of labor, project management, clear feedback.\n<!-- /@quote -->\n<!-- @quote author=\"Andrej Karpathy\" title=\"OpenAI co-founder, former Tesla AI\" cite=\"8\" -->\nI've never felt this much behind as a programmer. The profession is being dramatically refactored... There's a new programmable layer of abstraction to master involving agents, subagents, their prompts, contexts, memory, modes, permissions, tools, plugins, skills.\n<!-- /@quote -->\n<!-- @quote author=\"Jensen Huang\" title=\"NVIDIA CEO\" cite=\"9\" -->\nThere's a new programming language. It's called 'human.'\n<!-- /@quote -->\n<!-- @quote author=\"Magdalena Balazinska\" title=\"UW Allen School\" cite=\"11\" -->\nCoding, or the translation of a precise design into software instructions, is dead. AI can do that.\n<!-- /@quote -->\n<!-- /@quotes -->\n\nIndustry leaders agree on what matters now. **Ethan Mollick** (Wharton) argues that *\"AI skills are basically the skills of good managers: delegation, clear explanations, getting a sense of individual strengths & weaknesses, division of labor, project management, clear feedback.\"* [7]\n\n**Andrej Karpathy** (OpenAI co-founder) describes the shift: *\"I've never felt this much behind as a programmer. The profession is being dramatically refactored... There's a new programmable layer of abstraction to master involving agents, subagents, their prompts, contexts, memory, modes, permissions, tools, plugins, skills.\"* [8]\n\nThe programming language itself is changing. As **Jensen Huang** (NVIDIA CEO) puts it: *\"There's a new programming language. It's called 'human.'\"* [9] The numbers confirm this: **20-30% of Microsoft's code** is now AI-written [10], and **Mark Zuckerberg** predicts half of Meta's development will be done by AI within a year.\n\nSkills are moving up: from writing code to orchestrating systems, from syntax to judgment, from execution to strategy. These are the skills we must teach.\n\n<!-- @chart type=\"hierarchy\" title=\"The Skills Shift\" subtitle=\"What matters now vs. what mattered before\" -->\n<!-- @level from=\"Writing Code\" to=\"Orchestrating Systems\" -->\n<!-- @level from=\"Syntax\" to=\"Judgment\" -->\n<!-- @level from=\"Execution\" to=\"Strategy\" -->\n<!-- /@chart -->\n\n<!-- @pullquote -->Skills are moving up: from writing code to orchestrating systems, from syntax to judgment, from execution to strategy.<!-- /@pullquote -->\n\n**The Opportunity:** Employers now prioritize **problem-solving (~90%)** over GPA. [13] McCormick can lead in teaching students to use AI to build systems that solve real problems.\n\n<!-- @terminal title=\"Key Takeaways: The Market Shift\" command=\"\" -->\n- **59%** of engineers now use AI daily, up from 28%\n- **50%** productivity gains reported across teams\n- **90%** of code written by AI tools themselves\n- Role boundaries are collapsing across PM, Design, Engineering\n- Junior developer roles are disappearing\n- New premium skills: judgment, orchestration, strategy\n<!-- /@terminal -->\n\n---"
-        }
-      ]
-    },
-    {
-      "number": 2,
-      "title": "Strategic Alignment with McCormick's Vision",
-      "intro": "This proposal aligns directly with McCormick's three strategic pillars and addresses AI as one of the school's four grand challenge focus areas.\n\n<!-- @cards type=\"feature\" columns=\"3\" section=\"2\" -->\n<!-- @card icon=\"zap\" title=\"Pillar 1: Revolutionize Methods\" -->\nAI-augmented development is becoming the default method for how engineers work. This curriculum teaches those methods before they become table stakes.\n<!-- /@card -->\n<!-- @card icon=\"graduation\" title=\"Pillar 2: Transform Education\" -->\n\"Whole-brain\" engineering that pairs technical depth with innovation, design, and entrepreneurial thinking. Students become the bridge between lab and marketplace.\n<!-- /@card -->\n<!-- @card icon=\"target\" title=\"Pillar 3: Advance Applications\" -->\nAI is one of McCormick's four grand challenge focus areas. This curriculum advances AI as both method and application domain.\n<!-- /@card -->\n<!-- /@cards -->",
-      "subsections": [
-        {
-          "title": "Pillar 1: Revolutionize the Methods of Engineering",
-          "content": "AI-augmented development is not a niche skill. It is becoming the default method for how engineers work. Context engineering, agentic systems, and production AI workflows are the new tools engineers will use across every discipline. This curriculum teaches those methods before they become table stakes.\n\nThe shift is analogous to when CAD replaced drafting tables or when simulation replaced physical prototyping. Engineers who master AI-augmented methods will define the next generation of engineering practice. McCormick can lead in codifying these methods rather than adopting them later.\n\n<!-- @pullquote -->The shift is analogous to when CAD replaced drafting tables or when simulation replaced physical prototyping.<!-- /@pullquote -->"
-        },
-        {
-          "title": "Pillar 2: Transform Engineering Education",
-          "content": "Dean Schuh has called for \"whole-brain\" engineering that pairs technical depth with innovation, design, and entrepreneurial thinking. The Product Engineer curriculum embodies this integration. Students learn to move fluidly between user research, technical implementation, and business strategy. They do not just build systems; they understand why those systems matter and who they serve.\n\nThis prepares engineers to function as what Dean Schuh describes as \"the fulcrum between the research lab and the marketplace.\" The marketplace represents humanity and its needs. Engineers serve as the bridge. This curriculum teaches students to be that bridge."
-        },
-        {
-          "title": "Pillar 3: Advance Critical Applications of Engineering",
-          "content": "AI is explicitly one of McCormick's four grand challenge focus areas, alongside climate, health, and sustainability. This curriculum directly advances AI as both a method (how engineers work) and an application domain (what engineers build).\n\nThe skills taught here also amplify work in the other three focus areas. Climate researchers use AI agents to process satellite data. Health engineers use LLMs to analyze clinical literature. Sustainability teams use generative tools to model resource flows. The Product Engineer mindset and AI fluency accelerate progress across all four challenges."
-        },
-        {
-          "title": "A Once-in-a-Generation Opportunity",
-          "content": "Dean Schuh has expressed interest in \"once-in-a-generation ideas and goals that can carry us into the future together.\" The transformation of engineering practice by AI qualifies. The window to establish McCormick as a leader in AI-augmented engineering education is now, while methods are still being defined and before competitors codify their own approaches.\n\n---"
-        }
-      ]
-    },
-    {
-      "number": 3,
-      "title": "Who Should Teach This — and Why Me",
-      "intro": "If McCormick wants to prepare students for the \"Product Engineer\" role, the faculty member teaching it needs a specific profile. This is not a traditional academic hire. It requires someone who operates across boundaries that do not usually overlap.",
-      "subsections": [
-        {
-          "title": "The Profile Required",
-          "content": "<!-- @cards type=\"profile\" columns=\"3\" section=\"3\" -->\n<!-- @card icon=\"briefcase\" title=\"Executive Credibility\" -->\nSomeone who has led teams at scale across design, product, and engineering, and understands how decisions get made in large organizations.\n<!-- /@card -->\n<!-- @card icon=\"code\" title=\"Hands-on Builder\" -->\nNot someone who \"used to code.\" Someone who builds production AI systems today. Students need an instructor who has shipped MCP servers and debugged LLM pipelines this month.\n<!-- /@card -->\n<!-- @card icon=\"rocket\" title=\"Startup Experience\" -->\nSomeone who has founded a company, raised capital, and exited. A founder brings the full lifecycle perspective from idea to acquisition—and the scar tissue that comes with it.\n<!-- /@card -->\n<!-- @card icon=\"palette\" title=\"Design Fluency\" -->\nThe instructor should have led UX and design teams, not just collaborated with them. They should understand what makes products feel right, not just function correctly.\n<!-- /@card -->\n<!-- @card icon=\"network\" title=\"Industry Connectivity\" -->\nSomeone embedded in the startup and venture ecosystem who sees where the industry is heading before it becomes mainstream.\n<!-- /@card -->\n<!-- @card icon=\"graduation\" title=\"Teaching Experience\" -->\nSomeone who has taught at the graduate level across engineering and business schools, and trained corporate teams from entry-level to executive.\n<!-- /@card -->\n<!-- /@cards -->\n\n**Executive credibility.** Someone who has led teams at scale across design, product, and engineering, and understands how decisions get made in large organizations. Students need to learn not just how to build, but how to navigate the systems that ship products.\n\n**Hands-on builder.** Not someone who \"used to code.\" Someone who builds production AI systems today. The tools are changing too fast for secondhand knowledge. Students need an instructor who has shipped MCP servers, built agentic systems, and debugged LLM pipelines this month.\n\n**Startup experience.** Someone who has founded a company, raised capital, and exited. Entrepreneurship cannot be taught from case studies alone.\n\nThis matters more now than ever. AI has collapsed the cost of building, but not the hard parts: figuring out what to build, finding customers who will pay, navigating ambiguity with limited resources. Founders learn these skills through survival. In an era where anyone can prompt an AI to generate code, the differentiating skills are exactly what founders develop: judgment about what's worth building, speed of iteration, and the ability to operate when the path is unclear. A founder who has exited brings the full lifecycle perspective from idea to acquisition—and the scar tissue that comes with it.\n\n**Design fluency.** The Product Engineer role sits at the intersection of design, product, and engineering. The instructor should have led UX and design teams, not just collaborated with them. They should understand what makes products feel right, not just function correctly.\n\n**Industry connectivity.** Someone embedded in the startup and venture ecosystem who sees where the industry is heading before it becomes mainstream. Curriculum needs to reflect what employers will want in 2-3 years, not what they wanted when the textbook was written.\n\nIndustry connectivity also means access. The right instructor can bring their network directly into the classroom: founders who just raised Series A, CTOs navigating AI adoption at scale, VCs evaluating the next wave of startups. These are not theoretical conversations. Students hear from practitioners living this shift in real-time. Guest speakers become mentors. Class discussions become recruiting conversations. The instructor's network becomes the students' network. This transforms a course from content delivery into a bridge between McCormick and the companies students want to join.\n\n**Teaching experience.** Someone who has already taught at the graduate level across engineering and business schools, and who has trained corporate teams from entry-level to executive.\n\nThis combination is rare. Most executives do not build. Most builders have not led at scale. Most founders have not taught. Finding someone who does all of these, and is actively working in AI today, is the challenge.\n\n<!-- @pullquote -->Most executives do not build. Most builders have not led at scale. Most founders have not taught.<!-- /@pullquote -->"
-        },
-        {
-          "title": "Why I Fit This Profile",
-          "content": "<!-- @credentials -->\n<!-- @credential value=\"9+\" label=\"U.S. Patents\" -->\n<!-- @credential value=\"300K+\" label=\"Lines of Code\" -->\n<!-- @credential value=\"20+\" label=\"Companies Invested\" -->\n<!-- @credential value=\"13\" label=\"GitHub Repos\" -->\n<!-- @credential value=\"4\" label=\"VC Fund LP\" -->\n<!-- @credential value=\"12-week\" label=\"Corporate AI Curriculum\" -->\n<!-- /@credentials -->\n\nI am an unusual combination: a Google executive who still ships code, a founder with a nine-figure exit, and a design leader who has led UXR, UI/UX, and engineering teams. I have held VP and General Manager responsibilities at Google and Motorola. I co-founded Jiobit, a wearable tech startup acquired by Life360 (NASDAQ: LIF) in 2021. I operate fluently across executive strategy and hands-on building. My consulting clients range from C-suite executives to senior engineers. My corporate workshops serve entry-level engineers through product directors. I teach MBAs at Kellogg and engineers at McCormick. I serve on AI advisory boards for Menlo Ventures and Techstars. This range is rare.\n\n| Profile Requirement | My Experience |\n|---------------------|---------------|\n| Executive credibility | VP/GM at Google and Motorola; led cross-functional teams at scale |\n| Hands-on builder | Ship production AI systems daily; 13 GitHub repos; MCP servers on npm |\n| Startup experience | Founded Jiobit → nine-figure exit to Life360 (NASDAQ: LIF) |\n| Design fluency | Led UX Research, UI/UX Design teams at Google; design-centric at Motorola |\n| Industry connectivity | Techstars Selection Committee; LP in 4 VC funds; 20+ angel investments |\n| Teaching experience | McCormick, Kellogg, UIUC; corporate training entry-level to executive |"
-        },
-        {
-          "title": "The Hands-On Work: What I Build Today",
-          "content": "My most intensive building has happened after Google. I am not a manager who \"used to code.\" I write production systems daily:\n\n-   **MCP Servers & Multi-Agent Orchestration:** I build and publish **Model Context Protocol servers** to npm, enabling AI agents to connect with external services. I build multi-agent systems using **LangChain, n8n**, and **ReAct frameworks** that coordinate across foundational models (Gemini, OpenAI, Anthropic, Cohere). I have built systems that stream real-time meeting transcripts via **Websockets** and **Assembly AI**, enabling agents to act during live calls.\n\n-   **Full-Stack AI Infrastructure:** I work across the modern AI stack: **vector databases (PGVector)**, **semantic search with embeddings**, **full-text search (BM25)**, **Cohere reranking**, **Agentic RAG pipelines**, and **LLM chaining with reflection loops**. I build in **React/TypeScript** with **serverless APIs** and integrate tools like **Firecrawl** and **Tavily** for deep research agents. I have built **browser automation agents**, content graders with scoring rubrics, and custom HTML email generation systems.\n\n-   **Live Multimodal AI:** I build systems that process voice, text, and images in real-time, connecting AI agents to device hardware and sensor data.\n\n-   **Synthetic User Platforms:** I built a synthetic user system that simulates customer feedback using LLM-generated personas. The platform uses **graph databases and knowledge graphs** to model user relationships and context, with **self-learning loops** that refine persona accuracy based on research validation. This is an example of the new AI workflows reshaping product development.\n\n-   **Agentic Procedural Memory:** I designed and built an **Agentic Procedural Memory System** that enables AI agents to learn from their own experiences. The system detects failure-to-success patterns in tool usage, performs automated root cause analysis, and stores reusable procedures in a **hybrid search architecture** (vector embeddings + BM25 full-text search with Reciprocal Rank Fusion). Agents using this system show **50% step reduction** and **95%+ success rates** on similar tasks. This work builds directly on recent research from Zhejiang University and Alibaba. [17]\n\n-   **Client Work & Executive Advisory:** I consult directly with public company CTOs and CEOs on AI strategy, and run hands-on design workshops with their development teams. This means reviewing AI proposals, debugging architectures, and pairing with senior engineers to ship production code. I build alongside the teams I teach.\n\n-   **Corporate Training:** Through my consulting firm, I run a **12-week curriculum** that upskills engineers, product managers, and designers into proficient AI practitioners. Participants leave implementing AI into their products and operations. My workshops span entry-level engineers to product directors.\n\n-   **Published Research:** I publish original technical research on AI agent architectures. A recent investigation reverse-engineered Claude Code's API requests and identified an implementation flaw: skill instructions were being injected as user messages (low authority) rather than in the system prompt (high authority), explaining why Vercel's benchmarks showed only 53% pass rates. [23] This kind of deep technical analysis is what I bring to both clients and students.\n\n-   **Open Source:** I maintain 13 public repositories on GitHub (github.com/jrenaldi79), including MCP servers, agent frameworks, and prompt engineering collections."
-        },
-        {
-          "title": "Teaching & Academic Leadership",
-          "content": "I teach at **McCormick (Segal)**, **Kellogg**, and **University of Illinois** (Applied AI), working across engineering and business at multiple institutions. My courses integrate AI into design thinking and product development, including building custom agents and incorporating synthetic users into research. I led **Northwestern's Business Innovation Lab (Winter 2025)** in partnership with **Google DeepMind** and served as a key panelist at **Kearney's 2024 Executive Panel on AI in Product Design**.\n\nI work alongside **Jim Wicks** (Segal Design Institute founder) and **Mike Edmonds** (Microsoft) in the classroom. My philosophy in the **MPD² program**: outcomes over outputs. I teach students to be **\"missionaries, not mercenaries.\"**"
-        },
-        {
-          "title": "Curriculum-Advancing Work",
-          "content": "Clinical faculty focus on teaching, not traditional academic research with publication requirements. My work aligns with this model while still advancing the curriculum in measurable ways.\n\n**Testing new methods:** I pilot AI tools and workflows in real courses and corporate training programs before they become mainstream. My 12-week corporate curriculum has been iterated across multiple cohorts, identifying what works and what does not. This applied testing informs what I bring to McCormick students.\n\n**Developing evaluation frameworks:** My work on agentic procedural memory, synthetic user validation, and Claude Code architecture analysis creates benchmarks and evaluation methods that inform pedagogy. Understanding how AI systems fail is as important as understanding how they succeed.\n\n**Building reusable assets:** The MCP servers, agent frameworks, and prompt engineering collections I maintain on GitHub become teaching resources. Students learn from production code, not toy examples.\n\n**Industry feedback loops:** My consulting work with public company CTOs and startup founders provides continuous signal on what skills employers need. This feedback shapes curriculum in near real-time, not on academic publication timelines.\n\nThis is not traditional research, but it is rigorous, iterative work that directly improves teaching effectiveness."
-        },
-        {
-          "title": "What a Clinical Appointment Enables",
-          "content": "I currently teach at McCormick through adjunct and visiting arrangements. A clinical faculty appointment changes what is possible.\n\n**Curriculum design authority:** Clinical faculty can propose new courses, shape program requirements, and influence how AI-augmented methods are integrated across the curriculum. Adjunct instructors teach assigned courses; clinical faculty help design them.\n\n**Institutional commitment:** A formal appointment signals long-term investment, both from McCormick and from me. Students benefit from continuity. Industry partners see a stable point of contact. The curriculum can evolve over multiple years rather than being renegotiated each term.\n\n**Deeper student mentorship:** Clinical faculty advise students, supervise projects, and build relationships that extend beyond a single course. This mentorship is where much of the real learning happens.\n\n**Program development:** With a clinical appointment, I can work with department chairs and other faculty to integrate Product Engineer concepts into existing programs, not just teach standalone courses. The goal is systemic curriculum enhancement, not a single elective."
-        },
-        {
-          "title": "The Self-Taught Path",
-          "content": "I do not have a traditional engineering degree. I have a BS in Marketing from Illinois. I taught myself to code.\n\nAnd yet:\n- I architected sensor fusion systems trusted by federal agencies\n- I drove the technical IP for low-power embedded systems, working directly with EE and firmware engineers\n- I personally wrote **300,000+ lines of code** building Jiobit's first ecommerce platform\n- I lead engineering, design, and product teams at Google\n- I built technology that sold for tens of millions\n\n**I model what we want students to become: someone who learns skills to solve problems, not someone who waits for credentials.** When AI makes technical ability more accessible, learning fast matters more than pedigree.\n\n<!-- @pullquote -->I model what we want students to become: someone who learns skills to solve problems, not someone who waits for credentials.<!-- /@pullquote -->\n\n<!-- @timeline -->\n<!-- @entry year=\"Current\" company=\"Google\" title=\"Global Wearable Software Lead\" highlight=\"true\" -->\nLead Design, UXR, Product, and Engineering for wearable software and health platforms. Spearheaded AI innovation product teams.\n<!-- /@entry -->\n<!-- @entry year=\"2021\" company=\"Jiobit\" title=\"Acquired by Life360\" highlight=\"true\" -->\nNine-figure exit (NASDAQ: LIF). All 25 employees joined Life360. Built encryption trusted by federal agencies.\n<!-- /@entry -->\n<!-- @entry year=\"2015\" company=\"Jiobit\" title=\"Founded\" highlight=\"false\" -->\nBuilt sensor fusion systems, 9+ patents. Packed Cellular, GPS, Wi-Fi, and BLE into a cookie-sized device.\n<!-- /@entry -->\n<!-- @entry year=\"2011\" company=\"Motorola/Google\" title=\"VP Global eCommerce\" highlight=\"false\" -->\nCreated Moto Maker. 10x YoY growth, 50% fewer returns, Webby Awards, Best of CES, Red Dot Design Award.\n<!-- /@entry -->\n<!-- /@timeline -->"
-        },
-        {
-          "title": "Jiobit (0 to 1)",
-          "content": "I founded Jiobit after briefly losing my son in a crowded Chicago park. *\"I believe no parent should experience that panic.\"* We built a device with encryption strong enough to be **trusted by federal government and law enforcement** for sensitive location tracking—security as an architectural decision.\n\nThe hardware was hard: we packed Cellular, GPS, Wi-Fi, and BLE into a cookie-sized device. As I told *Inventors Digest*: *\"For any of this to work... we had to nail this custom system architecture and the sensor fusion technology.\"* I am named inventor on **9+ issued U.S. patents** covering location tracking, power management, and machine learning systems.\n\nThe outcome: SBIR Phase II Award (Air Force) [21], 200% YoY revenue growth, sold out in the 2018 holiday season, and acquired by **Life360 (NASDAQ: LIF)** in a deal that appreciated to **nine figures**. All 25 employees joined Life360 after the deal. [18][19]"
-        },
-        {
-          "title": "Motorola (Research to Practice)",
-          "content": "I created **Moto Maker**, the first direct-to-consumer, built-to-order smartphone. It connected a website to the factory floor with **2,000+ permutations** shipping in **4 days or less**.\n\nWhen early versions had too many choices, I applied HBR research on the \"Paradox of Choice\" [15] and \"IKEA Effect\" [16]: *\"If you have a hand in creating something, your affinity for that product goes through the roof. Labor creates love.\"* We curated options, reduced anxiety, and increased engagement. As VP of Global eCommerce, we achieved **10x YoY growth**, **50% fewer product returns**, and won **Webby Awards**, **Best of CES**, and the **Red Dot Design Award**."
-        },
-        {
-          "title": "Google (Current)",
-          "content": "I serve as **Global Wearable Software Lead** for design, product, and research on wearable software and health platforms. I spearheaded **one of the first AI innovation product teams within Google Android** and served as the **original product lead for an internal consumer multi-agent orchestration system** designed for building coding agents. I have contributed intellectual property and led product teams developing machine learning algorithms for fitness, power management, and location services.\n\nI lead teams across **Design, UXR, Product, and Engineering (Firmware to Cloud)**. I know how to take prototype code and scale it globally. My time at **Deloitte** building enterprise web applications gave me discipline in requirements gathering and delivery."
-        },
-        {
-          "title": "Industry Visibility",
-          "content": "My investing and ecosystem work give me a unique vantage point—I see where the industry is heading **8 to 16 months before it becomes mainstream**. That foresight shapes my curriculum. As a UIUC alumnus and founding member of **Illini Angels**, I can position McCormick as a talent pipeline for Chicago tech.\n\n---"
-        }
-      ]
-    },
-    {
-      "number": 4,
-      "title": "What I Can Teach",
-      "intro": "The \"Product Engineer\" needs to move from idea to shipped product. This is not a single course. It is a set of capabilities that can be woven into existing McCormick and Segal curriculum wherever they fit. I am already piloting parts of this in my current classes.\n\n<!-- @cards type=\"topic\" columns=\"3\" section=\"4\" -->\n<!-- @card icon=\"search\" title=\"Discovery\" audience=\"All engineering disciplines\" -->\nInterview analysis, theme extraction, research synthesis. Turn qualitative research into quantitative datasets.\n<!-- /@card -->\n<!-- @card icon=\"palette\" title=\"Generative Prototyping\" audience=\"Product-focused engineers, designers\" -->\nSynthetic users, rapid validation, LLM personas. Test positioning before writing code.\n<!-- /@card -->\n<!-- @card icon=\"cpu\" title=\"Agentic Systems\" audience=\"CS, software engineers\" -->\nMCP servers, multi-agent orchestration, evals. Build autonomous, goal-directed systems.\n<!-- /@card -->\n<!-- @card icon=\"zap\" title=\"Agentic Development\" audience=\"Practicing engineers\" -->\nProduction workflows, debugging, cost management. From \"vibing\" to shipping real systems.\n<!-- /@card -->\n<!-- @card icon=\"layers\" title=\"Context Engineering\" audience=\"Advanced AI practitioners\" -->\nRAG, memory systems, long-running agents. Manage what information agents access and when.\n<!-- /@card -->\n<!-- @card icon=\"database\" title=\"AI Infrastructure\" audience=\"Full-stack engineers\" -->\nDeployment, APIs, real-time systems. Connect AI models to real-world data and hardware.\n<!-- /@card -->\n<!-- @card icon=\"rocket\" title=\"Entrepreneurship\" audience=\"Founders, MBAs\" -->\nFundraising, venture dynamics, exits. From idea to Techstars to nine-figure exit.\n<!-- /@card -->\n<!-- /@cards -->\n\nBelow are the areas where I can contribute:",
-      "subsections": [
-        {
-          "title": "AI-Augmented Qualitative Discovery",
-          "content": "Traditional user research takes weeks: recruiting participants, scheduling interviews, transcribing conversations, coding themes. AI collapses this timeline while expanding depth.\n\nStudents learn to use AI as a research amplifier: real-time transcription during interviews, instant theme extraction across dozens of transcripts, pattern recognition across disparate data sources. The goal is not to replace human judgment but to multiply researcher capacity. An interview that once took days to analyze now yields insights in minutes. A corpus of customer support tickets becomes a searchable knowledge base of user pain.\n\n**What I Teach:** Interview analysis pipelines, theme extraction prompts, cross-source pattern matching, building research repositories that agents can query, integrating voice transcription (Assembly AI) into live research sessions\n\n**Technologies:** Assembly AI, Whisper, LLM-based theme extraction, embedding-based similarity search, research corpus management"
-        },
-        {
-          "title": "Quantitative Discovery",
-          "content": "Replace intuition with data. Turn qualitative *Jobs to be Done (JTBD)* research into quantitative datasets. Students learn to validate ideas before building.\n\n**Technologies:** Python, Scikit-learn, Pandas, clustering algorithms, SQL, data visualization"
-        },
-        {
-          "title": "Generative Prototyping",
-          "content": "Turn requirements into testable artifacts quickly. Use AI tools to generate wireframes from rough sketches. Build **synthetic user personas** that simulate customer feedback, letting students test positioning and product concepts against LLM-generated personas before writing code.\n\n**Technologies:** LLM foundational models (OpenAI, Anthropic, Gemini), image generation, prompt engineering"
-        },
-        {
-          "title": "Agentic Systems",
-          "content": "Move beyond chatbots to autonomous, goal-directed systems. Build servers that standardize agent connectivity. Design memory systems so agents maintain state across sessions. Shift from manual QA to **\"Evals\"** that test AI outputs against safety and quality guardrails.\n\n**Technologies:** MCP servers, LangChain, ReAct frameworks, vector databases, RAG pipelines, multi-agent orchestration"
-        },
-        {
-          "title": "Agentic Development: From \"Vibing\" to Production",
-          "content": "There is a gap between prompting ChatGPT and shipping production AI systems. Most tutorials stop at \"vibing,\" the casual, exploratory prompting that works in demos but fails in production. Students need to learn the hard parts: deterministic behavior, error handling, cost management, and integration with existing systems.\n\n<!-- @pullquote -->There is a gap between prompting ChatGPT and shipping production AI systems.<!-- /@pullquote -->\n\n**What I Teach:**\n\n-   **Development Best Practices:** How to use tools like Claude Code, Cursor, and Windsurf effectively. Writing CLAUDE.md files and AGENTS.md specifications that give AI agents the context they need. Prompt engineering that produces consistent, testable outputs.\n\n-   **Infrastructure Requirements:** Rate limiting, API gateway management, cost tracking, latency budgets. How to build systems that gracefully degrade when AI services fail. Caching strategies for expensive model calls.\n\n-   **Operational Changes:** AI development requires different workflows than traditional software. Students learn: how to review AI-generated code, when to trust agent outputs vs. verify them, how to debug systems where the logic is partially opaque.\n\n-   **Planning Tool Integration:** Connecting agents to project management systems (Linear, Jira, Asana), documentation platforms, and CI/CD pipelines. Building agents that understand your codebase through proper indexing and retrieval.\n\n-   **Agent Swarms & Orchestration:** When single agents are not enough, you coordinate multiple specialized agents that divide work, share context, and merge results. Handoff protocols, conflict resolution, and resource allocation.\n\n-   **Memory Systems:** Building procedural memory so agents learn from past interactions. Failure-to-success pattern detection, root cause analysis, and retrieval architectures that surface relevant context at the right time.\n\n**Technologies:** Claude Code, Cursor, Windsurf, API gateways, CI/CD integration"
-        },
-        {
-          "title": "Context Engineering",
-          "content": "AI agents fail when they run out of context. A 200k token window sounds large until your agent needs to understand a codebase, remember a conversation history, and execute a multi-step plan simultaneously. Context engineering is the discipline of managing what information agents have access to and when.\n\n**What I Teach:**\n\n-   **Long-Running Systems:** Agents that operate over hours or days, not single-turn interactions. Session management, state persistence, and graceful recovery from interruptions.\n\n-   **Deep Agents:** Building agents that can explore complex domains: reading documentation, navigating codebases, researching across multiple sources. These agents need strategies for prioritizing information and knowing when to stop.\n\n-   **Context Window Management:** Summarization strategies, dynamic context loading, and retrieval-augmented generation (RAG) that pulls relevant information on demand rather than stuffing everything into the prompt.\n\n-   **Hierarchical Context:** Some information is always relevant (system instructions, core identity). Some is session-specific. Some is task-specific. Students learn to structure context in layers that maximize utility while minimizing token waste.\n\n-   **Tool Design for Context:** Building MCP servers and tool interfaces that provide rich context to agents without overwhelming them. Pagination, filtering, and progressive disclosure patterns.\n\n**Technologies:** RAG architectures, context summarization, session state management, hierarchical prompt design"
-        },
-        {
-          "title": "AI Infrastructure",
-          "content": "Deploy AI systems on Day 1. Manage API gateways for rate limits, cost, and latency. Connect AI models to real-world data sources and device hardware. These are skills I use daily with clients and students.\n\n**Technologies:** React/TypeScript, serverless APIs, GCP, Websockets, real-time voice transcription, multimodal streaming"
-        },
-        {
-          "title": "Entrepreneurship & Venture Dynamics",
-          "content": "I have lived the full startup arc: from idea to Techstars to product-market fit to nine-figure exit. I can teach this from experience, not textbooks.\n\n**What I bring:** I founded Jiobit, raised venture capital, navigated hardware manufacturing, won SBIR contracts, scaled a team, and sold to a public company. I have sat on both sides of the table, as a founder raising money and as an investor evaluating deals. I serve on the Techstars Selection Committee, mentor at mHUB (hardtech) and iVenture Accelerator, and am an LP in four venture funds including LongJump (Chicago's most active pre-seed fund). I have invested in 20+ companies.\n\n**Topics:** Cap table structures, fundraising mechanics, term sheets, due diligence processes. How investors evaluate technical stacks and IP. When to build vs. buy. How to think about defensibility when AI commoditizes implementation. How to tell a story that raises money. How to build a company that people want to join and stay at."
-        },
-        {
-          "title": "A Note on Applicability",
-          "content": "While the examples above reference software, these skills transfer across engineering disciplines. AI is accelerating PCB design, materials discovery, clinical literature analysis, and structural optimization. Dean Schuh's own field has seen rapid adoption of machine learning for alloy design. The core skills—judgment about what to build, fluency with AI tools, and translation between technical capability and human need—prepare engineers for any field where AI is reshaping practice.\n\n<!-- @terminal title=\"What I Can Teach\" command=\"\" variant=\"compact\" -->\n- **Discovery** → AI-powered research & user insights\n- **Prototyping** → Synthetic users, rapid validation\n- **Agentic Systems** → Multi-agent orchestration\n- **Context Engineering** → Memory & retrieval systems\n- **AI Infrastructure** → Production deployment\n- **Venture Dynamics** → Fundraising & exits\n<!-- /@terminal -->\n\n---"
-        }
-      ]
-    },
-    {
-      "number": 5,
-      "title": "What Others Say",
-      "intro": "<!-- @testimonials type=\"leadership\" -->\n<!-- @testimonial author=\"Logan LaHive\" title=\"Managing Director, Techstars Chicago\" -->\nFOUNDERS: This means if you are accepted, you get to work with and learn from JOHN RENALDI. One of the absolute best founders, mentors, workshop leaders, and connectors out there. Truly one of a kind.\n<!-- /@testimonial -->\n<!-- @testimonial author=\"Lior Ron\" title=\"Founder of Uber Freight, Former Moto/Google Executive\" -->\nJohn is obsessed with understanding customer needs and can rally great technical talent around solving real user problems... I've seen John balance that successfully again and again.\n<!-- /@testimonial -->\n<!-- @testimonial author=\"Jake Phillips\" title=\"Sr. Director, Reality Labs Accessories at Meta\" subtitle=\"reported to John\" -->\nIn many leaders, you tend to see that they are naturally adept at being the visionary OR the problem solver. John is unique in that he is very capable of both. He can quickly switch modes from diving into the smallest, most technical details to setting an innovative vision for the team. He empowers his employees but is also in the trenches to navigate challenges and pressure test their perspectives. He genuinely cares about the how and the why. All that said, John's superpower is his ability to influence people. He builds strong relationships and leads in a way that people are drawn to following.\n<!-- /@testimonial -->\n<!-- @testimonial author=\"Matt Vokoun\" title=\"Google VP, Strategy, Business Operations, Product Management\" -->\nJohn is a fantastic product manager and leader. He was the main engine behind Moto Maker which was one of the biggest industry innovations that Motorola launched when Google owned them. Fantastic cross-functional leadership and HUGE impact on the company.\n<!-- /@testimonial -->\n<!-- /@testimonials -->\n\n-   **Logan LaHive**, Managing Director, Techstars Chicago:\n    *\"FOUNDERS: This means if you are accepted, you get to work with and learn from JOHN RENALDI. One of the absolute best founders, mentors, workshop leaders, and connectors out there. Truly one of a kind.\"*\n\n-   **Lior Ron**, Founder of Uber Freight, Former Moto/Google Executive:\n    *\"John is obsessed with understanding customer needs and can rally great technical talent around solving real user problems... I've seen John balance that successfully again and again.\"*\n\n-   **Jake Phillips**, Sr. Director, Reality Labs Accessories at Meta (reported to John):\n    *\"In many leaders, you tend to see that they are naturally adept at being the visionary OR the problem solver. John is unique in that he is very capable of both. He can quickly switch modes from diving into the smallest, most technical details to setting an innovative vision for the team. He empowers his employees but is also in the trenches to navigate challenges and pressure test their perspectives. He genuinely cares about the how and the why. All that said, John's superpower is his ability to influence people. He builds strong relationships and leads in a way that people are drawn to following.\"*\n\n-   **Matt Vokoun**, Google VP, Strategy, Business Operations, Product Management:\n    *\"John is a fantastic product manager and leader. He was the main engine behind Moto Maker which was one of the biggest industry innovations that Motorola launched when Google owned them. Fantastic cross-functional leadership and HUGE impact on the company.\"*",
-      "subsections": [
-        {
-          "title": "On Teaching & Workshops",
-          "content": "<!-- @testimonials type=\"teaching\" -->\n<!-- @testimonial author=\"John Minor\" title=\"Chief Product Officer, PayNearMe\" -->\nJohn's workshops are great! The instructional content is incredibly clear, practical, and perfectly tailored for product professionals. His expertise in both AI and product thinking shines through, and his delivery is super captivating, infused with powerful enthusiasm and passion. We've already witnessed actionable improvements in our teams, as they've already started integrating these concepts to boost productivity and inspire new innovations on our roadmap.\n<!-- /@testimonial -->\n<!-- @testimonial author=\"Lauren Antonoff\" title=\"CEO, Life360\" -->\nI finally understand what is happening when the LLM starts to show up like a failing student and what to do about it! JR, your passion for AI and your students shines!\n<!-- /@testimonial -->\n<!-- @testimonial author=\"Sr. Product Manager\" title=\"PayNearMe\" -->\nThank you so much for the AI Product course. I hate to admit that your prediction was right: we do feel like we're capable of building things on our own now after completing your class!\n<!-- /@testimonial -->\n<!-- /@testimonials -->\n\n<!-- @testimonials type=\"students\" source=\"Kellogg\" -->\n<!-- @testimonial -->\nThe course provides a comprehensive overview of Agentic AI and how it works. Highly recommended for anyone interested in learning the technology beyond the basics.\n<!-- /@testimonial -->\n<!-- @testimonial -->\nYou really understand what generative AI is and how it works, plus what kind of problems and tasks it would be good at versus struggle with. 5 out of 5 stars.\n<!-- /@testimonial -->\n<!-- @testimonial -->\nAmazingly captivating speaker with relevant, up to date subject-matter. Clearly communicated and very engaging.\n<!-- /@testimonial -->\n<!-- @testimonial -->\nI come from a non-technical background but was surprised I kept up!\n<!-- /@testimonial -->\n<!-- /@testimonials -->\n\n-   **John Minor**, Chief Product Officer, PayNearMe:\n    *\"John's workshops are great! The instructional content is incredibly clear, practical, and perfectly tailored for product professionals. His expertise in both AI and product thinking shines through, and his delivery is super captivating, infused with powerful enthusiasm and passion. We've already witnessed actionable improvements in our teams, as they've already started integrating these concepts to boost productivity and inspire new innovations on our roadmap.\"*\n\n-   **Lauren Antonoff**, CEO, Life360:\n    *\"I finally understand what is happening when the LLM starts to show up like a failing student and what to do about it! JR, your passion for AI and your students shines!\"*\n\n-   **Sr. Product Manager**, PayNearMe:\n    *\"Thank you so much for the AI Product course. I hate to admit that your prediction was right: we do feel like we're capable of building things on our own now after completing your class!\"*\n\n-   **Kellogg Students:**\n    - *\"The course provides a comprehensive overview of Agentic AI and how it works. Highly recommended for anyone interested in learning the technology beyond the basics.\"*\n    - *\"You really understand what generative AI is and how it works, plus what kind of problems and tasks it would be good at versus struggle with. 5 out of 5 stars.\"*\n    - *\"Amazingly captivating speaker with relevant, up to date subject-matter. Clearly communicated and very engaging.\"*\n    - *\"I come from a non-technical background but was surprised I kept up!\"*\n\n---"
-        }
-      ]
-    },
-    {
-      "number": 6,
-      "title": "The Path Forward",
-      "intro": "The \"Product Engineer\" is the future. McCormick can lead in teaching it.\n\nI bridge operational depth, entrepreneurial insight, and academic rigor. I offer executive perspective to understand why this shift is happening, hands-on coding ability to teach how to do it, and market visibility to know where it's going. I build AI products at Google, with clients, and with students every day.\n\nI look forward to discussing next steps.\n\n---",
-      "subsections": []
     }
   ],
   "citations": [
@@ -680,7 +535,609 @@ const CONTENT = {
     "[21] Jiobit Blog. \"SBIR Phase II Award from U.S. Air Force.\" August 21, 2019. https://www.jiobit.com/blog/jiobit-receives-sbir-phase-ii-award-from-us-air-force",
     "[22] USPTO Patent Records: US 10,172,109; US 10,158,971; US 9,980,087; US 10,064,002; and related JIO, Inc. and Tile, Inc. filings. https://patents.justia.com/assignee/tile-inc",
     "[23] Vercel Engineering. \"AGENTS.md Outperforms Skills in Our Agent Evals.\" *Vercel Blog*, January 27, 2026. https://vercel.com/blog/agents-md-outperforms-skills-in-our-agent-evals",
-    "[24] Northwestern University Segal Design Institute. \"John Renaldi Faculty Profile.\" https://design.northwestern.edu/people/profiles/renaldi-john.html"
+    "[24] Northwestern University Segal Design Institute. \"John Renaldi Faculty Profile.\" https://design.northwestern.edu/people/profiles/renaldi-john.html",
+    "[25] Cagan, Marty and Baxley, Bob. \"The Era of the Product Creator.\" *Silicon Valley Product Group*, May 2025. https://www.svpg.com/the-era-of-the-product-creator/",
+    "[26] Cagan, Marty. \"Empowered: Ordinary People, Extraordinary Products.\" Wiley, 2020. Also cited in SVPG articles on empowered product teams. https://www.svpg.com/",
+    "[27] Final Round AI. \"Software Engineering Job Market Outlook for 2026.\" January 2026. https://www.finalroundai.com/blog/software-engineering-job-market-2026. Also: IEEE Spectrum, \"The Effect of AI on Entry-Level Jobs,\" December 2025. https://spectrum.ieee.org/ai-effect-entry-level-jobs",
+    "[28] Federal Reserve Bank of New York. \"Labor Market for Recent College Graduates.\" 2025. Also: Harvard Business School study on AI adoption and employment (62 million workers analyzed). Cited in GitHub Blog, \"Junior Developers Aren't Obsolete.\" 2025. https://github.blog/ai-and-ml/generative-ai/junior-developers-arent-obsolete-heres-how-to-thrive-in-the-age-of-ai/",
+    "[29] Amodei, Dario (Anthropic) and Hassabis, Demis (DeepMind). Joint interview at World Economic Forum, Davos, January 2026. Reported by Yahoo Finance. https://www.yahoo.com/news/articles/deepmind-anthropic-ceos-ai-already-141624716.html",
+    "[30] Brynjolfsson, Erik; Chandramouli, Akash; and Chen, Wenting. \"Canaries in the Coal Mine? AI and Early-Career Employment.\" Stanford Digital Economy Lab, August 2025. https://digitaleconomy.stanford.edu/wp-content/uploads/2025/08/Canaries_BrynjolfssonChandarChen.pdf"
+  ],
+  "document": [
+    {
+      "type": "header"
+    },
+    {
+      "type": "section",
+      "number": 1,
+      "title": "The Market & Student Need: Why Now",
+      "subsections": [
+        {
+          "title": "The Anthropic Case Study",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "At Anthropic, the company behind Claude, internal research shows [1][2]:"
+            },
+            {
+              "type": "component",
+              "component": "stats",
+              "param": ""
+            },
+            {
+              "type": "paragraph",
+              "text": "Anthropic now **hires generalists over specialists** because \"many traditional programming skills are less relevant when AI handles implementation details.\" [1]"
+            },
+            {
+              "type": "component",
+              "component": "pullquote",
+              "param": "I gave Claude Code a description of the problem, i"
+            },
+            {
+              "type": "paragraph",
+              "text": "McCormick students will enter this world in 2-3 years. We need to prepare them now."
+            }
+          ]
+        },
+        {
+          "title": "The Triad: Design, Product, and Engineering Are Merging",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Role boundaries are collapsing. Designers, product managers, and engineers are moving toward each other, and AI tools are accelerating the convergence."
+            },
+            {
+              "type": "bulletList",
+              "items": [
+                "**PMs → Engineers:** Six months ago, most product managers shipped zero code. Today, most PMs ship at least one pull request per month. At Anthropic, PMs ship features directly. By end of 2026, PMs may write 10-20% of production code."
+              ]
+            },
+            {
+              "type": "bulletList",
+              "items": [
+                "**Designers → Engineers & PMs:** Designers no longer hand off static mockups. With AI tools, they prototype in production code, make product decisions in real-time, and understand the systems they design for."
+              ]
+            },
+            {
+              "type": "bulletList",
+              "items": [
+                "**Engineers → Product:** When implementation becomes easy, the valuable skill becomes knowing what to build. Engineers who understand customer problems, market dynamics, and business models are worth more than those who only execute specs."
+              ]
+            },
+            {
+              "type": "component",
+              "component": "convergence",
+              "param": ""
+            },
+            {
+              "type": "component",
+              "component": "quotes",
+              "param": "triad"
+            },
+            {
+              "type": "paragraph",
+              "text": "The tools are converging too. **Claude Code** lets engineers ship features by describing intent. **Figma AI** generates production-ready components from design specs. **Bolt** (which hit $40M ARR in five months [14]) and **Lovable** let anyone describe a feature and watch it appear. These tools do not replace judgment; they automate the translation layer between idea and implementation. The role that remains is the one who knows what to build and why."
+            },
+            {
+              "type": "table"
+            },
+            {
+              "type": "paragraph",
+              "text": "**Synthetic users** represent another shift: AI personas that simulate customer feedback before a single line of code is written. Product teams can now test positioning, validate assumptions, and iterate on concepts using LLM-generated personas trained on real research data. This changes the research-to-build cycle entirely."
+            }
+          ]
+        },
+        {
+          "title": "The Rise of the \"Product Engineer\"",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Tech companies are redefining roles around this reality. When implementation becomes easy, companies want engineers who understand why they're building, not just how. This has created a new role that didn't exist five years ago: the **Product Engineer**."
+            },
+            {
+              "type": "paragraph",
+              "text": "The Product Engineer sits at the intersection of design, product, and engineering. As one job posting puts it, they *\"care more about outcomes and impact than the exact implementation, or the tools used to solve the problem.\"* They talk directly with customers, analyze usage data, identify which problems are worth solving, and then build the solution themselves. No handoffs. No waiting for specs. The same person who understands the user problem writes the code to solve it."
+            },
+            {
+              "type": "paragraph",
+              "text": "**Linear**, the project management tool that's become a cult favorite among developers, operates almost entirely with Product Engineers. The company has no dedicated PM roles for most teams. As co-founder Tuomas Artman explains: *\"Instead of having a PM for every team or area of the product, we like to see that the broader team collectively thinks about the product.\"* The result is a tool that ships fast and feels like it was built by people who actually use it, because it was."
+            },
+            {
+              "type": "paragraph",
+              "text": "**Vercel**, **PostHog**, **incident.io**, **Ghost**, **Ashby**, and **Fly.io** have all adopted similar models. **Shopify** and **Atlassian** have been developing Product Engineers for five years. **Microsoft** is now hiring Product Engineers for Copilot. This is not a startup trend—it's becoming standard practice at scale."
+            },
+            {
+              "type": "paragraph",
+              "text": "The compensation signals market demand. Senior Product Engineers command **$147,000-$180,000+**, with Google Trends showing **89% growth** in \"Product Engineer\" searches since 2021."
+            },
+            {
+              "type": "paragraph",
+              "text": "Why is this happening now? Three forces are converging. First, AI tools let engineers move faster, freeing time for product thinking. Second, companies are de-specializing, moving away from bloated headcounts and communication overhead. Third, as one analysis puts it: *\"In many ways this is a return to the original ideas of Agile and a counter movement to the increased specialism and bloat of product and technology roles over the last 20 years.\"*"
+            },
+            {
+              "type": "paragraph",
+              "text": "Raquel Smith, a Product Engineer at PostHog, captures the appeal: *\"I've had more fun as a product engineer than in any other role, hands down.\"*"
+            }
+          ]
+        }
+      ],
+      "intro": [
+        {
+          "type": "paragraph",
+          "text": "For decades, software economics worked one way: distributing software cost nearly nothing, but building it required expensive talent. That second part is changing."
+        },
+        {
+          "type": "paragraph",
+          "text": "AI coding tools have lowered the cost of building software. Product managers can ship features. Designers can prototype in production code. Founders can build an MVP in a weekend. The separation between \"people with ideas\" and \"people who can build\" is shrinking."
+        },
+        {
+          "type": "paragraph",
+          "text": "This is happening now, inside the companies building these tools."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "number": 2,
+      "title": "The Talent Crisis: Why Traditional Training Fails",
+      "subsections": [
+        {
+          "title": "The Junior Developer Role Is Disappearing",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "As AI makes senior engineers more productive, it's eliminating the entry points where new engineers used to learn their craft."
+            },
+            {
+              "type": "component",
+              "component": "pullquote",
+              "param": "The cost of software production is trending toward"
+            },
+            {
+              "type": "paragraph",
+              "text": "The numbers are stark. Entry-level tech hiring has dropped **73%** in the past year alone. [27] The **Bureau of Labor Statistics** reports overall programmer employment declined **27.5%** from 2023-2025. CS graduate unemployment has hit **6.1%**—well above the national average of 4.8%—with **16.5% underemployment** (graduates working in roles below their qualification level). [28] A **Harvard study of 62 million workers** found that when companies adopt generative AI, junior developer employment drops **9-10% within six quarters**, while senior employment barely changes."
+            },
+            {
+              "type": "paragraph",
+              "text": "This isn't cyclical. It's structural."
+            },
+            {
+              "type": "paragraph",
+              "text": "At Davos 2026, the CEOs of the two leading AI labs said the quiet part out loud. Anthropic's **Dario Amodei** predicted AI could handle *\"most, maybe all\"* coding work within 6-12 months. DeepMind's **Demis Hassabis** added: *\"I think we're going to see this year the beginnings of maybe it impacting the junior level\"*—explicitly naming entry-level roles and internships as vulnerable. [29]"
+            },
+            {
+              "type": "paragraph",
+              "text": "**Stanford's Digital Economy Lab** quantified the damage: employment for software developers aged 22-25 has **declined nearly 20%** from its 2022 peak. Early-career workers in AI-exposed occupations experienced a **16% relative employment decline** between October 2022 and September 2025—while employment for workers 30+ in the same fields actually *grew* 6-12%. [30] The \"learning curve\" itself is being automated, leaving early-career professionals stranded between AI agents that handle simple tasks and senior workers who handle complex architecture."
+            },
+            {
+              "type": "paragraph",
+              "text": "The work that used to train junior developers is now automated. GitHub found developers using AI assistants complete tasks **56% faster**. CRUD operations, boilerplate code, unit tests, documentation, and routine bug fixes—the apprenticeship work that once trained new engineers—is increasingly AI-generated. As one developer put it: *\"We're the first generation who have to be Seniors before we're allowed to be Juniors.\"*"
+            },
+            {
+              "type": "paragraph",
+              "text": "AWS CEO **Matt Garman** called the trend *\"one of the dumbest things I've ever heard,\"* warning that companies eliminating junior roles are destroying their talent pipeline. The industry is creating a structural problem that will hit in 2029-2031 when mass senior retirements meet the shortage of developers who were never hired in the first place."
+            },
+            {
+              "type": "paragraph",
+              "text": "As Magdalena Balazinska of UW's Allen School puts it: *\"Coding, or the translation of a precise design into software instructions, is dead. AI can do that.\"* [11] The question is: what replaces it?"
+            }
+          ]
+        },
+        {
+          "title": "The New Skills: What Industry Leaders Are Saying",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The people building AI tools are rethinking what it means to be a developer. Their perspective matters because they see the shift before the rest of the industry."
+            },
+            {
+              "type": "component",
+              "component": "quotes",
+              "param": "skills"
+            },
+            {
+              "type": "paragraph",
+              "text": "Industry leaders agree on what matters now. **Ethan Mollick** (Wharton) argues that *\"AI skills are basically the skills of good managers: delegation, clear explanations, getting a sense of individual strengths & weaknesses, division of labor, project management, clear feedback.\"* [7]"
+            },
+            {
+              "type": "paragraph",
+              "text": "**Andrej Karpathy** (OpenAI co-founder) describes the shift: *\"I've never felt this much behind as a programmer. The profession is being dramatically refactored... There's a new programmable layer of abstraction to master involving agents, subagents, their prompts, contexts, memory, modes, permissions, tools, plugins, skills.\"* [8]"
+            },
+            {
+              "type": "paragraph",
+              "text": "The programming language itself is changing. As **Jensen Huang** (NVIDIA CEO) puts it: *\"There's a new programming language. It's called 'human.'\"* [9] The numbers confirm this: **20-30% of Microsoft's code** is now AI-written [10], and **Mark Zuckerberg** predicts half of Meta's development will be done by AI within a year."
+            },
+            {
+              "type": "paragraph",
+              "text": "Skills are shifting: from writing code to orchestrating systems, from syntax to judgment, from execution to strategy. These are the skills we must teach."
+            },
+            {
+              "type": "component",
+              "component": "chart",
+              "param": "hierarchy"
+            },
+            {
+              "type": "paragraph",
+              "text": "**The Opportunity:** Employers now prioritize **problem-solving (~90%)** over GPA. [13] McCormick can lead in teaching students to use AI to build systems that solve real problems."
+            },
+            {
+              "type": "component",
+              "component": "terminal",
+              "param": ""
+            },
+            {
+              "type": "paragraph",
+              "text": "**The Answer: A New Curriculum for a New Role**"
+            },
+            {
+              "type": "paragraph",
+              "text": "The question \"what replaces coding?\" has an answer: the Product Engineer. This role combines technical fluency with product judgment, user empathy, and business context. Companies are hiring for it now, and McCormick can prepare students to fill it."
+            },
+            {
+              "type": "paragraph",
+              "text": "But teaching this role requires a specific kind of faculty member, and a curriculum that doesn't yet exist in most engineering schools. The sections that follow lay out how McCormick can lead in defining this curriculum, why John is positioned to teach it, and what students will learn."
+            }
+          ]
+        }
+      ],
+      "intro": [
+        {
+          "type": "paragraph",
+          "text": "The opportunity is clear. But there's a problem: the traditional path into engineering is breaking down just as the role is being redefined."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "number": 3,
+      "title": "Strategic Alignment with McCormick's Vision",
+      "subsections": [
+        {
+          "title": "Pillar 1: Revolutionize the Methods of Engineering",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "AI-augmented development is becoming the default method for how engineers work. Context engineering, agentic systems, and production AI workflows are the tools engineers will use across every discipline. This curriculum teaches those methods before they become standard."
+            },
+            {
+              "type": "paragraph",
+              "text": "The shift is comparable to when CAD replaced drafting tables or when simulation replaced physical prototyping. Engineers who master AI-augmented methods will define the next generation of engineering practice. McCormick can lead in codifying these methods rather than adopting them later."
+            },
+            {
+              "type": "component",
+              "component": "pullquote",
+              "param": "The shift is analogous to when CAD replaced drafti"
+            }
+          ]
+        },
+        {
+          "title": "Pillar 2: Transform Engineering Education",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Dean Schuh has called for \"whole-brain\" engineering that pairs technical depth with innovation, design, and entrepreneurial thinking. The Product Engineer curriculum embodies this integration. Students learn to move between user research, technical implementation, and business strategy. They do not just build systems; they understand why those systems matter and who they serve."
+            },
+            {
+              "type": "paragraph",
+              "text": "This prepares engineers to function as what Dean Schuh describes as \"the fulcrum between the research lab and the marketplace.\" The marketplace represents humanity and its needs. Engineers serve as the bridge. This curriculum teaches students to be that bridge."
+            }
+          ]
+        },
+        {
+          "title": "Pillar 3: Advance Critical Applications of Engineering",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "AI is explicitly one of McCormick's four grand challenge focus areas, alongside climate, health, and sustainability. This curriculum directly advances AI as both a method (how engineers work) and an application domain (what engineers build)."
+            },
+            {
+              "type": "paragraph",
+              "text": "The skills taught here also amplify work in the other three focus areas. Climate researchers use AI agents to process satellite data. Health engineers use LLMs to analyze clinical literature. Sustainability teams use generative tools to model resource flows. The Product Engineer mindset and AI fluency accelerate progress across all four challenges."
+            }
+          ]
+        },
+        {
+          "title": "A Once-in-a-Generation Opportunity",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Dean Schuh has expressed interest in \"once-in-a-generation ideas and goals that can carry us into the future together.\" The transformation of engineering practice by AI qualifies. The window to establish McCormick as a leader in AI-augmented engineering education is now, while methods are still being defined and before competitors codify their own approaches."
+            }
+          ]
+        }
+      ],
+      "intro": [
+        {
+          "type": "paragraph",
+          "text": "This proposal aligns directly with McCormick's three strategic pillars and addresses AI as one of the school's four grand challenge focus areas."
+        },
+        {
+          "type": "component",
+          "component": "cards",
+          "param": "2"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "number": 4,
+      "title": "Who Should Teach This, and Why John",
+      "subsections": [
+        {
+          "title": "The Profile Required",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "If McCormick wants to prepare students for the \"Product Engineer\" role, the faculty member teaching it needs a specific profile. This is not a traditional academic hire. It requires someone who works across boundaries that do not usually overlap."
+            },
+            {
+              "type": "component",
+              "component": "cards",
+              "param": "3"
+            }
+          ]
+        },
+        {
+          "title": "Why John Fits This Profile",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "John is an unusual combination: a former Google executive who still ships code daily, a founder with a nine-figure exit, and a design leader who has led UXR, UI/UX, and engineering teams. He held VP and General Manager responsibilities at Google and Motorola. He co-founded Jiobit, a wearable tech startup acquired by Life360 (NASDAQ: LIF) in 2021. Today he runs **Presto Consulting**, working with clients like Realtor.com, Life360, and Paynearme on AI strategy and hands-on development. He works across executive strategy and hands-on building. His corporate workshops serve entry-level engineers through product directors. He teaches MBAs in the Kellogg MMM program and engineers at McCormick. He serves on AI advisory boards for Menlo Ventures and Techstars. This range is rare."
+            },
+            {
+              "type": "component",
+              "component": "credentials",
+              "param": ""
+            }
+          ]
+        },
+        {
+          "title": "Career Background",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "John's career spans executive leadership, entrepreneurship, and technical building across multiple decades and company stages."
+            },
+            {
+              "type": "component",
+              "component": "timeline",
+              "param": ""
+            }
+          ]
+        },
+        {
+          "title": "Google (2014-2024)",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "John served as **General Manager for Wear OS by Google**, leading global wearable software strategy across design, product management, and research for Google's entire wearable ecosystem. He was instrumental in **major developments for the Wear OS platform**, including significant interface updates to support innovative hardware architectures like the Pixel Watch. He spearheaded **one of the first AI innovation product teams within Google Android** and served as the **original product lead for an internal consumer multi-agent orchestration system** designed for building coding agents. He contributed intellectual property and led product teams developing machine learning algorithms for fitness, power management, and location services."
+            },
+            {
+              "type": "paragraph",
+              "text": "He led teams across **Design, UXR, Product, and Engineering (Firmware to Cloud)**. He knows how to take prototype code and scale it globally. His time at **Deloitte** building enterprise web applications gave him discipline in requirements gathering and delivery."
+            }
+          ]
+        },
+        {
+          "title": "Jiobit (0 to 1)",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "John founded Jiobit after briefly losing his son in a crowded Chicago park. *\"I believe no parent should experience that panic.\"* The team built a device with encryption strong enough to be **trusted by federal government and law enforcement** for sensitive location tracking—security as an architectural decision."
+            },
+            {
+              "type": "paragraph",
+              "text": "The hardware was hard: the team packed Cellular, GPS, Wi-Fi, and BLE into a cookie-sized device. As John told *Inventors Digest*: *\"For any of this to work... we had to nail this custom system architecture and the sensor fusion technology.\"* He is named inventor on **9+ issued U.S. patents** covering location tracking, power management, and machine learning systems."
+            },
+            {
+              "type": "paragraph",
+              "text": "The outcome: SBIR Phase II Award (Air Force) [21], 200% YoY revenue growth, sold out in the 2018 holiday season, and acquired by **Life360 (NASDAQ: LIF)** in a deal that appreciated to **nine figures**. All 25 employees joined Life360 after the deal. [18][19]"
+            }
+          ]
+        },
+        {
+          "title": "Motorola (Research to Practice)",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "John created **Moto Maker**, the first direct-to-consumer, built-to-order smartphone. It connected a website to the factory floor with **2,000+ permutations** shipping in **4 days or less**."
+            },
+            {
+              "type": "paragraph",
+              "text": "When early versions had too many choices, he applied HBR research on the \"Paradox of Choice\" [15] and \"IKEA Effect\" [16]: *\"If you have a hand in creating something, your affinity for that product goes through the roof. Labor creates love.\"* The team curated options, reduced anxiety, and increased engagement. As VP of Global eCommerce, they achieved **10x YoY growth**, **50% fewer product returns**, and won **Webby Awards**, **Best of CES**, and the **Red Dot Design Award**."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "number": 5,
+      "title": "The Hands-On Work: What John Builds Today",
+      "subsections": [
+        {
+          "title": "Teaching & Academic Leadership",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "John teaches at **McCormick (Segal)**, **Kellogg (MMM)**, and **University of Illinois** (Applied AI), working across engineering and business at multiple institutions. His courses integrate AI into design thinking and product development, including building custom agents and incorporating synthetic users into research. He led **Northwestern's Business Innovation Lab (Winter 2025)** in partnership with **Google DeepMind** and served as a key panelist at **Kearney's 2024 Executive Panel on AI in Product Design**."
+            },
+            {
+              "type": "paragraph",
+              "text": "He works alongside **Jim Wicks** (Segal Design Institute founder) and **Mike Edmonds** (Microsoft) in the classroom. His philosophy in the **MPD² program**: outcomes over outputs. He teaches students to be **\"missionaries, not mercenaries.\"**"
+            }
+          ]
+        },
+        {
+          "title": "Curriculum-Advancing Work",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Clinical faculty focus on teaching, not traditional academic research with publication requirements. John's work aligns with this model while still advancing the curriculum in measurable ways."
+            },
+            {
+              "type": "paragraph",
+              "text": "**Testing new methods:** He pilots AI tools and workflows in real courses and corporate training programs before they become mainstream. His 12-week corporate curriculum has been iterated across multiple cohorts, identifying what works and what does not. This applied testing informs what he brings to McCormick students."
+            },
+            {
+              "type": "paragraph",
+              "text": "**Developing evaluation frameworks:** His work on agentic procedural memory, synthetic user validation, and Claude Code architecture analysis creates benchmarks and evaluation methods that inform pedagogy. Understanding how AI systems fail is as important as understanding how they succeed."
+            },
+            {
+              "type": "paragraph",
+              "text": "**Building reusable assets:** The MCP servers, agent frameworks, and prompt engineering collections he maintains on GitHub become teaching resources. Students learn from production code, not toy examples."
+            },
+            {
+              "type": "paragraph",
+              "text": "**Industry feedback loops:** His consulting work with public company CTOs and startup founders provides continuous signal on what skills employers need. This feedback shapes curriculum in near real-time, not on academic publication timelines."
+            },
+            {
+              "type": "paragraph",
+              "text": "This is not traditional research, but it is rigorous, iterative work that directly improves teaching effectiveness."
+            }
+          ]
+        },
+        {
+          "title": "Industry Visibility",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "John's investing and ecosystem work give him a vantage point: he sees where the industry is heading **8 to 16 months before it becomes mainstream**. That foresight shapes his curriculum. As a UIUC alumnus and founding member of **Illini Angels**, he can position McCormick as a talent pipeline for Chicago tech."
+            }
+          ]
+        }
+      ],
+      "intro": [
+        {
+          "type": "paragraph",
+          "text": "The Product Engineer curriculum cannot be taught from textbooks. The tools change too fast. The only way to teach students how to build with AI is to be actively building with AI, today, this week, this month. Everything in this section represents work John does alongside the teams he teaches. These aren't demos or side projects; they're production systems that inform what he brings to the classroom."
+        },
+        {
+          "type": "paragraph",
+          "text": "John's most intensive building has happened after Google. He is not a manager who \"used to code.\" He writes production systems daily:"
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            "**MCP Servers & Multi-Agent Orchestration:** John builds and publishes **Model Context Protocol servers** to npm, allowing AI agents to connect with external services. He builds multi-agent systems using **LangChain, n8n**, and **ReAct frameworks** that coordinate across foundational models (Gemini, OpenAI, Anthropic, Cohere). He has built systems that stream real-time meeting transcripts via **Websockets** and **Assembly AI**, allowing agents to act during live calls."
+          ]
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            "**Full-Stack AI Infrastructure:** He works across the modern AI stack: **vector databases (PGVector)**, **semantic search with embeddings**, **full-text search (BM25)**, **Cohere reranking**, **Agentic RAG pipelines**, and **LLM chaining with reflection loops**. He builds in **React/TypeScript** with **serverless APIs** and integrates tools like **Firecrawl** and **Tavily** for research agents. He has built **browser automation agents**, content graders with scoring rubrics, and custom HTML email generation systems."
+          ]
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            "**Live Multimodal AI:** He builds systems that process voice, text, and images in real-time, connecting AI agents to device hardware and sensor data."
+          ]
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            "**Synthetic User Platforms:** John built a synthetic user system that simulates customer feedback using LLM-generated personas. The platform uses **graph databases and knowledge graphs** to model user relationships and context, with **self-learning loops** that refine persona accuracy based on research validation. This is an example of the new AI workflows reshaping product development."
+          ]
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            "**Agentic Procedural Memory:** He designed and built an **Agentic Procedural Memory System** that lets AI agents learn from their own experiences. The system detects failure-to-success patterns in tool usage, performs automated root cause analysis, and stores reusable procedures in a **hybrid search architecture** (vector embeddings + BM25 full-text search with Reciprocal Rank Fusion). Agents using this system show **50% step reduction** and **95%+ success rates** on similar tasks. This work builds directly on recent research from Zhejiang University and Alibaba. [17]"
+          ]
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            "**Client Work & Executive Advisory:** John consults directly with public company CTOs and CEOs on AI strategy, and runs hands-on design workshops with their development teams. This means reviewing AI proposals, debugging architectures, and pairing with senior engineers to ship production code. He builds alongside the teams he teaches."
+          ]
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            "**Corporate Training:** Through his consulting firm, he runs a **12-week curriculum** that upskills engineers, product managers, and designers into proficient AI practitioners. Participants leave implementing AI into their products and operations. His workshops span entry-level engineers to product directors."
+          ]
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            "**Published Research:** John publishes original technical research on AI agent architectures. A recent investigation reverse-engineered Claude Code's API requests and identified an implementation flaw: skill instructions were being injected as user messages (low authority) rather than in the system prompt (high authority), explaining why Vercel's benchmarks showed only 53% pass rates. [23] This kind of technical analysis is what he brings to both clients and students."
+          ]
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            "**Open Source:** He maintains 16 public repositories on GitHub (github.com/jrenaldi79), including MCP servers, agent frameworks, and prompt engineering collections."
+          ]
+        },
+        {
+          "type": "component",
+          "component": "terminal",
+          "param": ""
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "number": 6,
+      "title": "What John Can Teach",
+      "subsections": [],
+      "intro": [
+        {
+          "type": "paragraph",
+          "text": "The Product Engineer needs to move from idea to shipped product. This is not a single course. It is a set of capabilities that can be integrated into existing McCormick and Segal curriculum wherever they fit. John is already piloting parts of this in his current classes."
+        },
+        {
+          "type": "component",
+          "component": "cards",
+          "param": "4"
+        },
+        {
+          "type": "paragraph",
+          "text": "*While the examples above reference software, these skills transfer across engineering disciplines. AI is accelerating PCB design, materials discovery, clinical literature analysis, and structural optimization. The core skills (judgment about what to build, fluency with AI tools, and translation between technical capability and human need) prepare engineers for any field where AI is reshaping practice.*"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "number": 7,
+      "title": "What Others Say",
+      "subsections": [
+        {
+          "title": "On Teaching & Workshops",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Feedback from corporate training and academic courses shows consistent themes: practical content, engaging delivery, and immediate usefulness."
+            },
+            {
+              "type": "component",
+              "component": "testimonials",
+              "param": "teaching"
+            },
+            {
+              "type": "component",
+              "component": "testimonials",
+              "param": "students"
+            }
+          ]
+        }
+      ],
+      "intro": [
+        {
+          "type": "paragraph",
+          "text": "The following testimonials come from executives, colleagues, and students who have worked with John across different contexts: startups, corporate training, and academic settings."
+        },
+        {
+          "type": "component",
+          "component": "testimonials",
+          "param": "leadership"
+        }
+      ]
+    },
+    {
+      "type": "citations"
+    }
   ]
 };
 

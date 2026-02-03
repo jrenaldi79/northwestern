@@ -114,6 +114,7 @@ function build() {
     'Section',
     'Citations',
     'TerminalWindow',
+    'SectionNav',
   ];
 
   // Read all components

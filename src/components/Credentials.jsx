@@ -2,9 +2,9 @@
  * Credentials Component - "The Scholarly Disruptor"
  *
  * Editorial magazine aesthetic
- * - Confident typography
+ * - Display typography for categories
  * - Dark background for contrast
- * - Mono numbers for data
+ * - 3x2 grid for 6 credentials
  */
 import React from 'react';
 import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE } from '../design-tokens';
@@ -15,11 +15,11 @@ const Credentials = ({ credentials }) => {
   return (
     <div
       style={{
-        marginTop: SPACE[10],
-        marginBottom: SPACE[10],
+        marginTop: SPACE[8],
+        marginBottom: SPACE[8],
         background: COLORS.surface.dark,
         borderRadius: EFFECTS.radius.lg,
-        padding: SPACE[8],
+        padding: `${SPACE[7]} ${SPACE[6]}`,
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -55,7 +55,7 @@ const Credentials = ({ credentials }) => {
           letterSpacing: '0.15em',
           textTransform: 'uppercase',
           color: COLORS.ink[400],
-          marginBottom: SPACE[7],
+          marginBottom: SPACE[6],
           position: 'relative',
           zIndex: 1,
         }}
@@ -63,30 +63,40 @@ const Credentials = ({ credentials }) => {
         At a Glance
       </h4>
 
-      {/* Credentials grid */}
+      {/* Credentials grid - fixed 3 columns */}
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
-          gap: SPACE[6],
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: `${SPACE[5]} ${SPACE[4]}`,
           position: 'relative',
           zIndex: 1,
         }}
       >
         {credentials.map((cred, i) => (
-          <div key={i} style={{ textAlign: 'center' }}>
+          <div
+            key={i}
+            style={{
+              textAlign: 'center',
+              padding: `${SPACE[3]} ${SPACE[2]}`,
+            }}
+          >
+            {/* Category name - editorial display style */}
             <div
               style={{
-                fontFamily: FONTS.mono,
-                fontSize: TYPE_SCALE.mono.display.size,
-                fontWeight: TYPE_SCALE.mono.display.weight,
+                fontFamily: FONTS.display,
+                fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+                fontWeight: 400,
+                fontStyle: 'italic',
                 color: i === 0 ? COLORS.accent.light : COLORS.ink[100],
                 marginBottom: SPACE[2],
-                lineHeight: 1,
+                lineHeight: 1.1,
+                letterSpacing: '-0.02em',
               }}
             >
               {cred.value}
             </div>
+            {/* Description */}
             <div
               style={{
                 fontFamily: FONTS.ui,

@@ -1,161 +1,371 @@
 /**
  * CardGrid Component - "The Scholarly Disruptor"
  *
- * Editorial magazine aesthetic
- * - Clean card layouts
- * - Confident typography
- * - Restrained visual accents
+ * Editorial magazine aesthetic with distinct card personalities:
+ * - Feature: Bold editorial callouts with dramatic numbering
+ * - Profile: Refined requirement cards with vertical rhythm
+ * - Topic: Expandable curriculum cards with audience tags
  */
-import React from 'react';
+import React, { useState } from 'react';
 import RichText from './RichText';
-import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE, Icons, getIcon } from '../design-tokens';
+import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE, getIcon } from '../design-tokens';
 
-// Profile Card - Clean, editorial
-const ProfileCard = ({ card, index }) => {
-  const isAccent = index === 0;
+// =============================================================================
+// FEATURE CARD - Bold editorial callouts for strategic pillars
+// Large numbers, dramatic typography, asymmetric layout
+// =============================================================================
+const FeatureCard = ({ card, index }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const number = String(index + 1).padStart(2, '0');
 
   return (
     <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       style={{
+        position: 'relative',
         background: COLORS.surface.elevated,
         borderRadius: EFFECTS.radius.lg,
-        border: `1px solid ${COLORS.ink[100]}`,
-        padding: SPACE[6],
-        boxShadow: EFFECTS.shadow.sm,
-        position: 'relative',
+        padding: `${SPACE[8]} ${SPACE[6]} ${SPACE[6]}`,
+        border: `1px solid ${isHovered ? COLORS.ink[300] : COLORS.ink[200]}`,
+        boxShadow: isHovered ? EFFECTS.shadow.lg : EFFECTS.shadow.md,
+        overflow: 'hidden',
+        minHeight: '280px',
+        display: 'flex',
+        flexDirection: 'column',
+        transform: isHovered ? 'translateY(-2px)' : 'translateY(0)',
+        transition: `all ${EFFECTS.transition.base}`,
       }}
     >
-      {/* Subtle top accent for first card */}
-      {isAccent && (
+      {/* Large background number */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '-0.5rem',
+          right: '0.5rem',
+          fontFamily: FONTS.display,
+          fontSize: '8rem',
+          fontWeight: 300,
+          lineHeight: 1,
+          color: COLORS.ink[100],
+          userSelect: 'none',
+          pointerEvents: 'none',
+        }}
+      >
+        {number}
+      </div>
+
+      {/* Top accent line */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '3px',
+          background: index === 0
+            ? COLORS.accent.primary
+            : `linear-gradient(90deg, ${COLORS.ink[300]} 0%, ${COLORS.ink[200]} 100%)`,
+        }}
+      />
+
+      {/* Content */}
+      <div style={{ position: 'relative', zIndex: 1, flex: 1, display: 'flex', flexDirection: 'column' }}>
+        {/* Title */}
+        <h4
+          style={{
+            fontFamily: FONTS.headline,
+            fontWeight: TYPE_SCALE.headline.md.weight,
+            fontSize: TYPE_SCALE.headline.md.size,
+            lineHeight: TYPE_SCALE.headline.md.lineHeight,
+            letterSpacing: TYPE_SCALE.headline.md.letterSpacing,
+            color: COLORS.ink[800],
+            marginBottom: SPACE[4],
+            maxWidth: '85%',
+          }}
+        >
+          {card.title}
+        </h4>
+
+        {/* Description */}
+        <p
+          style={{
+            fontFamily: FONTS.body,
+            fontSize: TYPE_SCALE.body.sm.size,
+            lineHeight: TYPE_SCALE.body.sm.lineHeight,
+            color: COLORS.ink[500],
+            margin: 0,
+            marginTop: 'auto',
+          }}
+        >
+          <RichText>{card.content}</RichText>
+        </p>
+      </div>
+    </div>
+  );
+};
+
+// =============================================================================
+// PROFILE CARD - Refined requirement cards (expandable when has expandedContent)
+// Clean lines, subtle hierarchy, professional restraint
+// =============================================================================
+const ProfileCard = ({ card, index, isExpanded, onToggle, hasExpandedContent }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const isFirst = index === 0;
+  const canExpand = hasExpandedContent && card.expandedContent;
+
+  const cardContent = (
+    <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{
+        position: 'relative',
+        background: isFirst ? COLORS.ink[900] : COLORS.surface.elevated,
+        borderRadius: EFFECTS.radius.md,
+        border: isFirst ? 'none' : `1px solid ${isExpanded ? COLORS.accent.primary : (isHovered ? COLORS.ink[300] : COLORS.ink[200])}`,
+        boxShadow: isFirst ? EFFECTS.shadow.xl : (isExpanded || isHovered ? EFFECTS.shadow.md : EFFECTS.shadow.sm),
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        transform: isHovered && !isExpanded && !isFirst ? 'translateY(-2px)' : 'translateY(0)',
+        transition: `all ${EFFECTS.transition.base}`,
+      }}
+    >
+      {/* Clickable header area */}
+      <div
+        style={{
+          padding: SPACE[5],
+          cursor: canExpand ? 'pointer' : 'default',
+          flex: canExpand ? 'none' : 1,
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+        onClick={canExpand ? onToggle : undefined}
+      >
+        {/* Header row with icon and title */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'flex-start',
+            gap: SPACE[4],
+            marginBottom: SPACE[4],
+          }}
+        >
+          {/* Icon container */}
+          <div
+            style={{
+              width: '40px',
+              height: '40px',
+              borderRadius: EFFECTS.radius.md,
+              background: isFirst
+                ? 'rgba(255,255,255,0.1)'
+                : (isExpanded ? COLORS.accent.wash : COLORS.surface.inset),
+              border: `1px solid ${isFirst ? 'rgba(255,255,255,0.15)' : (isExpanded ? COLORS.accent.primary + '40' : COLORS.ink[200])}`,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0,
+              transition: EFFECTS.transition.base,
+            }}
+          >
+            {getIcon(card.icon, isFirst ? 'rgba(255,255,255,0.9)' : (isExpanded ? COLORS.accent.primary : COLORS.ink[500]))}
+          </div>
+
+          {/* Title and expand indicator */}
+          <div style={{ flex: 1, display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: SPACE[2] }}>
+            <h4
+              style={{
+                fontFamily: FONTS.ui,
+                fontWeight: 600,
+                fontSize: TYPE_SCALE.ui.lg.size,
+                lineHeight: 1.3,
+                color: isFirst ? '#FFFFFF' : COLORS.ink[800],
+                margin: 0,
+                paddingTop: '0.25rem',
+              }}
+            >
+              {card.title}
+            </h4>
+
+            {/* Expand indicator for expandable cards */}
+            {canExpand && (
+              <div
+                style={{
+                  width: '24px',
+                  height: '24px',
+                  borderRadius: EFFECTS.radius.full,
+                  background: isFirst
+                    ? 'rgba(255,255,255,0.15)'
+                    : (isExpanded ? COLORS.accent.primary : COLORS.surface.inset),
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                  transition: EFFECTS.transition.base,
+                  marginTop: '0.25rem',
+                }}
+              >
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke={isFirst ? 'rgba(255,255,255,0.8)' : (isExpanded ? '#FFFFFF' : COLORS.ink[400])}
+                  strokeWidth="2"
+                  style={{
+                    transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                    transition: EFFECTS.transition.base,
+                  }}
+                >
+                  <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Summary description */}
+        <p
+          style={{
+            fontFamily: FONTS.body,
+            fontSize: TYPE_SCALE.body.sm.size,
+            lineHeight: TYPE_SCALE.body.sm.lineHeight,
+            color: isFirst ? 'rgba(255,255,255,0.7)' : COLORS.ink[500],
+            margin: 0,
+            paddingLeft: `calc(40px + ${SPACE[4]})`,
+            flex: canExpand ? 'none' : 1,
+          }}
+        >
+          <RichText>{card.content}</RichText>
+        </p>
+      </div>
+
+      {/* Expanded content with smooth animation */}
+      {canExpand && (
+        <div
+          style={{
+            maxHeight: isExpanded ? '500px' : '0px',
+            opacity: isExpanded ? 1 : 0,
+            overflow: 'hidden',
+            transition: `max-height ${EFFECTS.transition.expand}, opacity ${EFFECTS.transition.base}`,
+          }}
+        >
+          <div
+            style={{
+              padding: `0 ${SPACE[5]} ${SPACE[5]}`,
+              paddingLeft: `calc(40px + ${SPACE[4]} + ${SPACE[5]})`,
+              borderTop: `1px solid ${isFirst ? 'rgba(255,255,255,0.1)' : COLORS.ink[100]}`,
+              background: isFirst ? 'rgba(0,0,0,0.2)' : COLORS.surface.paper,
+            }}
+          >
+            <p
+              style={{
+                fontFamily: FONTS.body,
+                fontSize: TYPE_SCALE.body.sm.size,
+                lineHeight: TYPE_SCALE.body.sm.lineHeight,
+                color: isFirst ? 'rgba(255,255,255,0.8)' : COLORS.ink[600],
+                margin: 0,
+                paddingTop: SPACE[4],
+              }}
+            >
+              <RichText>{card.expandedContent}</RichText>
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Subtle bottom border accent for first card */}
+      {isFirst && (
         <div
           style={{
             position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
+            bottom: 0,
+            left: SPACE[5],
+            right: SPACE[5],
             height: '2px',
-            background: COLORS.accent.primary,
+            background: `linear-gradient(90deg, ${COLORS.accent.primary} 0%, ${COLORS.accent.light} 100%)`,
+            borderRadius: EFFECTS.radius.full,
           }}
         />
       )}
-
-      {/* Icon */}
-      <div
-        style={{
-          width: '44px',
-          height: '44px',
-          borderRadius: EFFECTS.radius.md,
-          background: isAccent ? COLORS.accent.wash : COLORS.surface.inset,
-          border: `1px solid ${isAccent ? COLORS.accent.glow : COLORS.ink[100]}`,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginBottom: SPACE[4],
-        }}
-      >
-        {getIcon(card.icon, isAccent ? COLORS.accent.primary : COLORS.ink[500])}
-      </div>
-
-      {/* Title */}
-      <h4
-        style={{
-          fontFamily: FONTS.ui,
-          fontWeight: 600,
-          fontSize: TYPE_SCALE.ui.md.size,
-          color: COLORS.ink[800],
-          marginBottom: SPACE[2],
-        }}
-      >
-        {card.title}
-      </h4>
-
-      {/* Description */}
-      <p
-        style={{
-          fontFamily: FONTS.body,
-          fontSize: TYPE_SCALE.body.sm.size,
-          lineHeight: TYPE_SCALE.body.sm.lineHeight,
-          color: COLORS.ink[500],
-          margin: 0,
-        }}
-      >
-        <RichText>{card.content}</RichText>
-      </p>
     </div>
   );
+
+  return cardContent;
 };
 
-// Feature Card - Larger with subtle emphasis
-const FeatureCard = ({ card, index }) => {
-  const isHighlight = index === 0;
+// =============================================================================
+// TOPIC CARD CONTENT PARSER
+// Parses structured curriculum content into visual sections
+// =============================================================================
+const parseTopicContent = (content) => {
+  if (!content) return { intro: '', teachings: [], technologies: '' };
 
-  return (
-    <div
-      style={{
-        background: isHighlight ? COLORS.accent.wash : COLORS.surface.inset,
-        borderRadius: EFFECTS.radius.lg,
-        border: `1px solid ${isHighlight ? COLORS.accent.glow : COLORS.ink[100]}`,
-        padding: SPACE[7],
-        position: 'relative',
-      }}
-    >
-      {/* Icon */}
-      <div
-        style={{
-          width: '52px',
-          height: '52px',
-          borderRadius: EFFECTS.radius.md,
-          background: isHighlight ? COLORS.accent.primary : COLORS.ink[700],
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginBottom: SPACE[5],
-        }}
-      >
-        {getIcon(card.icon, '#FFFFFF')}
-      </div>
+  // Split content by the main sections
+  const parts = {
+    intro: '',
+    teachings: [],
+    technologies: '',
+  };
 
-      {/* Title */}
-      <h4
-        style={{
-          fontFamily: FONTS.headline,
-          fontWeight: TYPE_SCALE.headline.sm.weight,
-          fontSize: TYPE_SCALE.headline.sm.size,
-          color: COLORS.ink[800],
-          marginBottom: SPACE[3],
-        }}
-      >
-        {card.title}
-      </h4>
+  // Find "What I Teach:" or "What John Teaches:" section
+  const teachMatch = content.match(/\*\*What (?:I|John) Teach(?:es)?:\*\*\s*([\s\S]*?)(?=\*\*Technologies:\*\*|$)/i);
+  const techMatch = content.match(/\*\*Technologies:\*\*\s*([\s\S]*?)$/i);
 
-      {/* Description */}
-      <p
-        style={{
-          fontFamily: FONTS.body,
-          fontSize: TYPE_SCALE.body.md.size,
-          lineHeight: TYPE_SCALE.body.md.lineHeight,
-          color: COLORS.ink[500],
-          margin: 0,
-        }}
-      >
-        <RichText>{card.content}</RichText>
-      </p>
-    </div>
-  );
+  // Everything before "What I Teach" is intro
+  const introEnd = content.search(/\*\*What (?:I|John) Teach/i);
+  if (introEnd > 0) {
+    parts.intro = content.substring(0, introEnd).trim();
+  } else if (!teachMatch && !techMatch) {
+    parts.intro = content;
+  }
+
+  // Parse teachings - handle both bullet points (•) and inline format
+  if (teachMatch) {
+    const teachContent = teachMatch[1].trim();
+    // Check if it has bullet points
+    if (teachContent.includes('•')) {
+      parts.teachings = teachContent.split('•')
+        .map(t => t.trim())
+        .filter(t => t.length > 0);
+    } else {
+      // Single paragraph teaching description
+      parts.teachings = [teachContent];
+    }
+  }
+
+  // Parse technologies
+  if (techMatch) {
+    parts.technologies = techMatch[1].trim();
+  }
+
+  return parts;
 };
 
-// Topic Card - Expandable accordion style
+// =============================================================================
+// TOPIC CARD - Curriculum catalog with audience tags
+// Expandable, tagged, informative
+// =============================================================================
 const TopicCard = ({ card, index, isExpanded, onToggle }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const parsedContent = parseTopicContent(card.expandedContent || card.content);
+
   return (
     <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       style={{
         background: COLORS.surface.elevated,
         borderRadius: EFFECTS.radius.md,
-        border: `1px solid ${isExpanded ? COLORS.accent.primary : COLORS.ink[100]}`,
+        border: `1px solid ${isExpanded ? COLORS.accent.primary : (isHovered ? COLORS.ink[300] : COLORS.ink[200])}`,
         overflow: 'hidden',
-        transition: EFFECTS.transition.base,
+        boxShadow: isExpanded || isHovered ? EFFECTS.shadow.md : EFFECTS.shadow.sm,
+        transform: isHovered && !isExpanded ? 'translateY(-1px)' : 'translateY(0)',
+        transition: `all ${EFFECTS.transition.base}`,
       }}
     >
+      {/* Header button */}
       <button
         onClick={onToggle}
         style={{
@@ -165,96 +375,375 @@ const TopicCard = ({ card, index, isExpanded, onToggle }) => {
           alignItems: 'center',
           gap: SPACE[4],
           textAlign: 'left',
-          background: 'transparent',
+          background: isExpanded ? COLORS.accent.wash : 'transparent',
           border: 'none',
           cursor: 'pointer',
+          transition: EFFECTS.transition.base,
         }}
       >
+        {/* Index number */}
+        <span
+          style={{
+            fontFamily: FONTS.mono,
+            fontSize: TYPE_SCALE.mono.sm.size,
+            fontWeight: 600,
+            color: isExpanded ? COLORS.accent.primary : COLORS.ink[300],
+            width: '24px',
+            flexShrink: 0,
+          }}
+        >
+          {String(index + 1).padStart(2, '0')}
+        </span>
+
+        {/* Icon */}
         <div
           style={{
             width: '36px',
             height: '36px',
-            borderRadius: EFFECTS.radius.sm,
-            background: isExpanded ? COLORS.accent.wash : COLORS.surface.inset,
+            borderRadius: EFFECTS.radius.md,
+            background: isExpanded ? COLORS.accent.primary : COLORS.surface.inset,
+            border: `1px solid ${isExpanded ? COLORS.accent.primary : COLORS.ink[200]}`,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             flexShrink: 0,
-          }}
-        >
-          {getIcon(card.icon, isExpanded ? COLORS.accent.primary : COLORS.ink[500])}
-        </div>
-        <h4
-          style={{
-            fontFamily: FONTS.ui,
-            fontWeight: 600,
-            fontSize: TYPE_SCALE.ui.md.size,
-            color: COLORS.ink[800],
-            flex: 1,
-            margin: 0,
-          }}
-        >
-          {card.title}
-        </h4>
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke={COLORS.ink[400]}
-          strokeWidth="1.5"
-          style={{
-            transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
             transition: EFFECTS.transition.base,
           }}
         >
-          <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      </button>
+          {getIcon(card.icon, isExpanded ? '#FFFFFF' : COLORS.ink[500])}
+        </div>
 
-      {isExpanded && (
-        <div
-          style={{
-            padding: `0 ${SPACE[5]} ${SPACE[5]} 60px`,
-            borderTop: `1px solid ${COLORS.ink[100]}`,
-          }}
-        >
-          <p
+        {/* Title and audience */}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <h4
             style={{
-              fontFamily: FONTS.body,
-              fontSize: TYPE_SCALE.body.sm.size,
-              lineHeight: TYPE_SCALE.body.sm.lineHeight,
-              color: COLORS.ink[500],
-              margin: `${SPACE[4]} 0 0 0`,
+              fontFamily: FONTS.ui,
+              fontWeight: 600,
+              fontSize: TYPE_SCALE.ui.md.size,
+              color: COLORS.ink[800],
+              margin: 0,
+              marginBottom: card.audience ? SPACE[1] : 0,
             }}
           >
-            <RichText>{card.content}</RichText>
-          </p>
+            {card.title}
+          </h4>
+          {card.audience && (
+            <span
+              style={{
+                fontFamily: FONTS.mono,
+                fontSize: TYPE_SCALE.mono.sm.size,
+                color: COLORS.ink[400],
+                letterSpacing: '0.02em',
+              }}
+            >
+              {card.audience}
+            </span>
+          )}
         </div>
-      )}
+
+        {/* Expand indicator */}
+        <div
+          style={{
+            width: '28px',
+            height: '28px',
+            borderRadius: EFFECTS.radius.full,
+            background: isExpanded ? COLORS.accent.primary : COLORS.surface.inset,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexShrink: 0,
+            transition: EFFECTS.transition.base,
+          }}
+        >
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke={isExpanded ? '#FFFFFF' : COLORS.ink[400]}
+            strokeWidth="2"
+            style={{
+              transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+              transition: EFFECTS.transition.base,
+            }}
+          >
+            <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+      </button>
+
+      {/* Expanded content with smooth animation */}
+      <div
+        style={{
+          maxHeight: isExpanded ? '1200px' : '0px',
+          opacity: isExpanded ? 1 : 0,
+          overflow: 'hidden',
+          transition: `max-height ${EFFECTS.transition.expand}, opacity ${EFFECTS.transition.base}`,
+        }}
+      >
+        <div
+          style={{
+            padding: SPACE[5],
+            paddingTop: SPACE[4],
+            borderTop: `1px solid ${COLORS.ink[100]}`,
+            background: COLORS.surface.paper,
+          }}
+        >
+          {/* Introduction paragraph */}
+          {parsedContent.intro && (
+            <p
+              style={{
+                fontFamily: FONTS.body,
+                fontSize: TYPE_SCALE.body.md.size,
+                lineHeight: TYPE_SCALE.body.md.lineHeight,
+                color: COLORS.ink[700],
+                margin: 0,
+                marginBottom: (parsedContent.teachings.length > 0 || parsedContent.technologies) ? SPACE[5] : 0,
+              }}
+            >
+              <RichText>{parsedContent.intro}</RichText>
+            </p>
+          )}
+
+          {/* What I Teach section */}
+          {parsedContent.teachings.length > 0 && (
+            <div
+              style={{
+                background: COLORS.surface.elevated,
+                borderRadius: EFFECTS.radius.md,
+                border: `1px solid ${COLORS.ink[200]}`,
+                padding: SPACE[4],
+                marginBottom: parsedContent.technologies ? SPACE[4] : 0,
+              }}
+            >
+              <h5
+                style={{
+                  fontFamily: FONTS.ui,
+                  fontSize: TYPE_SCALE.ui.sm.size,
+                  fontWeight: 600,
+                  color: COLORS.accent.primary,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  margin: 0,
+                  marginBottom: SPACE[3],
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: SPACE[2],
+                }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={COLORS.accent.primary} strokeWidth="2">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                What I Teach
+              </h5>
+              {parsedContent.teachings.length === 1 ? (
+                <p
+                  style={{
+                    fontFamily: FONTS.body,
+                    fontSize: TYPE_SCALE.body.sm.size,
+                    lineHeight: TYPE_SCALE.body.sm.lineHeight,
+                    color: COLORS.ink[600],
+                    margin: 0,
+                  }}
+                >
+                  <RichText>{parsedContent.teachings[0]}</RichText>
+                </p>
+              ) : (
+                <ul
+                  style={{
+                    margin: 0,
+                    padding: 0,
+                    listStyle: 'none',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: SPACE[2],
+                  }}
+                >
+                  {parsedContent.teachings.map((item, i) => (
+                    <li
+                      key={i}
+                      style={{
+                        fontFamily: FONTS.body,
+                        fontSize: TYPE_SCALE.body.sm.size,
+                        lineHeight: TYPE_SCALE.body.sm.lineHeight,
+                        color: COLORS.ink[600],
+                        paddingLeft: SPACE[4],
+                        position: 'relative',
+                      }}
+                    >
+                      <span
+                        style={{
+                          position: 'absolute',
+                          left: 0,
+                          top: '0.5em',
+                          width: '6px',
+                          height: '6px',
+                          borderRadius: '50%',
+                          background: COLORS.accent.light,
+                        }}
+                      />
+                      <RichText>{item}</RichText>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
+
+          {/* Technologies section */}
+          {parsedContent.technologies && (
+            <div
+              style={{
+                background: COLORS.ink[50],
+                borderRadius: EFFECTS.radius.md,
+                padding: SPACE[3],
+                display: 'flex',
+                flexWrap: 'wrap',
+                alignItems: 'center',
+                gap: SPACE[2],
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: FONTS.mono,
+                  fontSize: TYPE_SCALE.mono.sm.size,
+                  fontWeight: 600,
+                  color: COLORS.ink[500],
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  marginRight: SPACE[2],
+                }}
+              >
+                Tech Stack:
+              </span>
+              {parsedContent.technologies.split(',').map((tech, i) => (
+                <span
+                  key={i}
+                  style={{
+                    fontFamily: FONTS.mono,
+                    fontSize: TYPE_SCALE.mono.sm.size,
+                    color: COLORS.ink[600],
+                    background: COLORS.surface.elevated,
+                    border: `1px solid ${COLORS.ink[200]}`,
+                    borderRadius: EFFECTS.radius.sm,
+                    padding: `${SPACE[1]} ${SPACE[2]}`,
+                  }}
+                >
+                  {tech.trim()}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
 
-// Main CardGrid component
+// =============================================================================
+// MAIN CARD GRID
+// =============================================================================
 const CardGrid = ({ type = 'profile', columns = 3, cards }) => {
-  const [expandedIndex, setExpandedIndex] = React.useState(null);
+  const [expandedIndex, setExpandedIndex] = React.useState(0); // First expanded by default
+  const [profileExpandedIndex, setProfileExpandedIndex] = React.useState(null);
 
   if (!cards || cards.length === 0) return null;
 
-  const gridCols = {
-    2: 'repeat(2, 1fr)',
-    3: 'repeat(auto-fit, minmax(280px, 1fr))',
-    4: 'repeat(auto-fit, minmax(220px, 1fr))',
-  }[columns] || 'repeat(auto-fit, minmax(280px, 1fr))';
+  // Check if any profile cards have expanded content
+  const hasExpandableProfiles = type === 'profile' && cards.some(c => c.expandedContent);
+
+  // Grid configuration based on card type
+  const gridConfig = {
+    feature: {
+      gridTemplateColumns: 'repeat(3, 1fr)',
+      gap: SPACE[5],
+    },
+    profile: {
+      gridTemplateColumns: hasExpandableProfiles
+        ? 'repeat(auto-fit, minmax(340px, 1fr))'
+        : 'repeat(auto-fit, minmax(300px, 1fr))',
+      gap: SPACE[4],
+    },
+    topic: {
+      gridTemplateColumns: '1fr',
+      gap: SPACE[3],
+    },
+  };
+
+  const config = gridConfig[type] || gridConfig.profile;
 
   return (
-    <div style={{ marginTop: SPACE[8], marginBottom: SPACE[8] }}>
+    <div style={{ marginTop: SPACE[6], marginBottom: SPACE[6] }}>
+      {/* Section label for topic cards */}
+      {type === 'topic' && (
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: SPACE[3],
+            marginBottom: SPACE[5],
+          }}
+        >
+          <div
+            style={{
+              width: '24px',
+              height: '2px',
+              background: COLORS.accent.primary,
+            }}
+          />
+          <span
+            style={{
+              fontFamily: FONTS.mono,
+              fontSize: TYPE_SCALE.mono.sm.size,
+              fontWeight: 500,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: COLORS.ink[400],
+            }}
+          >
+            {cards.length} Teaching Areas
+          </span>
+        </div>
+      )}
+
+      {/* Section label for expandable profile cards */}
+      {hasExpandableProfiles && (
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: SPACE[3],
+            marginBottom: SPACE[5],
+          }}
+        >
+          <div
+            style={{
+              width: '24px',
+              height: '2px',
+              background: COLORS.accent.primary,
+            }}
+          />
+          <span
+            style={{
+              fontFamily: FONTS.mono,
+              fontSize: TYPE_SCALE.mono.sm.size,
+              fontWeight: 500,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: COLORS.ink[400],
+            }}
+          >
+            Click to expand
+          </span>
+        </div>
+      )}
+
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: type === 'topic' ? '1fr' : gridCols,
-          gap: SPACE[5],
+          ...config,
+          alignItems: hasExpandableProfiles ? 'start' : undefined,
         }}
       >
         {cards.map((card, i) => {
@@ -273,7 +762,16 @@ const CardGrid = ({ type = 'profile', columns = 3, cards }) => {
               );
             case 'profile':
             default:
-              return <ProfileCard key={i} card={card} index={i} />;
+              return (
+                <ProfileCard
+                  key={i}
+                  card={card}
+                  index={i}
+                  isExpanded={profileExpandedIndex === i}
+                  onToggle={() => setProfileExpandedIndex(profileExpandedIndex === i ? null : i)}
+                  hasExpandedContent={hasExpandableProfiles}
+                />
+              );
           }
         })}
       </div>
@@ -282,4 +780,4 @@ const CardGrid = ({ type = 'profile', columns = 3, cards }) => {
 };
 
 export default CardGrid;
-export { ProfileCard, FeatureCard, TopicCard, Icons };
+export { ProfileCard, FeatureCard, TopicCard };

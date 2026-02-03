@@ -69,8 +69,12 @@ const QuoteCarousel = ({ quotes }) => {
         >
           {quotes.map((quote, i) => {
             const isActive = i === activeIndex;
-            // Extract first name or short version
-            const shortName = quote.author.split(' ')[0];
+            // Show last name for cleaner tabs
+            const nameParts = quote.author.split(' ');
+            const displayName = nameParts.length > 1 ? nameParts[nameParts.length - 1] : nameParts[0];
+            // Extract company/org from title (usually after comma or the whole thing)
+            const titleParts = quote.title.split(',').map(s => s.trim());
+            const shortTitle = titleParts.length > 1 ? titleParts[titleParts.length - 1] : titleParts[0];
 
             return (
               <button
@@ -86,58 +90,69 @@ const QuoteCarousel = ({ quotes }) => {
                   transition: EFFECTS.transition.base,
                   position: 'relative',
                 }}
+                onMouseEnter={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.background = COLORS.ink[800] + '80';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.background = 'transparent';
+                  }
+                }}
               >
                 <span
                   style={{
                     fontFamily: FONTS.ui,
-                    fontSize: TYPE_SCALE.ui.xs.size,
-                    fontWeight: isActive ? 600 : 400,
-                    color: isActive ? COLORS.ink[100] : COLORS.ink[400],
+                    fontSize: TYPE_SCALE.ui.sm.size,
+                    fontWeight: isActive ? 600 : 500,
+                    color: isActive ? COLORS.ink[50] : COLORS.ink[300],
                     display: 'block',
                     whiteSpace: 'nowrap',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
                   }}
                 >
-                  {shortName}
+                  {displayName}
                 </span>
                 <span
                   style={{
                     fontFamily: FONTS.mono,
-                    fontSize: '0.625rem',
-                    color: isActive ? COLORS.accent.muted : COLORS.ink[500],
+                    fontSize: '0.6875rem',
+                    color: isActive ? COLORS.accent.light : COLORS.ink[400],
                     display: 'block',
-                    marginTop: '2px',
+                    marginTop: SPACE[1],
                     whiteSpace: 'nowrap',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
                   }}
                 >
-                  {quote.title.split(',')[0]}
+                  {shortTitle}
                 </span>
               </button>
             );
           })}
         </div>
 
-        {/* Quote content - compact */}
+        {/* Quote content - fixed height to prevent layout shift */}
         <div
           style={{
-            padding: `${SPACE[4]} ${SPACE[5]}`,
+            padding: `${SPACE[6]} ${SPACE[7]}`,
             display: 'flex',
-            gap: SPACE[4],
+            gap: SPACE[5],
             alignItems: 'flex-start',
+            minHeight: '180px',
           }}
         >
           {/* Large quote mark */}
           <div
             style={{
               fontFamily: FONTS.display,
-              fontSize: '3rem',
+              fontSize: '4.5rem',
               lineHeight: 1,
               color: COLORS.accent.primary,
-              opacity: 0.4,
-              marginTop: '-0.25rem',
+              opacity: 0.8,
+              marginTop: '-0.75rem',
               flexShrink: 0,
             }}
           >
@@ -145,36 +160,36 @@ const QuoteCarousel = ({ quotes }) => {
           </div>
 
           {/* Quote text and attribution */}
-          <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <blockquote
               style={{
                 fontFamily: FONTS.body,
-                fontSize: TYPE_SCALE.body.sm.size,
+                fontSize: TYPE_SCALE.body.lg.size,
                 fontStyle: 'italic',
-                lineHeight: 1.6,
-                color: COLORS.ink[200],
+                lineHeight: 1.7,
+                color: COLORS.ink[50],
                 margin: 0,
-                marginBottom: SPACE[3],
+                marginBottom: SPACE[4],
               }}
             >
               {activeQuote.quote}
             </blockquote>
 
-            {/* Compact attribution row */}
+            {/* Attribution row */}
             <div
               style={{
                 display: 'flex',
                 alignItems: 'baseline',
-                gap: SPACE[2],
+                gap: SPACE[3],
                 flexWrap: 'wrap',
               }}
             >
               <span
                 style={{
                   fontFamily: FONTS.ui,
-                  fontSize: TYPE_SCALE.ui.sm.size,
+                  fontSize: TYPE_SCALE.ui.md.size,
                   fontWeight: 600,
-                  color: COLORS.ink[300],
+                  color: COLORS.ink[100],
                 }}
               >
                 {activeQuote.author}
@@ -182,8 +197,8 @@ const QuoteCarousel = ({ quotes }) => {
               <span
                 style={{
                   fontFamily: FONTS.ui,
-                  fontSize: TYPE_SCALE.ui.xs.size,
-                  color: COLORS.ink[500],
+                  fontSize: TYPE_SCALE.ui.sm.size,
+                  color: COLORS.ink[300],
                 }}
               >
                 {activeQuote.title}
@@ -192,7 +207,7 @@ const QuoteCarousel = ({ quotes }) => {
                 <span
                   style={{
                     fontFamily: FONTS.mono,
-                    fontSize: '0.625rem',
+                    fontSize: TYPE_SCALE.mono.sm.size,
                     color: COLORS.accent.muted,
                     marginLeft: 'auto',
                   }}
@@ -203,21 +218,22 @@ const QuoteCarousel = ({ quotes }) => {
             </div>
           </div>
 
-          {/* Navigation arrows - compact */}
+          {/* Navigation arrows */}
           <div
             style={{
               display: 'flex',
               flexDirection: 'column',
-              gap: '4px',
+              gap: SPACE[1],
               flexShrink: 0,
+              alignSelf: 'center',
             }}
           >
             <button
               onClick={() => setActiveIndex(i => (i - 1 + quotes.length) % quotes.length)}
               style={{
-                width: '28px',
-                height: '28px',
-                borderRadius: EFFECTS.radius.sm,
+                width: '36px',
+                height: '36px',
+                borderRadius: EFFECTS.radius.md,
                 background: COLORS.ink[800],
                 border: `1px solid ${COLORS.ink[600]}`,
                 cursor: 'pointer',
@@ -226,18 +242,26 @@ const QuoteCarousel = ({ quotes }) => {
                 justifyContent: 'center',
                 transition: EFFECTS.transition.base,
               }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = COLORS.ink[700];
+                e.currentTarget.style.borderColor = COLORS.ink[500];
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = COLORS.ink[800];
+                e.currentTarget.style.borderColor = COLORS.ink[600];
+              }}
               aria-label="Previous quote"
             >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={COLORS.ink[400]} strokeWidth="2">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={COLORS.ink[300]} strokeWidth="2">
                 <path d="M18 15l-6-6-6 6" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
             <button
               onClick={() => setActiveIndex(i => (i + 1) % quotes.length)}
               style={{
-                width: '28px',
-                height: '28px',
-                borderRadius: EFFECTS.radius.sm,
+                width: '36px',
+                height: '36px',
+                borderRadius: EFFECTS.radius.md,
                 background: COLORS.ink[800],
                 border: `1px solid ${COLORS.ink[600]}`,
                 cursor: 'pointer',
@@ -246,9 +270,17 @@ const QuoteCarousel = ({ quotes }) => {
                 justifyContent: 'center',
                 transition: EFFECTS.transition.base,
               }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = COLORS.ink[700];
+                e.currentTarget.style.borderColor = COLORS.ink[500];
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = COLORS.ink[800];
+                e.currentTarget.style.borderColor = COLORS.ink[600];
+              }}
               aria-label="Next quote"
             >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={COLORS.ink[400]} strokeWidth="2">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={COLORS.ink[300]} strokeWidth="2">
                 <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
