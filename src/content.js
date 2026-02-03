@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-02-03T07:24:15.979Z
+// Generated: 2026-02-03T19:06:10.155Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -1078,7 +1078,7 @@ const CONTENT = {
             },
             {
               "type": "paragraph",
-              "text": "He works alongside **Jim Wicks** (Segal Design Institute founder) and **Mike Edmonds** (Microsoft) in the classroom. His philosophy in the **MPD² program**: outcomes over outputs. He teaches students to be **\"missionaries, not mercenaries.\"**"
+              "text": "He works alongside **Jim Wicks** (mpd² Director, Segal Design Institute) and **Mike Edmonds** (VP Agentic Commerce, PayPal) in the classroom. His philosophy in the **MPD² program**: outcomes over outputs. He teaches students to be **\"missionaries, not mercenaries.\"**"
             }
           ]
         },

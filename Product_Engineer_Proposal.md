@@ -474,7 +474,7 @@ John maintains 16 public repositories on GitHub (github.com/jrenaldi79), includi
 
 John teaches at **McCormick (Segal)**, **Kellogg/Segal (MMM)**, and **University of Illinois** (Applied AI), working across engineering and business at multiple institutions. His courses integrate AI into design thinking and product development, including building custom agents and incorporating synthetic users into research. He led **Northwestern's Business Innovation Lab (Winter 2025)** in partnership with **Google DeepMind** and served as a key panelist at **Kearney's 2024 Executive Panel on AI in Product Design**.
 
-He works alongside **Jim Wicks** (Segal Design Institute founder) and **Mike Edmonds** (Microsoft) in the classroom. His philosophy in the **MPD² program**: outcomes over outputs. He teaches students to be **"missionaries, not mercenaries."**
+He works alongside **Jim Wicks** (mpd² Director, Segal Design Institute) and **Mike Edmonds** (VP Agentic Commerce, PayPal) in the classroom. His philosophy in the **MPD² program**: outcomes over outputs. He teaches students to be **"missionaries, not mercenaries."**
 
 ### Curriculum-Advancing Work
 
