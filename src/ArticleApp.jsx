@@ -351,7 +351,7 @@ const ArticleHeader = ({ data }) => {
             <h1
               style={{
                 fontFamily: FONTS.display,
-                fontSize: 'clamp(2.5rem, 7vw, 5rem)',
+                fontSize: 'clamp(3rem, 8vw, 6rem)',
                 fontWeight: 400,
                 lineHeight: 0.95,
                 letterSpacing: '-0.03em',

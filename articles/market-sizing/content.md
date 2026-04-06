@@ -6,13 +6,15 @@
 
 ## How This Guide Fits Into Your Capstone Journey
 
-You've spent the past several months running qualitative customer discovery, talking to real people, uncovering pain points, and mapping Jobs to Be Done. You've also just been introduced to the Business Model Canvas, which gave you a structured way to think about how a business creates, delivers, and captures value.
+You've spent the past several months running qualitative customer discovery with Helen, talking to real people, uncovering pain points, and mapping their Jobs to Be Done. In winter quarter you also learned in my class about [Bob Moesta's customer interrogation technique](https://gamma.app/docs/Customer-Discovery-34l6gpd98l5o5y8) (password: presto-w26) - a structured approach to pushing past surface-level answers and getting to the causal stories behind why people actually make decisions. That work gave you something most founders don't have at this stage: direct evidence of how real customers think, what they struggle with, and what triggers them to act. You've also just been introduced to the Business Model Canvas, which gave you a structured way to think about how a business creates, delivers, and captures value.
 
 The next question you need to answer is both simple and hard: **How big is this opportunity, and where exactly do I start?**
 
 This guide walks you through that process. It covers market segmentation, the TAM/SAM/SOM hierarchy, bottom-up market sizing (and why we strongly prefer it), beachhead market selection, and how to connect all of this to the quantitative survey work you'll be doing in the coming weeks. Throughout, I'll use the real-world example of my company Jiobit, to show how these concepts play out in practice.
 
-This guide is the bridge between the qualitative work you've already done and the quantitative validation that comes next.
+This guide is the bridge between the qualitative work you've already done with Helen, Jim and Josh and the quantitative validation that comes next.
+
+One note on sequencing: in most startup contexts, you'd validate the business opportunity - sizing the market, confirming willingness to pay, stress-testing the model - before spending months building product. This program deliberately inverts that. Product-first is the right approach for MPD because learning to develop and test product is the core of what you're here for. But it does mean that business viability is catching up to the product work you've already done. Market sizing is where that catch-up happens. Use it as a reality check on the segments you've been exploring, not just as a box to check.
 
 ---
 
@@ -28,7 +30,7 @@ If you filled out the "Customer Segments" and "Value Propositions" blocks on you
 
 ## Part 2: Market Segmentation, Finding Your Tribe
 
-Before you can size a market, you need to define it. Segmentation is the process of subdividing a broad universe of potential customers into groups that share meaningful commonalities. This is where you move from "parents" to "dual-income parents of children ages 3–8 in metro areas who earn $75k+ and are early adopters of connected home technology."
+Before you can size a market, you need to define it. Segmentation is the process of subdividing a broad universe of potential customers into groups that share meaningful commonalities. This is where you move from "parents" to "dual-income parents of children ages 3-8 in metro areas who earn $75k+ and are early adopters of connected home technology."
 
 ### The Five Segmentation Lenses
 
@@ -38,7 +40,9 @@ You should look at your market through multiple lenses, not just one.
 
 **Demographic.** The countable, observable traits. For consumers, this means age, income, household composition, education. For B2B, it means company size, industry, department, job title. Demographics are your counting tools. You can't "count noses" without them.
 
-**Psychographic.** Demographics tell you *who* the customer is. Psychographics tell you *why* they buy. What are their values, attitudes, and risk tolerances? In B2B, this often comes down to vendor loyalty and willingness to adopt something new. If a company is deeply wedded to a legacy solution and unwilling to change workflows, they aren't a viable early segment regardless of how many of them there are. Think back to our class examples I provided for Jiobit and Motomaker.
+**Psychographic.** Demographics tell you *who* the customer is. Psychographics tell you *why* they buy. What are their values, attitudes, and risk tolerances? In B2B, this often comes down to vendor loyalty and willingness to adopt something new. If a company is deeply wedded to a legacy solution and unwilling to change workflows, they aren't a viable early segment regardless of how many of them there are. A concrete example: at Jiobit, parents of children with autism or special needs were a distinct psychographic sub-segment within the broader "parents of young children" demographic. They shared the same ZIP codes and income brackets as everyone else in the market, but their pain signal was fundamentally different - stronger, more urgent, and tied to specific fears that mainstream parents didn't carry the same way. They were willing to pay more, wanted features (like direct integration with 911 dispatch centers) that casual buyers didn't prioritize, and required a completely different acquisition approach and message. Same product. Entirely different customer. If you had lumped them into a single "parents" segment, you would have built messaging that reached no one well and priced in a way that left money on the table.
+
+Here's a second example that surprised us: another psychographic sub-segment at Jiobit turned out to be parents who wanted to give their kids *more* freedom - let them walk to school, play outside unsupervised, roam the neighborhood the way they did when they were kids. The product wasn't about helicopter parenting for these customers. It was almost the opposite. Jiobit was the thing that made it possible to loosen the grip. We heard early signals of this in qualitative research, but it really came into focus during our quantitative work, when we ran needs-based clustering on our survey data and saw these customers separate into a distinct segment with different motivations, different messaging triggers, and different willingness-to-pay profiles. This is exactly what your quant survey can do for you - reveal psychographic segments you sensed in interviews but couldn't yet prove or size. Think back to our class examples I provided for Jiobit and Motomaker.
 
 **Price.** Is your customer seeking a premium/performance solution or a budget/mainstream one? This is a segmentation dimension in its own right and has a big impact on your unit economics and positioning.
 
@@ -46,11 +50,33 @@ You should look at your market through multiple lenses, not just one.
 
 ### The Brainstorming Mandate
 
-In the early phase of segmentation, go for volume. Try to identify at least 10–12 potential segments without judging them. If your technology seems naturally B2C, force a B2B application. If it seems B2B, imagine a consumer use case. Seek the "crazy" ideas. They often reveal untapped niches. You'll filter ruthlessly later; right now, you want a full picture.
+In the early phase of segmentation, aim for at least 5-6 potential segments - enough that you're not just picking between two obvious options you already had in mind. Push yourself to think beyond the obvious. Vary the psychographic, vary the use case, vary the price sensitivity. If every segment on your list looks like a slight variation of the same customer, you haven't gone wide enough yet.
+
+But understand why you're doing this. The point of generating multiple options isn't to pursue multiple options - it's to create enough contrast that you're forced to commit to one. Founders who skip this step tend to default to whichever segment they happened to talk to first, or whichever sounds biggest. Going wide first gives you something to actually choose between, which makes the eventual choice defensible rather than arbitrary.
+
+One practical way to pressure-test your top candidates is to try articulating the value proposition for each one separately. If you can't write a crisp, distinct message for a segment - something that would land differently on that specific customer than it would on anyone else - it's a signal the segment isn't defined tightly enough yet. In class, you'll do this by building short landing pages for two or three of your candidate segments. The exercise forces a kind of clarity that a spreadsheet or a slide can't: you either have something specific and true to say to this person, or you don't. Teams often discover in this exercise that two segments they thought were distinct actually collapse into the same message, which tells them something important about how their segmentation is drawn.
+
+As you generate candidates, pay particular attention to the psychographic dimension - the *why* behind the purchase. Demographics tell you who the customer is and help you count them. Psychographics tell you why they buy, and that's what determines whether they talk to each other. A tightly defined psychographic almost always maps to a community: industry forums, trade shows, mom blogs, Reddit threads, Slack groups, secret Facebook groups. That community is where Word of Mouth lives. If you can't picture where your target customer gathers and talks, your psychographic isn't crisp enough yet. You'll filter ruthlessly in the next step - right now, you want a full picture to choose from.
 
 ### Synthesizing Into a Persona
 
 When you layer these lenses together, you get a persona, the specific human archetype you're building for. This is the same persona concept you encountered in customer discovery, but now grounded in segmentation data. A clear persona gives you three things: focus on a specific high-value use case, messaging that speaks directly to one person's pain, and a repeatable sales process that works the same way every time.
+
+### What Makes a Segment Actionable?
+
+Not every segment you brainstorm will be worth pursuing. As you learned in Professor Cahill's class, Kotler and Keller identify five criteria that separate a real, workable segment from a conceptual one (MPD406, Session 03):
+
+**Differentiable.** The segment should be distinguishable in terms of needs or responses to your marketing mix. If two segments respond to the same message and buy for the same reasons, they're really one segment. Remember our lecture slide on customer's sharing the same BUYING PATTERNS.
+
+**Measurable.** You need to be able to estimate the segment's size and purchasing power. If you can't count them or approximate a number, you can't size the market.
+
+**Accessible.** Can you actually reach and serve this segment through your available channels? A segment that exists in theory but can't be targeted through any practical distribution or marketing channel isn't useful.
+
+**Substantial.** The segment must be large enough and profitable enough to be worth serving. This connects directly to the beachhead sizing work you'll do later - a segment that fails this test won't sustain a business.
+
+**Actionable.** You need to be able to design an effective marketing program for this segment. If you can identify them but can't figure out how to reach them differently from everyone else, the segmentation isn't driving action.
+
+These five criteria are a good gut check before you invest time sizing a segment. If it fails on measurability, your bottom-up model will be built on guesses. If it fails on accessibility, your SOM will be near zero regardless of how large the SAM looks on paper.
 
 ---
 
@@ -96,7 +122,7 @@ That 1% is completely made up. There's no evidence behind it. You haven't valida
 
 **When top-down works (somewhat):** Existing markets being re-segmented, or "clone" products entering established categories with well-documented spending data.
 
-**When top-down fails:** New products, new categories, and breakthrough innovations where no analyst report covers your specific value proposition.
+**When top-down fails:** New products, new categories, and breakthrough innovations where no analyst report covers your specific value proposition - and in some cases, where the category itself doesn't exist yet. If you're creating a genuinely new market, there is no secondary data to reference. There's no report to slice because no one has measured it. Top-down analysis requires a pre-existing market to measure; bottom-up doesn't.
 
 ### Bottom-Up Analysis
 
@@ -209,7 +235,7 @@ To make this concrete, let's walk through how Jiobit, a small, discreet GPS loca
 
 ### The Problem (What Customer Discovery Revealed)
 
-Through extensive qualitative interviews with parents across the country, a clear pattern emerged: almost every parent had a story about losing track of their child, even briefly. The emotional intensity was extreme. Parents described feeling physically ill, unable to breathe, holding their child so tight they made them cry. This wasn't a "nice-to-have" problem. It was visceral.
+Through extensive qualitative interviews and quant surveys with parents across the country, a clear pattern emerged: almost every parent had a story about losing track of their child, even briefly. The emotional intensity was extreme. Parents described feeling physically ill, unable to breathe, holding their child so tight they made them cry. This wasn't a "nice-to-have" problem. It was visceral.
 
 Parents also expressed deep dissatisfaction with existing solutions. Bluetooth trackers only worked within 30 feet. Kids' smartwatches were too bulky for children under 8 and often restricted by school policies. Existing GPS trackers were clunky, had terrible battery life, poor data security, and cost $30/month. Smartphones weren't appropriate for young children.
 
@@ -266,6 +292,10 @@ Together, these follow-on markets represented a rough expansion map of over 319 
 
 Jiobit also mapped a "Hierarchy of Needs," starting with the foundational need (safety and location for little ones), then layering on additional services over time: pet tracking, senior safety, home safety, carpooling and scheduling, insurance partnerships, and financial tools. Each layer built on the trust established in the layer below.
 
+### How the TAM Expands Through Jobs to Be Done
+
+Consider how this played out at Jiobit. The beachhead was parents of young children - a focused segment with concentrated Word of Mouth and a clear, urgent problem. But the job to be done - keeping track of someone you're responsible for who can't fully keep track of themselves - doesn't stop at children. Parents who already owned a Jiobit also owned pets. Same household, same customer, no reacquisition cost, same underlying job. That's the next bowling pin. And what happens to children as they age? Their parents age too. Elderly parents who wander, who have dementia, who live independently but need a safety net - same job again. The TAM expands not by chasing unrelated markets but by asking: what other people or situations would hire this same job? That question, not a market report, is what should drive your roadmap.
+
 ---
 
 ## Part 7: Selecting Your Beachhead, The 7-Point Checklist
@@ -306,13 +336,13 @@ A big TAM number by itself is meaningless. You need to evaluate the quality of t
 
 ## Part 9: Connecting to Your Quantitative Survey Work
 
-In about two weeks, you'll begin designing and fielding a quantitative survey. This survey is where your qualitative customer discovery work becomes quantitative market sizing data. It's the instrument that powers your filtered bottom-up model.
+In about two weeks, you'll begin designing and fielding a quantitative survey based on what you learned with Professor Cahill from the fall quarter. This survey is where your qualitative customer discovery work becomes quantitative market sizing data. It's the instrument that powers your filtered bottom-up model.
 
 ### From Interviews to Survey: The Translation Layer
 
 ![Interview to Survey to Model: how qualitative findings become quantitative inputs](diagrams/interview-to-survey.svg)
 
-A common pitfall for first-time researchers is designing a survey from a blank page, disconnected from what they already learned in interviews. Your survey should be validating and quantifying patterns you've already observed. Here's how interview insights translate into survey variables and, ultimately, into market sizing inputs:
+A common pitfall for first-time researchers is designing a survey from a blank page, disconnected from what they already learned in interviews. Your survey should be validating and quantifying patterns you've already observed. If you used Bob Moesta's interrogation technique well, you've already pushed past the surface-level answers and into the causal stories - the specific moments, frustrations, and tradeoffs that actually drove behavior. Those causal patterns are exactly what your survey should be testing at scale. Here's how interview insights translate into survey variables and, ultimately, into market sizing inputs:
 
 | What you heard in interviews | Survey question type | What it feeds in your model |
 |---|---|---|
@@ -345,6 +375,18 @@ This is why we're combining these efforts. You get more value from a single well
 ### Survey Design Checklist
 
 Before you finalize your survey, confirm that you can answer these questions: Which specific interview hypotheses am I testing? Which questions are screeners (defining who's in my target segment)? Which variables drive my market sizing filters? Which variables drive my pricing model? What decision will each answer inform, and if I can't name the decision, should the question be in the survey at all?
+
+### Using Cluster Analysis to Discover Segments You Didn't Know You Had
+
+Your qualitative interviews will give you a working hypothesis about who your customer segments are. But some of the most important segments only become visible when you have quantitative data and can run cluster analysis across your survey responses.
+
+As you learned in Professor Cahill's class (MPD406, Sessions 02-03), the process works like this: qualitative research generates hypotheses about what dimensions matter - benefits sought, goals, attitudes, trust levels, usage behavior. You then design survey questions to capture those dimensions quantitatively, typically using Likert scales (agreement/disagreement on a set of related statements) and behavioral frequency measures. Once you have the data, cluster analysis groups your respondents based on patterns in their answers - not based on demographics, but based on what they need, what they value, and how they behave. Demographics come in afterward, when you run crosstabs to profile each cluster and figure out who these people are in countable terms.
+
+This is a critical distinction. Demographics tell you who someone is. Needs-based clustering tells you why they buy. Two people with identical demographic profiles can land in completely different clusters because they have fundamentally different motivations. That's exactly what happened at Jiobit - the "safety-anxious" parents and the "freedom-seeking" parents looked the same on paper (same age ranges, same income brackets, same household composition), but their purchase motivations, messaging triggers, and willingness-to-pay profiles were different enough that they separated cleanly in the data.
+
+The All Nutrition case from Professor Cahill's class (MPD406, Session 03) illustrates the same pattern. Focus groups initially surfaced six potential customer segments - High Performance, Advanced Hardcore, Advanced Healthy, Newbie Cautious, Newbie Credulous, and Health Compelled - based on the intersection of expertise level and attitude toward supplements. Those hypothesized segments then got validated through a quantitative survey designed around five question domains: benefits sought, goals, trust and expertise, attitudes and emotions, and customer profile. The survey didn't just confirm the segments existed - it sized them, profiled them demographically, and revealed which ones were large enough and distinct enough to target.
+
+When you design your own survey using what you learned with Professor Cahill, think about it in these terms. Your interview work with Helen gave you the hypothesis. Your survey gives you the data to test it. And cluster analysis is the tool that lets the data show you whether your hypothesized segments hold up - and whether there are segments hiding in the data that you didn't anticipate. Design your questions to cover benefits, goals, attitudes, behavioral frequency, and customer profile so you have enough dimensions for meaningful clustering.
 
 ---
 
@@ -429,6 +471,10 @@ Here's how all of these pieces connect in sequence:
 **Step 8, Map your bowling pins.** Identify 3–5 follow-on markets and articulate how winning the beachhead makes each one easier to capture.
 
 **Step 9, Run the Go/No-Go assessment.** Be honest with yourself. Adjust or pivot if needed.
+
+### Where This Goes Next
+
+A note on where this goes next: The bottom-up model you're building here is not a standalone deliverable. It's the market input to your financial model - the 10-week operating system of your business that you'll be developing alongside this coursework. Your base population, your filter percentages, your revenue-per-user assumptions - all of these will become live variables in that model. As you collect survey data and refine your customer discovery, you'll update them. The market sizing work you do now is the first draft; the financial model is where it gets stress-tested over time.
 
 ### A Note on B2B vs. B2C Projects
 
