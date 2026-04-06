@@ -1114,13 +1114,14 @@ const App = () => {
             )}
 
             {section.blocks.map((block, i) => (
-              <BlockRenderer key={i} block={block} />
+              <React.Fragment key={i}>
+                <BlockRenderer block={block} />
+                {/* Inject CardGrid after "The Five Segmentation Lenses" subsection */}
+                {section.number === 3 && block.type === 'subsection' && block.title === 'The Five Segmentation Lenses' && (
+                  <CardGrid type={SEGMENTATION_CARDS.type} columns={SEGMENTATION_CARDS.columns} cards={SEGMENTATION_CARDS.cards} />
+                )}
+              </React.Fragment>
             ))}
-
-            {/* Inject CardGrid after Part 2 content (section 3) — segmentation lenses */}
-            {section.number === 3 && (
-              <CardGrid type={SEGMENTATION_CARDS.type} columns={SEGMENTATION_CARDS.columns} cards={SEGMENTATION_CARDS.cards} />
-            )}
             {/* Inject TerminalWindow after Part 5 content (section 6) — bottom-up steps */}
             {section.number === 6 && (
               <TerminalWindow title={BOTTOMUP_TERMINAL.title} command={BOTTOMUP_TERMINAL.command} lines={BOTTOMUP_TERMINAL.lines} variant={BOTTOMUP_TERMINAL.variant} />
