@@ -18,7 +18,7 @@ One note on sequencing: in most startup contexts, you'd validate the business op
 
 ---
 
-## Part 1: Why Market Sizing Matters (And Why Focus Is Everything)
+## Why Market Sizing Matters (And Why Focus Is Everything)
 
 There's a Romanian proverb that applies well to startups: **"The person who chases two rabbits catches neither."**
 
@@ -28,7 +28,7 @@ If you filled out the "Customer Segments" and "Value Propositions" blocks on you
 
 ---
 
-## Part 2: Market Segmentation, Finding Your Tribe
+## Market Segmentation, Finding Your Tribe
 
 Before you can size a market, you need to define it. Segmentation is the process of subdividing a broad universe of potential customers into groups that share meaningful commonalities. This is where you move from "parents" to "dual-income parents of children ages 3-8 in metro areas who earn $75k+ and are early adopters of connected home technology."
 
@@ -80,7 +80,7 @@ These five criteria are a good gut check before you invest time sizing a segment
 
 ---
 
-## Part 3: The TAM Triangle, TAM, SAM, and SOM
+## The TAM Triangle, TAM, SAM, and SOM
 
 ![The TAM Triangle: concentric circles showing TAM, SAM, SOM, and Beachhead](diagrams/tam-sam-som.svg)
 
@@ -108,7 +108,7 @@ New founders tend to chase the biggest number. But a beachhead can actually be *
 
 ---
 
-## Part 4: Top-Down vs. Bottom-Up Analysis, Why We Strongly Prefer Bottom-Up
+## Top-Down vs. Bottom-Up Analysis, Why We Strongly Prefer Bottom-Up
 
 This is one of the most important distinctions in this guide.
 
@@ -149,7 +149,7 @@ An important clarification: "bottom-up" doesn't mean you can *only* use primary 
 
 ---
 
-## Part 5: The Bottom-Up Method, How to Actually Size Your Market
+## The Bottom-Up Method, How to Actually Size Your Market
 
 You can't count every potential customer in your market. That would be impossibly expensive and time-consuming. Instead, you build a model from verifiable inputs. There are two main approaches, and the one you choose depends on your product and what data you can access.
 
@@ -231,7 +231,7 @@ Either way, the underlying principle is the same: build from the ground level us
 
 ---
 
-## Part 6: Jiobit, A Real-World Bottom-Up Example
+## Jiobit, A Real-World Bottom-Up Example
 
 To make this concrete, let's walk through how Jiobit, a small, discreet GPS location tracker for young children, built its market sizing from the ground up.
 
@@ -300,7 +300,7 @@ Consider how this played out at Jiobit. The beachhead was parents of young child
 
 ---
 
-## Part 7: Selecting Your Beachhead, The 7-Point Checklist
+## Selecting Your Beachhead, The 7-Point Checklist
 
 Your beachhead is your "lead pin" in the bowling alley. Here's how to evaluate candidates:
 
@@ -322,7 +322,7 @@ Your beachhead is your "lead pin" in the bowling alley. Here's how to evaluate c
 
 ---
 
-## Part 8: Assessing Market Health, Beyond the Raw Number
+## Assessing Market Health, Beyond the Raw Number
 
 A big TAM number by itself is meaningless. You need to evaluate the quality of the opportunity through several additional lenses. Some of these you can estimate now; others will sharpen as you build your financial model over the coming weeks.
 
@@ -338,7 +338,7 @@ These lenses aren't meant to produce precise forecasts. They're meant to force y
 
 ---
 
-## Part 9: Connecting to Your Quantitative Survey Work
+## Connecting to Your Quantitative Survey Work
 
 In about two weeks, you'll begin designing and fielding a quantitative survey based on what you learned with Professor Cahill from the fall quarter. This survey is where your qualitative customer discovery work becomes quantitative market sizing data. It's the instrument that powers your filtered bottom-up model.
 
@@ -396,7 +396,7 @@ When you design your own survey using what you learned with Professor Cahill, th
 
 ---
 
-## Part 10: Common Mistakes and the Assumptions Ledger
+## Common Mistakes and the Assumptions Ledger
 
 ### Mistakes to Avoid
 
@@ -438,7 +438,7 @@ When you present your market sizing, the assumptions ledger makes it immediately
 
 ---
 
-## Part 11: The Go/No-Go Decision
+## The Go/No-Go Decision
 
 After completing your segmentation, beachhead selection, and bottom-up TAM analysis, you need to make an honest assessment. Run through these four gates:
 
@@ -454,7 +454,7 @@ If any answer is "no," go back and re-evaluate. That's not failure. It's the pro
 
 ---
 
-## Part 12: Putting It All Together, Your Workflow
+## Putting It All Together, Your Workflow
 
 ![Your Market Sizing Workflow: 9 steps from segmentation through Go/No-Go](diagrams/workflow-steps.svg)
 
