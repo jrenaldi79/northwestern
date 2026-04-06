@@ -12,7 +12,7 @@ The next question you need to answer is both simple and hard: **How big is this 
 
 This guide walks you through that process. It covers market segmentation, the TAM/SAM/SOM hierarchy, bottom-up market sizing (and why we strongly prefer it), beachhead market selection, and how to connect all of this to the quantitative survey work you'll be doing in the coming weeks. Throughout, I'll use the real-world example of my company Jiobit, to show how these concepts play out in practice.
 
-This guide is the bridge between the qualitative work you've already done with Helen, Jim and Josh and the quantitative validation that comes next.
+This guide is the bridge between the qualitative work you've already done with Helen, Professor Wicks, and Professor Campbell and the quantitative validation that comes next.
 
 One note on sequencing: in most startup contexts, you'd validate the business opportunity - sizing the market, confirming willingness to pay, stress-testing the model - before spending months building product. This program deliberately inverts that. Product-first is the right approach for MPD because learning to develop and test product is the core of what you're here for. But it does mean that business viability is catching up to the product work you've already done. Market sizing is where that catch-up happens. Use it as a reality check on the segments you've been exploring, not just as a box to check.
 
@@ -42,7 +42,7 @@ You should look at your market through multiple lenses, not just one.
 
 **Psychographic.** Demographics tell you *who* the customer is. Psychographics tell you *why* they buy. What are their values, attitudes, and risk tolerances? In B2B, this often comes down to vendor loyalty and willingness to adopt something new. If a company is deeply wedded to a legacy solution and unwilling to change workflows, they aren't a viable early segment regardless of how many of them there are. A concrete example: at Jiobit, parents of children with autism or special needs were a distinct psychographic sub-segment within the broader "parents of young children" demographic. They shared the same ZIP codes and income brackets as everyone else in the market, but their pain signal was fundamentally different - stronger, more urgent, and tied to specific fears that mainstream parents didn't carry the same way. They were willing to pay more, wanted features (like direct integration with 911 dispatch centers) that casual buyers didn't prioritize, and required a completely different acquisition approach and message. Same product. Entirely different customer. If you had lumped them into a single "parents" segment, you would have built messaging that reached no one well and priced in a way that left money on the table.
 
-Here's a second example that surprised us: another psychographic sub-segment at Jiobit turned out to be parents who wanted to give their kids *more* freedom - let them walk to school, play outside unsupervised, roam the neighborhood the way they did when they were kids. The product wasn't about helicopter parenting for these customers. It was almost the opposite. Jiobit was the thing that made it possible to loosen the grip. We heard early signals of this in qualitative research, but it really came into focus during our quantitative work, when we ran needs-based clustering on our survey data and saw these customers separate into a distinct segment with different motivations, different messaging triggers, and different willingness-to-pay profiles. This is exactly what your quant survey can do for you - reveal psychographic segments you sensed in interviews but couldn't yet prove or size. Think back to our class examples I provided for Jiobit and Motomaker.
+Here's a second example that surprised us: another psychographic sub-segment at Jiobit turned out to be parents who wanted to give their kids *more* freedom - let them walk to school, play outside unsupervised, roam the neighborhood the way they did when they were kids. The product wasn't about helicopter parenting for these customers. It was almost the opposite. Jiobit was the thing that made it possible to loosen the grip. We heard early signals of this in qualitative research, but it really came into focus during our quantitative work, when we ran needs-based clustering on our survey data and saw these customers separate into a distinct segment with different motivations, different messaging triggers, and different willingness-to-pay profiles. This is exactly what your quant survey can do for you - reveal psychographic segments you sensed in interviews but couldn't yet prove or size. The Jiobit and Motomaker examples we walked through in class illustrate this point well.
 
 **Price.** Is your customer seeking a premium/performance solution or a budget/mainstream one? This is a segmentation dimension in its own right and has a big impact on your unit economics and positioning.
 
@@ -96,7 +96,7 @@ A related but distinct concept is your **Beachhead Market** (sometimes called yo
 
 ### What Makes a Segment a Real Market?
 
-Not every group of people with something in common qualifies as a market. A segment only counts as a viable market if it passes three filters:
+Not every group of people with something in common qualifies as a viable startup market. For early-stage market entry, a segment needs to pass three filters:
 
 1. **The customers buy the same product.** Your core solution doesn't require major customization from one customer to the next.
 2. **The customers have a similar sales process.** Same persona, same value proposition, same decision-making unit and process.
@@ -143,7 +143,7 @@ An important clarification: "bottom-up" doesn't mean you can *only* use primary 
 | **Best for** | Established markets with good historical data | New products, new categories, innovative solutions |
 | **Effort required** | Low, desk research | High, field work, stakeholder interviews |
 | **Credibility** | Lower for new ventures, built on assumptions | Higher, anchored in observed reality |
-| **What it reveals** | A broad "size of the bucket" | Validated pricing, competitive differentiation, real buying triggers |
+| **What it reveals** | A broad "size of the bucket" | Evidence-based pricing inputs, competitive differentiation, real buying triggers |
 
 **The bottom line:** For your capstone projects, bottom-up analysis should be your primary methodology. Top-down figures can still be directionally useful for category context, investor framing, or as a sanity check, but the bottom-up number is the one you'll defend.
 
@@ -159,7 +159,7 @@ You can't count every potential customer in your market. That would be impossibl
 
 This is the approach most of you will use. It works especially well for consumer products and for any project where you have access to public demographic data and can field a survey to validate your key assumptions.
 
-The logic: start with a large, verifiable base population, then apply a series of evidence-based filters to narrow it down to your actual target market. Each filter should be sourced, from Census data, industry databases, published research, or your own survey results. Then multiply by revenue per user to get your market size.
+The logic: start with a large, verifiable base population, then apply a series of evidence-based filters to narrow it down to your actual target market. Each filter should be sourced, from Census data, industry databases, published research, or your own survey results. Then multiply by revenue per user to get your market size. Many of these filter percentages will come from your quantitative survey - Part 9 covers how the concepts you learned in Professor Cahill's class connect to your market sizing model.
 
 **Step 1: Identify Your Base Population**
 
@@ -197,11 +197,13 @@ The math:
 >
 > **Total End Users** × **Annualized Revenue per User** = **Bottom-Up Market Size**
 
+One discipline that trips up nearly every team: make sure your units are consistent throughout the model. If your filters operate at the household level, your multiplier converts households to users, and your pricing is per user, the chain is clean. But if you apply a person-level filter to a household count without adjusting, or price per household but multiply by individuals, the math breaks in ways that aren't obvious until someone audits it. Before you finalize your model, trace the units from top to bottom and confirm they chain correctly.
+
 ### Approach B: The End-User Density Model (Best for B2B or Niche Markets)
 
 There's a second bottom-up technique that works well for B2B products or any market where your target users are "hidden" inside larger organizations. Instead of filtering a broad population, you measure **End-User Density**, the concentration of target users within a representative unit, and then extrapolate.
 
-SensAble Technologies used this approach to size their market for haptic design devices. They couldn't find a database of every industrial designer in the world. But they could find the total number of employees at target firms (their **Countable Unit**). By visiting a few firms and counting how many industrial designers existed per 1,000 employees (the **density ratio**), they could extrapolate across the entire industry.
+Imagine a B2B version of the Jiobit problem: you're building a workplace safety wearable for warehouse workers, and you need to know how many potential users exist across the logistics industry. There's no public database of "warehouse workers who operate in high-risk zones." But you can find the total number of employees at target logistics companies (your **Countable Unit**). By surveying a handful of companies and counting how many warehouse workers operate in qualifying roles per 1,000 total employees (the **density ratio**), you can extrapolate across the industry.
 
 **How it works:**
 
@@ -249,7 +251,7 @@ Jiobit's segmentation layered multiple dimensions. Demographically, the target w
 
 ![Jiobit SAM Calculation: waterfall showing each filter with real numbers and sources](diagrams/jiobit-waterfall.svg)
 
-Here's how Jiobit sized its US Serviceable Addressable Market (SAM) using the filtered bottom-up approach, with each input sourced from public data or primary research:
+Here's how Jiobit sized its US Serviceable Addressable Market (SAM) using the filtered bottom-up approach, with each input sourced from public data or primary research. (Note: these are the historical figures used when Jiobit was raising its seed round in 2015-2016. Your own models should use current data sources.)
 
 **Base Population:** US households with children under 18 and income above $40k.
 Source: U.S. Census Bureau, 2009–2013 5-Year American Community Survey. **Count: 22.6 million households.**
@@ -278,7 +280,7 @@ Also notice: this is the SAM (Serviceable Addressable Market), not the TAM. Jiob
 
 ![Bowling Pin Strategy: Jiobit market sequencing from beachhead through follow-on markets](diagrams/bowling-pins.svg)
 
-Jiobit didn't try to attack the entire $3.5B SAM on day one. The beachhead was the core use case: safety and real-time location for young children (ages 1–9) in higher-income US households. This segment had the strongest emotional urgency, the clearest product-market fit, and the highest Word of Mouth potential. Parents of young children talk to each other constantly.
+Jiobit didn't try to attack the entire $3.5B SAM on day one. The beachhead was the core use case: safety and real-time location for young children in higher-income US households. The beachhead age range (roughly 1-9) was slightly broader than the SAM filter (3-10) because the product worked for toddlers too, even though the quantitative survey focused on the 3-10 bracket where the problem was most acute. This segment had the strongest emotional urgency, the clearest product-market fit, and the highest Word of Mouth potential. Parents of young children talk to each other constantly.
 
 From that beachhead, Jiobit mapped out follow-on markets, adjacent "bowling pins" that could be knocked down using the same core technology and brand trust:
 
@@ -322,15 +324,17 @@ Your beachhead is your "lead pin" in the bowling alley. Here's how to evaluate c
 
 ## Part 8: Assessing Market Health, Beyond the Raw Number
 
-A big TAM number by itself is meaningless. You need to evaluate the quality of the opportunity through four additional lenses:
+A big TAM number by itself is meaningless. You need to evaluate the quality of the opportunity through several additional lenses. Some of these you can estimate now; others will sharpen as you build your financial model over the coming weeks.
 
-**Profitability Range.** What are the margins in this segment? A $10M market with 80% margins can be far more attractive than a $100M market with 2% margins.
+**Profitability Range.** What are the margins in this segment? A $10M market with 80% margins can be far more attractive than a $100M market with 2% margins. For hardware products, look at your bill of materials relative to your selling price. For SaaS or subscription models, look at your cost to serve. At this stage you won't have precise numbers, but you should have a directional sense of whether your unit economics are healthy or strained. If the margin math doesn't work even with generous assumptions, the market size number doesn't matter.
 
-**CAGR (Compound Annual Growth Rate).** Is this market expanding or contracting? A 30% annual growth rate means the opportunity is getting bigger every year. A shrinking market means you're fighting over a diminishing pie.
+**CAGR (Compound Annual Growth Rate).** Is this market expanding or contracting? A 30% annual growth rate means the opportunity is getting bigger every year. A shrinking market means you're fighting over a diminishing pie. You can often find CAGR estimates in industry reports, analyst briefs, or investor decks for adjacent markets. Even a rough directional read (growing fast, growing slowly, flat, declining) is useful context for your go/no-go decision.
 
-**Time to 20% Market Share.** How quickly can you reach a dominant position? The longer it takes, the more capital you need and the more exposure you have to competitive response.
+**Competitive Density.** How crowded is the space, and how entrenched are the incumbents? A market with one dominant player who owns the customer relationship is a very different challenge than a fragmented market with no clear leader. Map who's already serving your target customer, how well they're doing it, and where the gaps are. This is less about precise numbers and more about strategic awareness - is there room for you to win, or would you be fighting an uphill battle against a well-funded incumbent?
 
-**Anticipated Maximum Market Share.** What percentage can you realistically hold? In some markets, a single player can capture 60%+. In others, the ceiling is 15%.
+**Customer Acquisition Feasibility.** Can you realistically reach these customers at a cost that makes the economics work? A massive addressable market doesn't help if the customers are scattered, hard to identify, or expensive to reach. Think about the channels available to you (organic Word of Mouth, paid digital, partnerships, retail) and whether the acquisition cost is in proportion to the lifetime value. We'll dig deeper into willingness to pay and unit economics in upcoming lectures, but even at this stage, you should have a gut sense of whether acquiring customers in this segment is practical or prohibitively expensive.
+
+These lenses aren't meant to produce precise forecasts. They're meant to force you to think beyond the raw market size number and ask: is this a market where I can actually build a profitable, defensible business?
 
 ---
 
@@ -354,9 +358,11 @@ A common pitfall for first-time researchers is designing a survey from a blank p
 
 The key principle: your survey should validate patterns from your interviews, not start from scratch. Every question should connect to either a filter in your market sizing model or a pricing input.
 
+A practical note on how this works: when your survey comes back, you'll need to decide what threshold turns a response distribution into a filter percentage. For example, if you ask respondents to rate problem severity on a 1-7 scale and 42% rate it a 6 or 7, that 42% becomes your "high-severity" filter in the model. If 68% say they would "definitely" or "probably" purchase at your target price point, that 68% is your interest filter - though you should discount it, since stated intent always overstates actual purchase behavior. There's no single right threshold for every question, but the logic should be explicit and defensible: state the cutoff you used, explain why, and flag it in your assumptions ledger.
+
 ### Willingness to Pay Questions
 
-Your customer discovery interviews gave you qualitative signals about what people value and what they'd consider paying. The survey lets you quantify those signals across a larger sample. You'll be testing price sensitivity, feature prioritization, and the gap between "interested" and "willing to commit money."
+Your customer discovery interviews gave you qualitative signals about what people value and what they'd consider paying. The survey lets you quantify those signals across a larger sample. You'll be testing price sensitivity, feature prioritization, and the gap between "interested" and "willing to commit money." We'll go much deeper on willingness-to-pay methodology in upcoming lectures. For now, the key point is that your survey needs to capture pricing data in a form your model can use.
 
 ### Density and Filter Questions
 
@@ -454,7 +460,7 @@ If any answer is "no," go back and re-evaluate. That's not failure. It's the pro
 
 Here's how all of these pieces connect in sequence:
 
-**Step 1, Segmentation.** Using the five lenses (geographic, demographic, psychographic, price, distribution), brainstorm at least 10–12 potential market segments. Don't filter yet.
+**Step 1, Segmentation.** Using the five lenses (geographic, demographic, psychographic, price, distribution), brainstorm at least 5-6 potential market segments. Don't filter yet.
 
 **Step 2, Prioritization.** Apply the 7-point beachhead checklist to narrow your list. Look for segments with funded customers, direct accessibility, compelling reasons to buy, and strategic follow-on into adjacent markets.
 
@@ -462,13 +468,13 @@ Here's how all of these pieces connect in sequence:
 
 **Step 4, Identify your base population and filters.** Find the verifiable base population count in a public database. Map out the demographic and behavioral filters you'll need to narrow it to your target segment. Note which filters you already have sources for and which your survey will need to provide.
 
-**Step 5, Design your quant survey.** Build in screening questions (to establish your filter percentages), willingness-to-pay questions (to establish revenue per user), and density/multiplier questions (to establish users per unit). Every question should connect to a specific input in your bottom-up model.
+**Step 5, Identify your data needs.** Map out the specific inputs your model requires: filter percentages, willingness-to-pay ranges, and density/multiplier estimates. Flag which inputs you can source from existing data and which will require primary research. Your quant survey (coming in follow-on weeks) will fill in the gaps.
 
 **Step 6, Calculate your bottom-up SAM and beachhead size.** Apply the filtered bottom-up formula: Base Population × Filters × Users per Unit × Revenue per User. Label your output clearly (TAM, SAM, or beachhead). Compare against any available top-down data as a sanity check.
 
 **Step 7, Build your assumptions ledger.** Label every input by confidence level. Flag placeholder assumptions that need further validation.
 
-**Step 8, Map your bowling pins.** Identify 3–5 follow-on markets and articulate how winning the beachhead makes each one easier to capture.
+**Step 8, Map your bowling pins.** Identify a couple of follow-on markets and articulate how winning the beachhead makes each one easier to capture.
 
 **Step 9, Run the Go/No-Go assessment.** Be honest with yourself. Adjust or pivot if needed.
 
