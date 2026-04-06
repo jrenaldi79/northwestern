@@ -44,9 +44,9 @@
   <text x="80" y="316" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">Three-filter test: same product,</text>
   <text x="80" y="329" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">similar sales process, WOM exists.</text>
 
-  <!-- Cross arrow -->
-  <path d="M71,335 C130,375 220,375 282,335" fill="none" stroke="#D4D4D8" stroke-width="1" stroke-dasharray="4,3"/>
-  <polygon points="279,339 288,332 281,329" fill="#D4D4D8"/>
+  <!-- Arrow between phase headers: Define & Segment → Research & Size -->
+  <line x1="262" y1="106" x2="272" y2="106" stroke="#D4D4D8" stroke-width="1.5"/>
+  <polygon points="270,102 277,106 270,110" fill="#D4D4D8"/>
 
   <!-- COLUMN 2 -->
   <!-- Step 4 -->
@@ -76,9 +76,9 @@
   <text x="325" y="316" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">Base × Filters × Users/Unit</text>
   <text x="325" y="329" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">× Revenue/User. Label output clearly.</text>
 
-  <!-- Cross arrow -->
-  <path d="M316,335 C375,375 465,375 527,335" fill="none" stroke="#D4D4D8" stroke-width="1" stroke-dasharray="4,3"/>
-  <polygon points="524,339 533,332 526,329" fill="#D4D4D8"/>
+  <!-- Arrow between phase headers: Research & Size → Validate & Plan -->
+  <line x1="507" y1="106" x2="517" y2="106" stroke="#D4D4D8" stroke-width="1.5"/>
+  <polygon points="515,102 522,106 515,110" fill="#D4D4D8"/>
 
   <!-- COLUMN 3 -->
   <!-- Step 7 -->
