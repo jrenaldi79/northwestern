@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 370" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="680" height="370" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="680" height="3" fill="#5B21B6"/>
+
+  <defs>
+    <linearGradient id="confBar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="50%" stop-color="#D97706"/>
+      <stop offset="100%" stop-color="#EF4444"/>
+    </linearGradient>
+  </defs>
+
+  <text x="45" y="36" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; font-weight:500; fill:#A1A1AA; letter-spacing:0.12em;">TRANSPARENCY TOOL</text>
+  <text x="45" y="66" style="font-size:26px; font-weight:400; fill:#0A0A0B; letter-spacing:-0.03em;">The Assumptions Ledger</text>
+  <line x1="45" y1="78" x2="125" y2="78" stroke="#5B21B6" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Tier 1 -->
+  <rect x="35" y="95" width="590" height="44" rx="4" fill="#FFFFFF" stroke="#059669" stroke-width="1.5" stroke-opacity="0.4"/>
+  <circle cx="60" cy="117" r="13" fill="#059669"/>
+  <text x="60" y="121" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:12px; font-weight:700; fill:#fff;">1</text>
+  <text x="84" y="112" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:600; fill:#27272A;">Sourced Fact</text>
+  <text x="84" y="128" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">Credible public database: Census, BLS, SEC filings, government statistics</text>
+  <text x="605" y="117" text-anchor="end" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:9px; font-weight:600; fill:#059669; letter-spacing:0.08em;">HIGHEST</text>
+
+  <!-- Tier 2 -->
+  <rect x="35" y="147" width="590" height="44" rx="4" fill="#FFFFFF" stroke="#0891B2" stroke-width="1.5" stroke-opacity="0.3"/>
+  <circle cx="60" cy="169" r="13" fill="#0891B2"/>
+  <text x="60" y="173" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:12px; font-weight:700; fill:#fff;">2</text>
+  <text x="84" y="164" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:600; fill:#27272A;">Research-Derived Estimate</text>
+  <text x="84" y="180" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">Published study or commissioned survey with real sample size and methodology</text>
+
+  <!-- Tier 3 -->
+  <rect x="35" y="199" width="590" height="44" rx="4" fill="#FFFFFF" stroke="#D97706" stroke-width="1.5" stroke-opacity="0.3"/>
+  <circle cx="60" cy="221" r="13" fill="#D97706"/>
+  <text x="60" y="225" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:12px; font-weight:700; fill:#fff;">3</text>
+  <text x="84" y="216" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:600; fill:#27272A;">Survey-Derived Estimate</text>
+  <text x="84" y="232" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">Your own survey data. Confidence depends on sample size, design, representativeness</text>
+
+  <!-- Tier 4 -->
+  <rect x="35" y="251" width="590" height="44" rx="4" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1.5" stroke-opacity="0.3"/>
+  <circle cx="60" cy="273" r="13" fill="#F59E0B"/>
+  <text x="60" y="277" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:12px; font-weight:700; fill:#fff;">4</text>
+  <text x="84" y="268" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:600; fill:#27272A;">Interview-Derived Estimate</text>
+  <text x="84" y="284" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">Patterns from qualitative interviews. Directional signal, small sample, selection bias</text>
+
+  <!-- Tier 5 -->
+  <rect x="35" y="303" width="590" height="44" rx="4" fill="#FFFFFF" stroke="#EF4444" stroke-width="1.5" stroke-opacity="0.4"/>
+  <circle cx="60" cy="325" r="13" fill="#EF4444"/>
+  <text x="60" y="329" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:12px; font-weight:700; fill:#fff;">5</text>
+  <text x="84" y="320" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:600; fill:#27272A;">Placeholder Assumption</text>
+  <text x="84" y="336" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">Needed to make the model work but not yet validated. Flag prominently.</text>
+  <text x="605" y="325" text-anchor="end" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:9px; font-weight:600; fill:#EF4444; letter-spacing:0.08em;">LOWEST</text>
+
+  <!-- Gradient bar -->
+  <rect x="640" y="100" width="14" height="242" rx="7" fill="url(#confBar)"/>
+  <text x="647" y="93" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:7px; fill:#A1A1AA; letter-spacing:0.08em;">CONFIDENCE</text>
+
+  <!-- Footer -->
+  <line x1="35" y1="356" x2="640" y2="356" stroke="#E4E4E7" stroke-width="0.5"/>
+  <text x="35" y="368" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:9px; fill:#A1A1AA; letter-spacing:0.1em;">MPD CAPSTONE GUIDE</text>
+  <text x="640" y="368" text-anchor="end" font-family="'IBM Plex Mono', monospace" style="font-size:9px; fill:#A1A1AA;">06 / Transparency</text>
+</svg>

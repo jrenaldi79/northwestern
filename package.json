@@ -11,7 +11,10 @@
     "validate": "node scripts/validate-build.js",
     "verify": "node scripts/verify-artifact.js",
     "all": "npm run parse && npm run build && npm run verify",
-    "sync-docs": "node scripts/sync-agent-docs.js"
+    "sync-docs": "node scripts/sync-agent-docs.js",
+    "parse:article": "node scripts/parse-article.js",
+    "build:article": "node scripts/parse-article.js && node scripts/build-article.js && node scripts/update-article-preview.js",
+    "build:all": "npm run build && npm run build:article"
   },
   "keywords": [
     "proposal",

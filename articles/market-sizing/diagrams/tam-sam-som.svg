@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" font-family="Georgia, 'Times New Roman', serif">
+  <!--
+    STYLE D: NORTHWESTERN DESIGN SYSTEM
+    Matched to: jrenaldi79.github.io/northwestern/
+    Palette: Paper #FAFAFA, Zinc ink scale, Deep violet #5B21B6 accent
+    Typography: Serif display (Fraunces fallback → Georgia), sans UI labels (DM Sans fallback → system sans), mono for data
+    Character: Editorial, institutional, print-quality, generous spacing
+  -->
+  <defs>
+    <!-- Subtle paper texture via noise -->
+    <filter id="paper">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="grayNoise"/>
+      <feBlend in="SourceGraphic" in2="grayNoise" mode="multiply" result="textured"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.03"/>
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" in2="textured" mode="normal"/>
+    </filter>
+  </defs>
+
+  <!-- Background: paper white -->
+  <rect width="800" height="560" fill="#FAFAFA"/>
+
+  <!-- Subtle top border accent -->
+  <rect x="0" y="0" width="800" height="3" fill="#5B21B6"/>
+
+  <!-- Section label - small caps, tracked out, muted -->
+  <text x="60" y="40" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; font-weight:500; fill:#A1A1AA; letter-spacing:0.12em;">MARKET SIZING</text>
+
+  <!-- Title - large editorial serif -->
+  <text x="60" y="76" style="font-size:32px; font-weight:400; fill:#0A0A0B; letter-spacing:-0.03em;">The TAM Triangle</text>
+
+  <!-- Subtitle -->
+  <text x="60" y="100" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:400; fill:#71717A; letter-spacing:-0.01em;">The funnel narrows from theoretical ceiling to where you actually start.</text>
+
+  <!-- Thin accent divider -->
+  <line x1="60" y1="114" x2="140" y2="114" stroke="#5B21B6" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- === CONCENTRIC ELLIPSES === -->
+  <!-- TAM ring - lightest, dashed -->
+  <ellipse cx="365" cy="320" rx="285" ry="195" fill="#F4F4F5" stroke="#D4D4D8" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- SAM ring -->
+  <ellipse cx="365" cy="335" rx="200" ry="140" fill="#FFFFFF" stroke="#D4D4D8" stroke-width="1"/>
+  <!-- Subtle elevated shadow effect via double stroke -->
+  <ellipse cx="365" cy="335" rx="200" ry="140" fill="none" stroke="#E4E4E7" stroke-width="0.5" transform="translate(0,1)"/>
+
+  <!-- SOM ring - slightly tinted with accent wash -->
+  <ellipse cx="365" cy="350" rx="115" ry="82" fill="rgba(91, 33, 182, 0.04)" stroke="#D4D4D8" stroke-width="1"/>
+
+  <!-- Beachhead - solid accent -->
+  <ellipse cx="365" cy="368" rx="54" ry="38" fill="#5B21B6"/>
+  <!-- Subtle glow -->
+  <ellipse cx="365" cy="368" rx="62" ry="44" fill="none" stroke="rgba(91, 33, 182, 0.08)" stroke-width="8"/>
+
+  <!-- === LABELS === -->
+  <!-- TAM -->
+  <text x="365" y="155" text-anchor="middle" style="font-size:24px; font-weight:400; fill:#27272A; letter-spacing:0.02em;">TAM</text>
+  <text x="365" y="175" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:11px; font-weight:400; fill:#A1A1AA; letter-spacing:0.05em;">Total Addressable Market</text>
+  <text x="365" y="193" text-anchor="middle" style="font-size:11px; fill:#A1A1AA; font-style:italic; letter-spacing:-0.01em;">"Everyone who could ever buy this"</text>
+
+  <!-- SAM -->
+  <text x="365" y="232" text-anchor="middle" style="font-size:20px; font-weight:400; fill:#27272A; letter-spacing:0.02em;">SAM</text>
+  <text x="365" y="250" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:11px; font-weight:400; fill:#A1A1AA; letter-spacing:0.05em;">Serviceable Addressable Market</text>
+  <text x="365" y="268" text-anchor="middle" style="font-size:11px; fill:#A1A1AA; font-style:italic; letter-spacing:-0.01em;">"Everyone we can realistically reach"</text>
+
+  <!-- SOM -->
+  <text x="365" y="315" text-anchor="middle" style="font-size:16px; font-weight:400; fill:#3F3F46; letter-spacing:0.02em;">SOM</text>
+  <text x="365" y="332" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; font-weight:400; fill:#71717A; letter-spacing:0.05em;">Serviceable Obtainable Market</text>
+
+  <!-- Beachhead -->
+  <text x="365" y="365" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:11px; font-weight:600; fill:#FFFFFF; letter-spacing:0.1em;">BEACHHEAD</text>
+  <text x="365" y="381" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:9px; font-weight:400; fill:rgba(255,255,255,0.65); letter-spacing:0.05em;">Your starting point</text>
+
+  <!-- === ANNOTATIONS === -->
+  <!-- SOM callout - thin leader line with accent dot -->
+  <line x1="482" y1="322" x2="590" y2="290" stroke="#D4D4D8" stroke-width="0.8"/>
+  <circle cx="590" cy="290" r="2.5" fill="#5B21B6"/>
+
+  <rect x="602" y="274" width="165" height="38" rx="4" fill="#FFFFFF" stroke="#E4E4E7" stroke-width="0.5"/>
+  <text x="614" y="291" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:12px; font-weight:600; fill:#27272A; letter-spacing:-0.01em;">SOM is a number</text>
+  <text x="614" y="306" style="font-size:11px; fill:#71717A; font-style:italic;">you calculate</text>
+
+  <!-- Beachhead callout -->
+  <line x1="421" y1="370" x2="590" y2="346" stroke="rgba(91, 33, 182, 0.3)" stroke-width="0.8"/>
+  <circle cx="590" cy="346" r="2.5" fill="#5B21B6"/>
+
+  <rect x="602" y="330" width="165" height="38" rx="4" fill="rgba(91, 33, 182, 0.04)" stroke="rgba(91, 33, 182, 0.15)" stroke-width="0.5"/>
+  <text x="614" y="347" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:12px; font-weight:600; fill:#5B21B6; letter-spacing:-0.01em;">Beachhead is a strategic</text>
+  <text x="614" y="362" style="font-size:11px; fill:#7C3AED; font-style:italic;">choice you make</text>
+
+  <!-- === FOOTER === -->
+  <line x1="60" y1="520" x2="740" y2="520" stroke="#E4E4E7" stroke-width="0.5"/>
+  <text x="60" y="542" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:9px; fill:#A1A1AA; letter-spacing:0.1em;">MPD CAPSTONE GUIDE</text>
+  <text x="740" y="542" text-anchor="end" font-family="'IBM Plex Mono', 'JetBrains Mono', monospace" style="font-size:9px; fill:#A1A1AA; letter-spacing:0.02em;">01 / Market Sizing</text>
+</svg>

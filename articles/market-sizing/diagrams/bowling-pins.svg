@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 560" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="560" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="720" height="3" fill="#5B21B6"/>
+
+  <text x="50" y="38" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; font-weight:500; fill:#A1A1AA; letter-spacing:0.12em;">STRATEGY</text>
+  <text x="50" y="72" style="font-size:30px; font-weight:400; fill:#0A0A0B; letter-spacing:-0.03em;">Bowling Pin Strategy</text>
+  <text x="50" y="94" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:400; fill:#71717A;">Dominate one pin, then use momentum to knock down the next.</text>
+  <line x1="50" y1="108" x2="130" y2="108" stroke="#5B21B6" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Back row (Row 4) -->
+  <ellipse cx="230" cy="145" rx="95" ry="38" fill="#F4F4F5" stroke="#D4D4D8" stroke-width="1"/>
+  <text x="230" y="142" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:11px; font-weight:600; fill:#3F3F46;">Adult Personal Safety</text>
+  <text x="230" y="157" text-anchor="middle" font-family="'IBM Plex Mono', monospace" style="font-size:9px; fill:#A1A1AA;">64M+ users</text>
+
+  <ellipse cx="480" cy="145" rx="95" ry="38" fill="#F4F4F5" stroke="#D4D4D8" stroke-width="1"/>
+  <text x="480" y="142" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:11px; font-weight:600; fill:#3F3F46;">Seniors</text>
+  <text x="480" y="157" text-anchor="middle" font-family="'IBM Plex Mono', monospace" style="font-size:9px; fill:#A1A1AA;">83M users</text>
+
+  <!-- Row 3 -->
+  <ellipse cx="280" cy="245" rx="95" ry="38" fill="#FFFFFF" stroke="#D4D4D8" stroke-width="1"/>
+  <text x="280" y="242" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:11px; font-weight:600; fill:#3F3F46;">Pets</text>
+  <text x="280" y="257" text-anchor="middle" font-family="'IBM Plex Mono', monospace" style="font-size:9px; fill:#A1A1AA;">150M in US</text>
+
+  <ellipse cx="450" cy="245" rx="95" ry="38" fill="#FFFFFF" stroke="#D4D4D8" stroke-width="1"/>
+  <text x="450" y="242" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:11px; font-weight:600; fill:#3F3F46;">Older Children (9–18)</text>
+  <text x="450" y="257" text-anchor="middle" font-family="'IBM Plex Mono', monospace" style="font-size:9px; fill:#A1A1AA;">~20M users</text>
+
+  <!-- Row 2 -->
+  <ellipse cx="355" cy="345" rx="100" ry="40" fill="rgba(91, 33, 182, 0.04)" stroke="rgba(91, 33, 182, 0.15)" stroke-width="1"/>
+  <text x="355" y="342" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:11px; font-weight:600; fill:#5B21B6;">Children w/ Special Needs</text>
+  <text x="355" y="357" text-anchor="middle" font-family="'IBM Plex Mono', monospace" style="font-size:9px; fill:#7C3AED;">13.5M in US</text>
+
+  <!-- BEACHHEAD -->
+  <ellipse cx="355" cy="450" rx="110" ry="48" fill="#5B21B6"/>
+  <ellipse cx="355" cy="450" rx="118" ry="54" fill="none" stroke="rgba(91, 33, 182, 0.08)" stroke-width="8"/>
+  <text x="355" y="432" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:9px; font-weight:500; fill:rgba(255,255,255,0.6); letter-spacing:0.12em;">BEACHHEAD</text>
+  <text x="355" y="450" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:600; fill:#FFFFFF;">Young Children (1–9)</text>
+  <text x="355" y="466" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:600; fill:#FFFFFF;">Safety &amp; Location</text>
+  <text x="355" y="482" text-anchor="middle" font-family="'IBM Plex Mono', monospace" style="font-size:10px; fill:rgba(255,255,255,0.7);">$3.5B US SAM</text>
+
+  <!-- Connection lines -->
+  <line x1="355" y1="402" x2="355" y2="385" stroke="#D4D4D8" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="310" y1="310" x2="280" y2="283" stroke="#D4D4D8" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="400" y1="310" x2="450" y2="283" stroke="#D4D4D8" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="248" y1="212" x2="230" y2="183" stroke="#D4D4D8" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="480" y1="212" x2="480" y2="183" stroke="#D4D4D8" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Expansion arrow -->
+  <line x1="60" y1="475" x2="60" y2="135" stroke="#E4E4E7" stroke-width="1.5"/>
+  <polygon points="54,138 60,125 66,138" fill="#E4E4E7"/>
+  <text x="46" y="305" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:9px; fill:#A1A1AA; letter-spacing:0.1em;" transform="rotate(-90, 46, 305)">EXPANSION DIRECTION</text>
+
+  <!-- Why box -->
+  <rect x="560" y="415" width="140" height="88" rx="4" fill="#FFFFFF" stroke="#E4E4E7" stroke-width="0.5"/>
+  <text x="630" y="434" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:9px; font-weight:600; fill:#5B21B6; letter-spacing:0.08em;">WHY THIS SEQUENCE?</text>
+  <text x="630" y="452" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#52525B;">Same core technology</text>
+  <text x="630" y="466" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#52525B;">Brand trust transfers</text>
+  <text x="630" y="480" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#52525B;">Word of Mouth crosses</text>
+  <text x="630" y="494" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#52525B;">between adjacent pins</text>
+
+  <!-- Expansion map -->
+  <rect x="560" y="130" width="140" height="42" rx="4" fill="rgba(91, 33, 182, 0.04)" stroke="rgba(91, 33, 182, 0.15)" stroke-width="0.5"/>
+  <text x="630" y="148" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:9px; font-weight:600; fill:#5B21B6; letter-spacing:0.08em;">TOTAL EXPANSION</text>
+  <text x="630" y="164" text-anchor="middle" font-family="'IBM Plex Mono', monospace" style="font-size:10px; fill:#52525B;">319M+ units / $9B+</text>
+
+  <!-- Footer -->
+  <line x1="50" y1="520" x2="670" y2="520" stroke="#E4E4E7" stroke-width="0.5"/>
+  <text x="50" y="534" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:9px; fill:#A1A1AA; letter-spacing:0.1em;">MPD CAPSTONE GUIDE</text>
+  <text x="670" y="534" text-anchor="end" font-family="'IBM Plex Mono', monospace" style="font-size:9px; fill:#A1A1AA;">04 / Strategy</text>
+</svg>

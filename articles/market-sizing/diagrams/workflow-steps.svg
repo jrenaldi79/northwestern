@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 530" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="780" height="530" fill="#FAFAFA"/>
+  <rect x="0" y="0" width="780" height="3" fill="#5B21B6"/>
+
+  <text x="50" y="36" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; font-weight:500; fill:#A1A1AA; letter-spacing:0.12em;">YOUR WORKFLOW</text>
+  <text x="50" y="66" style="font-size:28px; font-weight:400; fill:#0A0A0B; letter-spacing:-0.03em;">Market Sizing in Nine Steps</text>
+  <line x1="50" y1="78" x2="130" y2="78" stroke="#5B21B6" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Phase headers -->
+  <rect x="30" y="94" width="230" height="24" rx="4" fill="rgba(91, 33, 182, 0.06)" stroke="rgba(91, 33, 182, 0.12)" stroke-width="0.5"/>
+  <text x="145" y="110" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:9px; font-weight:600; fill:#5B21B6; letter-spacing:0.1em;">DEFINE &amp; SEGMENT</text>
+
+  <rect x="275" y="94" width="230" height="24" rx="4" fill="rgba(8, 145, 178, 0.06)" stroke="rgba(8, 145, 178, 0.15)" stroke-width="0.5"/>
+  <text x="390" y="110" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:9px; font-weight:600; fill:#0891B2; letter-spacing:0.1em;">RESEARCH &amp; SIZE</text>
+
+  <rect x="520" y="94" width="230" height="24" rx="4" fill="rgba(217, 119, 6, 0.06)" stroke="rgba(217, 119, 6, 0.15)" stroke-width="0.5"/>
+  <text x="635" y="110" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:9px; font-weight:600; fill:#D97706; letter-spacing:0.1em;">VALIDATE &amp; PLAN</text>
+
+  <!-- COLUMN 1 -->
+  <!-- Step 1 -->
+  <circle cx="55" cy="155" r="16" fill="#5B21B6"/>
+  <text x="55" y="160" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:700; fill:#fff;">1</text>
+  <text x="80" y="150" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:600; fill:#27272A;">Segmentation</text>
+  <text x="80" y="166" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">Brainstorm 10–12 segments using</text>
+  <text x="80" y="179" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">the five lenses. Don't filter yet.</text>
+
+  <line x1="55" y1="178" x2="55" y2="200" stroke="#D4D4D8" stroke-width="1"/>
+  <polygon points="50,198 55,207 60,198" fill="#D4D4D8"/>
+
+  <!-- Step 2 -->
+  <circle cx="55" cy="230" r="16" fill="#5B21B6"/>
+  <text x="55" y="235" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:700; fill:#fff;">2</text>
+  <text x="80" y="225" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:600; fill:#27272A;">Prioritize</text>
+  <text x="80" y="241" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">Apply the 7-point beachhead checklist</text>
+  <text x="80" y="254" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">to narrow your list.</text>
+
+  <line x1="55" y1="253" x2="55" y2="275" stroke="#D4D4D8" stroke-width="1"/>
+  <polygon points="50,273 55,282 60,273" fill="#D4D4D8"/>
+
+  <!-- Step 3 -->
+  <circle cx="55" cy="305" r="16" fill="#7C3AED"/>
+  <text x="55" y="310" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:700; fill:#fff;">3</text>
+  <text x="80" y="300" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:600; fill:#27272A;">Validate Market Def.</text>
+  <text x="80" y="316" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">Three-filter test: same product,</text>
+  <text x="80" y="329" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">similar sales process, WOM exists.</text>
+
+  <!-- Cross arrow -->
+  <path d="M71,335 C130,375 220,375 282,335" fill="none" stroke="#D4D4D8" stroke-width="1" stroke-dasharray="4,3"/>
+  <polygon points="279,339 288,332 281,329" fill="#D4D4D8"/>
+
+  <!-- COLUMN 2 -->
+  <!-- Step 4 -->
+  <circle cx="300" cy="155" r="16" fill="#0891B2"/>
+  <text x="300" y="160" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:700; fill:#fff;">4</text>
+  <text x="325" y="150" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:600; fill:#27272A;">Identify Base Pop. + Filters</text>
+  <text x="325" y="166" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">Find verifiable base count in public</text>
+  <text x="325" y="179" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">data. Map needed filters and sources.</text>
+
+  <line x1="300" y1="178" x2="300" y2="200" stroke="#D4D4D8" stroke-width="1"/>
+  <polygon points="295,198 300,207 305,198" fill="#D4D4D8"/>
+
+  <!-- Step 5 -->
+  <circle cx="300" cy="230" r="16" fill="#0891B2"/>
+  <text x="300" y="235" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:700; fill:#fff;">5</text>
+  <text x="325" y="225" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:600; fill:#27272A;">Design Quant Survey</text>
+  <text x="325" y="241" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">Screeners, WTP, density/multiplier</text>
+  <text x="325" y="254" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">questions. Every Q feeds the model.</text>
+
+  <line x1="300" y1="253" x2="300" y2="275" stroke="#D4D4D8" stroke-width="1"/>
+  <polygon points="295,273 300,282 305,273" fill="#D4D4D8"/>
+
+  <!-- Step 6 -->
+  <circle cx="300" cy="305" r="16" fill="#0E7490"/>
+  <text x="300" y="310" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:700; fill:#fff;">6</text>
+  <text x="325" y="300" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:600; fill:#27272A;">Calculate Bottom-Up SAM</text>
+  <text x="325" y="316" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">Base × Filters × Users/Unit</text>
+  <text x="325" y="329" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">× Revenue/User. Label output clearly.</text>
+
+  <!-- Cross arrow -->
+  <path d="M316,335 C375,375 465,375 527,335" fill="none" stroke="#D4D4D8" stroke-width="1" stroke-dasharray="4,3"/>
+  <polygon points="524,339 533,332 526,329" fill="#D4D4D8"/>
+
+  <!-- COLUMN 3 -->
+  <!-- Step 7 -->
+  <circle cx="545" cy="155" r="16" fill="#D97706"/>
+  <text x="545" y="160" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:700; fill:#fff;">7</text>
+  <text x="570" y="150" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:600; fill:#27272A;">Build Assumptions Ledger</text>
+  <text x="570" y="166" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">Label each input by confidence tier.</text>
+  <text x="570" y="179" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">Flag all placeholder assumptions.</text>
+
+  <line x1="545" y1="178" x2="545" y2="200" stroke="#D4D4D8" stroke-width="1"/>
+  <polygon points="540,198 545,207 550,198" fill="#D4D4D8"/>
+
+  <!-- Step 8 -->
+  <circle cx="545" cy="230" r="16" fill="#D97706"/>
+  <text x="545" y="235" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:700; fill:#fff;">8</text>
+  <text x="570" y="225" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:600; fill:#27272A;">Map Bowling Pins</text>
+  <text x="570" y="241" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">Identify 3–5 follow-on markets.</text>
+  <text x="570" y="254" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">How does winning here help next?</text>
+
+  <line x1="545" y1="253" x2="545" y2="275" stroke="#D4D4D8" stroke-width="1"/>
+  <polygon points="540,273 545,282 550,273" fill="#D4D4D8"/>
+
+  <!-- Step 9 -->
+  <circle cx="545" cy="305" r="16" fill="#B45309"/>
+  <text x="545" y="310" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:700; fill:#fff;">9</text>
+  <text x="570" y="300" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:13px; font-weight:600; fill:#27272A;">Go / No-Go Decision</text>
+  <text x="570" y="316" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">Big enough? Cohesive WOM? Path to</text>
+  <text x="570" y="329" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:10px; fill:#71717A;">cash flow? Are you excited about it?</text>
+
+  <!-- Context bar -->
+  <rect x="30" y="385" width="720" height="52" rx="4" fill="#FFFFFF" stroke="#E4E4E7" stroke-width="0.5"/>
+  <text x="390" y="406" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:11px; fill:#52525B;">Steps 1–3 build on your Business Model Canvas and customer discovery work.</text>
+  <text x="390" y="424" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:11px; fill:#52525B;">Steps 4–6 are powered by your quantitative survey. Steps 7–9 prepare your final presentation.</text>
+
+  <!-- Assignment callout -->
+  <rect x="250" y="450" width="280" height="32" rx="4" fill="rgba(91, 33, 182, 0.04)" stroke="#5B21B6" stroke-width="1"/>
+  <text x="390" y="470" text-anchor="middle" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:12px; font-weight:600; fill:#5B21B6; letter-spacing:0.02em;">YOUR ASSIGNMENT: Complete Steps 4–9</text>
+
+  <!-- Footer -->
+  <line x1="30" y1="498" x2="750" y2="498" stroke="#E4E4E7" stroke-width="0.5"/>
+  <text x="30" y="512" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" style="font-size:9px; fill:#A1A1AA; letter-spacing:0.1em;">MPD CAPSTONE GUIDE</text>
+  <text x="750" y="512" text-anchor="end" font-family="'IBM Plex Mono', monospace" style="font-size:9px; fill:#A1A1AA;">07 / Workflow</text>
+</svg>
