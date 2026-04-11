@@ -1528,12 +1528,12 @@ const App = () => {
             {section.blocks.map((block, i) => (
               <React.Fragment key={i}>
                 <BlockRenderer block={block} />
-                {/* Industry Perspectives carousel after "Block is the cleanest articulation" paragraph in Second Brain section (2) */}
-                {section.number === 2 && block.type === 'paragraph' && block.text.startsWith('Block is the cleanest articulation') && (
+                {/* Industry Perspectives carousel after "Block is the cleanest articulation" paragraph in Second Brain section */}
+                {section.title === 'Enter the Second Brain' && block.type === 'paragraph' && block.text.startsWith('Block is the cleanest articulation') && (
                   <QuoteCarousel quotes={INDUSTRY_PERSPECTIVES_QUOTES} />
                 )}
-                {/* Second Brain convergence diagram after first paragraph in Building AI section (3) */}
-                {section.number === 3 && i === 0 && block.type === 'paragraph' && (
+                {/* Second Brain convergence diagram after first paragraph in Building AI section */}
+                {section.title === 'Building AI That Remembers Everything Your Team Knows' && i === 0 && block.type === 'paragraph' && (
                   <Convergence
                     eyebrow={SECOND_BRAIN_CONVERGENCE.eyebrow}
                     title={SECOND_BRAIN_CONVERGENCE.title}
@@ -1543,69 +1543,69 @@ const App = () => {
                     roles={SECOND_BRAIN_CONVERGENCE.roles}
                   />
                 )}
-                {/* Dual KB cards after "How Each System Implements Isolation" subsection in Dual KB section (4) */}
-                {section.number === 4 && block.type === 'subsection' && block.title === 'How Each System Implements Isolation' && (
+                {/* Dual KB cards after "How Each System Implements Isolation" subsection in Dual KB section */}
+                {section.title.startsWith('Architecting the Dual Knowledge Base') && block.type === 'subsection' && block.title === 'How Each System Implements Isolation' && (
                   <CardGrid type={DUAL_KB_CARDS.type} columns={DUAL_KB_CARDS.columns} cards={DUAL_KB_CARDS.cards} />
                 )}
-                {/* Quadrant charts after "What Each System Is Really Betting On" subsection in Picking section (6) */}
-                {section.number === 6 && block.type === 'subsection' && block.title === 'What Each System Is Really Betting On' && (
+                {/* Quadrant charts after "Key Differences" subsection in Picking section */}
+                {section.title === 'Picking the Right System' && block.type === 'subsection' && block.title === 'Key Differences' && (
                   <>
                     <QuadrantChart {...QUADRANT_1} />
                     <QuadrantChart {...QUADRANT_2} />
                   </>
                 )}
-                {/* LongMemEval bar chart after "LongMemEval: The Shared Benchmark" subsection in Architectural Divergence section (7) */}
-                {section.number === 7 && block.type === 'subsection' && block.title === 'LongMemEval: The Shared Benchmark' && (
+                {/* LongMemEval bar chart after "LongMemEval: The Shared Benchmark" subsection */}
+                {section.title === 'How the Four Systems Differ in Architecture and Capability' && block.type === 'subsection' && block.title === 'LongMemEval: The Shared Benchmark' && (
                   <Chart type="bar" data={LONGMEMEVAL_CHART} />
                 )}
-                {/* Ingestion Complexity bar chart after "The Fundamental Architectural Divide" subsection in Deep Architectural Analysis (9) */}
-                {section.number === 9 && block.type === 'subsection' && block.title === 'The Fundamental Architectural Divide: Graph-First vs. Embedding-First' && (
+                {/* Ingestion Complexity bar chart after "The Biggest Design Choice" subsection in Deep Architectural Analysis */}
+                {section.title === 'Deep Architectural Analysis' && block.type === 'subsection' && block.title === 'The Biggest Design Choice: Graph-First vs. Embedding-First' && (
                   <Chart type="bar" data={INGESTION_COMPLEXITY_CHART} />
                 )}
-                {/* Flow diagrams + bar charts after each deep-dive subsection in Deep Architectural Analysis (9) */}
-                {section.number === 9 && block.type === 'subsection' && block.title === 'Hindsight: Four-Network Partitioning and Multi-Strategy Retrieval' && (
+                {/* Flow diagrams + bar charts after each deep-dive subsection in Deep Architectural Analysis */}
+                {section.title === 'Deep Architectural Analysis' && block.type === 'subsection' && block.title === 'Hindsight: Four Memory Layers Searched in Parallel' && (
                   <>
                     <StatsGrid stats={HINDSIGHT_STATS} />
                     <FlowDiagram {...HINDSIGHT_FLOW} />
                     <Chart type="bar" data={QUERY_COMPLEXITY_CHART} />
                   </>
                 )}
-                {section.number === 9 && block.type === 'subsection' && block.title === 'Zep and the Graphiti Engine: Bi-Temporal Epistemology' && (
+                {section.title === 'Deep Architectural Analysis' && block.type === 'subsection' && block.title === 'Zep and the Graphiti Engine: A Time-Aware Knowledge Graph' && (
                   <>
                     <StatsGrid stats={ZEP_STATS} />
                     <FlowDiagram {...ZEP_FLOW} />
                     <Chart type="bar" data={TOKEN_COST_CHART} />
                   </>
                 )}
-                {section.number === 9 && block.type === 'subsection' && block.title === 'Supermemory: The Managed Context Stack and Adaptive Forgetting' && (
+                {section.title === 'Deep Architectural Analysis' && block.type === 'subsection' && block.title === 'Supermemory: A Managed Stack That Forgets on Purpose' && (
                   <>
                     <StatsGrid stats={SUPERMEMORY_STATS} />
                     <FlowDiagram {...SUPERMEMORY_FLOW} />
                     <Chart type="bar" data={MAINTENANCE_BURDEN_CHART} />
                   </>
                 )}
-                {section.number === 9 && block.type === 'subsection' && block.title === 'The LLM Wiki: Persistent Compilation Over Dynamic Retrieval' && (
+                {section.title === 'Deep Architectural Analysis' && block.type === 'subsection' && block.title === 'The LLM Wiki: Compiled Pages Instead of Live Search' && (
                   <>
                     <StatsGrid stats={KARPATHY_STATS} />
                     <FlowDiagram {...KARPATHY_FLOW} />
                   </>
                 )}
-                {/* Compliance readiness bar chart after first paragraph in Compliance section (10) */}
-                {section.number === 10 && i === 0 && block.type === 'paragraph' && (
+                {/* Compliance readiness bar chart after first paragraph in Compliance section */}
+                {section.title.startsWith('Compliance Deep Dive') && i === 0 && block.type === 'paragraph' && (
                   <Chart type="bar" data={COMPLIANCE_READINESS_CHART} />
                 )}
               </React.Fragment>
             ))}
-            {/* Decision framework terminal after Picking section (6) */}
-            {section.number === 6 && (
+            {/* Decision framework terminal after Picking section */}
+            {section.title === 'Picking the Right System' && (
               <TerminalWindow title={DECISION_TERMINAL.title} command={DECISION_TERMINAL.command} lines={DECISION_TERMINAL.lines} variant={DECISION_TERMINAL.variant} />
             )}
-            {/* Benchmark stats in Deep Architectural Analysis (9) */}
-            {section.number === 9 && (
+            {/* Benchmark stats in Deep Architectural Analysis */}
+            {section.title === 'Deep Architectural Analysis' && (
               <StatsGrid stats={BENCHMARK_STATS} />
             )}
-            {/* Compliance cards in Compliance section (10) */}
-            {section.number === 10 && (
+            {/* Compliance cards in Compliance section */}
+            {section.title.startsWith('Compliance Deep Dive') && (
               <CardGrid type={COMPLIANCE_CARDS.type} columns={COMPLIANCE_CARDS.columns} cards={COMPLIANCE_CARDS.cards} />
             )}
           </Section>

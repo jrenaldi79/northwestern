@@ -60,6 +60,7 @@ const ARTICLE_CONFIGS = {
       'What a Second Brain Is Not': 'vs Data Layer',
       'Picking the Right System': 'Picking',
       'Architectural Divergence and Capability Analysis': 'Architecture',
+      'How the Four Systems Differ in Architecture and Capability': 'Architecture',
       'When You Need a Separate Wiki Layer (And When You Don\'t)': 'Wiki Layer',
       'Deep Architectural Analysis': 'Deep Dive',
       'Compliance Deep Dive: Regulated Industries and Memory Auditability': 'Compliance',
