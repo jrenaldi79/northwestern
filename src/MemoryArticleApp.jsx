@@ -30,18 +30,6 @@ import WorkList from './components/WorkList';
 // COMPONENT DATA — Rich components injected into specific sections
 // =============================================================================
 
-// Section 2: Architecture comparison cards (after "Key Differences in Plain Language" subsection)
-const ARCHITECTURE_CARDS = {
-  type: 'feature',
-  columns: 2,
-  cards: [
-    { icon: 'database', title: 'Hindsight', content: 'Four-network partitioning separates facts from beliefs. PostgreSQL + pgvector. Open-source MIT. 64.1% BEAM benchmark (58% ahead of next system).' },
-    { icon: 'network', title: 'Zep / Graphiti', content: 'Triple-hybrid retrieval: semantic search + BM25 + graph traversal, fused with RRF reranking. Bi-temporal graph with four timestamps per fact. Neo4j/FalkorDB. SOC 2 Type II. Sub-200ms P95.' },
-    { icon: 'zap', title: 'Supermemory', content: 'Managed context stack with native connectors. Cloudflare Workers + pgvector. MCP distribution. Free tier to $19/mo.' },
-    { icon: 'code', title: 'LLM Wiki (Karpathy)', content: 'Markdown files under Git. No database. Human-readable, human-editable. Full epistemic transparency. Zero infrastructure.' },
-  ],
-};
-
 // Section 3: Dual Knowledge Base cards (after "How Each System Implements Isolation" subsection)
 const DUAL_KB_CARDS = {
   type: 'feature',
@@ -58,12 +46,15 @@ const DECISION_TERMINAL = {
   command: 'cat',
   variant: 'compact',
   lines: [
-    '**1** Speed is top constraint? → Supermemory (managed, free tier)',
-    '**2** Regulated industry? Needs bi-temporal audit? → Zep',
-    '**3** Regulated but self-hosted? → Hindsight (MIT, PostgreSQL)',
-    '**4** Humans need to read & edit directly? → LLM Wiki',
-    '**5** Deployment sovereignty critical? → Hindsight (VPC)',
-    '**6** Otherwise? → Zep (enterprise RBAC, graph isolation)',
+    '**1** Already own Microsoft 365? → Work IQ (extend license, no new vendor)',
+    '**2** Need typed ontology (regulated, modeling-heavy)? → Palantir Foundry + AIP',
+    '**3** Want an enterprise graph, not on M365? → Glean (permission-aware, dev API)',
+    '**4** Speed is top constraint? → Supermemory (managed, free tier)',
+    '**5** Regulated + need bi-temporal audit? → Zep (SOC 2, 4 timestamps)',
+    '**6** Regulated + self-hosted? → Hindsight (MIT, PostgreSQL)',
+    '**7** Humans need to read & edit directly? → LLM Wiki',
+    '**8** Deployment sovereignty critical? → Hindsight (VPC)',
+    '**9** Otherwise? → Zep (enterprise RBAC, graph isolation)',
   ],
 };
 
@@ -1551,10 +1542,6 @@ const App = () => {
                     insight={<em>{SECOND_BRAIN_CONVERGENCE.insight}</em>}
                     roles={SECOND_BRAIN_CONVERGENCE.roles}
                   />
-                )}
-                {/* Architecture cards after Key Differences subsection in Building AI section (3) */}
-                {section.number === 3 && block.type === 'subsection' && block.title === 'Key Differences in Plain Language' && (
-                  <CardGrid type={ARCHITECTURE_CARDS.type} columns={ARCHITECTURE_CARDS.columns} cards={ARCHITECTURE_CARDS.cards} />
                 )}
                 {/* Dual KB cards after "How Each System Implements Isolation" subsection in Dual KB section (4) */}
                 {section.number === 4 && block.type === 'subsection' && block.title === 'How Each System Implements Isolation' && (

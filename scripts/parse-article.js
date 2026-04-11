@@ -200,12 +200,25 @@ function parseBlocks(text) {
       continue;
     }
 
-    // Numbered list
+    // Numbered list (allow blank lines between items)
     if (/^\d+\.\s/.test(line.trim())) {
       const items = [];
-      while (i < lines.length && /^\d+\.\s/.test(lines[i].trim())) {
-        items.push(lines[i].trim().replace(/^\d+\.\s+/, ''));
-        i++;
+      while (i < lines.length) {
+        if (/^\d+\.\s/.test(lines[i].trim())) {
+          items.push(lines[i].trim().replace(/^\d+\.\s+/, ''));
+          i++;
+          continue;
+        }
+        if (lines[i].trim() === '') {
+          // Peek ahead past blank lines for another numbered item
+          let j = i + 1;
+          while (j < lines.length && lines[j].trim() === '') j++;
+          if (j < lines.length && /^\d+\.\s/.test(lines[j].trim())) {
+            i = j;
+            continue;
+          }
+        }
+        break;
       }
       blocks.push({ type: 'numberedList', items });
       continue;
