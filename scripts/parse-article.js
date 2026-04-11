@@ -50,7 +50,7 @@ const ARTICLE_CONFIGS = {
       from: 'John Renaldi',
       fromEmail: 'jrenaldi@northwestern.edu',
       date: 'April 2026',
-      course: 'Technical Brief',
+      course: 'Applied AI Field Guide',
     },
     shortLabelOverrides: {
       'The Problem: AI Has No Memory': 'The Problem',

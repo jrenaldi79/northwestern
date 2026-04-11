@@ -2,7 +2,7 @@
 
 *Every AI agent forgets everything the moment the conversation ends. Here's how to give yours forever memory, the institutional knowledge, customer context, and hard-won lessons your team already has, plus the four systems making it possible.*
 
-*Technical Brief · April 2026 · John Renaldi, Professor, Northwestern University · EIR, Techstars Chicago*
+*Applied AI Field Guide · April 2026 · John Renaldi, Professor, Northwestern University · EIR, Techstars Chicago*
 
 ---
 

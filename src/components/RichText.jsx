@@ -29,8 +29,10 @@ const RichText = ({ children, className = '' }) => {
     // Replace citations
     result = result.replace(/\[(\d+)\]/g, '___CITE_START___$1___CITE_END___');
 
-    // Now parse the marked string into React elements
-    const parts = result.split(/(___[A-Z_]+___)/);
+    // Now parse the marked string into React elements.
+    // Use an explicit alternation of known markers so uppercase content
+    // inside italic/bold (e.g. *AI*, *NASA*) is not absorbed by a greedy [A-Z_]+.
+    const parts = result.split(/(___(?:BOLD_START|BOLD_END|ITALIC_START|ITALIC_END|LINK_START|LINK_SEP|LINK_END|CITE_START|CITE_END)___)/);
 
     let inBold = false;
     let inItalic = false;

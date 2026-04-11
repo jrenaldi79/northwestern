@@ -582,7 +582,7 @@ const ArticleHeader = ({ data }) => {
                 letterSpacing: '0.02em',
               }}
             >
-              {data.course} · {data.date}
+              {data.date}
             </span>
           </div>
         </div>
@@ -640,7 +640,7 @@ const ArticleHeader = ({ data }) => {
                   color: COLORS.accent.primary,
                 }}
               >
-                Technical Brief
+                Applied AI Field Guide
               </span>
             </div>
 
@@ -1292,8 +1292,25 @@ const BlockRenderer = ({ block }) => {
       return <NumberedList items={block.items} />;
     case 'table':
       return <Table headers={block.headers} rows={block.rows} />;
-    case 'blockquote':
+    case 'blockquote': {
+      // Convert markdown blockquote into the shared PullQuote component.
+      // If the blockquote has 2+ lines and the first line is wrapped in
+      // double quotes, treat the remaining lines as attribution.
+      const lines = block.text.split('\n').map((l) => l.trim()).filter(Boolean);
+      const firstLine = lines[0] || '';
+      const isQuoted = firstLine.startsWith('"') && firstLine.endsWith('"');
+      if (lines.length > 1 && isQuoted) {
+        const quote = firstLine.slice(1, -1);
+        const author = lines.slice(1).join(' ');
+        return <PullQuote quote={quote} author={author} />;
+      }
+      if (lines.length === 1 && isQuoted) {
+        return <PullQuote quote={firstLine.slice(1, -1)} />;
+      }
+      // Non-quoted blockquotes (e.g. "Foundational Design Principle") keep
+      // the callout treatment.
       return <ArticleBlockquote text={block.text} />;
+    }
     case 'svg':
       return <SVGFigure content={block.content} caption={block.caption} />;
     case 'subsection':
@@ -1347,7 +1364,7 @@ const ArticleFooter = () => (
           margin: 0,
         }}
       >
-        Technical Brief · April 2026
+        Applied AI Field Guide · April 2026
       </p>
     </div>
   </footer>

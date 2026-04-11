@@ -25,7 +25,7 @@ const PREVIEW_CONFIGS = {
   'ai-memory-architectures': {
     distFile: 'AIMemoryArchitectures.jsx',
     outputDir: 'ai-memory-architectures',
-    pageTitle: 'Building a Company Brain | Technical Brief',
+    pageTitle: 'Building a Company Brain | Applied AI Field Guide',
     ogTitle: 'Building a Company Brain',
     ogDescription: 'Every AI agent forgets everything the moment the conversation ends. Here\'s how to give yours forever memory, and the four systems making it possible. Zep, Hindsight, Supermemory, LLM Wiki.',
     metaDescription: 'Every AI agent forgets everything between sessions. How to build a Company Brain with forever memory, and the four systems that make it possible.',
