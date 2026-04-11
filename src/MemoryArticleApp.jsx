@@ -2,9 +2,11 @@
  * ArticleApp for AI Memory Architectures report
  *
  * Reuses: Section, Subsection, Paragraph, BulletList, SectionDivider,
- *         Table, PullQuote, RichText (from existing component library)
- * New:    ArticleHeader, ArticleSectionNav, SVGFigure, NumberedList,
- *         Blockquote, BlockRenderer
+ *         Table, PullQuote, RichText, TerminalWindow, CardGrid, StatsGrid,
+ *         QuadrantChart, FlowDiagram, Chart, QuoteCarousel, Convergence,
+ *         Credentials, Testimonials, WorkList
+ * New:    ArticleHeader, ArticleSectionNav, MobileTOC, SVGFigure,
+ *         NumberedList, Blockquote, BlockRenderer
  */
 import React, { useState, useEffect, useRef } from 'react';
 import { COLORS, FONTS, TYPE_SCALE, LAYOUT, SPACE, EFFECTS } from './design-tokens';
@@ -18,6 +20,11 @@ import StatsGrid from './components/StatsGrid';
 import QuadrantChart from './components/QuadrantChart';
 import FlowDiagram from './components/FlowDiagram';
 import Chart from './components/Chart';
+import QuoteCarousel from './components/QuoteCarousel';
+import Convergence from './components/Convergence';
+import Credentials from './components/Credentials';
+import Testimonials from './components/Testimonials';
+import WorkList from './components/WorkList';
 
 // =============================================================================
 // COMPONENT DATA — Rich components injected into specific sections
@@ -73,6 +80,9 @@ const QUADRANT_1 = {
     { label: 'Supermemory', color: '#f59e0b', x: 52, y: 73 },
     { label: 'Hindsight', color: '#22c55e', x: 66, y: 82 },
     { label: 'Zep', color: '#6366f1', x: 82, y: 84 },
+    { label: 'Glean', color: '#8b5cf6', x: 56, y: 56 },
+    { label: 'Work IQ', color: '#0078d4', x: 74, y: 70 },
+    { label: 'Palantir', color: '#0f172a', x: 92, y: 48 },
   ],
 };
 
@@ -88,6 +98,9 @@ const QUADRANT_2 = {
     { label: 'LLM Wiki', color: '#ef4444', x: 42, y: 72 },
     { label: 'Zep', color: '#6366f1', x: 58, y: 82 },
     { label: 'Hindsight', color: '#22c55e', x: 72, y: 79 },
+    { label: 'Work IQ', color: '#0078d4', x: 18, y: 48 },
+    { label: 'Glean', color: '#8b5cf6', x: 32, y: 60 },
+    { label: 'Palantir', color: '#0f172a', x: 90, y: 92 },
   ],
 };
 
@@ -338,6 +351,55 @@ const COMPLIANCE_READINESS_CHART = {
     { label: 'Supermemory', value: 22, unit: '', source: 'Risk: Auto-forgetting violates retention mandates' },
   ],
 };
+
+// Section 3: Convergence diagram — the transformation from scattered knowledge to shared memory
+const SECOND_BRAIN_CONVERGENCE = {
+  eyebrow: 'The Transformation',
+  title: 'From Scattered to Shared Memory',
+  centerLabel: 'The New Layer',
+  centerTitle: 'Second\u00a0Brain',
+  insight: 'The memory that remains is the one your team wishes it had written down.',
+  roles: [
+    {
+      from: 'Meeting Notes',
+      to: 'Queryable Decisions',
+      description: 'Every strategy call, pricing debate, and roadmap review becomes a fact the agent can cite, not a doc nobody re-reads.',
+    },
+    {
+      from: 'Customer History',
+      to: 'Living Memory',
+      description: 'Conversations, tickets, and usage compound into a persistent understanding of each account, not a stale CRM row.',
+    },
+    {
+      from: 'Team Playbooks',
+      to: 'Agent-Ready Context',
+      description: 'Onboarding guides, escalation rules, and internal lore become structured context any agent can retrieve on demand.',
+    },
+  ],
+};
+
+const INDUSTRY_PERSPECTIVES_QUOTES = [
+  {
+    author: 'Aaron Levie',
+    title: 'CEO, Box',
+    quote: 'AI models know everything about anything, other than your specific workflows and business. For AI agents to be effective in the enterprise, they need your enterprise context.',
+  },
+  {
+    author: 'Arvind Jain',
+    title: 'CEO, Glean',
+    quote: 'The Knowledge Graph is what makes agents possible. Without understanding the structure of your organization, who, what, where, when, why, you just have a chatbot that hallucinates.',
+  },
+  {
+    author: 'Alex Karp',
+    title: 'CEO, Palantir',
+    quote: 'All the value in the AI market is going to go to chips and what we call ontology.',
+  },
+  {
+    author: 'Charles Packer',
+    title: 'Co-founder, Letta (MemGPT)',
+    quote: 'The most powerful characteristics of a useful AI agent, personalization, self-improvement, tool use, reasoning and planning, are all fundamentally memory management problems.',
+  },
+];
 
 // =============================================================================
 // ARTICLE HEADER - Matches reference Header style (light bg, full viewport)
@@ -1475,6 +1537,21 @@ const App = () => {
             {section.blocks.map((block, i) => (
               <React.Fragment key={i}>
                 <BlockRenderer block={block} />
+                {/* Industry Perspectives carousel after "Block is the cleanest articulation" paragraph in Second Brain section (2) */}
+                {section.number === 2 && block.type === 'paragraph' && block.text.startsWith('Block is the cleanest articulation') && (
+                  <QuoteCarousel quotes={INDUSTRY_PERSPECTIVES_QUOTES} />
+                )}
+                {/* Second Brain convergence diagram after first paragraph in Building AI section (3) */}
+                {section.number === 3 && i === 0 && block.type === 'paragraph' && (
+                  <Convergence
+                    eyebrow={SECOND_BRAIN_CONVERGENCE.eyebrow}
+                    title={SECOND_BRAIN_CONVERGENCE.title}
+                    centerLabel={SECOND_BRAIN_CONVERGENCE.centerLabel}
+                    centerTitle={SECOND_BRAIN_CONVERGENCE.centerTitle}
+                    insight={<em>{SECOND_BRAIN_CONVERGENCE.insight}</em>}
+                    roles={SECOND_BRAIN_CONVERGENCE.roles}
+                  />
+                )}
                 {/* Architecture cards after Key Differences subsection in Building AI section (3) */}
                 {section.number === 3 && block.type === 'subsection' && block.title === 'Key Differences in Plain Language' && (
                   <CardGrid type={ARCHITECTURE_CARDS.type} columns={ARCHITECTURE_CARDS.columns} cards={ARCHITECTURE_CARDS.cards} />

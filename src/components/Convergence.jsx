@@ -10,7 +10,16 @@ import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE } from '../design-tokens';
 
 // useInView hook is defined in Section.jsx and shared across all components
 
-const Convergence = ({ roles }) => {
+const Convergence = ({
+  roles,
+  eyebrow = 'The Convergence',
+  title = 'Three Roles Becoming One',
+  centerLabel = 'The New Role',
+  centerTitle = <>Product<br/>Engineer</>,
+  insight = (
+    <em>The role that remains is the one who knows <strong style={{ color: COLORS.ink[800] }}>what to build</strong> and <strong style={{ color: COLORS.ink[800] }}>why</strong>.</em>
+  ),
+}) => {
   const [hoveredRole, setHoveredRole] = useState(null);
   const [ref, inView] = useInView();
 
@@ -65,7 +74,7 @@ const Convergence = ({ roles }) => {
             letterSpacing: '0.1em',
           }}
         >
-          The Convergence
+          {eyebrow}
         </span>
         <h4
           style={{
@@ -77,7 +86,7 @@ const Convergence = ({ roles }) => {
             letterSpacing: '-0.02em',
           }}
         >
-          Three Roles Becoming One
+          {title}
         </h4>
       </div>
 
@@ -208,7 +217,7 @@ const Convergence = ({ roles }) => {
                 marginBottom: SPACE[1],
               }}
             >
-              The New Role
+              {centerLabel}
             </span>
             <span
               style={{
@@ -220,7 +229,7 @@ const Convergence = ({ roles }) => {
                 lineHeight: 1.2,
               }}
             >
-              Product<br/>Engineer
+              {centerTitle}
             </span>
           </div>
         </div>
@@ -349,7 +358,7 @@ const Convergence = ({ roles }) => {
             marginRight: 'auto',
           }}
         >
-          <em>The role that remains is the one who knows <strong style={{ color: COLORS.ink[800] }}>what to build</strong> and <strong style={{ color: COLORS.ink[800] }}>why</strong>.</em>
+          {insight}
         </p>
       </div>
     </div>

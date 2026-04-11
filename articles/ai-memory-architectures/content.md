@@ -46,6 +46,10 @@ For that to work, Block argues, a company needs two things: a "world model" of i
 
 **What Block is describing has a name: a second brain.** A second brain is a persistent, structured layer of memory that sits between an organization's raw systems of record and the agents acting on its behalf. It remembers the facts, decisions, relationships, and context that accumulate from how an organization actually works, what the customer said on last week's call, which internal debate settled the pricing change, how the onboarding playbook has evolved, who owns what. It is the connective tissue between statelessness and genuine institutional knowledge, and it is what turns the Block vision from aspiration into something you can actually build.
 
+Block is the cleanest articulation, but it is not a lonely voice. Over the past eighteen months, the CEOs of the largest enterprise AI vendors, the founders building the underlying infrastructure, and the academic researchers working on agent memory have all arrived at the same conclusion from different directions. The vocabulary differs (world model, enterprise context, knowledge graph, ontology, memory layer), but the shape of the thing they are pointing at is the same.
+
+Microsoft built the same idea into Work IQ as a first-class pillar, framing the intelligence layer behind Microsoft 365 Copilot as Data, Memory, and Inference. Microsoft Research's GraphRAG paper showed that swapping vector RAG for a structured knowledge graph produces measurable gains in reasoning accuracy over private document corpora. The unusual thing about this consensus is that there is no serious counterargument to it yet. The debate is not whether organizations need a persistent memory layer. It is who is going to build it and what shape it should take.
+
 This is where the memory problem becomes a strategy problem. You cannot build a world model on a stateless system. You cannot compound customer understanding when every session starts from zero. The workarounds covered in the previous section, context stuffing, vanilla RAG, fine-tuning, were built for information retrieval, not for the kind of persistent, evolving knowledge a second brain requires. As Block puts it: "That understanding compounds every second the system operates." But only if the system actually remembers.
 
 The limitations we just covered, temporal blindness, relational flatness, contradiction accumulation, and update latency, are precisely what a new generation of AI memory architectures are designed to solve. The goal is a system that genuinely learns from every interaction, connects information across sources, knows when facts have changed, and delivers the right context to the model on every query without requiring you to engineer retrieval logic from scratch.
@@ -156,13 +160,15 @@ Each system optimizes for a different priority. The question is which priority m
 
 ### Priority-Based Decision Framework
 
-1. **Is speed to first working product your top constraint?** If yes → Supermemory. Managed stack, native connectors, free tier to $19/mo. Swap one URL and you have memory.
+1. **Would you rather extend an enterprise platform you already license than build from scratch?** If yes → Which one are you standardized on? **Microsoft 365** → **Work IQ**. SharePoint Knowledge Agent as the company brain, Microsoft Fabric plus federated Graph connectors as the customer brain, Copilot Studio as the agent surface. Lowest incremental cost of anything in this framework because you already own the license. **Palantir Foundry (or a regulated industry that wants typed ontology-aware retrieval)** → **Foundry + AIP**. Deepest modeling layer in the category, Ontology-Aware Generation, branch-and-merge governance. **Not on Microsoft 365 and not Palantir-shaped** → **Glean**. Permission-aware enterprise graph with a developer API; 24-hour crawl plus webhooks on the fastest-moving sources. If no (you want to build and own the stack) → continue to question 2.
 
-2. **Are you in a regulated industry (fintech, healthcare, legal)?** If yes → Does the regulation require bi-temporal auditability (proving what the AI knew and when)? Yes → Zep (native audit-trail via four-timestamp model, SOC 2, BYOK, 7-year cold storage). No → Hindsight (MIT license, self-host in VPC, PostgreSQL-level append-only compliance).
+2. **Is speed to first working product your top constraint?** If yes → Supermemory. Managed stack, native connectors, free tier to $19/mo. Swap one URL and you have memory.
 
-3. **Is the knowledge base primarily for agents, or do humans need to read and edit it directly?** Humans → LLM Wiki. 100% readable markdown, Git audit trail, zero infrastructure. Agents → continue to question 4.
+3. **Are you in a regulated industry (fintech, healthcare, legal)?** If yes → Does the regulation require bi-temporal auditability (proving what the AI knew and when)? Yes → Zep (native audit-trail via four-timestamp model, SOC 2, BYOK, 7-year cold storage). No → Hindsight (MIT license, self-host in VPC, PostgreSQL-level append-only compliance).
 
-4. **Is deployment sovereignty (self-hosted, full VPC control) critical?** If yes → Hindsight. Open-source MIT, standard PostgreSQL, deploy entirely within your VPC. If no → Zep. Enterprise RBAC, per-user graph isolation, sub-300ms retrieval.
+4. **Is the knowledge base primarily for agents, or do humans need to read and edit it directly?** Humans → LLM Wiki. 100% readable markdown, Git audit trail, zero infrastructure. Agents → continue to question 5.
+
+5. **Is deployment sovereignty (self-hosted, full VPC control) critical?** If yes → Hindsight. Open-source MIT, standard PostgreSQL, deploy entirely within your VPC. If no → Zep. Enterprise RBAC, per-user graph isolation, sub-300ms retrieval.
 
 ### How the Right Choice Changes as You Scale
 
@@ -171,6 +177,21 @@ Each system optimizes for a different priority. The question is which priority m
 | **Seed Stage** | Engineering bandwidth, cash burn, rapid iteration | **Supermemory** (external) / **LLM Wiki** (internal) | Instant functionality via managed APIs. LLM Wiki provides zero-cost internal alignment. |
 | **Mid-Stage** | Data volume scaling, vendor lock-in avoidance, deployment sovereignty | **Hindsight** | Open-source, standard PostgreSQL, full VPC hosting. Noise reduction at scale. |
 | **Late-Stage** | Complex data integration, granular access control, high-throughput retrieval | **Zep (Graphiti)** | Enterprise RBAC, bi-temporal precision, sub-300ms latency on scalable graph databases. |
+| **Enterprise Incumbent (M365)** | Low appetite for new vendors, existing M365 license, continuous semantic indexing needed | **Microsoft Work IQ** | SharePoint Knowledge Agent + Fabric + federated Graph connectors ship both brains off the shelf. Lowest incremental cost because the license is already paid. |
+| **Enterprise Incumbent (non-M365)** | Already standardized on a single enterprise search layer; want a permission-aware graph and a developer API | **Glean** | Permission-aware enterprise graph with entity linking across every major system of record. 24-hour crawl plus webhooks on the highest-velocity sources. |
+| **Regulated / Modeling-Heavy Enterprise** | Defense, financial services, healthcare; need a typed organizational world model and industrial-strength isolation | **Palantir Foundry + AIP** | Ontology is a first-class entity graph; AIP uses Ontology-Aware Generation (structured objects, not text chunks). Foundry Branching for safe ontology evolution. |
+
+### If You'd Rather Extend Than Build
+
+The four systems above are all developer infrastructure — you choose one, wire it into your stack, and accumulate memory against it yourself. That is the right path if you are a startup, an engineering team with capacity, or an organization whose current stack does not already contain a second-brain-shaped product. For organizations that would rather extend something they already license than build from scratch, the same dual-brain pattern ships off the shelf in three places. These are not part of the main four because they occupy a different category, but they are the first places to look if your constraints point away from developer infrastructure.
+
+**Microsoft Work IQ** is the default for any organization already running Microsoft 365. It delivers both brains without adding a new vendor: SharePoint (with the March 2026 Knowledge Agent in public preview) is the company-brain grounding source, Microsoft Fabric plus federated Graph connectors are the customer-brain layer, and Copilot Studio is the agent surface over both. The semantic index updates continuously as content changes, so there is no 24-hour crawl lag. Its strongest advantage is incumbency — the incremental cost to extend is lower than any alternative because you already own the license. Its weakest dimension is entity-level bi-temporal correctness at the customer-profile level; if regulators need to reconstruct exactly what the system knew about a customer on a specific historical date, plan to either pair with Zep for that specific requirement or build the audit trail on top of SharePoint versioning and Fabric time-travel.
+
+**Glean** is the cleanest third-party example of the enterprise-graph pattern outside the Microsoft ecosystem. It ships a permission-aware graph with entity linking across every major system of record, a unified chat surface, and a developer platform with REST APIs and toolkits for LangChain, CrewAI, and OpenAI Assistants. The architectural limitation is freshness: Glean crawls each datasource every 24 hours, augmented by webhooks on the most active sources (Slack, Gmail, Confluence). For a world model that is supposed to compound continuously, a 24-hour window is a real constraint, though in practice the webhook coverage closes most of the gap on the sources that change fastest. Glean is the right pick for organizations that have standardized on it but do not run Microsoft 365 as their primary collaboration stack. For most M365 shops, Work IQ dominates on nearly every dimension because the incremental cost to extend is so much lower.
+
+**Palantir Foundry + AIP** is the only vendor in either category that ships a product purpose-built around the concept of a typed organizational world model. Foundry's Ontology is a first-class entity graph with actions, and AIP's retrieval pattern is explicitly Ontology-Aware Generation — agents retrieve structured objects rather than text chunks, which is a meaningfully different architectural posture from everything else in this report. Foundry Branching allows ontology changes to be tested in isolated branches before merging, and marking-based access control plus project isolation give industrial-strength tenant separation. Its weakest dimension is bi-temporal correctness at the ontology level; Foundry has audit logs, dataset versioning, and branch-and-merge workflows, but it does not ship the SQL:2011-style event-time/ingestion-time split that Zep makes central. Popular in regulated industries — defense, financial services, healthcare — that can tolerate the lock-in in exchange for the depth of the modeling layer.
+
+One thing to name clearly: Work IQ and Palantir both ship a semantic data layer alongside the second brain (Fabric IQ for Microsoft, the AIP query layer for Palantir). That is a feature if you need both layers, and a limit if you only wanted memory.
 
 ---
 
@@ -356,17 +377,3 @@ When SEC examiners demand evidence under Rule 17a-4, Zep's bi-temporal metadata 
 While the LLM Wiki paradigm cannot scale to handle high-velocity external customer correspondence, its underlying architecture provides perfect compliance for internal operational documentation. Because the knowledge base consists of human-readable markdown files, the entire repository can be managed within an enterprise Git environment.
 
 Git version control natively provides a cryptographically secure, immutable ledger of every single modification. Every time the language model executes a linting pass or updates a summary document, the commit history logs the exact timestamp, the exact lines of text altered, and the identity of the agent executing the change. This mechanism seamlessly fulfills the WORM and Audit-Trail requirements of Rule 17a-4, ensuring that internal supervisory procedures, compliance manuals, and operational strategies compiled by the AI remain flawlessly auditable over time.
-
----
-
-## Works Cited
-
-1. Community Providers: Hindsight, AI SDK. [ai-sdk.dev/providers/community-providers/hindsight](https://ai-sdk.dev/providers/community-providers/hindsight). Accessed April 8, 2026.
-
-2. Complete guide to Knowledge & Context Graphs via Zep & Graphiti, Medium. [medium.com/@whynesspower/complete-guide-to-knowledge-context-graphs-via-zep-graphiti-c6da7ce8b13b](https://medium.com/@whynesspower/complete-guide-to-knowledge-context-graphs-via-zep-graphiti-c6da7ce8b13b). Accessed April 8, 2026.
-
-3. Zep: A Temporal Knowledge Graph Architecture for Agent Memory, Zep Whitepaper. [Zep Whitepaper (PDF)](https://storage.ghost.io/c/79/c4/79c4903e-2432-4c0e-b8c8-c8988fef71ec/content/files/2025/01/ZEP__USING_KNOWLEDGE_GRAPHS_TO_POWER_LLM_AGENT_MEMORY_2025011700.pdf). Accessed April 8, 2026.
-
-4. Memory vs RAG: Understanding the Difference, Supermemory. [supermemory.ai/docs/concepts/memory-vs-rag](https://supermemory.ai/docs/concepts/memory-vs-rag). Accessed April 8, 2026.
-
-5. From Hierarchy to Intelligence, Block. [block.xyz/inside/from-hierarchy-to-intelligence](https://block.xyz/inside/from-hierarchy-to-intelligence). Accessed April 8, 2026.

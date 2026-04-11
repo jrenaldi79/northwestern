@@ -9,10 +9,10 @@
 import React from 'react';
 import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE, LAYOUT } from '../design-tokens';
 
-const Citations = ({ citations }) => {
-  if (!citations || citations.length === 0) return null;
+const Citations = ({ citations, groups: customGroups, heading = 'Citations' }) => {
+  if ((!citations || citations.length === 0) && (!customGroups || customGroups.length === 0)) return null;
 
-  // Group citations by category (based on content patterns)
+  // Legacy grouping by hardcoded ranges (used by the proposal)
   const groupCitations = (cites) => {
     const groups = {
       'Industry Research & Data': [],
@@ -33,7 +33,18 @@ const Citations = ({ citations }) => {
     return groups;
   };
 
-  const groups = groupCitations(citations);
+  // Build normalized groups: [[label, [{num, cite}]], ...]
+  let normalizedGroups;
+  if (customGroups && customGroups.length > 0) {
+    // Custom API: [{ label, items: string[] }, ...] — number sequentially across all groups
+    let n = 1;
+    normalizedGroups = customGroups.map(({ label, items }) => [
+      label,
+      items.map((cite) => ({ num: n++, cite })),
+    ]);
+  } else {
+    normalizedGroups = Object.entries(groupCitations(citations));
+  }
 
   return (
     <section
@@ -46,19 +57,21 @@ const Citations = ({ citations }) => {
         border: `1px solid ${COLORS.ink[100]}`,
       }}
     >
-      <h2
-        style={{
-          fontFamily: FONTS.headline,
-          fontSize: TYPE_SCALE.headline.md.size,
-          fontWeight: TYPE_SCALE.headline.md.weight,
-          color: COLORS.ink[800],
-          marginBottom: SPACE[8],
-        }}
-      >
-        Citations
-      </h2>
+      {heading && (
+        <h2
+          style={{
+            fontFamily: FONTS.headline,
+            fontSize: TYPE_SCALE.headline.md.size,
+            fontWeight: TYPE_SCALE.headline.md.weight,
+            color: COLORS.ink[800],
+            marginBottom: SPACE[8],
+          }}
+        >
+          {heading}
+        </h2>
+      )}
 
-      {Object.entries(groups).map(([groupName, cites]) => {
+      {normalizedGroups.map(([groupName, cites]) => {
         if (cites.length === 0) return null;
 
         return (

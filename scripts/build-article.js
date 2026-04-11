@@ -85,7 +85,7 @@ function build() {
   tokens = stripModuleSyntax(tokens);
 
   // 3. Components (order matters: Section first for useInView)
-  const components = ['Section', 'RichText', 'Table', 'PullQuote', 'TerminalWindow', 'CardGrid', 'StatsGrid', 'QuadrantChart', 'FlowDiagram', 'Chart'];
+  const components = ['Section', 'RichText', 'Table', 'PullQuote', 'TerminalWindow', 'CardGrid', 'StatsGrid', 'QuadrantChart', 'FlowDiagram', 'Chart', 'QuoteCarousel', 'Convergence', 'Credentials', 'Timeline', 'Testimonials', 'WorkList', 'Citations'];
   const componentCode = components.map((name) => {
     console.log(`  Reading ${name}.jsx...`);
     const source = readFile(path.join(SRC_DIR, 'components', `${name}.jsx`));
