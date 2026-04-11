@@ -14,7 +14,9 @@
     "sync-docs": "node scripts/sync-agent-docs.js",
     "parse:article": "node scripts/parse-article.js",
     "build:article": "node scripts/parse-article.js && node scripts/build-article.js && node scripts/update-article-preview.js",
-    "build:all": "npm run build && npm run build:article"
+    "parse:memory": "node scripts/parse-article.js --article ai-memory-architectures",
+    "build:memory": "node scripts/parse-article.js --article ai-memory-architectures && node scripts/build-article.js --article ai-memory-architectures && node scripts/update-article-preview.js --article ai-memory-architectures",
+    "build:all": "npm run build && npm run build:article && npm run build:memory"
   },
   "keywords": [
     "proposal",

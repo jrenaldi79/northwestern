@@ -3,13 +3,47 @@
  * Generates the article HTML page for GitHub Pages deployment.
  * Same approach as update-preview.js but for the article bundle.
  *
- * Output: market-sizing/index.html
+ * Usage:
+ *   node scripts/update-article-preview.js                          # default: market-sizing
+ *   node scripts/update-article-preview.js --article ai-memory-architectures
+ *
+ * Output: <slug>/index.html
  */
 const fs = require('fs');
 const path = require('path');
 
-const distFile = path.resolve(__dirname, '../dist/MarketSizingGuide.jsx');
-const outputFile = path.resolve(__dirname, '../market-sizing/index.html');
+// ── Article preview configs ─────────────────────────────────────────────────────
+const PREVIEW_CONFIGS = {
+  'market-sizing': {
+    distFile: 'MarketSizingGuide.jsx',
+    outputDir: 'market-sizing',
+    pageTitle: 'Market Sizing &amp; Beachhead Strategy Guide | MPD-409',
+    ogTitle: 'Market Sizing & Beachhead Strategy Guide',
+    ogDescription: 'From customer discovery to market sizing: TAM, SAM, SOM, bottom-up analysis, and beachhead selection.',
+    metaDescription: 'A practical guide to TAM analysis and beachhead strategy for Masters of Product Development & Design students.',
+  },
+  'ai-memory-architectures': {
+    distFile: 'AIMemoryArchitectures.jsx',
+    outputDir: 'ai-memory-architectures',
+    pageTitle: 'Building a Company Brain | Technical Brief',
+    ogTitle: 'Building a Company Brain',
+    ogDescription: 'Every AI agent forgets everything the moment the conversation ends. Here\'s how to give yours forever memory, and the four systems making it possible. Zep, Hindsight, Supermemory, LLM Wiki.',
+    metaDescription: 'Every AI agent forgets everything between sessions. How to build a Company Brain with forever memory, and the four systems that make it possible.',
+  },
+};
+
+const args = process.argv.slice(2);
+const articleIdx = args.indexOf('--article');
+const ARTICLE_SLUG = (articleIdx !== -1 && args[articleIdx + 1]) ? args[articleIdx + 1] : 'market-sizing';
+
+if (!PREVIEW_CONFIGS[ARTICLE_SLUG]) {
+  console.error(`Error: Unknown article "${ARTICLE_SLUG}". Available: ${Object.keys(PREVIEW_CONFIGS).join(', ')}`);
+  process.exit(1);
+}
+
+const PCONFIG = PREVIEW_CONFIGS[ARTICLE_SLUG];
+const distFile = path.resolve(__dirname, `../dist/${PCONFIG.distFile}`);
+const outputFile = path.resolve(__dirname, `../${PCONFIG.outputDir}/index.html`);
 
 // Ensure output directory exists
 const outputDir = path.dirname(outputFile);
@@ -30,10 +64,10 @@ const html = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Market Sizing &amp; Beachhead Strategy Guide | MPD-409</title>
-  <meta name="description" content="A practical guide to TAM analysis and beachhead strategy for Masters of Product Development & Design students.">
-  <meta property="og:title" content="Market Sizing & Beachhead Strategy Guide">
-  <meta property="og:description" content="From customer discovery to market sizing: TAM, SAM, SOM, bottom-up analysis, and beachhead selection.">
+  <title>${PCONFIG.pageTitle}</title>
+  <meta name="description" content="${PCONFIG.metaDescription}">
+  <meta property="og:title" content="${PCONFIG.ogTitle}">
+  <meta property="og:description" content="${PCONFIG.ogDescription}">
   <meta property="og:type" content="article">
 
   <!-- React production builds -->
@@ -62,4 +96,4 @@ ${bundle}
 
 fs.writeFileSync(outputFile, html);
 const size = (fs.statSync(outputFile).size / 1024).toFixed(1);
-console.log(`✓ market-sizing/index.html updated (${size} KB)`);
+console.log(`✓ ${PCONFIG.outputDir}/index.html updated (${size} KB)`);

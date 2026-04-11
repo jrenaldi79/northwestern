@@ -3,38 +3,90 @@
  * Article Parser
  * Converts standard markdown into structured CONTENT object for ArticleApp.
  *
- * Input:  articles/market-sizing/content.md + diagrams/*.svg
- * Output: src/article-content.js
+ * Usage:
+ *   node scripts/parse-article.js                         # default: market-sizing
+ *   node scripts/parse-article.js --article ai-memory-architectures
+ *
+ * Input:  articles/<slug>/content.md + diagrams/*.svg
+ * Output: src/<slug>-content.js (or src/article-content.js for market-sizing)
  */
 const fs = require('fs');
 const path = require('path');
 
-const ARTICLE_DIR = path.resolve(__dirname, '../articles/market-sizing');
+// ── Article Configurations ─────────────────────────────────────────────────────
+const ARTICLE_CONFIGS = {
+  'market-sizing': {
+    outputFile: 'article-content.js',
+    header: {
+      title: 'Market Sizing & Beachhead Strategy',
+      subtitle: 'A practical guide to TAM analysis and beachhead strategy for product developers.',
+      from: 'John Renaldi',
+      fromEmail: 'jrenaldi@northwestern.edu',
+      date: 'Spring 2026',
+      course: 'MPD-409',
+    },
+    shortLabelOverrides: {
+      'How This Guide Fits Into Your Capstone Journey': 'Intro',
+      'Why Market Sizing Matters (And Why Focus Is Everything)': 'Why It Matters',
+      'Market Segmentation, Finding Your Tribe': 'Segmentation',
+      'The TAM Triangle, TAM, SAM, and SOM': 'TAM Triangle',
+      'Top-Down vs. Bottom-Up Analysis, Why We Strongly Prefer Bottom-Up': 'Top vs Bottom',
+      'The Bottom-Up Method, How to Actually Size Your Market': 'Bottom-Up',
+      'Jiobit, A Real-World Bottom-Up Example': 'Jiobit Example',
+      'Selecting Your Beachhead, The 7-Point Checklist': 'Beachhead',
+      'Assessing Market Health, Beyond the Raw Number': 'Market Health',
+      'Connecting to Your Quantitative Survey Work': 'Survey Work',
+      'Common Mistakes and the Assumptions Ledger': 'Mistakes',
+      'The Go/No-Go Decision': 'Go/No-Go',
+      'Putting It All Together, Your Workflow': 'Workflow',
+      'Quick Reference: Key Terms': 'Key Terms',
+    },
+  },
+  'ai-memory-architectures': {
+    outputFile: 'memory-article-content.js',
+    header: {
+      title: 'Building a Company Brain',
+      subtitle: 'Every AI agent forgets everything the moment the conversation ends. Here\'s how to give yours forever memory, the institutional knowledge, customer context, and hard-won lessons your team already has, plus the four systems making it possible.',
+      from: 'John Renaldi',
+      fromEmail: 'jrenaldi@northwestern.edu',
+      date: 'April 2026',
+      course: 'Technical Brief',
+    },
+    shortLabelOverrides: {
+      'The Problem: AI Has No Memory': 'The Problem',
+      'Building AI That Remembers Everything Your Team Knows': 'Vision',
+      'Architecting the Dual Knowledge Base: The Company Brain and the Customer Brain': 'Dual KB',
+      'Picking the Right System': 'Picking',
+      'Architectural Divergence and Capability Analysis': 'Architecture',
+      'When You Need a Separate Wiki Layer (And When You Don\'t)': 'Wiki Layer',
+      'Deep Architectural Analysis': 'Deep Dive',
+      'Compliance Deep Dive: Regulated Industries and Memory Auditability': 'Compliance',
+      'Works Cited': 'Citations',
+    },
+  },
+};
+
+// ── CLI argument parsing ────────────────────────────────────────────────────────
+const args = process.argv.slice(2);
+const articleIdx = args.indexOf('--article');
+const ARTICLE_SLUG = (articleIdx !== -1 && args[articleIdx + 1]) ? args[articleIdx + 1] : 'market-sizing';
+
+if (!ARTICLE_CONFIGS[ARTICLE_SLUG]) {
+  console.error(`Error: Unknown article "${ARTICLE_SLUG}". Available: ${Object.keys(ARTICLE_CONFIGS).join(', ')}`);
+  process.exit(1);
+}
+
+const CONFIG = ARTICLE_CONFIGS[ARTICLE_SLUG];
+const ARTICLE_DIR = path.resolve(__dirname, `../articles/${ARTICLE_SLUG}`);
 const DIAGRAMS_DIR = path.join(ARTICLE_DIR, 'diagrams');
-const OUTPUT_FILE = path.resolve(__dirname, '../src/article-content.js');
+const OUTPUT_FILE = path.resolve(__dirname, `../src/${CONFIG.outputFile}`);
 const MD_FILE = path.join(ARTICLE_DIR, 'content.md');
 
 // Generate a short nav label from a section title
 function shortLabel(title) {
   // Remove "Part N:" prefix
   const cleaned = title.replace(/^Part\s+\d+:\s*/, '').trim();
-  // Map of overrides for better nav labels
-  const overrides = {
-    'How This Guide Fits Into Your Capstone Journey': 'Intro',
-    'Why Market Sizing Matters (And Why Focus Is Everything)': 'Why It Matters',
-    'Market Segmentation, Finding Your Tribe': 'Segmentation',
-    'The TAM Triangle, TAM, SAM, and SOM': 'TAM Triangle',
-    'Top-Down vs. Bottom-Up Analysis, Why We Strongly Prefer Bottom-Up': 'Top vs Bottom',
-    'The Bottom-Up Method, How to Actually Size Your Market': 'Bottom-Up',
-    'Jiobit, A Real-World Bottom-Up Example': 'Jiobit Example',
-    'Selecting Your Beachhead, The 7-Point Checklist': 'Beachhead',
-    'Assessing Market Health, Beyond the Raw Number': 'Market Health',
-    'Connecting to Your Quantitative Survey Work': 'Survey Work',
-    'Common Mistakes and the Assumptions Ledger': 'Mistakes',
-    'The Go/No-Go Decision': 'Go/No-Go',
-    'Putting It All Together, Your Workflow': 'Workflow',
-    'Quick Reference: Key Terms': 'Key Terms',
-  };
+  const overrides = CONFIG.shortLabelOverrides || {};
   return overrides[cleaned] || cleaned.split(/[,:]/).map(s => s.trim())[0].split(' ').slice(0, 2).join(' ');
 }
 
@@ -255,10 +307,7 @@ function parse() {
   // Build the CONTENT object
   const content = {
     header: {
-      title: 'Market Sizing & Beachhead Strategy',
-      subtitle: 'A practical guide to TAM analysis and beachhead strategy for product developers.',
-      from: 'John Renaldi',
-      fromEmail: 'jrenaldi@northwestern.edu',
+      ...CONFIG.header,
       headshot: (() => {
         const headshotPath = path.join(ARTICLE_DIR, 'headshot.png');
         if (fs.existsSync(headshotPath)) {
@@ -267,8 +316,6 @@ function parse() {
         }
         return '';
       })(),
-      date: 'Spring 2026',
-      course: 'MPD-409',
     },
     sections,
   };
@@ -277,8 +324,9 @@ function parse() {
   const output = `/**
  * Article Content - Auto-generated by parse-article.js
  * Generated: ${new Date().toISOString()}
+ * Article: ${ARTICLE_SLUG}
  *
- * DO NOT EDIT - Generated from articles/market-sizing/content.md
+ * DO NOT EDIT - Generated from articles/${ARTICLE_SLUG}/content.md
  */
 const CONTENT = ${JSON.stringify(content, null, 2)};
 
