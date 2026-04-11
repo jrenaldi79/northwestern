@@ -93,20 +93,20 @@ const QUADRANT_2 = {
 
 // Section 7: Benchmark stats — each system gets a DISTINCT flagship metric
 const BENCHMARK_STATS = [
-  { value: '64.1%', label: 'BEAM (10M tokens)', source: 'Hindsight — 58% ahead of next system', highlight: true },
-  { value: '85.4%', label: 'LongMemEval', source: 'Supermemory — managed context stack' },
-  { value: '<200ms', label: 'P95 Latency', source: 'Zep — LLM-free hybrid retrieval' },
-  { value: '$0/mo', label: 'Infra Cost', source: 'LLM Wiki — no database, no vector store' },
+  { value: '64.1%', label: 'BEAM (10M tokens)', source: 'Hindsight, 58% ahead of next system', highlight: true },
+  { value: '85.4%', label: 'LongMemEval', source: 'Supermemory, managed context stack' },
+  { value: '<200ms', label: 'P95 Latency', source: 'Zep, LLM-free hybrid retrieval' },
+  { value: '$0/mo', label: 'Infra Cost', source: 'LLM Wiki, no database, no vector store' },
 ];
 
 // Section 5: LongMemEval bar chart — best published score per system
 const LONGMEMEVAL_CHART = {
-  title: 'LongMemEval Accuracy — Best Published Scores',
-  subtitle: 'Overall accuracy on multi-session QA (higher is better) — backbones differ, see note',
+  title: 'LongMemEval Accuracy: Best Published Scores',
+  subtitle: 'Overall accuracy on multi-session QA (higher is better). Backbones differ, see note.',
   bars: [
-    { label: 'Hindsight', value: 91.4, source: 'Gemini-3 Pro backbone — Vectorize, 2026' },
-    { label: 'Supermemory', value: 85.2, source: 'Gemini-3 Pro backbone — supermemory.ai, 2026' },
-    { label: 'Zep', value: 71.2, source: 'GPT-4o backbone — no Gemini-3 Pro score published' },
+    { label: 'Hindsight', value: 91.4, source: 'Gemini-3 Pro backbone. Vectorize, 2026' },
+    { label: 'Supermemory', value: 85.2, source: 'Gemini-3 Pro backbone. supermemory.ai, 2026' },
+    { label: 'Zep', value: 71.2, source: 'GPT-4o backbone. No Gemini-3 Pro score published' },
   ],
 };
 
@@ -121,7 +121,7 @@ const HINDSIGHT_STATS = [
 const ZEP_STATS = [
   { value: 'Neo4j', label: 'Storage', source: '+ FalkorDB + Neptune' },
   { value: '<200ms', label: 'P95 Latency', source: 'LLM-free hybrid retrieval', highlight: true },
-  { value: '71.2%', label: 'LongMemEval', source: 'GPT-4o backbone — graph + semantic + BM25' },
+  { value: '71.2%', label: 'LongMemEval', source: 'GPT-4o backbone, graph + semantic + BM25' },
   { value: 'SOC 2', label: 'Compliance', source: 'Type II + BYOK + BAA + 7yr cold storage' },
 ];
 
@@ -144,10 +144,10 @@ const COMPLIANCE_CARDS = {
   type: 'feature',
   columns: 2,
   cards: [
-    { icon: 'shield', title: 'Zep — Strongest', content: 'Bi-temporal graph is a native audit-trail. Four timestamps per fact. SOC 2 Type II, BYOK encryption, 7-year cold storage.' },
-    { icon: 'database', title: 'Hindsight — Good', content: 'MIT license, self-host in VPC. PostgreSQL append-only tables + cryptographic hashing. Opinion Network provides epistemic traceability.' },
-    { icon: 'code', title: 'LLM Wiki — Mixed', content: 'Git provides cryptographically secure, immutable audit trail. Perfect for internal docs. Cannot handle high-velocity correspondence.' },
-    { icon: 'zap', title: 'Supermemory — Risk', content: 'Auto-forgetting and time-based decay autonomously delete records. Direct compliance violation for 3-6 year retention mandates.' },
+    { icon: 'shield', title: 'Zep: Strongest', content: 'Bi-temporal graph is a native audit-trail. Four timestamps per fact. SOC 2 Type II, BYOK encryption, 7-year cold storage.' },
+    { icon: 'database', title: 'Hindsight: Good', content: 'MIT license, self-host in VPC. PostgreSQL append-only tables + cryptographic hashing. Opinion Network provides epistemic traceability.' },
+    { icon: 'code', title: 'LLM Wiki: Mixed', content: 'Git provides cryptographically secure, immutable audit trail. Perfect for internal docs. Cannot handle high-velocity correspondence.' },
+    { icon: 'zap', title: 'Supermemory: Risk', content: 'Auto-forgetting and time-based decay autonomously delete records. Direct compliance violation for 3-6 year retention mandates.' },
   ],
 };
 
@@ -187,7 +187,7 @@ const HINDSIGHT_FLOW = {
       ],
     },
   ],
-  callouts: [{ title: 'Agentic vs. Single-Shot', text: 'Hindsight is the only system that can loop — the Reflect agent evaluates results and refines its search across 1-5 iterations.' }],
+  callouts: [{ title: 'Agentic vs. Single-Shot', text: 'Hindsight is the only system that can loop. The Reflect agent evaluates results and refines its search across 1-5 iterations.' }],
 };
 
 const ZEP_FLOW = {
@@ -218,7 +218,7 @@ const ZEP_FLOW = {
       ],
     },
   ],
-  callouts: [{ title: 'Single-Shot Retrieval', text: 'Zep completes the entire query in one pass at P95 under 200ms — no LLM calls at query time.' }],
+  callouts: [{ title: 'Single-Shot Retrieval', text: 'Zep completes the entire query in one pass at P95 under 200ms, with no LLM calls at query time.' }],
 };
 
 const SUPERMEMORY_FLOW = {
@@ -249,7 +249,7 @@ const SUPERMEMORY_FLOW = {
       ],
     },
   ],
-  callouts: [{ title: 'Proxy Architecture', text: 'Swap one URL and you have memory — the proxy intercepts LLM calls, enriches the prompt, and forwards transparently.' }],
+  callouts: [{ title: 'Proxy Architecture', text: 'Swap one URL and you have memory. The proxy intercepts LLM calls, enriches the prompt, and forwards transparently.' }],
 };
 
 const KARPATHY_FLOW = {
@@ -276,7 +276,7 @@ const KARPATHY_FLOW = {
       ],
     },
   ],
-  callouts: [{ title: 'The LLM Is the Search Engine', text: 'No vector database, no graph — the model reads an index file and follows links, just like a human navigating a wiki.' }],
+  callouts: [{ title: 'The LLM Is the Search Engine', text: 'No vector database, no graph. The model reads an index file and follows links, just like a human navigating a wiki.' }],
 };
 
 // Section 7: Bar Chart 1 — Ingestion Complexity (after "The Fundamental Architectural Divide" subsection)
@@ -284,10 +284,10 @@ const INGESTION_COMPLEXITY_CHART = {
   title: 'Ingestion Complexity: LLM Calls Per Episode',
   subtitle: 'More LLM calls at ingestion = richer graph, but higher cost and latency',
   bars: [
-    { label: 'Zep', value: 95, unit: '', source: '4\u20136 calls \u2014 Entity extraction, relationship extraction, community detection, embedding generation' },
-    { label: 'Hindsight', value: 55, unit: '', source: '2\u20133 calls \u2014 Fact extraction, network classification, optional reflection' },
-    { label: 'Supermemory', value: 45, unit: '', source: '2\u20133 calls \u2014 Memory extraction, relationship classification, profile update' },
-    { label: 'LLM Wiki', value: 25, unit: '', source: '1 large call \u2014 Single compilation pass with high token count' },
+    { label: 'Zep', value: 95, unit: '', source: '4\u20136 calls: Entity extraction, relationship extraction, community detection, embedding generation' },
+    { label: 'Hindsight', value: 55, unit: '', source: '2\u20133 calls: Fact extraction, network classification, optional reflection' },
+    { label: 'Supermemory', value: 45, unit: '', source: '2\u20133 calls: Memory extraction, relationship classification, profile update' },
+    { label: 'LLM Wiki', value: 25, unit: '', source: '1 large call: Single compilation pass with high token count' },
   ],
 };
 
@@ -296,10 +296,10 @@ const QUERY_COMPLEXITY_CHART = {
   title: 'Query Complexity: What Happens When You Ask a Question',
   subtitle: 'More retrieval steps = richer answers, but higher latency',
   bars: [
-    { label: 'Hindsight', value: 95, unit: '', source: '1\u20135 passes \u2014 Agentic loop, iteratively refines' },
-    { label: 'LLM Wiki', value: 70, unit: '', source: '2\u20133 reads \u2014 Read index, then pages, then sources' },
-    { label: 'Zep', value: 50, unit: '', source: '1 pass \u2014 Single-shot, P95 <200ms' },
-    { label: 'Supermemory', value: 40, unit: '', source: '1 pass \u2014 Proxy pattern, single enrichment' },
+    { label: 'Hindsight', value: 95, unit: '', source: '1\u20135 passes: Agentic loop, iteratively refines' },
+    { label: 'LLM Wiki', value: 70, unit: '', source: '2\u20133 reads: Read index, then pages, then sources' },
+    { label: 'Zep', value: 50, unit: '', source: '1 pass: Single-shot, P95 <200ms' },
+    { label: 'Supermemory', value: 40, unit: '', source: '1 pass: Proxy pattern, single enrichment' },
   ],
 };
 
@@ -318,12 +318,12 @@ const TOKEN_COST_CHART = {
 // Section 7: Bar Chart 4 — Ongoing Maintenance Burden (after Supermemory flow diagram)
 const MAINTENANCE_BURDEN_CHART = {
   title: 'Ongoing Maintenance Burden',
-  subtitle: 'Ongoing maintenance is a recurring tax \u2014 factor it into your architecture choice',
+  subtitle: 'Ongoing maintenance is a recurring tax. Factor it into your architecture choice.',
   bars: [
-    { label: 'LLM Wiki', value: 100, unit: '', source: 'Heavy \u2014 Periodic lint passes, manual curation' },
-    { label: 'Hindsight', value: 40, unit: '', source: 'Low \u2014 Background Reflect agent handles automatically' },
-    { label: 'Zep', value: 30, unit: '', source: 'Low \u2014 Community detection auto-clusters' },
-    { label: 'Supermemory', value: 15, unit: '', source: 'Minimal \u2014 Fully managed, auto-decay' },
+    { label: 'LLM Wiki', value: 100, unit: '', source: 'Heavy: Periodic lint passes, manual curation' },
+    { label: 'Hindsight', value: 40, unit: '', source: 'Low: Background Reflect agent handles automatically' },
+    { label: 'Zep', value: 30, unit: '', source: 'Low: Community detection auto-clusters' },
+    { label: 'Supermemory', value: 15, unit: '', source: 'Minimal: Fully managed, auto-decay' },
   ],
 };
 
@@ -332,10 +332,10 @@ const COMPLIANCE_READINESS_CHART = {
   title: 'Compliance Readiness Spectrum',
   subtitle: 'Compliance risk \u2192 Natively compliant',
   bars: [
-    { label: 'Zep', value: 95, unit: '', source: 'Natively Compliant \u2014 Bi-temporal audit trail, SOC 2, BYOK' },
-    { label: 'Hindsight', value: 72, unit: '', source: 'Good \u2014 Open-source, PostgreSQL append-only, epistemic traceability' },
-    { label: 'LLM Wiki', value: 50, unit: '', source: 'Mixed \u2014 Git immutable ledger, but can\u2019t handle scale' },
-    { label: 'Supermemory', value: 22, unit: '', source: 'Risk \u2014 Auto-forgetting violates retention mandates' },
+    { label: 'Zep', value: 95, unit: '', source: 'Natively Compliant: Bi-temporal audit trail, SOC 2, BYOK' },
+    { label: 'Hindsight', value: 72, unit: '', source: 'Good: Open-source, PostgreSQL append-only, epistemic traceability' },
+    { label: 'LLM Wiki', value: 50, unit: '', source: 'Mixed: Git immutable ledger, but can\u2019t handle scale' },
+    { label: 'Supermemory', value: 22, unit: '', source: 'Risk: Auto-forgetting violates retention mandates' },
   ],
 };
 
@@ -1301,6 +1301,136 @@ const ArticleFooter = () => (
 );
 
 // =============================================================================
+// MOBILE TOC - Sticky dropdown for screens below the floating nav breakpoint
+// =============================================================================
+
+const MobileTOC = ({ sections }) => {
+  const detailsRef = useRef(null);
+
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    const existing = document.getElementById('mobile-toc-styles');
+    if (existing) return;
+    const style = document.createElement('style');
+    style.id = 'mobile-toc-styles';
+    style.textContent = `
+      .mobile-toc { display: none; }
+      @media (max-width: 1279px) {
+        .mobile-toc { display: block; }
+      }
+      .mobile-toc summary::-webkit-details-marker { display: none; }
+      .mobile-toc summary { list-style: none; cursor: pointer; }
+      .mobile-toc summary .mobile-toc-chevron { transition: transform 0.2s ease; }
+      .mobile-toc[open] summary .mobile-toc-chevron { transform: rotate(180deg); }
+      .mobile-toc a { text-decoration: none; }
+    `;
+    document.head.appendChild(style);
+  }, []);
+
+  const handleJump = (e, num) => {
+    e.preventDefault();
+    const el = document.querySelector(`[data-section="${num}"]`);
+    if (el) {
+      const y = el.getBoundingClientRect().top + window.scrollY - 60;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+    if (detailsRef.current) detailsRef.current.open = false;
+  };
+
+  return (
+    <details
+      ref={detailsRef}
+      className="mobile-toc"
+      style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 40,
+        background: 'rgba(255, 255, 255, 0.92)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
+        borderBottom: `1px solid ${COLORS.ink[200]}`,
+      }}
+    >
+      <summary
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: `${SPACE[4]} ${SPACE[5]}`,
+          fontFamily: FONTS.mono,
+          fontSize: '0.75rem',
+          fontWeight: 600,
+          letterSpacing: '0.1em',
+          textTransform: 'uppercase',
+          color: COLORS.ink[900],
+        }}
+      >
+        <span style={{ display: 'flex', alignItems: 'center', gap: SPACE[2] }}>
+          <span style={{ color: COLORS.accent.primary }}>{'>'}</span>
+          Jump to section
+        </span>
+        <svg
+          className="mobile-toc-chevron"
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          fill="none"
+          stroke={COLORS.ink[600]}
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M3 5l4 4 4-4" />
+        </svg>
+      </summary>
+      <nav
+        style={{
+          maxHeight: '60vh',
+          overflowY: 'auto',
+          padding: `${SPACE[2]} ${SPACE[5]} ${SPACE[5]}`,
+          borderTop: `1px solid ${COLORS.ink[100]}`,
+        }}
+      >
+        <ol style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+          {sections.map((s) => (
+            <li key={s.number}>
+              <a
+                href={`#section-${s.number}`}
+                onClick={(e) => handleJump(e, s.number)}
+                style={{
+                  display: 'flex',
+                  gap: SPACE[3],
+                  alignItems: 'baseline',
+                  padding: `${SPACE[3]} 0`,
+                  borderBottom: `1px solid ${COLORS.ink[100]}`,
+                  fontFamily: FONTS.body,
+                  fontSize: TYPE_SCALE.body.sm.size,
+                  color: COLORS.ink[700],
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: FONTS.mono,
+                    fontSize: '0.7rem',
+                    fontWeight: 600,
+                    color: COLORS.accent.primary,
+                    flexShrink: 0,
+                    minWidth: '1.5rem',
+                  }}
+                >
+                  {String(s.number).padStart(2, '0')}
+                </span>
+                <span>{s.short}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+    </details>
+  );
+};
+
+// =============================================================================
 // MAIN APP
 // =============================================================================
 
@@ -1337,6 +1467,7 @@ const App = () => {
     <div style={{ minHeight: '100vh', background: COLORS.surface.paper }}>
       <ArticleSectionNav sections={CONTENT.sections} />
       <ArticleHeader data={CONTENT.header} />
+      <MobileTOC sections={CONTENT.sections} />
 
       {CONTENT.sections.map((section, idx) => (
         <React.Fragment key={section.number}>
@@ -1344,73 +1475,73 @@ const App = () => {
             {section.blocks.map((block, i) => (
               <React.Fragment key={i}>
                 <BlockRenderer block={block} />
-                {/* Architecture cards after Key Differences subsection in section 2 */}
-                {section.number === 2 && block.type === 'subsection' && block.title === 'Key Differences in Plain Language' && (
+                {/* Architecture cards after Key Differences subsection in Building AI section (3) */}
+                {section.number === 3 && block.type === 'subsection' && block.title === 'Key Differences in Plain Language' && (
                   <CardGrid type={ARCHITECTURE_CARDS.type} columns={ARCHITECTURE_CARDS.columns} cards={ARCHITECTURE_CARDS.cards} />
                 )}
-                {/* Dual KB cards after "How Each System Implements Isolation" subsection in section 3 */}
-                {section.number === 3 && block.type === 'subsection' && block.title === 'How Each System Implements Isolation' && (
+                {/* Dual KB cards after "How Each System Implements Isolation" subsection in Dual KB section (4) */}
+                {section.number === 4 && block.type === 'subsection' && block.title === 'How Each System Implements Isolation' && (
                   <CardGrid type={DUAL_KB_CARDS.type} columns={DUAL_KB_CARDS.columns} cards={DUAL_KB_CARDS.cards} />
                 )}
-                {/* Quadrant charts after "What Each System Is Really Betting On" subsection in section 4 */}
-                {section.number === 4 && block.type === 'subsection' && block.title === 'What Each System Is Really Betting On' && (
+                {/* Quadrant charts after "What Each System Is Really Betting On" subsection in Picking section (6) */}
+                {section.number === 6 && block.type === 'subsection' && block.title === 'What Each System Is Really Betting On' && (
                   <>
                     <QuadrantChart {...QUADRANT_1} />
                     <QuadrantChart {...QUADRANT_2} />
                   </>
                 )}
-                {/* LongMemEval bar chart after "LongMemEval: The Shared Benchmark" subsection in section 5 */}
-                {section.number === 5 && block.type === 'subsection' && block.title === 'LongMemEval: The Shared Benchmark' && (
+                {/* LongMemEval bar chart after "LongMemEval: The Shared Benchmark" subsection in Architectural Divergence section (7) */}
+                {section.number === 7 && block.type === 'subsection' && block.title === 'LongMemEval: The Shared Benchmark' && (
                   <Chart type="bar" data={LONGMEMEVAL_CHART} />
                 )}
-                {/* Ingestion Complexity bar chart after "The Fundamental Architectural Divide" subsection in section 7 */}
-                {section.number === 7 && block.type === 'subsection' && block.title === 'The Fundamental Architectural Divide: Graph-First vs. Embedding-First' && (
+                {/* Ingestion Complexity bar chart after "The Fundamental Architectural Divide" subsection in Deep Architectural Analysis (9) */}
+                {section.number === 9 && block.type === 'subsection' && block.title === 'The Fundamental Architectural Divide: Graph-First vs. Embedding-First' && (
                   <Chart type="bar" data={INGESTION_COMPLEXITY_CHART} />
                 )}
-                {/* Flow diagrams + bar charts after each deep-dive subsection in section 7 */}
-                {section.number === 7 && block.type === 'subsection' && block.title === 'Hindsight: Four-Network Partitioning and Multi-Strategy Retrieval' && (
+                {/* Flow diagrams + bar charts after each deep-dive subsection in Deep Architectural Analysis (9) */}
+                {section.number === 9 && block.type === 'subsection' && block.title === 'Hindsight: Four-Network Partitioning and Multi-Strategy Retrieval' && (
                   <>
                     <StatsGrid stats={HINDSIGHT_STATS} />
                     <FlowDiagram {...HINDSIGHT_FLOW} />
                     <Chart type="bar" data={QUERY_COMPLEXITY_CHART} />
                   </>
                 )}
-                {section.number === 7 && block.type === 'subsection' && block.title === 'Zep and the Graphiti Engine: Bi-Temporal Epistemology' && (
+                {section.number === 9 && block.type === 'subsection' && block.title === 'Zep and the Graphiti Engine: Bi-Temporal Epistemology' && (
                   <>
                     <StatsGrid stats={ZEP_STATS} />
                     <FlowDiagram {...ZEP_FLOW} />
                     <Chart type="bar" data={TOKEN_COST_CHART} />
                   </>
                 )}
-                {section.number === 7 && block.type === 'subsection' && block.title === 'Supermemory: The Managed Context Stack and Adaptive Forgetting' && (
+                {section.number === 9 && block.type === 'subsection' && block.title === 'Supermemory: The Managed Context Stack and Adaptive Forgetting' && (
                   <>
                     <StatsGrid stats={SUPERMEMORY_STATS} />
                     <FlowDiagram {...SUPERMEMORY_FLOW} />
                     <Chart type="bar" data={MAINTENANCE_BURDEN_CHART} />
                   </>
                 )}
-                {section.number === 7 && block.type === 'subsection' && block.title === 'The LLM Wiki: Persistent Compilation Over Dynamic Retrieval' && (
+                {section.number === 9 && block.type === 'subsection' && block.title === 'The LLM Wiki: Persistent Compilation Over Dynamic Retrieval' && (
                   <>
                     <StatsGrid stats={KARPATHY_STATS} />
                     <FlowDiagram {...KARPATHY_FLOW} />
                   </>
                 )}
-                {/* Compliance readiness bar chart after first paragraph in section 8 */}
-                {section.number === 8 && i === 0 && block.type === 'paragraph' && (
+                {/* Compliance readiness bar chart after first paragraph in Compliance section (10) */}
+                {section.number === 10 && i === 0 && block.type === 'paragraph' && (
                   <Chart type="bar" data={COMPLIANCE_READINESS_CHART} />
                 )}
               </React.Fragment>
             ))}
-            {/* Decision framework terminal after section 4 */}
-            {section.number === 4 && (
+            {/* Decision framework terminal after Picking section (6) */}
+            {section.number === 6 && (
               <TerminalWindow title={DECISION_TERMINAL.title} command={DECISION_TERMINAL.command} lines={DECISION_TERMINAL.lines} variant={DECISION_TERMINAL.variant} />
             )}
-            {/* Benchmark stats in section 7 */}
-            {section.number === 7 && (
+            {/* Benchmark stats in Deep Architectural Analysis (9) */}
+            {section.number === 9 && (
               <StatsGrid stats={BENCHMARK_STATS} />
             )}
-            {/* Compliance cards in section 8 */}
-            {section.number === 8 && (
+            {/* Compliance cards in Compliance section (10) */}
+            {section.number === 10 && (
               <CardGrid type={COMPLIANCE_CARDS.type} columns={COMPLIANCE_CARDS.columns} cards={COMPLIANCE_CARDS.cards} />
             )}
           </Section>

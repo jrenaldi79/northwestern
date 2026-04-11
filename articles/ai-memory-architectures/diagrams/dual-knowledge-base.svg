@@ -36,7 +36,7 @@
   <!-- SHARED INPUT ROW                             -->
   <!-- ============================================ -->
   <rect x="40" y="80" width="720" height="28" rx="5" fill="#FFFFFF" stroke="#D4D4D8" stroke-width="0.8"/>
-  <text x="400" y="98" text-anchor="middle" style="font-size:11px; font-weight:500; fill:#52525B;">All organizational data flows in — documents, conversations, transactions, meetings</text>
+  <text x="400" y="98" text-anchor="middle" style="font-size:11px; font-weight:500; fill:#52525B;">All organizational data flows in: documents, conversations, transactions, meetings</text>
 
   <!-- Down arrows splitting left and right — BOLD, color-coded -->
   <line x1="300" y1="108" x2="210" y2="130" stroke="#6366f1" stroke-width="2" opacity="0.6" marker-end="url(#arrow-purple)"/>

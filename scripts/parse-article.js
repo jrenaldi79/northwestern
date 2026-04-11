@@ -54,8 +54,10 @@ const ARTICLE_CONFIGS = {
     },
     shortLabelOverrides: {
       'The Problem: AI Has No Memory': 'The Problem',
+      'Enter the Second Brain': 'Second Brain',
       'Building AI That Remembers Everything Your Team Knows': 'Vision',
       'Architecting the Dual Knowledge Base: The Company Brain and the Customer Brain': 'Dual KB',
+      'What a Second Brain Is Not': 'vs Data Layer',
       'Picking the Right System': 'Picking',
       'Architectural Divergence and Capability Analysis': 'Architecture',
       'When You Need a Separate Wiki Layer (And When You Don\'t)': 'Wiki Layer',

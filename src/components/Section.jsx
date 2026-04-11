@@ -526,7 +526,7 @@ const BulletList = ({ items }) => (
             marginTop: '0.125rem',
           }}
         >
-          —
+          ·
         </span>
         <span
           style={{
