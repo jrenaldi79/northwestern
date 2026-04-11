@@ -86,29 +86,28 @@ const QuadrantChart = ({ title, subtitle, xAxisLow, xAxisHigh, yAxisLow, yAxisHi
 
         {/* Chart area with axes */}
         <div style={{ position: 'relative' }}>
-          {/* Y-axis labels */}
+          {/* Y-axis labels - each centered at 25% and 75% of chart height */}
           <div
             style={{
               position: 'absolute',
               left: 0,
-              top: CHART_PADDING,
-              bottom: CHART_PADDING,
+              top: 0,
+              height: CHART_HEIGHT,
               width: CHART_PADDING,
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              alignItems: 'center',
               pointerEvents: 'none',
               zIndex: 2,
             }}
           >
             <span
               style={{
+                position: 'absolute',
+                top: '25%',
+                left: '50%',
+                transform: 'translate(-50%, -50%) rotate(180deg)',
                 fontFamily: FONTS.mono,
                 fontSize: '0.625rem',
                 color: COLORS.ink[400],
                 writingMode: 'vertical-rl',
-                transform: 'rotate(180deg)',
                 letterSpacing: '0.02em',
                 whiteSpace: 'nowrap',
               }}
@@ -117,11 +116,14 @@ const QuadrantChart = ({ title, subtitle, xAxisLow, xAxisHigh, yAxisLow, yAxisHi
             </span>
             <span
               style={{
+                position: 'absolute',
+                top: '75%',
+                left: '50%',
+                transform: 'translate(-50%, -50%) rotate(180deg)',
                 fontFamily: FONTS.mono,
                 fontSize: '0.625rem',
                 color: COLORS.ink[400],
                 writingMode: 'vertical-rl',
-                transform: 'rotate(180deg)',
                 letterSpacing: '0.02em',
                 whiteSpace: 'nowrap',
               }}

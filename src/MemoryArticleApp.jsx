@@ -1575,6 +1575,10 @@ const App = () => {
                 {section.title === 'How the Four Systems Differ in Architecture and Capability' && block.type === 'subsection' && block.title === 'LongMemEval: The Shared Benchmark' && (
                   <Chart type="bar" data={LONGMEMEVAL_CHART} />
                 )}
+                {/* Benchmark stats after the Deep Architectural Analysis intro paragraph (section-wide overview) */}
+                {section.title === 'Deep Architectural Analysis' && i === 0 && block.type === 'paragraph' && (
+                  <StatsGrid stats={BENCHMARK_STATS} />
+                )}
                 {/* Ingestion Complexity bar chart after "The Biggest Design Choice" subsection in Deep Architectural Analysis */}
                 {section.title === 'Deep Architectural Analysis' && block.type === 'subsection' && block.title === 'The Biggest Design Choice: Graph-First vs. Embedding-First' && (
                   <Chart type="bar" data={INGESTION_COMPLEXITY_CHART} />
@@ -1616,10 +1620,6 @@ const App = () => {
             {/* Decision framework terminal after Picking section */}
             {section.title === 'Picking the Right System' && (
               <TerminalWindow title={DECISION_TERMINAL.title} command={DECISION_TERMINAL.command} lines={DECISION_TERMINAL.lines} variant={DECISION_TERMINAL.variant} />
-            )}
-            {/* Benchmark stats in Deep Architectural Analysis */}
-            {section.title === 'Deep Architectural Analysis' && (
-              <StatsGrid stats={BENCHMARK_STATS} />
             )}
             {/* Compliance cards in Compliance section */}
             {section.title.startsWith('Compliance Deep Dive') && (

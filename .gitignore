@@ -35,3 +35,7 @@ coverage/
 
 # Reference/scratch materials
 articles/*/ref/
+
+# Claude Code / Sidecar local state
+.claude/settings.local.json
+**/.claude/sidecar_sessions/
