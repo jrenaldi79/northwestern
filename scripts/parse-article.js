@@ -152,6 +152,14 @@ function parseBlocks(text) {
       continue;
     }
 
+    // YouTube video embed — ![caption](https://www.youtube.com/watch?v=VIDEO_ID)
+    const ytMatch = line.match(/^!\[([^\]]*)\]\(https?:\/\/(?:www\.)?youtube\.com\/watch\?v=([A-Za-z0-9_-]+)\)/);
+    if (ytMatch) {
+      blocks.push({ type: 'youtube', caption: ytMatch[1], videoId: ytMatch[2] });
+      i++;
+      continue;
+    }
+
     // SVG image reference
     const imgMatch = line.match(/^!\[([^\]]*)\]\(diagrams\/([^)]+\.svg)\)/);
     if (imgMatch) {

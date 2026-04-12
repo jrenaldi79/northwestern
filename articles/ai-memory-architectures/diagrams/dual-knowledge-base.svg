@@ -6,18 +6,7 @@
     v2: Fixed fonts (all sans-serif), bolder arrows, better contrast, larger labels
   -->
 
-  <!-- Arrow markers -->
-  <defs>
-    <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-auto">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6366f1" opacity="0.7"/>
-    </marker>
-    <marker id="arrow-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-auto">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#14b8a6" opacity="0.7"/>
-    </marker>
-    <marker id="arrow-violet" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-auto">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5B21B6" opacity="0.6"/>
-    </marker>
-  </defs>
+  <!-- No marker defs — using inline polygon arrowheads for clean rendering -->
 
   <!-- Background -->
   <rect width="800" height="440" fill="#f8f9fc"/>
@@ -39,8 +28,10 @@
   <text x="400" y="98" text-anchor="middle" style="font-size:11px; font-weight:500; fill:#52525B;">All organizational data flows in: documents, conversations, transactions, meetings</text>
 
   <!-- Down arrows splitting left and right — BOLD, color-coded -->
-  <line x1="300" y1="108" x2="210" y2="130" stroke="#6366f1" stroke-width="2" opacity="0.6" marker-end="url(#arrow-purple)"/>
-  <line x1="500" y1="108" x2="590" y2="130" stroke="#14b8a6" stroke-width="2" opacity="0.6" marker-end="url(#arrow-teal)"/>
+  <line x1="300" y1="108" x2="216" y2="128" stroke="#6366f1" stroke-width="2" opacity="0.6"/>
+  <polygon points="220,132 208,134 214,124" fill="#6366f1" opacity="0.6"/>
+  <line x1="500" y1="108" x2="584" y2="128" stroke="#14b8a6" stroke-width="2" opacity="0.6"/>
+  <polygon points="580,124 592,134 586,132" fill="#14b8a6" opacity="0.6"/>
 
   <!-- Splitter label — more prominent -->
   <rect x="352" y="108" width="96" height="20" rx="4" fill="rgba(91, 33, 182, 0.08)" stroke="rgba(91, 33, 182, 0.25)" stroke-width="0.8"/>
@@ -219,8 +210,10 @@
   <!-- BOTTOM: Convergence — both feed into agent   -->
   <!-- ============================================ -->
   <!-- Down arrows from both brains — BOLD, with proper arrowheads -->
-  <line x1="210" y1="382" x2="348" y2="406" stroke="#6366f1" stroke-width="2" opacity="0.5" marker-end="url(#arrow-purple)"/>
-  <line x1="590" y1="382" x2="456" y2="406" stroke="#14b8a6" stroke-width="2" opacity="0.5" marker-end="url(#arrow-teal)"/>
+  <line x1="210" y1="382" x2="342" y2="404" stroke="#6366f1" stroke-width="2" opacity="0.5"/>
+  <polygon points="338,400 350,408 344,406" fill="#6366f1" opacity="0.5"/>
+  <line x1="590" y1="382" x2="462" y2="404" stroke="#14b8a6" stroke-width="2" opacity="0.5"/>
+  <polygon points="466,400 454,408 460,406" fill="#14b8a6" opacity="0.5"/>
 
   <!-- Agent box -->
   <rect x="348" y="400" width="104" height="26" rx="5" fill="rgba(91, 33, 182, 0.08)" stroke="rgba(91, 33, 182, 0.3)" stroke-width="1"/>

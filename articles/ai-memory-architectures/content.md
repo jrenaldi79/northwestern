@@ -30,6 +30,8 @@ The industry's attempts to work around this limitation have followed a predictab
 
 These are not just engineering inconveniences. They cap what AI products can actually become.
 
+For a thorough taxonomy of how current memory systems compose their design choices — what gets stored, when derivation happens, retrieval strategies, forgetting policies — [Rosebud Journal's overview](https://rosebudjournal.notion.site/Everything-you-need-to-know-about-LLM-memory-33b328e8e3f780858d3df3acb06d23b9) is the best single map of the design space. This report takes the next step: evaluating which of those choices actually work for building a persistent company knowledge layer.
+
 ---
 
 ## Enter the Second Brain
@@ -92,15 +94,31 @@ Most organizations are only thinking about one of these, or conflating them. Bui
 
 ![Dual Knowledge Base](diagrams/dual-knowledge-base.svg)
 
+### The Underlying Technology: Knowledge Graphs
+
+Every system in this report is, at its core, a flavor of knowledge graph. Even Karpathy's LLM Wiki, which uses no database at all, is a poor man's version of one: interlinked markdown pages where each page is a node and each wiki-link is an edge. Understanding what a knowledge graph is, and how it differs from the vector databases that power vanilla RAG, is essential context for everything that follows.
+
+A knowledge graph stores information as entities (nodes) connected by relationships (edges). A person works at a company. That company has a contract with a customer. The customer filed a support ticket about a product. Each node holds properties (the person's role, the contract's renewal date, the ticket's severity), and each edge holds properties too (when the person started, whether the contract is active). The result is a structured map of how things in your organization actually relate to one another, not a flat list of text chunks ranked by mathematical similarity.
+
+This is the fundamental difference from vector-only RAG. A vector database stores text fragments as high-dimensional numerical representations and retrieves whichever fragments are closest to the query in that mathematical space. It is very good at finding things that are semantically *similar* to a question. But it has no concept of the *structure* connecting those things, no way to traverse from a customer to their contract to the product they're complaining about to the engineer who owns that product. That traversal, following relationships across multiple hops, is what a knowledge graph does natively. The three purpose-built memory engines in this report (Hindsight, Zep, and Supermemory) all combine both: vector embeddings for semantic search *and* graph structure for relational reasoning. They differ in which one they treat as primary, a distinction we unpack in the "Graph-First vs. Embedding-First" section later.
+
+If you want a visual primer before going further, two short videos cover the fundamentals well.
+
+![Knowledge Graphs: Turning Raw Data Into Useful Information (SandboxAQ, 4 min)](https://www.youtube.com/watch?v=Q5izD6Xlb8o)
+
+![Vector DB vs. Graph DB: Which One Do You Actually Need? (Ctrl Alt Explain, 7 min)](https://www.youtube.com/watch?v=W-_OBmwrNk4)
+
 ### Meet the Four Systems
 
-Four shipping systems already commercialize this dual-brain architecture, and each one arrives from a different engineering philosophy. Three are purpose-built memory engines that run as infrastructure behind your agents. The fourth is a markdown-and-Git pattern you can implement without any database at all.
+Four shipping systems already commercialize this dual-brain architecture, and each one arrives from a different engineering philosophy. Three are purpose-built memory engines that run as infrastructure behind your agents. The fourth is a markdown-and-Git pattern you can implement without any database at all. A critical point before we introduce them: the three purpose-built engines are not just knowledge graphs. Each one runs multiple retrieval strategies in parallel — semantic vector search, keyword matching (BM25), and graph traversal — fusing the results before handing them to the model. This hybrid approach is what makes them viable as a grounded index: agents can search by meaning, search by exact term, and traverse relationships — and then, critically, trace any result back to its original source document. All three engines maintain the raw ingested material (transcripts, emails, documents) alongside the extracted knowledge, and expose retrieval tools that let agents fetch the full original source on demand. This matters because extracted facts are not always enough. When a user asks for a summary of last week's customer call, the agent needs the complete transcript, not just the three facts the system extracted from it. The knowledge graph tells the agent *which* source is relevant; the grounding tools let it retrieve and reason over the source itself. No single retrieval strategy covers all of this; it is the combination that solves the RAG limitations we described earlier.
+
+![Hybrid retrieval and source grounding: three search strategies fuse results before the model sees them](diagrams/hybrid-retrieval-grounding.svg)
 
 **Hindsight** is the open-source option. Released by Vectorize under an MIT license, it is a four-network operational memory substrate, facts, actions, beliefs, and observations stored in strictly separated layers, running on standard PostgreSQL. Retrieval is hybrid by design: keyword, semantic vector, and graph traversal searches run in parallel, and the results are merged into a single ranked set before being handed to the model. Organizations host it inside their own environment or can pay for a hosted solution.
 
-**Zep** is the temporally precise option. Powered by the open-source Graphiti engine, it is a managed bi-temporal knowledge graph that gives every user a dedicated graph instance and stamps four timestamps on every fact, separating when something became true in the world from when the system first learned it. 
+**Zep** is the temporally precise option. Powered by the open-source Graphiti engine, it is a managed bi-temporal knowledge graph that gives every user a dedicated graph instance and stamps four timestamps on every fact, separating when something became true in the world from when the system first learned it. Retrieval combines vector similarity, BM25 keyword search, and native graph traversal across multiple backend options (Neo4j, FalkorDB, Amazon Neptune), delivering production-grade results at P95 latency under 200 milliseconds.
 
-**Supermemory** is a fully managed option. It bundles a full context stack with native connectors to Google Workspace, Notion, and GitHub, plus a drop-in proxy that turns any LLM application into a persistent-memory application by swapping a single URL. A free tier and a $19-a-month developer plan make it the fastest path to working memory in the category.
+**Supermemory** is a fully managed option. It bundles a full context stack with native connectors to Google Workspace, Notion, and GitHub, plus a drop-in proxy that turns any LLM application into a persistent-memory application by swapping a single URL. Retrieval runs hybrid semantic and keyword search with contextual chunk reranking, layered over a lightweight graph of ontology-aware edges that track how facts update, extend, and derive from one another. A free tier and a $19-a-month developer plan make it the fastest path to working memory in the category.
 
 **Karpathy's LLM Wiki** is the radically simpler option. Interlinked markdown files, maintained by the language model itself and version-controlled in Git. No database, no vector store, no proprietary graph engine. Every fact the system holds is a file a human can open, read, and edit directly.
 
@@ -210,7 +228,7 @@ To architect a dual-knowledge base capturing every piece of organizational data,
 
 ### LongMemEval: The Shared Benchmark
 
-LongMemEval is the agent memory field's shared benchmark for multi-session question answering over long dialogue histories. It is the only public evaluation all three runtime systems report against, though on different backbone models.
+No benchmark fully captures what memory actually needs to do — facts change, old context gets superseded, and the significance of a conversation may only become clear weeks later. But LongMemEval is the closest the field has, and the only public evaluation all three runtime systems report against, so it is worth examining even with that caveat. It tests multi-session question answering over long dialogue histories, though each vendor runs it on a different backbone model.
 
 **A note on the backbones.** Zep publishes only a GPT-4o score (71.2%) and has not released a Gemini-3 Pro number, so the comparison below is not strictly apples-to-apples. Hindsight and Supermemory both publish Gemini-3 Pro results (91.4% and 85.2%), which is the closest thing to a direct head-to-head in the space. Backbone choice moves scores meaningfully: Supermemory gained 3.6 points moving from GPT-4o to Gemini-3 Pro (81.6% → 85.2%), and Hindsight gained 7.8 points moving from OSS-20B to Gemini-3 Pro (83.6% → 91.4%). Treat any cross-vendor benchmark claim with skepticism unless the backbone model and evaluation harness are explicitly matched.
 

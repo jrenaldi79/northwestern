@@ -1194,6 +1194,81 @@ const SVGFigure = ({ content, caption }) => {
 };
 
 // =============================================================================
+// YOUTUBE EMBED - Responsive iframe with caption and scroll animation
+// =============================================================================
+
+const YouTubeEmbed = ({ videoId, caption }) => {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setInView(true); },
+      { threshold: 0.1, rootMargin: '-30px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <figure
+      ref={ref}
+      style={{
+        margin: `${SPACE[6]} 0`,
+        padding: 0,
+        opacity: inView ? 1 : 0,
+        transform: inView ? 'translateY(0)' : 'translateY(16px)',
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+      }}
+    >
+      <div
+        style={{
+          position: 'relative',
+          paddingBottom: '56.25%',
+          height: 0,
+          overflow: 'hidden',
+          borderRadius: EFFECTS.radius.xl,
+          boxShadow: EFFECTS.shadow.md,
+          border: `1px solid ${COLORS.ink[100]}`,
+          background: COLORS.ink[900],
+        }}
+      >
+        <iframe
+          src={`https://www.youtube.com/embed/${videoId}?rel=0`}
+          title={caption || 'Video'}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            border: 'none',
+          }}
+        />
+      </div>
+      {caption && (
+        <figcaption
+          style={{
+            fontFamily: FONTS.ui,
+            fontSize: TYPE_SCALE.ui.sm.size,
+            color: COLORS.ink[400],
+            marginTop: SPACE[3],
+            textAlign: 'center',
+            fontStyle: 'italic',
+          }}
+        >
+          {caption}
+        </figcaption>
+      )}
+    </figure>
+  );
+};
+
+// =============================================================================
 // NUMBERED LIST - Styled ordered list
 // =============================================================================
 
@@ -1313,6 +1388,8 @@ const BlockRenderer = ({ block }) => {
     }
     case 'svg':
       return <SVGFigure content={block.content} caption={block.caption} />;
+    case 'youtube':
+      return <YouTubeEmbed videoId={block.videoId} caption={block.caption} />;
     case 'subsection':
       return (
         <Subsection title={block.title}>

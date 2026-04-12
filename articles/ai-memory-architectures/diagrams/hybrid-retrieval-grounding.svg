@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'DM Sans', 'Outfit', system-ui, sans-serif">
+  <!--
+    Hybrid Retrieval + Source Grounding
+    Design system: Northwestern editorial (FAFAFA paper, zinc ink, thin strokes)
+    Shows: 3 parallel retrieval strategies → fusion → extracted facts + source grounding
+  -->
+
+  <!-- No marker defs — using inline polygon arrowheads for clean rendering -->
+
+  <!-- Background -->
+  <rect width="800" height="480" fill="#f8f9fc"/>
+  <rect x="0" y="0" width="800" height="3" fill="#5B21B6"/>
+
+  <!-- Section label -->
+  <text x="40" y="30" style="font-size:9px; font-weight:500; fill:#A1A1AA; letter-spacing:0.12em;">HYBRID RETRIEVAL + SOURCE GROUNDING</text>
+
+  <!-- Title -->
+  <text x="40" y="56" style="font-size:22px; font-weight:600; fill:#0A0A0B; letter-spacing:-0.03em;">How Memory Gets Into the Prompt</text>
+
+  <!-- Thin accent divider -->
+  <line x1="40" y1="66" x2="120" y2="66" stroke="#5B21B6" stroke-width="2" opacity="0.4"/>
+
+  <!-- Subtitle -->
+  <text x="40" y="84" style="font-size:10px; fill:#71717A;">Three retrieval strategies run in parallel, fuse results, then the agent decides whether extracted facts are enough — or whether it needs the original source.</text>
+
+  <!-- ============================================ -->
+  <!-- QUERY INPUT                                  -->
+  <!-- ============================================ -->
+  <rect x="40" y="100" width="720" height="34" rx="5" fill="#FFFFFF" stroke="#D4D4D8" stroke-width="0.8"/>
+  <circle cx="62" cy="117" r="8" fill="rgba(91, 33, 182, 0.1)" stroke="#5B21B6" stroke-width="0.8"/>
+  <text x="62" y="121" text-anchor="middle" style="font-size:9px; fill:#5B21B6;">?</text>
+  <text x="80" y="121" style="font-size:11px; font-weight:500; fill:#27272A;">Agent query:</text>
+  <text x="168" y="121" style="font-size:11px; fill:#52525B; font-style:italic;">"Summarize last week's call with Acme and flag any churn signals"</text>
+
+  <!-- Down arrow from query -->
+  <line x1="400" y1="134" x2="400" y2="152" stroke="#A1A1AA" stroke-width="1.5"/>
+  <polygon points="396,150 400,158 404,150" fill="#A1A1AA"/>
+
+  <!-- ============================================ -->
+  <!-- MEMORY ENGINE BOX                            -->
+  <!-- ============================================ -->
+  <rect x="80" y="160" width="640" height="150" rx="8" fill="#FFFFFF" stroke="#D4D4D8" stroke-width="0.8"/>
+  <rect x="80" y="160" width="640" height="28" rx="8" fill="rgba(91, 33, 182, 0.05)"/>
+  <rect x="80" y="180" width="640" height="8" fill="rgba(91, 33, 182, 0.05)"/>
+  <line x1="80" y1="188" x2="720" y2="188" stroke="rgba(91, 33, 182, 0.12)" stroke-width="0.5"/>
+
+  <text x="100" y="180" style="font-size:11px; font-weight:600; fill:#5B21B6; letter-spacing:0.02em;">MEMORY ENGINE</text>
+  <text x="240" y="180" style="font-size:9px; fill:#A1A1AA;">Hindsight / Zep / Supermemory — all three run this pattern</text>
+
+  <!-- ============================================ -->
+  <!-- THREE PARALLEL RETRIEVAL STRATEGIES          -->
+  <!-- ============================================ -->
+
+  <!-- Strategy 1: Semantic Vector Search -->
+  <rect x="104" y="200" width="176" height="72" rx="6" fill="#FFFFFF" stroke="rgba(99, 102, 241, 0.3)" stroke-width="0.8"/>
+  <rect x="104" y="200" width="176" height="20" rx="6" fill="rgba(99, 102, 241, 0.07)"/>
+  <rect x="104" y="214" width="176" height="6" fill="rgba(99, 102, 241, 0.07)"/>
+  <text x="114" y="214" style="font-size:9px; font-weight:600; fill:#4f46e5;">Semantic Vector Search</text>
+
+  <!-- Vector dot cluster -->
+  <circle cx="135" cy="244" r="3.5" fill="rgba(99, 102, 241, 0.3)"/>
+  <circle cx="148" cy="238" r="2.5" fill="rgba(99, 102, 241, 0.25)"/>
+  <circle cx="142" cy="252" r="3" fill="rgba(99, 102, 241, 0.2)"/>
+  <circle cx="158" cy="248" r="2" fill="rgba(99, 102, 241, 0.15)"/>
+  <!-- Query vector (highlighted) -->
+  <circle cx="155" cy="236" r="3" fill="#6366f1" opacity="0.6"/>
+
+  <text x="174" y="240" style="font-size:8px; fill:#71717A;">Finds conceptually</text>
+  <text x="174" y="250" style="font-size:8px; fill:#71717A;">similar content</text>
+  <text x="174" y="264" font-family="'IBM Plex Mono', monospace" style="font-size:7px; fill:#A1A1AA;">cosine similarity</text>
+
+  <!-- Strategy 2: BM25 Keyword Search -->
+  <rect x="296" y="200" width="176" height="72" rx="6" fill="#FFFFFF" stroke="rgba(245, 158, 11, 0.3)" stroke-width="0.8"/>
+  <rect x="296" y="200" width="176" height="20" rx="6" fill="rgba(245, 158, 11, 0.07)"/>
+  <rect x="296" y="214" width="176" height="6" fill="rgba(245, 158, 11, 0.07)"/>
+  <text x="306" y="214" style="font-size:9px; font-weight:600; fill:#d97706;">BM25 Keyword Search</text>
+
+  <!-- Search term highlight -->
+  <rect x="316" y="230" width="40" height="12" rx="2" fill="rgba(245, 158, 11, 0.12)" stroke="rgba(245, 158, 11, 0.3)" stroke-width="0.5"/>
+  <text x="336" y="239" text-anchor="middle" font-family="'IBM Plex Mono', monospace" style="font-size:7px; fill:#d97706;">"Acme"</text>
+  <rect x="362" y="230" width="42" height="12" rx="2" fill="rgba(245, 158, 11, 0.12)" stroke="rgba(245, 158, 11, 0.3)" stroke-width="0.5"/>
+  <text x="383" y="239" text-anchor="middle" font-family="'IBM Plex Mono', monospace" style="font-size:7px; fill:#d97706;">"churn"</text>
+
+  <text x="316" y="258" style="font-size:8px; fill:#71717A;">Finds exact terms,</text>
+  <text x="316" y="268" style="font-size:8px; fill:#71717A;">names, identifiers</text>
+
+  <!-- Strategy 3: Graph Traversal -->
+  <rect x="488" y="200" width="218" height="72" rx="6" fill="#FFFFFF" stroke="rgba(34, 197, 94, 0.3)" stroke-width="0.8"/>
+  <rect x="488" y="200" width="218" height="20" rx="6" fill="rgba(34, 197, 94, 0.07)"/>
+  <rect x="488" y="214" width="218" height="6" fill="rgba(34, 197, 94, 0.07)"/>
+  <text x="498" y="214" style="font-size:9px; font-weight:600; fill:#16a34a;">Graph Traversal</text>
+
+  <!-- Mini graph -->
+  <circle cx="520" cy="244" r="7" fill="rgba(34, 197, 94, 0.15)" stroke="#22c55e" stroke-width="0.8"/>
+  <text x="520" y="247" text-anchor="middle" style="font-size:5px; font-weight:500; fill:#16a34a;">Acme</text>
+  <circle cx="558" cy="236" r="6" fill="rgba(34, 197, 94, 0.12)" stroke="#22c55e" stroke-width="0.7"/>
+  <text x="558" y="239" text-anchor="middle" style="font-size:4.5px; font-weight:500; fill:#16a34a;">Call</text>
+  <circle cx="556" cy="260" r="6" fill="rgba(34, 197, 94, 0.12)" stroke="#22c55e" stroke-width="0.7"/>
+  <text x="556" y="263" text-anchor="middle" style="font-size:4.5px; font-weight:500; fill:#16a34a;">Tickets</text>
+  <circle cx="592" cy="248" r="5.5" fill="rgba(34, 197, 94, 0.1)" stroke="#22c55e" stroke-width="0.6"/>
+  <text x="592" y="251" text-anchor="middle" style="font-size:4px; font-weight:500; fill:#16a34a;">Renewal</text>
+
+  <!-- Graph edges -->
+  <line x1="527" y1="242" x2="552" y2="238" stroke="#22c55e" stroke-width="0.7" opacity="0.4"/>
+  <line x1="527" y1="248" x2="550" y2="257" stroke="#22c55e" stroke-width="0.7" opacity="0.4"/>
+  <line x1="562" y1="240" x2="587" y2="246" stroke="#22c55e" stroke-width="0.6" opacity="0.35"/>
+  <line x1="562" y1="258" x2="587" y2="250" stroke="#22c55e" stroke-width="0.6" opacity="0.35"/>
+
+  <text x="618" y="240" style="font-size:8px; fill:#71717A;">Follows entity</text>
+  <text x="618" y="250" style="font-size:8px; fill:#71717A;">relationships</text>
+  <text x="618" y="264" font-family="'IBM Plex Mono', monospace" style="font-size:7px; fill:#A1A1AA;">multi-hop</text>
+
+  <!-- "PARALLEL" label spanning all three -->
+  <text x="400" y="296" text-anchor="middle" font-family="'IBM Plex Mono', monospace" style="font-size:8px; font-weight:600; fill:#5B21B6; letter-spacing:0.08em;">▼ ALL THREE RUN IN PARALLEL · RESULTS FUSED VIA RERANKER ▼</text>
+
+  <!-- ============================================ -->
+  <!-- FUSION / RERANK                              -->
+  <!-- ============================================ -->
+  <line x1="400" y1="310" x2="400" y2="326" stroke="#A1A1AA" stroke-width="1.5"/>
+  <polygon points="396,324 400,332 404,324" fill="#A1A1AA"/>
+
+  <!-- ============================================ -->
+  <!-- TWO OUTPUT PATHS                             -->
+  <!-- ============================================ -->
+  <rect x="80" y="332" width="640" height="34" rx="5" fill="rgba(91, 33, 182, 0.04)" stroke="rgba(91, 33, 182, 0.15)" stroke-width="0.8"/>
+  <text x="400" y="354" text-anchor="middle" style="font-size:10px; font-weight:600; fill:#5B21B6;">Ranked results returned to agent — each result carries a source document ID</text>
+
+  <!-- Split into two paths -->
+  <line x1="280" y1="366" x2="206" y2="388" stroke="#5B21B6" stroke-width="1.5" opacity="0.6"/>
+  <polygon points="210,392 198,394 206,384" fill="#5B21B6" opacity="0.6"/>
+  <line x1="520" y1="366" x2="594" y2="388" stroke="#0d9488" stroke-width="1.5" opacity="0.6"/>
+  <polygon points="590,384 602,394 596,392" fill="#0d9488" opacity="0.6"/>
+
+  <!-- ============================================ -->
+  <!-- LEFT PATH: Extracted Facts (often sufficient) -->
+  <!-- ============================================ -->
+  <rect x="40" y="396" width="320" height="64" rx="6" fill="#FFFFFF" stroke="rgba(91, 33, 182, 0.25)" stroke-width="0.8"/>
+  <rect x="40" y="396" width="320" height="22" rx="6" fill="rgba(91, 33, 182, 0.05)"/>
+  <rect x="40" y="412" width="320" height="6" fill="rgba(91, 33, 182, 0.05)"/>
+
+  <circle cx="56" cy="407" r="4" fill="#5B21B6" opacity="0.2"/>
+  <text x="56" y="410" text-anchor="middle" style="font-size:7px; fill:#5B21B6;">✓</text>
+  <text x="68" y="412" style="font-size:10px; font-weight:600; fill:#5B21B6;">Extracted Knowledge</text>
+  <text x="228" y="412" style="font-size:9px; fill:#A1A1AA;">often sufficient</text>
+
+  <text x="56" y="434" style="font-size:8.5px; fill:#52525B;">Structured facts, entity summaries, temporal</text>
+  <text x="56" y="446" style="font-size:8.5px; fill:#52525B;">metadata — injected directly into the prompt</text>
+
+  <!-- ============================================ -->
+  <!-- RIGHT PATH: Source Grounding (on demand)     -->
+  <!-- ============================================ -->
+  <rect x="440" y="396" width="320" height="64" rx="6" fill="#FFFFFF" stroke="rgba(20, 184, 166, 0.3)" stroke-width="0.8"/>
+  <rect x="440" y="396" width="320" height="22" rx="6" fill="rgba(20, 184, 166, 0.07)"/>
+  <rect x="440" y="412" width="320" height="6" fill="rgba(20, 184, 166, 0.07)"/>
+
+  <circle cx="456" cy="407" r="4" fill="#14b8a6" opacity="0.2"/>
+  <text x="456" y="410" text-anchor="middle" style="font-size:7px; fill:#0d9488;">⟲</text>
+  <text x="468" y="412" style="font-size:10px; font-weight:600; fill:#0d9488;">Source Document Retrieval</text>
+  <text x="644" y="412" style="font-size:9px; fill:#A1A1AA;">on demand</text>
+
+  <text x="456" y="434" style="font-size:8.5px; fill:#52525B;">Agent fetches the full original transcript, email,</text>
+  <text x="456" y="446" style="font-size:8.5px; fill:#52525B;">or file when extracted facts aren't enough</text>
+
+  <!-- ============================================ -->
+  <!-- FOOTER: Tool APIs per system                 -->
+  <!-- ============================================ -->
+  <line x1="40" y1="468" x2="760" y2="468" stroke="#E4E4E7" stroke-width="0.5"/>
+  <text x="40" y="478" font-family="'IBM Plex Mono', monospace" style="font-size:7px; fill:#A1A1AA;">GROUNDING APIs:</text>
+  <text x="136" y="478" font-family="'IBM Plex Mono', monospace" style="font-size:7px; fill:#22c55e;">Hindsight: getDocument(doc_id)</text>
+  <text x="340" y="478" font-family="'IBM Plex Mono', monospace" style="font-size:7px; fill:#6366f1;">Zep: episodic_node.get(uuid)</text>
+  <text x="540" y="478" font-family="'IBM Plex Mono', monospace" style="font-size:7px; fill:#f59e0b;">Supermemory: GET /documents/{id}</text>
+</svg>
