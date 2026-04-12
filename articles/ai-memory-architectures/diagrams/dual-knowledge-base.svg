@@ -28,10 +28,10 @@
   <text x="400" y="98" text-anchor="middle" style="font-size:11px; font-weight:500; fill:#52525B;">All organizational data flows in: documents, conversations, transactions, meetings</text>
 
   <!-- Down arrows splitting left and right — BOLD, color-coded -->
-  <line x1="300" y1="108" x2="216" y2="128" stroke="#6366f1" stroke-width="2" opacity="0.6"/>
-  <polygon points="220,132 208,134 214,124" fill="#6366f1" opacity="0.6"/>
-  <line x1="500" y1="108" x2="584" y2="128" stroke="#14b8a6" stroke-width="2" opacity="0.6"/>
-  <polygon points="580,124 592,134 586,132" fill="#14b8a6" opacity="0.6"/>
+  <line x1="300" y1="108" x2="218" y2="128" stroke="#6366f1" stroke-width="2" opacity="0.6"/>
+  <polygon points="217,133 208,130 215,123" fill="#6366f1" opacity="0.6"/>
+  <line x1="500" y1="108" x2="582" y2="128" stroke="#14b8a6" stroke-width="2" opacity="0.6"/>
+  <polygon points="583,133 592,130 585,123" fill="#14b8a6" opacity="0.6"/>
 
   <!-- Splitter label — more prominent -->
   <rect x="352" y="108" width="96" height="20" rx="4" fill="rgba(91, 33, 182, 0.08)" stroke="rgba(91, 33, 182, 0.25)" stroke-width="0.8"/>
@@ -210,10 +210,10 @@
   <!-- BOTTOM: Convergence — both feed into agent   -->
   <!-- ============================================ -->
   <!-- Down arrows from both brains — BOLD, with proper arrowheads -->
-  <line x1="210" y1="382" x2="342" y2="404" stroke="#6366f1" stroke-width="2" opacity="0.5"/>
-  <polygon points="338,400 350,408 344,406" fill="#6366f1" opacity="0.5"/>
-  <line x1="590" y1="382" x2="462" y2="404" stroke="#14b8a6" stroke-width="2" opacity="0.5"/>
-  <polygon points="466,400 454,408 460,406" fill="#14b8a6" opacity="0.5"/>
+  <line x1="210" y1="382" x2="340" y2="404" stroke="#6366f1" stroke-width="2" opacity="0.5"/>
+  <polygon points="341,409 350,405 343,399" fill="#6366f1" opacity="0.5"/>
+  <line x1="590" y1="382" x2="464" y2="404" stroke="#14b8a6" stroke-width="2" opacity="0.5"/>
+  <polygon points="463,409 454,405 461,399" fill="#14b8a6" opacity="0.5"/>
 
   <!-- Agent box -->
   <rect x="348" y="400" width="104" height="26" rx="5" fill="rgba(91, 33, 182, 0.08)" stroke="rgba(91, 33, 182, 0.3)" stroke-width="1"/>

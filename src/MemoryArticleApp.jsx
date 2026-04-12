@@ -30,16 +30,6 @@ import WorkList from './components/WorkList';
 // COMPONENT DATA — Rich components injected into specific sections
 // =============================================================================
 
-// Section 3: Dual Knowledge Base cards (after "How Each System Implements Isolation" subsection)
-const DUAL_KB_CARDS = {
-  type: 'feature',
-  columns: 2,
-  cards: [
-    { icon: 'briefcase', title: 'Company Brain', content: 'Product roadmap, pricing logic, strategy docs, onboarding playbook. Changes weekly. Whole team reads. Fed by internal documents and meetings.' },
-    { icon: 'users', title: 'Customer Brain', content: 'Per-account usage patterns, feature requests, renewal dates, support history. Changes with every interaction. Agents read at point of service.' },
-  ],
-};
-
 // Section 4: Decision framework terminal
 const DECISION_TERMINAL = {
   title: 'pick-your-architecture.md',
@@ -400,6 +390,7 @@ const ArticleHeader = ({ data }) => {
   const [typedText, setTypedText] = useState('');
   const [isTyping, setIsTyping] = useState(true);
   const [imageError, setImageError] = useState(false);
+  const [bioExpanded, setBioExpanded] = useState(false);
 
   // Typewriter effect for subtitle
   useEffect(() => {
@@ -701,81 +692,173 @@ const ArticleHeader = ({ data }) => {
             {/* Author info card */}
             <div
               style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '1.25rem',
-                padding: '1rem 1.5rem',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1rem',
+                padding: '1.25rem 1.5rem',
                 background: COLORS.surface.elevated,
                 borderRadius: EFFECTS.radius.xl,
                 border: `1px solid ${COLORS.ink[200]}`,
                 boxShadow: EFFECTS.shadow.lg,
+                maxWidth: '28rem',
               }}
             >
-              <div
-                style={{
-                  width: '56px',
-                  height: '56px',
-                  borderRadius: EFFECTS.radius.full,
-                  overflow: 'hidden',
-                  border: `3px solid ${COLORS.accent.primary}`,
-                  background: imageError
-                    ? `linear-gradient(135deg, ${COLORS.accent.primary} 0%, ${COLORS.accent.light} 100%)`
-                    : COLORS.ink[100],
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
-                }}
-              >
-                {!imageError && data.headshot ? (
-                  <img
-                    src={data.headshot}
-                    alt={data.from}
-                    onError={() => setImageError(true)}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                    }}
-                  />
-                ) : (
-                  <span
+              {/* Top row: headshot + name/email */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+                <div
+                  style={{
+                    width: '56px',
+                    height: '56px',
+                    borderRadius: EFFECTS.radius.full,
+                    overflow: 'hidden',
+                    border: `3px solid ${COLORS.accent.primary}`,
+                    background: imageError
+                      ? `linear-gradient(135deg, ${COLORS.accent.primary} 0%, ${COLORS.accent.light} 100%)`
+                      : COLORS.ink[100],
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                  }}
+                >
+                  {!imageError && data.headshot ? (
+                    <img
+                      src={data.headshot}
+                      alt={data.from}
+                      onError={() => setImageError(true)}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                      }}
+                    />
+                  ) : (
+                    <span
+                      style={{
+                        fontFamily: FONTS.ui,
+                        fontSize: '1.25rem',
+                        fontWeight: 600,
+                        color: 'white',
+                      }}
+                    >
+                      JR
+                    </span>
+                  )}
+                </div>
+                <div>
+                  <p
                     style={{
                       fontFamily: FONTS.ui,
-                      fontSize: '1.25rem',
+                      fontSize: TYPE_SCALE.ui.lg.size,
                       fontWeight: 600,
-                      color: 'white',
+                      color: COLORS.ink[800],
+                      marginBottom: '0.25rem',
                     }}
                   >
-                    JR
-                  </span>
-                )}
+                    {data.from}
+                  </p>
+                  <a
+                    href={`mailto:${data.fromEmail}`}
+                    style={{
+                      fontFamily: FONTS.mono,
+                      fontSize: TYPE_SCALE.mono.sm.size,
+                      color: COLORS.ink[500],
+                      textDecoration: 'none',
+                      display: 'block',
+                    }}
+                  >
+                    {data.fromEmail}
+                  </a>
+                </div>
               </div>
-              <div>
-                <p
-                  style={{
-                    fontFamily: FONTS.ui,
-                    fontSize: TYPE_SCALE.ui.lg.size,
-                    fontWeight: 600,
-                    color: COLORS.ink[800],
-                    marginBottom: '0.25rem',
-                  }}
-                >
-                  {data.from}
-                </p>
-                <a
-                  href={`mailto:${data.fromEmail}`}
-                  style={{
-                    fontFamily: FONTS.mono,
-                    fontSize: TYPE_SCALE.mono.sm.size,
-                    color: COLORS.ink[500],
-                    textDecoration: 'none',
-                    display: 'block',
-                  }}
-                >
-                  {data.fromEmail}
-                </a>
-              </div>
+              {/* Bio section — collapsed/expanded */}
+              {data.fromTitle && (
+                <div style={{ borderTop: `1px solid ${COLORS.ink[100]}`, paddingTop: '0.75rem' }}>
+                  {/* Always visible: title + expand toggle */}
+                  <div
+                    onClick={() => setBioExpanded(!bioExpanded)}
+                    style={{ cursor: 'pointer', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '0.5rem' }}
+                  >
+                    <p
+                      style={{
+                        fontFamily: FONTS.ui,
+                        fontSize: TYPE_SCALE.ui.sm.size,
+                        fontWeight: 500,
+                        color: COLORS.ink[700],
+                        lineHeight: 1.4,
+                        margin: 0,
+                      }}
+                    >
+                      {data.fromTitle}
+                    </p>
+                    <span
+                      style={{
+                        fontFamily: FONTS.mono,
+                        fontSize: '0.625rem',
+                        color: COLORS.accent.primary,
+                        flexShrink: 0,
+                        marginTop: '2px',
+                        transition: `transform ${EFFECTS.transition.fast}`,
+                        transform: bioExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                      }}
+                    >
+                      ▼
+                    </span>
+                  </div>
+                  {/* Expanded content */}
+                  <div
+                    style={{
+                      maxHeight: bioExpanded ? '300px' : '0',
+                      overflow: 'hidden',
+                      transition: 'max-height 0.3s ease-out',
+                    }}
+                  >
+                    <div style={{ paddingTop: '0.5rem' }}>
+                      {data.fromCredentials && (
+                        <p
+                          style={{
+                            fontFamily: FONTS.ui,
+                            fontSize: TYPE_SCALE.ui.sm.size,
+                            color: COLORS.ink[400],
+                            lineHeight: 1.4,
+                            marginBottom: '0.5rem',
+                          }}
+                        >
+                          {data.fromCredentials}
+                        </p>
+                      )}
+                      {data.fromBio && (
+                        <p
+                          style={{
+                            fontFamily: FONTS.body,
+                            fontSize: TYPE_SCALE.body.sm.size,
+                            color: COLORS.ink[500],
+                            lineHeight: 1.5,
+                            marginBottom: '0.5rem',
+                          }}
+                        >
+                          {data.fromBio}
+                        </p>
+                      )}
+                      {data.fromLinkedin && (
+                        <a
+                          href={data.fromLinkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            fontFamily: FONTS.mono,
+                            fontSize: TYPE_SCALE.mono.sm.size,
+                            color: COLORS.accent.primary,
+                            textDecoration: 'none',
+                          }}
+                        >
+                          linkedin.com/in/renaldi
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
@@ -964,7 +1047,7 @@ const ArticleSectionNav = ({ sections }) => {
     }
 
     const handleScroll = () => {
-      setIsVisible(window.scrollY > 400);
+      setIsVisible(window.scrollY > window.innerHeight);
 
       const sectionEls = document.querySelectorAll('[data-section]');
       const scrollPos = window.scrollY + window.innerHeight / 3;
@@ -1138,6 +1221,8 @@ const SVGFigure = ({ content, caption }) => {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    const rect = el.getBoundingClientRect();
+    if (rect.bottom < window.innerHeight + 100) { setInView(true); return; }
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setInView(true); },
       { threshold: 0.1, rootMargin: '-30px' }
@@ -1204,6 +1289,8 @@ const YouTubeEmbed = ({ videoId, caption }) => {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    const rect = el.getBoundingClientRect();
+    if (rect.bottom < window.innerHeight + 100) { setInView(true); return; }
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setInView(true); },
       { threshold: 0.1, rootMargin: '-30px' }
@@ -1636,10 +1723,6 @@ const App = () => {
                     insight={<em>{SECOND_BRAIN_CONVERGENCE.insight}</em>}
                     roles={SECOND_BRAIN_CONVERGENCE.roles}
                   />
-                )}
-                {/* Dual KB cards after "How Each System Implements Isolation" subsection in Dual KB section */}
-                {section.title.startsWith('Architecting the Dual Knowledge Base') && block.type === 'subsection' && block.title === 'How Each System Implements Isolation' && (
-                  <CardGrid type={DUAL_KB_CARDS.type} columns={DUAL_KB_CARDS.columns} cards={DUAL_KB_CARDS.cards} />
                 )}
                 {/* Quadrant charts after "Key Differences" subsection in Picking section */}
                 {section.title === 'Picking the Right System' && block.type === 'subsection' && block.title === 'Key Differences' && (

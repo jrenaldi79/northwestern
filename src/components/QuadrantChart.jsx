@@ -14,6 +14,8 @@ const QuadrantChart = ({ title, subtitle, xAxisLow, xAxisHigh, yAxisLow, yAxisHi
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    const rect = el.getBoundingClientRect();
+    if (rect.bottom < window.innerHeight + 100) { setInView(true); return; }
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setInView(true); },
       { threshold: 0.1, rootMargin: '-30px' }

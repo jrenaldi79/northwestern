@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-04-06 -->
+<!-- Last updated: 2026-04-12 -->
 <!-- SYNCED FILE: Edit any of CLAUDE.md, AGENTS.md, or GEMINI.md then run `npm run sync-docs` -->
 
 # Northwestern Publishing System - Component Architecture
@@ -479,6 +479,66 @@ Design aesthetic: "The Scholarly Disruptor" - editorial magazine style with:
 - Professional hierarchy
 - Subtle animations on interaction
 
+## Scroll Animation Pattern (IntersectionObserver)
+
+Most components use `IntersectionObserver` to trigger fade-in / slide-up animations when the user scrolls them into view. The shared hook (`useInView` in `Section.jsx`, similar hooks in `TerminalWindow.jsx`, `QuadrantChart.jsx`, etc.) follows this pattern:
+
+```javascript
+const useInView = (options = {}) => {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    // ── CRITICAL: Mount-check for mid-page refresh ──
+    // If the element is already above or within the viewport on mount
+    // (e.g. after a mid-page refresh), mark it visible immediately.
+    // Without this, elements above the scroll position never intersect
+    // and stay invisible (opacity: 0) permanently.
+    const rect = element.getBoundingClientRect();
+    if (rect.bottom < window.innerHeight + 100) {
+      setInView(true);
+      setHasAnimated(true);
+      return; // No observer needed — already passed
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setInView(true);
+          setHasAnimated(true);
+        }
+      },
+      { threshold: 0.2, rootMargin: '-50px', ...options }
+    );
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [hasAnimated, options]);
+
+  return [ref, inView];
+};
+```
+
+### Why the mount-check matters
+
+When a user refreshes the page while scrolled partway down, the browser restores the scroll position *after* React mounts. Elements that are above the viewport at mount time will never scroll into view (the user already passed them), so the `IntersectionObserver` callback never fires and those elements stay at `opacity: 0` / `translateY(...)` forever.
+
+The mount-check (`rect.bottom < window.innerHeight + 100`) catches these elements on initial render and immediately marks them visible. The `+ 100` buffer accounts for elements that are just barely above the fold.
+
+### Where to apply this
+
+**Every component that uses `IntersectionObserver` for scroll-reveal must include the mount-check.** Currently applied in:
+- `Section.jsx` → `useInView` hook (used by `Section`, `Subsection`, `SectionDivider`)
+- `TerminalWindow.jsx` → `useTerminalInView` hook
+- `QuadrantChart.jsx` → inline `useEffect`
+- `MemoryArticleApp.jsx` → `SVGFigure`, `YouTubeEmbed` components
+- `ArticleApp.jsx` → `SVGFigure` component
+
+When adding a new component with scroll-triggered animation, copy the pattern above — don't create a bare `IntersectionObserver` without the mount-check.
+
 ## Testing Strategy
 
 **Automated validation (`npm run build` includes `validate-build.js`):**
@@ -539,6 +599,7 @@ When verifying UI changes, use a **smoke test** approach:
 | Article headshot not showing | headshot.png missing or moved | Place PNG at `articles/market-sizing/headshot.png` and rebuild |
 | Article SVG not rendering | SVG file missing from diagrams/ | Check `articles/market-sizing/diagrams/` for the referenced SVG filename |
 | Article bundle too large | Base64 headshot (~700KB) | Normal — headshot is inlined to avoid hotlinking issues |
+| Content invisible after mid-page refresh | IntersectionObserver never fires for elements above viewport | Add mount-check to `useInView` / observer hook — see "Scroll Animation Pattern" section above |
 
 ## Validation Commands
 

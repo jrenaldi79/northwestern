@@ -8,7 +8,7 @@
 
 ## The Problem: AI Has No Memory
 
-![Architecture Overview](diagrams/architecture-overview.svg)
+![The Memory Gap: stateless sessions and failed workarounds](diagrams/memory-gap.svg)
 
 Every large language model shipped today is stateless. Think of it as Groundhog Day flipped on its head. And yes, I realize I'm dating myself here. Half my students at Northwestern give me blank stares when I reference Bill Murray movies, so pick whichever of these lands for you. In *Groundhog Day*, Bill Murray's Phil Connors wakes up reliving the same day while everyone around him resets. In *Edge of Tomorrow*, Tom Cruise does the same thing with aliens and a better tagline ("Live. Die. Repeat."). Either way, in our version your *user* is the one who remembers every previous conversation, and your *AI* is everyone else, waking up each session with no idea who they are. When a conversation ends, the model retains nothing. It does not remember that your user prefers metric units, that a pricing tier changed last Tuesday, or that three support tickets this week all trace back to the same broken API endpoint. The next session starts from zero. This is not a bug in any particular product; it is a fundamental property of transformer-based inference. The model processes a fixed context window of tokens and produces a response. Nothing persists.
 
@@ -30,7 +30,7 @@ The industry's attempts to work around this limitation have followed a predictab
 
 These are not just engineering inconveniences. They cap what AI products can actually become.
 
-For a thorough taxonomy of how current memory systems compose their design choices — what gets stored, when derivation happens, retrieval strategies, forgetting policies — [Rosebud Journal's overview](https://rosebudjournal.notion.site/Everything-you-need-to-know-about-LLM-memory-33b328e8e3f780858d3df3acb06d23b9) is the best single map of the design space. This report takes the next step: evaluating which of those choices actually work for building a persistent company knowledge layer.
+If you want a map of the full design space before we get into specific systems, [Rosebud Journal's overview](https://rosebudjournal.notion.site/Everything-you-need-to-know-about-LLM-memory-33b328e8e3f780858d3df3acb06d23b9) is one of the best resources out there. It outlines the various approaches to memory, how they work, and where each one falls short in isolation. This report picks up where that map leaves off: evaluating which choices actually work when you're building a persistent company knowledge layer.
 
 ---
 
@@ -113,6 +113,8 @@ If you want a visual primer before going further, two short videos cover the fun
 Four shipping systems already commercialize this dual-brain architecture, and each one arrives from a different engineering philosophy. Three are purpose-built memory engines that run as infrastructure behind your agents. The fourth is a markdown-and-Git pattern you can implement without any database at all. A critical point before we introduce them: the three purpose-built engines are not just knowledge graphs. Each one runs multiple retrieval strategies in parallel — semantic vector search, keyword matching (BM25), and graph traversal — fusing the results before handing them to the model. This hybrid approach is what makes them viable as a grounded index: agents can search by meaning, search by exact term, and traverse relationships — and then, critically, trace any result back to its original source document. All three engines maintain the raw ingested material (transcripts, emails, documents) alongside the extracted knowledge, and expose retrieval tools that let agents fetch the full original source on demand. This matters because extracted facts are not always enough. When a user asks for a summary of last week's customer call, the agent needs the complete transcript, not just the three facts the system extracted from it. The knowledge graph tells the agent *which* source is relevant; the grounding tools let it retrieve and reason over the source itself. No single retrieval strategy covers all of this; it is the combination that solves the RAG limitations we described earlier.
 
 ![Hybrid retrieval and source grounding: three search strategies fuse results before the model sees them](diagrams/hybrid-retrieval-grounding.svg)
+
+![Architecture Overview: Four Approaches to the Same Problem](diagrams/architecture-overview.svg)
 
 **Hindsight** is the open-source option. Released by Vectorize under an MIT license, it is a four-network operational memory substrate, facts, actions, beliefs, and observations stored in strictly separated layers, running on standard PostgreSQL. Retrieval is hybrid by design: keyword, semantic vector, and graph traversal searches run in parallel, and the results are merged into a single ranked set before being handed to the model. Organizations host it inside their own environment or can pay for a hosted solution.
 

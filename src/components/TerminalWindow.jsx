@@ -45,6 +45,14 @@ const useTerminalInView = (options = {}) => {
     const element = ref.current;
     if (!element) return;
 
+    // If element is already above or within viewport (mid-page refresh), show immediately
+    const rect = element.getBoundingClientRect();
+    if (rect.bottom < window.innerHeight + 100) {
+      setInView(true);
+      setHasAnimated(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated) {

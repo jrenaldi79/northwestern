@@ -1,0 +1,217 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="Georgia, 'Times New Roman', serif">
+  <!--
+    The Memory Gap: Why AI Stays Stateless
+    Design system: Northwestern editorial (FAFAFA paper, zinc ink, thin strokes)
+    Terminal windows show the stateless loop; cards show failed workarounds
+  -->
+
+  <!-- Background -->
+  <rect width="800" height="480" fill="#f8f9fc"/>
+  <rect x="0" y="0" width="800" height="3" fill="#5B21B6"/>
+
+  <!-- Section label -->
+  <text x="40" y="28" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" font-size="9" font-weight="500" fill="#A1A1AA" letter-spacing="0.12em">THE PROBLEM</text>
+
+  <!-- Title -->
+  <text x="40" y="52" font-size="22" font-weight="400" fill="#0A0A0B" letter-spacing="-0.03em">Why Every AI Session Starts From Zero</text>
+
+  <!-- Accent divider -->
+  <line x1="40" y1="62" x2="110" y2="62" stroke="#5B21B6" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- ============================================ -->
+  <!-- THE STATELESS LOOP                            -->
+  <!-- ============================================ -->
+  <text x="40" y="86" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" font-size="10" font-weight="600" fill="#52525B" letter-spacing="0.04em">THE STATELESS LOOP</text>
+
+  <!-- Session 1: Things the user tells the AI -->
+  <g>
+    <rect x="40" y="96" width="195" height="100" rx="6" fill="#1a1b26" stroke="#3d3d4a" stroke-width="0.8"/>
+    <!-- Title bar -->
+    <rect x="40" y="96" width="195" height="20" rx="6" fill="#2d2d3a"/>
+    <rect x="40" y="110" width="195" height="6" fill="#2d2d3a"/>
+    <!-- Traffic lights -->
+    <circle cx="54" cy="106" r="3" fill="#FF5F57"/>
+    <circle cx="64" cy="106" r="3" fill="#FFBD2E"/>
+    <circle cx="74" cy="106" r="3" fill="#28CA41"/>
+    <text x="137" y="110" text-anchor="middle" font-family="'DM Sans', system-ui, sans-serif" font-size="8" fill="rgba(255,255,255,0.5)">session_01</text>
+
+    <text x="54" y="132" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(255,255,255,0.45)">user:</text>
+    <text x="86" y="132" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(255,255,255,0.85)">I prefer metric units</text>
+    <text x="54" y="148" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(139,92,246,0.7)">ai:</text>
+    <text x="74" y="148" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(255,255,255,0.85)">Noted. Using metric. ✓</text>
+    <text x="54" y="164" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(255,255,255,0.45)">user:</text>
+    <text x="86" y="164" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(255,255,255,0.85)">Price is now $49/mo</text>
+    <text x="54" y="180" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(139,92,246,0.7)">ai:</text>
+    <text x="74" y="180" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(255,255,255,0.85)">Updated. ✓</text>
+  </g>
+
+  <!-- RESET marker 1 -->
+  <g>
+    <line x1="248" y1="146" x2="282" y2="146" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+    <line x1="260" y1="134" x2="270" y2="144" stroke="#ef4444" stroke-width="1.5" opacity="0.6"/>
+    <line x1="270" y1="134" x2="260" y2="144" stroke="#ef4444" stroke-width="1.5" opacity="0.6"/>
+    <text x="265" y="162" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="7" fill="#ef4444" opacity="0.65">RESET</text>
+  </g>
+
+  <!-- Session 2: AI has forgotten everything -->
+  <g>
+    <rect x="295" y="96" width="195" height="100" rx="6" fill="#1a1b26" stroke="#3d3d4a" stroke-width="0.8"/>
+    <rect x="295" y="96" width="195" height="20" rx="6" fill="#2d2d3a"/>
+    <rect x="295" y="110" width="195" height="6" fill="#2d2d3a"/>
+    <circle cx="309" cy="106" r="3" fill="#FF5F57"/>
+    <circle cx="319" cy="106" r="3" fill="#FFBD2E"/>
+    <circle cx="329" cy="106" r="3" fill="#28CA41"/>
+    <text x="392" y="110" text-anchor="middle" font-family="'DM Sans', system-ui, sans-serif" font-size="8" fill="rgba(255,255,255,0.5)">session_02</text>
+
+    <text x="309" y="132" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(255,255,255,0.45)">user:</text>
+    <text x="341" y="132" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(255,255,255,0.85)">What units do I use?</text>
+    <text x="309" y="148" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(239,68,68,0.8)">ai:</text>
+    <text x="329" y="148" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(239,68,68,0.8)">I don't have that info.</text>
+    <text x="309" y="164" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(255,255,255,0.45)">user:</text>
+    <text x="341" y="164" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(255,255,255,0.85)">What's our pricing?</text>
+    <text x="309" y="180" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(239,68,68,0.8)">ai:</text>
+    <text x="329" y="180" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(239,68,68,0.8)">I don't know.</text>
+  </g>
+
+  <!-- RESET marker 2 -->
+  <g>
+    <line x1="503" y1="146" x2="537" y2="146" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+    <line x1="515" y1="134" x2="525" y2="144" stroke="#ef4444" stroke-width="1.5" opacity="0.6"/>
+    <line x1="525" y1="134" x2="515" y2="144" stroke="#ef4444" stroke-width="1.5" opacity="0.6"/>
+    <text x="520" y="162" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="7" fill="#ef4444" opacity="0.65">RESET</text>
+  </g>
+
+  <!-- Session 3: Still no memory -->
+  <g>
+    <rect x="550" y="96" width="195" height="100" rx="6" fill="#1a1b26" stroke="#3d3d4a" stroke-width="0.8"/>
+    <rect x="550" y="96" width="195" height="20" rx="6" fill="#2d2d3a"/>
+    <rect x="550" y="110" width="195" height="6" fill="#2d2d3a"/>
+    <circle cx="564" cy="106" r="3" fill="#FF5F57"/>
+    <circle cx="574" cy="106" r="3" fill="#FFBD2E"/>
+    <circle cx="584" cy="106" r="3" fill="#28CA41"/>
+    <text x="647" y="110" text-anchor="middle" font-family="'DM Sans', system-ui, sans-serif" font-size="8" fill="rgba(255,255,255,0.5)">session_03</text>
+
+    <text x="564" y="132" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(255,255,255,0.45)">user:</text>
+    <text x="596" y="132" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(255,255,255,0.85)">Summarize last call</text>
+    <text x="564" y="148" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(239,68,68,0.8)">ai:</text>
+    <text x="584" y="148" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(239,68,68,0.8)">What call?</text>
+    <text x="564" y="164" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(255,255,255,0.45)">user:</text>
+    <text x="596" y="164" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(255,255,255,0.85)">3 tickets → same bug</text>
+    <text x="564" y="180" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(239,68,68,0.8)">ai:</text>
+    <text x="584" y="180" font-family="'IBM Plex Mono', monospace" font-size="9" fill="rgba(239,68,68,0.8)">I have no context.</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- WORKAROUNDS THAT FAIL                        -->
+  <!-- ============================================ -->
+  <text x="40" y="224" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" font-size="10" font-weight="600" fill="#52525B" letter-spacing="0.04em">WORKAROUNDS — AND WHY THEY FALL SHORT</text>
+  <line x1="40" y1="232" x2="760" y2="232" stroke="#E4E4E7" stroke-width="0.5"/>
+
+  <!-- ======== Column 1: Context Stuffing ======== -->
+  <g>
+    <rect x="40" y="244" width="228" height="190" rx="6" fill="#FFFFFF" stroke="#E4E4E7" stroke-width="0.5"/>
+    <!-- Header -->
+    <rect x="40" y="244" width="228" height="28" rx="6" fill="rgba(91, 33, 182, 0.05)"/>
+    <rect x="40" y="266" width="228" height="6" fill="rgba(91, 33, 182, 0.05)"/>
+    <line x1="40" y1="272" x2="268" y2="272" stroke="#E4E4E7" stroke-width="0.5"/>
+
+    <text x="56" y="263" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" font-size="12" font-weight="600" fill="#27272A">Context Stuffing</text>
+
+    <!-- Visual: context window with tokens overflowing -->
+    <rect x="78" y="284" width="112" height="62" rx="3" fill="#f4f4f5" stroke="#D4D4D8" stroke-width="0.8"/>
+    <!-- Token lines — fading to suggest overflow -->
+    <line x1="90" y1="294" x2="178" y2="294" stroke="#D4D4D8" stroke-width="3" opacity="0.4"/>
+    <line x1="90" y1="302" x2="172" y2="302" stroke="#D4D4D8" stroke-width="3" opacity="0.35"/>
+    <line x1="90" y1="310" x2="176" y2="310" stroke="#D4D4D8" stroke-width="3" opacity="0.3"/>
+    <line x1="90" y1="318" x2="170" y2="318" stroke="#D4D4D8" stroke-width="3" opacity="0.2"/>
+    <line x1="90" y1="326" x2="174" y2="326" stroke="#D4D4D8" stroke-width="3" opacity="0.12"/>
+    <line x1="90" y1="334" x2="168" y2="334" stroke="#D4D4D8" stroke-width="3" opacity="0.06"/>
+    <!-- "Lost in the middle" callout -->
+    <rect x="86" y="306" width="96" height="10" rx="2" fill="rgba(239, 68, 68, 0.08)" stroke="rgba(239, 68, 68, 0.2)" stroke-width="0.5"/>
+    <text x="134" y="313" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="6" fill="#ef4444" opacity="0.6">lost in the middle</text>
+    <!-- Cost indicator -->
+    <text x="200" y="302" font-family="'IBM Plex Mono', monospace" font-size="13" fill="rgba(239, 68, 68, 0.25)">$</text>
+    <text x="210" y="316" font-family="'IBM Plex Mono', monospace" font-size="13" fill="rgba(239, 68, 68, 0.18)">$</text>
+    <text x="202" y="330" font-family="'IBM Plex Mono', monospace" font-size="13" fill="rgba(239, 68, 68, 0.12)">$</text>
+
+    <!-- Failure bullets -->
+    <text x="56" y="370" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#ef4444">✗</text>
+    <text x="68" y="370" font-family="'DM Sans', system-ui, sans-serif" font-size="9" fill="#52525B">Up to $5/M input tokens</text>
+    <text x="56" y="386" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#ef4444">✗</text>
+    <text x="68" y="386" font-family="'DM Sans', system-ui, sans-serif" font-size="9" fill="#52525B">Recall degrades in the middle</text>
+    <text x="56" y="402" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#ef4444">✗</text>
+    <text x="68" y="402" font-family="'DM Sans', system-ui, sans-serif" font-size="9" fill="#52525B">Still must curate what to stuff</text>
+  </g>
+
+  <!-- ======== Column 2: Vector RAG ======== -->
+  <g>
+    <rect x="280" y="244" width="228" height="190" rx="6" fill="#FFFFFF" stroke="#E4E4E7" stroke-width="0.5"/>
+    <rect x="280" y="244" width="228" height="28" rx="6" fill="rgba(91, 33, 182, 0.05)"/>
+    <rect x="280" y="266" width="228" height="6" fill="rgba(91, 33, 182, 0.05)"/>
+    <line x1="280" y1="272" x2="508" y2="272" stroke="#E4E4E7" stroke-width="0.5"/>
+
+    <text x="296" y="263" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" font-size="12" font-weight="600" fill="#27272A">Vector RAG</text>
+
+    <!-- Visual: scattered embedding dots — isolated, no connections -->
+    <circle cx="316" cy="296" r="5" fill="rgba(99, 102, 241, 0.22)"/>
+    <circle cx="344" cy="306" r="6" fill="rgba(99, 102, 241, 0.28)"/>
+    <circle cx="376" cy="292" r="4.5" fill="rgba(99, 102, 241, 0.18)"/>
+    <circle cx="406" cy="304" r="5.5" fill="rgba(99, 102, 241, 0.25)"/>
+    <circle cx="438" cy="294" r="4" fill="rgba(99, 102, 241, 0.15)"/>
+    <circle cx="464" cy="308" r="5" fill="rgba(99, 102, 241, 0.22)"/>
+    <circle cx="330" cy="328" r="4.5" fill="rgba(99, 102, 241, 0.18)"/>
+    <circle cx="360" cy="320" r="6" fill="rgba(99, 102, 241, 0.28)"/>
+    <circle cx="390" cy="334" r="4" fill="rgba(99, 102, 241, 0.15)"/>
+    <circle cx="420" cy="324" r="5.5" fill="rgba(99, 102, 241, 0.25)"/>
+    <circle cx="450" cy="336" r="4.5" fill="rgba(99, 102, 241, 0.18)"/>
+    <circle cx="346" cy="350" r="3.5" fill="rgba(99, 102, 241, 0.12)"/>
+    <circle cx="376" cy="346" r="5" fill="rgba(99, 102, 241, 0.22)"/>
+    <circle cx="424" cy="350" r="4" fill="rgba(99, 102, 241, 0.15)"/>
+    <!-- Question marks — no structure, no relationships -->
+    <text x="394" y="316" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="rgba(239, 68, 68, 0.22)">?</text>
+    <text x="435" y="346" font-family="Georgia, serif" font-size="12" fill="rgba(239, 68, 68, 0.16)">?</text>
+    <text x="335" y="346" font-family="Georgia, serif" font-size="14" fill="rgba(239, 68, 68, 0.18)">?</text>
+
+    <!-- Failure bullets -->
+    <text x="296" y="370" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#ef4444">✗</text>
+    <text x="308" y="370" font-family="'DM Sans', system-ui, sans-serif" font-size="9" fill="#52525B">No concept of time</text>
+    <text x="296" y="386" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#ef4444">✗</text>
+    <text x="308" y="386" font-family="'DM Sans', system-ui, sans-serif" font-size="9" fill="#52525B">Fragments, not full documents</text>
+    <text x="296" y="402" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#ef4444">✗</text>
+    <text x="308" y="402" font-family="'DM Sans', system-ui, sans-serif" font-size="9" fill="#52525B">No authority or provenance</text>
+  </g>
+
+  <!-- ======== Column 3: Fine-tuning ======== -->
+  <g>
+    <rect x="520" y="244" width="228" height="190" rx="6" fill="#FFFFFF" stroke="#E4E4E7" stroke-width="0.5"/>
+    <rect x="520" y="244" width="228" height="28" rx="6" fill="rgba(91, 33, 182, 0.05)"/>
+    <rect x="520" y="266" width="228" height="6" fill="rgba(91, 33, 182, 0.05)"/>
+    <line x1="520" y1="272" x2="748" y2="272" stroke="#E4E4E7" stroke-width="0.5"/>
+
+    <text x="536" y="263" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" font-size="12" font-weight="600" fill="#27272A">Fine-tuning</text>
+
+    <!-- Visual: model weights block + slow retraining cycle -->
+    <rect x="570" y="288" width="118" height="42" rx="4" fill="rgba(161, 161, 170, 0.06)" stroke="#D4D4D8" stroke-width="0.8"/>
+    <text x="629" y="306" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#71717A">model weights</text>
+    <text x="629" y="322" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="7" fill="#D4D4D8">██████████████████</text>
+    <!-- Retraining cycle indicator -->
+    <path d="M 594 340 Q 594 356 614 356 L 644 356 Q 664 356 664 340" fill="none" stroke="#A1A1AA" stroke-width="0.8" opacity="0.5"/>
+    <polygon points="662,342 668,338 662,335" fill="#A1A1AA" opacity="0.5"/>
+    <text x="629" y="352" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="7" fill="#A1A1AA">hours → days</text>
+
+    <!-- Failure bullets -->
+    <text x="536" y="378" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#ef4444">✗</text>
+    <text x="548" y="378" font-family="'DM Sans', system-ui, sans-serif" font-size="9" fill="#52525B">Hours to days per run</text>
+    <text x="536" y="394" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#ef4444">✗</text>
+    <text x="548" y="394" font-family="'DM Sans', system-ui, sans-serif" font-size="9" fill="#52525B">$100s–$1,000s per iteration</text>
+    <text x="536" y="410" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#ef4444">✗</text>
+    <text x="548" y="410" font-family="'DM Sans', system-ui, sans-serif" font-size="9" fill="#52525B">Static until next retrain</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- FOOTER                                       -->
+  <!-- ============================================ -->
+  <line x1="40" y1="450" x2="760" y2="450" stroke="#E4E4E7" stroke-width="0.5"/>
+  <text x="40" y="465" font-family="'DM Sans', 'Outfit', system-ui, sans-serif" font-size="8" fill="#A1A1AA" letter-spacing="0.1em">AI MEMORY ARCHITECTURES</text>
+  <text x="760" y="465" text-anchor="end" font-family="'IBM Plex Mono', 'JetBrains Mono', monospace" font-size="8" fill="#A1A1AA">The Memory Gap</text>
+</svg>

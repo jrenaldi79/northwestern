@@ -87,6 +87,15 @@ const useInView = (options = {}) => {
     const element = ref.current;
     if (!element) return;
 
+    // If the element is already above or within the viewport on mount
+    // (e.g. after a mid-page refresh), mark it visible immediately.
+    const rect = element.getBoundingClientRect();
+    if (rect.bottom < window.innerHeight + 100) {
+      setInView(true);
+      setHasAnimated(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated) {
