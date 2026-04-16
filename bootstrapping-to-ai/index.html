@@ -1028,11 +1028,12 @@
       <h2 class="section-title">Using <em>Claude Code</em></h2>
       <div class="section-sub">The agentic coding environment we'll use across the course.</div>
     </div>
-    <p class="intro">Claude Code is a harness around Claude that can read and write files, run commands, and ship real software. It's our default when a task is mostly code. We'll use the <strong>web version on claude.ai</strong> — not the CLI — so the agent runs in a sandboxed cloud environment connected to a GitHub repo instead of your local machine.</p>
+    <p class="intro">Claude Code is a harness around Claude that can read and write files, run commands, and ship real software. It's our default when a task is mostly code. We'll use the <strong>desktop app</strong> — but when you start a project, pick the <strong>cloud environment</strong> and connect a GitHub repo. Do <em>not</em> select <em>Local</em>.</p>
 
     <div class="callout callout-warn">
-      <strong>Security first — why we're not installing the CLI.</strong>
-      Running Claude Code locally gives the agent access to your terminal. In the wrong hands (or with the wrong prompt) that means it can read any file on your computer, run arbitrary commands, install software, and touch anything your user account can touch. Powerful — and genuinely risky. The web version sandboxes the agent inside a GitHub-linked container: it can only see the repo you connect, nothing else on your machine. That's where you should start. Graduate to the CLI only when you understand the trade-offs.
+      <strong>Why cloud, not local.</strong>
+      When you open Claude Code from the desktop app it asks where you want to work. Choose <strong>Cloud</strong> and pick the GitHub repo you want Claude to work inside. Claude spins up a sandboxed container, mounts the repo, and the agent can only touch what's in there. <br><br>
+      If you pick <strong>Local</strong>, Claude Code runs against your actual filesystem and terminal — it can read any file on your computer, run arbitrary commands, install software, and touch anything your user account can touch. Powerful, and genuinely risky for a first project. Start in the cloud environment. Graduate to local only once you understand the trade-offs.
     </div>
 
     <ul class="resources" data-accordion>
@@ -1047,23 +1048,31 @@
 
       <li class="row"><span class="rn">02</span>
         <div class="rlabel-wrap">
-          <span class="rtitle">Create a new repo on GitHub first</span>
+          <span class="rtitle">Install the Claude desktop app (if you haven't yet)</span>
+          <span class="rmeta">action item<span class="rsep">·</span>~2 min</span>
+          <span class="rdesc">Claude Code lives inside the desktop app alongside Cowork. One download, both tools.</span>
+        </div>
+        <a class="rlink" href="https://claude.ai/download" target="_blank" rel="noopener">Install</a>
+      </li>
+
+      <li class="row"><span class="rn">03</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Create a new repo on GitHub</span>
           <span class="rmeta">action item<span class="rsep">·</span>~3 min</span>
           <span class="rdesc">Go to github.com, click <em>New repository</em>, give it a name (e.g. <code>my-first-claude-project</code>), initialize it with a README, and make it private. This is the sandbox Claude Code will work inside — not your laptop.</span>
         </div>
         <a class="rlink" href="https://github.com/new" target="_blank" rel="noopener">New repo</a>
       </li>
 
-      <li class="row"><span class="rn">03</span>
+      <li class="row"><span class="rn">04</span>
         <div class="rlabel-wrap">
-          <span class="rtitle">Open Claude Code on the web and connect the repo</span>
+          <span class="rtitle">Open Claude Code → choose <em>Cloud</em> → connect your repo</span>
           <span class="rmeta">action item<span class="rsep">·</span>~2 min</span>
-          <span class="rdesc">Go to <code>claude.ai/code</code>, sign in, and connect the GitHub repo you just created. Claude Code will spin up a sandboxed container with your repo mounted. Anything it runs stays inside that container — your laptop is untouched.</span>
+          <span class="rdesc">In the desktop app, open Claude Code and start a new project. When it asks where to work, pick <strong>Cloud</strong> (not <em>Local</em>) and select the GitHub repo you just made. Claude will spin up a sandboxed container with your repo mounted — anything it runs stays inside that container, your laptop is untouched.</span>
         </div>
-        <a class="rlink" href="https://claude.ai/code" target="_blank" rel="noopener">Open</a>
       </li>
 
-      <li class="row"><span class="rn">04</span>
+      <li class="row"><span class="rn">05</span>
         <div class="rlabel-wrap">
           <span class="rtitle">Ship something small — a single-file web page</span>
           <span class="rmeta">action item<span class="rsep">·</span>~20 min</span>
@@ -1071,11 +1080,11 @@
         </div>
       </li>
 
-      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">05</span>
+      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">06</span>
         <div class="rlabel-wrap">
           <span class="rtitle">Master 80% of Claude Code in 26 Minutes</span>
           <span class="rmeta">Skill Leap AI<span class="rsep">·</span>YouTube</span>
-          <span class="rdesc">A beginner-friendly tour — build a landing page, a small dashboard, and a utility tool using plain-English prompts. Note: the video shows the CLI; the concepts transfer directly to the web version, which is safer to start with.</span>
+          <span class="rdesc">A beginner-friendly tour — build a landing page, a small dashboard, and a utility tool using plain-English prompts. Note: the video shows the CLI; the concepts transfer directly to the desktop app running in a cloud environment, which is where you should start.</span>
         </div>
         <span class="rwatch">Watch</span>
       </summary><div class="vembed"><div class="vembed-frame"><iframe data-src="https://www.youtube.com/embed/WCuwYLVE6j8" title="Claude Code intro" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div></details></li>
