@@ -8,8 +8,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap">
 
 <style>
   :root {
@@ -32,7 +32,7 @@
     --amber: #D97706;
 
     --serif-display: 'Instrument Serif', 'Noto Serif Display', Georgia, serif;
-    --serif-head: 'Fraunces', 'Playfair Display', Georgia, serif;
+    --serif-head: 'Instrument Serif', 'Newsreader', Georgia, serif;
     --serif-body: 'Newsreader', 'Source Serif 4', Georgia, serif;
     --sans: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     --mono: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, Menlo, monospace;
@@ -109,18 +109,9 @@
   }
 
   /* ---------- Typewriter title cursor ---------- */
-  .title-type {
-    display: inline-block;
-    position: relative;
-  }
-  .title-type .type-visible { visibility: hidden; }
-  .title-type.is-typed .type-visible { visibility: visible; }
-  .title-type .type-live {
-    position: absolute;
-    top: 0; left: 0;
-    white-space: pre-wrap;
-  }
-  .title-type.is-typed .type-live { display: none; }
+  .title-type { display: inline; }
+  .title-type .type-visible { display: none; }
+  .title-type .type-live { display: inline; }
   .type-cursor {
     display: inline-block;
     width: 0.06em;
@@ -503,6 +494,20 @@
     color: var(--ink-600);
   }
   .callout strong { color: var(--ink-900); font-weight: 500; }
+  .callout.callout-warn {
+    background: #FEF3C7;
+    border-left-color: var(--amber);
+    color: var(--ink-700);
+  }
+  .callout.callout-warn strong { color: var(--ink-900); font-weight: 600; }
+  .rdesc code, .callout code, .intro code {
+    font-family: var(--mono);
+    font-size: 0.88em;
+    background: rgba(10,10,11,0.06);
+    padding: 1px 6px;
+    border-radius: 3px;
+    color: var(--ink-800);
+  }
 
   .pullquote {
     margin: 32px 0 0;
@@ -616,11 +621,11 @@
     display: block;
   }
   .author-name {
-    font-family: var(--serif-head);
-    font-weight: 400;
-    font-size: 28px;
-    line-height: 1.15;
-    letter-spacing: -0.015em;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
     color: var(--ink-900);
     margin: 0 0 4px;
   }
@@ -1023,7 +1028,13 @@
       <h2 class="section-title">Using <em>Claude Code</em></h2>
       <div class="section-sub">The agentic coding environment we'll use across the course.</div>
     </div>
-    <p class="intro">Claude Code is a terminal-based harness around Claude that can read and write files, run commands, and ship real software. It's our default when a task is mostly code.</p>
+    <p class="intro">Claude Code is a harness around Claude that can read and write files, run commands, and ship real software. It's our default when a task is mostly code. We'll use the <strong>web version on claude.ai</strong> — not the CLI — so the agent runs in a sandboxed cloud environment connected to a GitHub repo instead of your local machine.</p>
+
+    <div class="callout callout-warn">
+      <strong>Security first — why we're not installing the CLI.</strong>
+      Running Claude Code locally gives the agent access to your terminal. In the wrong hands (or with the wrong prompt) that means it can read any file on your computer, run arbitrary commands, install software, and touch anything your user account can touch. Powerful — and genuinely risky. The web version sandboxes the agent inside a GitHub-linked container: it can only see the repo you connect, nothing else on your machine. That's where you should start. Graduate to the CLI only when you understand the trade-offs.
+    </div>
+
     <ul class="resources" data-accordion>
 
       <li class="row"><span class="rn">01</span>
@@ -1034,11 +1045,37 @@
         <a class="rlink" href="https://gamma.app/docs/Module-10-Agentic-Development-nxar0nt4p82bhzd" target="_blank" rel="noopener">Open</a>
       </li>
 
-      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">02</span>
+      <li class="row"><span class="rn">02</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Create a new repo on GitHub first</span>
+          <span class="rmeta">action item<span class="rsep">·</span>~3 min</span>
+          <span class="rdesc">Go to github.com, click <em>New repository</em>, give it a name (e.g. <code>my-first-claude-project</code>), initialize it with a README, and make it private. This is the sandbox Claude Code will work inside — not your laptop.</span>
+        </div>
+        <a class="rlink" href="https://github.com/new" target="_blank" rel="noopener">New repo</a>
+      </li>
+
+      <li class="row"><span class="rn">03</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Open Claude Code on the web and connect the repo</span>
+          <span class="rmeta">action item<span class="rsep">·</span>~2 min</span>
+          <span class="rdesc">Go to <code>claude.ai/code</code>, sign in, and connect the GitHub repo you just created. Claude Code will spin up a sandboxed container with your repo mounted. Anything it runs stays inside that container — your laptop is untouched.</span>
+        </div>
+        <a class="rlink" href="https://claude.ai/code" target="_blank" rel="noopener">Open</a>
+      </li>
+
+      <li class="row"><span class="rn">04</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Ship something small — a single-file web page</span>
+          <span class="rmeta">action item<span class="rsep">·</span>~20 min</span>
+          <span class="rdesc">Ask Claude Code to build something you'd actually use: a meal planner, a flashcard page, a landing page for a side project. Commit. Push. Publish with GitHub Pages. The goal is one round-trip from idea → repo → live URL.</span>
+        </div>
+      </li>
+
+      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">05</span>
         <div class="rlabel-wrap">
           <span class="rtitle">Master 80% of Claude Code in 26 Minutes</span>
           <span class="rmeta">Skill Leap AI<span class="rsep">·</span>YouTube</span>
-          <span class="rdesc">A beginner-friendly tour — build a landing page, a small dashboard, and a utility tool using plain-English prompts. Watch once, then try to mirror it.</span>
+          <span class="rdesc">A beginner-friendly tour — build a landing page, a small dashboard, and a utility tool using plain-English prompts. Note: the video shows the CLI; the concepts transfer directly to the web version, which is safer to start with.</span>
         </div>
         <span class="rwatch">Watch</span>
       </summary><div class="vembed"><div class="vembed-frame"><iframe data-src="https://www.youtube.com/embed/WCuwYLVE6j8" title="Claude Code intro" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div></details></li>
@@ -1125,13 +1162,24 @@
 
       <li class="row"><span class="rn">01</span>
         <div class="rlabel-wrap">
-          <span class="rtitle">Install the Front End Design plugin from the Anthropic Marketplace inside Claude Code</span>
+          <span class="rtitle">Install the <em>product-kit</em> plugin from my marketplace</span>
+          <span class="rmeta">action item<span class="rsep">·</span>plugin</span>
+          <span class="rdesc">A curated bundle of agents and skills for product work — PRDs, personas, pricing, VC-style review, Tree-of-Thought strategy, interview coaching. Inside Claude Code (web or CLI) or Cowork, run:<br>
+            <code>/plugin marketplace add jrenaldi79/plugin-marketplace</code><br>
+            then <code>/plugin install product-kit</code>. Once installed, try <code>/prd</code>, <code>/personas</code>, or <code>/vc-review</code> on something you're actually working on.</span>
+        </div>
+        <a class="rlink" href="https://github.com/jrenaldi79/plugin-marketplace" target="_blank" rel="noopener">GitHub</a>
+      </li>
+
+      <li class="row"><span class="rn">02</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Install the Front End Design plugin from the Anthropic Marketplace</span>
           <span class="rmeta">action item<span class="rsep">·</span>plugin</span>
           <span class="rdesc">Use it whenever you design a UI. It bakes in taste defaults so your first pass doesn't look like a generic AI artifact.</span>
         </div>
       </li>
 
-      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">02</span>
+      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">03</span>
         <div class="rlabel-wrap">
           <span class="rtitle">The Only Claude Code Plugin You'll Ever Need (Superpowers)</span>
           <span class="rmeta">Better Stack<span class="rsep">·</span>YouTube</span>
@@ -1140,7 +1188,7 @@
         <span class="rwatch">Watch</span>
       </summary><div class="vembed"><div class="vembed-frame"><iframe data-src="https://www.youtube.com/embed/lq3rzXP4_vs" title="Superpowers walkthrough" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div></details></li>
 
-      <li class="row"><span class="rn">03</span>
+      <li class="row"><span class="rn">04</span>
         <div class="rlabel-wrap">
           <span class="rtitle">Pro setup: harness-engineering — read it, then install it</span>
           <span class="rmeta">GitHub<span class="rsep">·</span>jrenaldi79</span>
@@ -1391,8 +1439,7 @@
 
       function step() {
         if (tokenIdx >= tokens.length) {
-          // done — swap to the real (semantic) visible version and keep cursor blinking briefly
-          el.classList.add('is-typed');
+          // done — leave the cursor blinking at the end of the line
           return;
         }
         if (charIdx < tokens[tokenIdx].text.length) {
