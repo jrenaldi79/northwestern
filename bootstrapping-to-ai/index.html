@@ -667,6 +667,89 @@
   }
   .author-links a:hover { color: var(--ink-900); border-bottom-color: var(--ink-900); }
 
+  /* ---------- Comparison table ---------- */
+  .cmp {
+    margin: 28px 0 8px;
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-700);
+    background: var(--paper);
+    border: 1px solid var(--rule);
+  }
+  .cmp caption {
+    caption-side: top;
+    text-align: left;
+    font-family: var(--ui);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-400);
+    padding: 0 0 10px;
+  }
+  .cmp th, .cmp td {
+    text-align: left;
+    padding: 12px 16px;
+    vertical-align: top;
+    border-bottom: 1px solid var(--rule);
+  }
+  .cmp thead th {
+    font-family: var(--serif-display);
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    color: var(--ink-900);
+    background: var(--paper-2);
+    padding: 16px;
+  }
+  .cmp thead th:first-child {
+    font-family: var(--ui);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-500);
+  }
+  .cmp tbody th {
+    font-family: var(--ui);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-500);
+    width: 22%;
+    background: var(--paper-2);
+  }
+  .cmp tbody tr:last-child th,
+  .cmp tbody tr:last-child td { border-bottom: none; }
+  .cmp em { color: var(--accent); font-style: normal; font-weight: 500; }
+  .cmp code {
+    font-family: var(--mono);
+    font-size: 0.9em;
+    background: rgba(10,10,11,0.06);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+  @media (max-width: 720px) {
+    .cmp, .cmp tbody, .cmp tr, .cmp th, .cmp td { display: block; width: 100%; }
+    .cmp thead { display: none; }
+    .cmp tbody tr { border-bottom: 1px solid var(--rule); padding: 4px 0; }
+    .cmp tbody th { background: transparent; padding: 12px 16px 0; }
+    .cmp tbody td { padding: 4px 16px 12px; border: none; }
+    .cmp tbody td::before {
+      display: block;
+      content: attr(data-col);
+      font-family: var(--ui);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-400);
+      margin-top: 8px;
+    }
+  }
+
   /* ---------- Footer ---------- */
   footer {
     max-width: 52rem;
@@ -808,7 +891,7 @@
 
     <div class="kicker">Kellogg<span class="dot"></span>MPD<span class="dot"></span>Pre-Read</div>
     <h1 class="title"><span class="title-type" data-typewriter data-full="Bootstrapping &lt;em&gt;to AI&lt;/em&gt;"><span class="type-visible">Bootstrapping <em>to AI</em></span><span class="type-live" aria-hidden="true"></span></span></h1>
-    <p class="dek">A curated starter kit to get you fluent in the fundamentals before we meet in class. Eleven short lessons — watch, read, play, repeat. You don't need to master everything. You need enough context to build alongside the tools.</p>
+    <p class="dek">A curated starter kit to get you fluent in the fundamentals before we meet in class. Twelve short lessons — watch, read, play, repeat. You don't need to master everything. You need enough context to build alongside the tools.</p>
   </div>
 </header>
 
@@ -844,10 +927,11 @@
       <li><a href="#s5">GitHub</a></li>
       <li><a href="#s6">Claude Cowork</a></li>
       <li><a href="#s7">Claude Code</a></li>
-      <li><a href="#s8">Start playing</a></li>
-      <li><a href="#s9">Evals</a></li>
-      <li><a href="#s10">Second brain</a></li>
-      <li><a href="#s11">Who to follow</a></li>
+      <li><a href="#s8">Skills &amp; Agents</a></li>
+      <li><a href="#s9">Start playing</a></li>
+      <li><a href="#s10">Evals</a></li>
+      <li><a href="#s11">Second brain</a></li>
+      <li><a href="#s12">Who to follow</a></li>
     </ol>
   </div>
 </nav>
@@ -1101,13 +1185,22 @@
 
       <li class="row"><span class="rn">04</span>
         <div class="rlabel-wrap">
+          <span class="rtitle">Cowork deep-dive on DAIR.AI</span>
+          <span class="rmeta">DAIR.AI Academy<span class="rsep">·</span>workshop</span>
+          <span class="rdesc">A longer, more technical walkthrough of Cowork — plugins, skills, MCPs, memory, and how to compose them into real workflows. Good second watch after the beginner tours above.</span>
+        </div>
+        <a class="rlink" href="https://academy.dair.ai/events/cmkws36d1000004jxdeqw7nzr" target="_blank" rel="noopener">Open</a>
+      </li>
+
+      <li class="row"><span class="rn">05</span>
+        <div class="rlabel-wrap">
           <span class="rtitle">Pick a folder, drop in files, ask Claude to work with them</span>
           <span class="rmeta">action item<span class="rsep">·</span>~15 min</span>
           <span class="rdesc">Choose one real folder on your computer — class notes, a messy download pile, a draft. Let Cowork read it and ask you questions. This is the fastest way to build intuition.</span>
         </div>
       </li>
 
-      <li class="row"><span class="rn">05</span>
+      <li class="row"><span class="rn">06</span>
         <div class="rlabel-wrap">
           <span class="rtitle">Install a plugin from the marketplace (try <em>product-kit</em> or <em>marketing</em>) and run a skill</span>
           <span class="rmeta">action item<span class="rsep">·</span>~15 min</span>
@@ -1115,7 +1208,7 @@
         </div>
       </li>
 
-      <li class="row"><span class="rn">06</span>
+      <li class="row"><span class="rn">07</span>
         <div class="rlabel-wrap">
           <span class="rtitle">Connect an MCP (Slack, Gmail, Notion) and run a multi-step workflow across tools</span>
           <span class="rmeta">action item<span class="rsep">·</span>~20 min</span>
@@ -1194,7 +1287,133 @@
   <!-- ============== LESSON 08 ============== -->
   <section class="module" id="s8">
     <div class="section-head">
-      <div class="section-num">LESSON 08 / PRACTICE</div>
+      <div class="section-num">LESSON 08 / BUILDING BLOCKS</div>
+      <h2 class="section-title">Skills vs. <em>Agents</em></h2>
+      <div class="section-sub">The two primitives you'll compose into everything else.</div>
+    </div>
+    <p class="intro">Once you're comfortable in Cowork and Claude Code, the next question is: <em>how do I teach the model to do something specific, and when should I hand the work to a separate worker?</em> That's the Skills vs. Agents distinction. Skills are <strong>recipes</strong> — instructions Claude follows inside your conversation. Agents are <strong>colleagues</strong> — separate workers with their own context, tools, and permissions. Get fluent with both.</p>
+
+    <table class="cmp">
+      <caption>Skills vs. Agents — the cheat sheet</caption>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Skills</th>
+          <th>Agents</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">What it is</th>
+          <td data-col="Skills">A folder (<code>SKILL.md</code> + optional scripts, references, assets) that teaches Claude how to do a specific task.</td>
+          <td data-col="Agents">A Markdown file with YAML frontmatter defining a specialized assistant with its own system prompt, tools, and permissions.</td>
+        </tr>
+        <tr>
+          <th scope="row">Mental model</th>
+          <td data-col="Skills"><em>A recipe.</em> Step-by-step instructions Claude follows in the main conversation.</td>
+          <td data-col="Agents"><em>A colleague.</em> A separate worker with a focused role who does the job and reports back.</td>
+        </tr>
+        <tr>
+          <th scope="row">Where it runs</th>
+          <td data-col="Skills">In the main conversation — everything stays in your chat.</td>
+          <td data-col="Agents">In its own separate context window — only a summary returns.</td>
+        </tr>
+        <tr>
+          <th scope="row">Context impact</th>
+          <td data-col="Skills">Adds to your context window (progressive disclosure helps).</td>
+          <td data-col="Agents">Preserves your context. Verbose output stays in the agent's window.</td>
+        </tr>
+        <tr>
+          <th scope="row">Best for</th>
+          <td data-col="Skills">Repeatable workflows: creating docs, generating frontend, onboarding flows, MCP orchestration.</td>
+          <td data-col="Agents">Long-running roles: code review, debugging, data analysis, parallel research — anything with lots of output or needing tool restrictions.</td>
+        </tr>
+        <tr>
+          <th scope="row">How it triggers</th>
+          <td data-col="Skills">Auto-matches on the skill's <code>description</code> field, or explicitly by asking for it.</td>
+          <td data-col="Agents">Auto-delegates based on the agent's description, or via @-mention / <code>--agent</code> flag.</td>
+        </tr>
+        <tr>
+          <th scope="row">Tool access</th>
+          <td data-col="Skills">Uses whatever tools the main conversation has (can restrict via <code>allowed-tools</code>).</td>
+          <td data-col="Agents">Independently configurable allowlist/denylist, own MCPs, own permission mode. Can be locked to read-only.</td>
+        </tr>
+        <tr>
+          <th scope="row">Model choice</th>
+          <td data-col="Skills">Uses the conversation's model.</td>
+          <td data-col="Agents">Configurable per agent — Haiku, Sonnet, Opus, or inherit.</td>
+        </tr>
+        <tr>
+          <th scope="row">Foreground / background</th>
+          <td data-col="Skills">Always foreground (in-conversation).</td>
+          <td data-col="Agents">Foreground (blocking) or background (concurrent). <code>Ctrl+B</code> to background.</td>
+        </tr>
+        <tr>
+          <th scope="row">Persistent memory</th>
+          <td data-col="Skills">No built-in memory between sessions.</td>
+          <td data-col="Agents">Optional: user, project, or local memory scope — agents accumulate knowledge.</td>
+        </tr>
+        <tr>
+          <th scope="row">Can nest?</th>
+          <td data-col="Skills">Skills can reference other files and scripts; agents can preload skills.</td>
+          <td data-col="Agents">Agents cannot spawn subagents. Chain from the main conversation, or use Agent Teams.</td>
+        </tr>
+        <tr>
+          <th scope="row">Where it lives</th>
+          <td data-col="Skills">Settings → Skills (claude.ai), or <code>.claude/skills/</code> in Claude Code.</td>
+          <td data-col="Agents"><code>.claude/agents/</code>, <code>~/.claude/agents/</code>, managed settings, or plugins.</td>
+        </tr>
+        <tr>
+          <th scope="row">Works in</th>
+          <td data-col="Skills">Claude.ai, Claude Code, and API — portable.</td>
+          <td data-col="Agents">Claude Code only (terminal, desktop, web sandbox).</td>
+        </tr>
+        <tr>
+          <th scope="row">Built-in examples</th>
+          <td data-col="Skills"><code>docx</code>, <code>pptx</code>, <code>xlsx</code>, <code>pdf</code>, <code>frontend-design</code>, <code>skill-creator</code>.</td>
+          <td data-col="Agents"><code>Explore</code> (read-only codebase search), <code>Plan</code> (plan-mode research), <code>General-purpose</code>.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>The rule of thumb.</strong> For verbose, investigation-heavy work (long test runs, log analysis, large codebase exploration) <em>delegate to an Agent</em> to preserve your main context window. For repeatable, deterministic output (a PRD, a styled report, a formatted spreadsheet) <em>reach for a Skill</em>. The two compose — agents can preload skills to specialize further.
+    </div>
+
+    <ul class="resources" data-accordion>
+
+      <li class="row"><span class="rn">01</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">The Complete Guide to Building Skills for Claude</span>
+          <span class="rmeta">Anthropic<span class="rsep">·</span>PDF</span>
+          <span class="rdesc">Anthropic's official playbook on how Skills are structured, when to use them, and how to write a <code>SKILL.md</code> that triggers reliably. Read this once end-to-end; refer back when you build your first skill.</span>
+        </div>
+        <a class="rlink" href="https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf" target="_blank" rel="noopener">PDF</a>
+      </li>
+
+      <li class="row"><span class="rn">02</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Use the <em>skill-creator</em> skill to build your first skill</span>
+          <span class="rmeta">action item<span class="rsep">·</span>~20 min</span>
+          <span class="rdesc">Claude ships a built-in <code>skill-creator</code>. Ask it to help you scaffold a skill for something you actually do — a weekly report, a specific doc format, a customer-research template. Commit it to your repo and it auto-loads every session.</span>
+        </div>
+      </li>
+
+      <li class="row"><span class="rn">03</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Try the built-in agents: <em>Explore</em>, <em>Plan</em>, <em>general-purpose</em></span>
+          <span class="rmeta">action item<span class="rsep">·</span>~15 min</span>
+          <span class="rdesc">In Claude Code, ask to "use the Explore agent to map this codebase," or "use the Plan agent to design an implementation for X." Notice how the verbose output stays out of your main chat. That's the superpower.</span>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- ============== LESSON 09 ============== -->
+  <section class="module" id="s9">
+    <div class="section-head">
+      <div class="section-num">LESSON 09 / PRACTICE</div>
       <h2 class="section-title">Start <em>playing</em></h2>
       <div class="section-sub">Spend a couple of hours in the tools before the next lesson. Then come back.</div>
     </div>
@@ -1238,13 +1457,40 @@
         <a class="rlink" href="https://github.com/jrenaldi79/harness-engineering" target="_blank" rel="noopener">GitHub</a>
       </li>
 
+      <li class="row"><span class="rn">05</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Connect <em>Tavily</em> MCP — better search than the default</span>
+          <span class="rmeta">MCP<span class="rsep">·</span>search</span>
+          <span class="rdesc">Tavily is an AI-native search API designed for agents. Noticeably better than Anthropic's built-in web search for research tasks — cleaner extraction, better ranking, and a free tier that's plenty for coursework.</span>
+        </div>
+        <a class="rlink" href="https://docs.tavily.com/documentation/mcp" target="_blank" rel="noopener">Install</a>
+      </li>
+
+      <li class="row"><span class="rn">06</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Connect <em>Firecrawl</em> MCP — scraping that actually works</span>
+          <span class="rmeta">MCP<span class="rsep">·</span>scrape</span>
+          <span class="rdesc">Whenever an agent needs to pull structured content off the open web — competitor pages, docs, pricing, directories — Firecrawl is the tool. It handles JS-rendered pages, crawls whole sites, and returns clean Markdown.</span>
+        </div>
+        <a class="rlink" href="https://docs.firecrawl.dev/mcp" target="_blank" rel="noopener">Install</a>
+      </li>
+
+      <li class="row"><span class="rn">07</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Connect <em>Excalidraw</em> MCP — diagrams from prompts</span>
+          <span class="rmeta">MCP<span class="rsep">·</span>diagrams</span>
+          <span class="rdesc">Ask Claude for "a system diagram of X" and get a real editable Excalidraw file back — not a blob of ASCII art. Great for system design, flowcharts, org diagrams, and anything you'd normally sketch on a whiteboard.</span>
+        </div>
+        <a class="rlink" href="https://github.com/yctimlin/mcp_excalidraw" target="_blank" rel="noopener">Install</a>
+      </li>
+
     </ul>
   </section>
 
-  <!-- ============== LESSON 09 ============== -->
-  <section class="module" id="s9">
+  <!-- ============== LESSON 10 ============== -->
+  <section class="module" id="s10">
     <div class="section-head">
-      <div class="section-num">LESSON 09 / QUALITY</div>
+      <div class="section-num">LESSON 10 / QUALITY</div>
       <h2 class="section-title">Evals</h2>
       <div class="section-sub">How you know your AI is actually working.</div>
     </div>
@@ -1298,10 +1544,10 @@
     </ul>
   </section>
 
-  <!-- ============== LESSON 10 ============== -->
-  <section class="module" id="s10">
+  <!-- ============== LESSON 11 ============== -->
+  <section class="module" id="s11">
     <div class="section-head">
-      <div class="section-num">LESSON 10 / MEMORY</div>
+      <div class="section-num">LESSON 11 / MEMORY</div>
       <h2 class="section-title">Build a <em>second brain</em></h2>
       <div class="section-sub">Start tiny. Let it compound.</div>
     </div>
@@ -1320,10 +1566,10 @@
 
   <hr class="gdiv" />
 
-  <!-- ============== LESSON 11 ============== -->
-  <section class="module" id="s11">
+  <!-- ============== LESSON 12 ============== -->
+  <section class="module" id="s12">
     <div class="section-head">
-      <div class="section-num">LESSON 11 / SIGNAL</div>
+      <div class="section-num">LESSON 12 / SIGNAL</div>
       <h2 class="section-title">Who to <em>follow</em></h2>
       <div class="section-sub">A curated feed to keep you current after the course ends.</div>
     </div>
