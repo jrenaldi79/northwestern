@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bootstrapping to AI | A Kellogg Pre-Read</title>
+<meta name="description" content="A curated starter kit for Kellogg students — the fundamentals of software, LLMs, agents, MCP, Claude Code, Claude Cowork, evals, and who to follow to stay current." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap">
+
+<style>
+  :root {
+    --paper: #FAFAFA;
+    --paper-2: #F4F4F5;
+    --ink-900: #0A0A0B;
+    --ink-800: #18181B;
+    --ink-700: #27272A;
+    --ink-600: #3F3F46;
+    --ink-500: #52525B;
+    --ink-400: #71717A;
+    --ink-300: #A1A1AA;
+    --ink-200: #D4D4D8;
+    --rule: #D4D4D8;
+    --rule-soft: #E4E4E7;
+    --accent: #762EEB;
+    --accent-2: #8B5CF6;
+    --teal: #059669;
+    --cyan: #0891B2;
+    --amber: #D97706;
+
+    --serif-display: 'Instrument Serif', 'Noto Serif Display', Georgia, serif;
+    --serif-head: 'Fraunces', 'Playfair Display', Georgia, serif;
+    --serif-body: 'Newsreader', 'Source Serif 4', Georgia, serif;
+    --sans: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink-700);
+    font-family: var(--serif-body);
+    font-size: 18px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-optical-sizing: auto;
+  }
+  ::selection { background: rgba(118, 46, 235, 0.18); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    background: var(--ink-900);
+    color: #F4F4F5;
+    padding: 48px 32px 72px;
+    border-bottom: 1px solid var(--ink-800);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(139,92,246,0.6), transparent);
+  }
+  .hero-inner {
+    max-width: 64rem;
+    margin: 0 auto;
+  }
+
+  /* ---------- Institutional lockup ---------- */
+  .inst-lockup {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 40px;
+    margin-bottom: 56px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .inst-mark {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: var(--serif-display);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1;
+    box-shadow: 0 8px 24px rgba(118,46,235,0.35);
+  }
+  .inst-text { display: flex; flex-direction: column; line-height: 1.15; }
+  .inst-primary {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #E4E4E7;
+  }
+  .inst-secondary {
+    font-family: var(--sans);
+    font-size: 10.5px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-400);
+    margin-top: 2px;
+  }
+
+  .kicker {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  .kicker .dot {
+    display: inline-block;
+    width: 4px; height: 4px;
+    background: var(--accent-2);
+    border-radius: 50%;
+    margin: 0 10px 2px;
+    vertical-align: middle;
+  }
+  h1.title {
+    font-family: var(--serif-display);
+    font-weight: 400;
+    font-size: clamp(44px, 7vw, 88px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    color: #FAFAFA;
+    margin: 0 0 28px;
+  }
+  h1.title em {
+    font-style: italic;
+    color: #D4D4D8;
+  }
+  .dek {
+    font-family: var(--serif-body);
+    font-size: 20px;
+    line-height: 1.55;
+    color: #A1A1AA;
+    max-width: 62ch;
+    margin: 0 0 36px;
+  }
+  .meta {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--ink-400);
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding-top: 24px;
+    border-top: 1px solid var(--ink-800);
+  }
+  .meta span strong {
+    color: #E4E4E7;
+    font-weight: 500;
+    margin-right: 6px;
+  }
+
+  /* ---------- Article container ---------- */
+  article {
+    max-width: 52rem;
+    margin: 0 auto;
+    padding: 72px 32px 80px;
+  }
+
+  /* ---------- Jump nav ---------- */
+  .jumpnav {
+    max-width: 64rem;
+    margin: 48px auto 0;
+    padding: 0 32px;
+  }
+  .jumpnav-inner {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 20px 0;
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .jumpnav-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-400);
+    font-weight: 500;
+  }
+  .jumpnav ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 24px;
+    font-family: var(--sans);
+    font-size: 14px;
+    counter-reset: jump;
+  }
+  .jumpnav a {
+    color: var(--ink-700);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .jumpnav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .jumpnav li { counter-increment: jump; }
+  .jumpnav li::before {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-300);
+    margin-right: 8px;
+    content: "0" counter(jump);
+  }
+
+  /* ---------- Sections ---------- */
+  section.module {
+    margin: 72px 0;
+    scroll-margin-top: 24px;
+  }
+  .section-head {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 24px;
+    align-items: baseline;
+    margin-bottom: 12px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    padding-top: 14px;
+  }
+  h2.section-title {
+    font-family: var(--serif-head);
+    font-weight: 400;
+    font-size: clamp(30px, 3.6vw, 42px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--ink-900);
+    margin: 0;
+  }
+  h2.section-title em { font-style: italic; color: var(--ink-600); }
+  .section-sub {
+    grid-column: 2;
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--ink-400);
+    letter-spacing: 0.02em;
+    margin-top: 8px;
+  }
+
+  .intro {
+    font-family: var(--serif-body);
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--ink-600);
+    margin: 24px 0 32px;
+    max-width: 62ch;
+  }
+  .intro strong { color: var(--ink-900); font-weight: 500; }
+  .intro em { color: var(--accent); font-style: italic; }
+
+  /* ---------- Resource list (lesson-style) ---------- */
+  .resources {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .resources > li {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .resources li.row {
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    gap: 20px;
+    align-items: start;
+  }
+  .resources .rn {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-300);
+    letter-spacing: 0.08em;
+    padding-top: 5px;
+  }
+  .rlabel-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+  .resources .rtitle {
+    font-family: var(--serif-body);
+    font-size: 17px;
+    color: var(--ink-900);
+    line-height: 1.4;
+    font-weight: 500;
+  }
+  .resources .rmeta {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    color: var(--ink-400);
+    text-transform: uppercase;
+  }
+  .resources .rmeta .rsep { margin: 0 6px; color: var(--ink-300); }
+  .resources .rdesc {
+    font-family: var(--serif-body);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink-500);
+    max-width: 62ch;
+  }
+  .resources .rdesc em { color: var(--ink-700); }
+  .resources .tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--amber);
+    background: rgba(217, 119, 6, 0.08);
+    border: 1px solid rgba(217, 119, 6, 0.25);
+    padding: 2px 8px;
+    margin-left: 10px;
+    vertical-align: middle;
+    border-radius: 2px;
+  }
+  .resources .tag .pw-label {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .resources .tag .pw {
+    font-weight: 600;
+    color: var(--amber);
+    text-transform: none;
+    letter-spacing: 0;
+    font-variant: none;
+    -webkit-font-feature-settings: normal;
+    font-feature-settings: normal;
+  }
+  .resources a.rlink,
+  .resources .rwatch {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 1px solid rgba(118,46,235,0.3);
+    padding-bottom: 1px;
+    padding-top: 5px;
+    transition: color 0.2s, border-color 0.2s;
+    cursor: pointer;
+    background: none;
+    border-top: 0; border-left: 0; border-right: 0;
+  }
+  .resources a.rlink:hover, .resources .rwatch:hover { color: var(--ink-900); border-bottom-color: var(--ink-900); }
+  .resources a.rlink::after { content: " →"; font-family: var(--sans); }
+
+  /* ---------- Video accordion ---------- */
+  .vitem { padding: 0 !important; }
+  .vdetails { }
+  .vsummary {
+    list-style: none;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    gap: 20px;
+    align-items: start;
+    padding: 20px 0;
+    user-select: none;
+  }
+  .vsummary::-webkit-details-marker { display: none; }
+  .vsummary:hover .rtitle { color: var(--accent); }
+  .vsummary .rwatch::after {
+    content: " ↓";
+    font-family: var(--sans);
+    display: inline-block;
+    transition: transform 0.2s;
+  }
+  details[open] > .vsummary .rwatch::after {
+    transform: rotate(180deg);
+  }
+  details[open] > .vsummary .rwatch {
+    color: var(--ink-900);
+    border-bottom-color: var(--ink-900);
+  }
+  .vembed {
+    padding: 0 0 24px;
+    margin: 0 0 0 84px;
+    max-width: 760px;
+  }
+  .vembed-frame {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 4px;
+    background: #000;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+  }
+  .vembed-frame iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 0;
+  }
+
+  .callout {
+    margin: 28px 0 0;
+    padding: 20px 24px;
+    background: var(--paper-2);
+    border-left: 2px solid var(--accent);
+    font-family: var(--serif-body);
+    font-size: 15.5px;
+    line-height: 1.55;
+    color: var(--ink-600);
+  }
+  .callout strong { color: var(--ink-900); font-weight: 500; }
+
+  .pullquote {
+    margin: 32px 0 0;
+    padding: 28px 32px;
+    background: #0A0A0B;
+    color: #F4F4F5;
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    border-left: 2px solid var(--accent-2);
+  }
+  .pullquote .by {
+    display: block;
+    margin-top: 12px;
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-400);
+  }
+
+  /* ---------- Follow list ---------- */
+  .follows {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .follows li {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 24px;
+  }
+  .follow-head {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .handle {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .handle-name {
+    font-family: var(--serif-head);
+    font-weight: 400;
+    font-size: 18px;
+    color: var(--ink-900);
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+  .follow p {
+    margin: 0;
+    font-family: var(--serif-body);
+    font-size: 15.5px;
+    line-height: 1.55;
+    color: var(--ink-600);
+  }
+
+  /* ---------- Gradient divider ---------- */
+  .gdiv {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--rule) 20%, var(--rule) 80%, transparent);
+    margin: 80px 0;
+    border: 0;
+  }
+
+  /* ---------- Author bio block ---------- */
+  .author {
+    max-width: 52rem;
+    margin: 0 auto;
+    padding: 32px 32px 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .author-inner {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  .author-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-400);
+    font-weight: 500;
+    margin-bottom: 20px;
+    grid-column: 1 / -1;
+  }
+  .author-avatar {
+    width: 112px;
+    height: 112px;
+    border-radius: 4px;
+    overflow: hidden;
+    display: block;
+    box-shadow: 0 10px 30px rgba(10,10,11,0.12);
+    background: var(--paper-2);
+  }
+  .author-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .author-name {
+    font-family: var(--serif-head);
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: var(--ink-900);
+    margin: 0 0 4px;
+  }
+  .author-title {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--ink-500);
+    line-height: 1.5;
+    margin: 0 0 12px;
+  }
+  .author-creds {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .author-bio {
+    font-family: var(--serif-body);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink-600);
+    margin: 0 0 16px;
+    max-width: 56ch;
+  }
+  .author-links {
+    font-family: var(--sans);
+    font-size: 13px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .author-links a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(118,46,235,0.3);
+    padding-bottom: 1px;
+  }
+  .author-links a:hover { color: var(--ink-900); border-bottom-color: var(--ink-900); }
+
+  /* ---------- Footer ---------- */
+  footer {
+    max-width: 52rem;
+    margin: 0 auto;
+    padding: 48px 32px 64px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--sans);
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+    color: var(--ink-400);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer .mark {
+    font-family: var(--serif-display);
+    font-size: 18px;
+    color: var(--ink-900);
+    letter-spacing: -0.01em;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 720px) {
+    .hero { padding: 40px 24px 48px; }
+    .inst-lockup { margin-bottom: 40px; padding-bottom: 28px; }
+    article { padding: 56px 24px 64px; }
+    .jumpnav { padding: 0 24px; }
+    .section-head { grid-template-columns: 1fr; gap: 8px; padding-bottom: 14px; }
+    .section-num { padding-top: 0; }
+    .section-sub { grid-column: 1; }
+    .resources li.row { grid-template-columns: 1fr; gap: 10px; }
+    .resources .rn, .vsummary .rn { display: none; }
+    .vsummary { grid-template-columns: 1fr auto; gap: 12px; padding: 18px 0; }
+    .vembed { margin-left: 0; padding-bottom: 20px; }
+    .resources a.rlink, .resources .rwatch { margin-top: 2px; padding-top: 0; }
+    .follows li { grid-template-columns: 1fr; gap: 10px; }
+    .author { padding: 48px 24px 32px; }
+    .author-inner { grid-template-columns: 1fr; gap: 20px; }
+    .author-avatar { width: 88px; height: 88px; }
+    .pullquote { padding: 22px 24px; font-size: 20px; }
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Motion: scroll-in animations + hero entrance                         */
+  /* ------------------------------------------------------------------ */
+  html { scroll-behavior: smooth; }
+
+  /* Base reveal — opacity + small translateY, springs into place on .is-visible */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  /* Larger translate for heavy blocks */
+  .reveal-lg { transform: translateY(24px); }
+  .reveal-lg.is-visible { transform: translateY(0); }
+
+  /* Stagger children (resources list items) */
+  .stagger > * {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.55s cubic-bezier(0.22, 0.61, 0.36, 1),
+                transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .stagger.is-visible > * { opacity: 1; transform: translateY(0); }
+  .stagger.is-visible > *:nth-child(1) { transition-delay: 0.04s; }
+  .stagger.is-visible > *:nth-child(2) { transition-delay: 0.10s; }
+  .stagger.is-visible > *:nth-child(3) { transition-delay: 0.16s; }
+  .stagger.is-visible > *:nth-child(4) { transition-delay: 0.22s; }
+  .stagger.is-visible > *:nth-child(5) { transition-delay: 0.28s; }
+  .stagger.is-visible > *:nth-child(6) { transition-delay: 0.34s; }
+  .stagger.is-visible > *:nth-child(7) { transition-delay: 0.40s; }
+  .stagger.is-visible > *:nth-child(8) { transition-delay: 0.46s; }
+  .stagger.is-visible > *:nth-child(n+9) { transition-delay: 0.50s; }
+
+  /* Hero entrance — plays on load */
+  @keyframes heroRise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes heroFade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .hero .inst-lockup { animation: heroFade 0.7s ease-out 0.05s both; }
+  .hero .eyebrow     { animation: heroRise 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.18s both; }
+  .hero .hero-title  { animation: heroRise 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.30s both; }
+  .hero .deck        { animation: heroRise 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.44s both; }
+  .hero .byline, .hero .chips, .hero .jumpnav { animation: heroRise 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.58s both; }
+
+  /* Section title word slide — subtle */
+  .section-head .sec-title .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .section-head.is-visible .sec-title .word { opacity: 1; transform: translateY(0); }
+  .section-head.is-visible .sec-title .word:nth-child(1) { transition-delay: 0.00s; }
+  .section-head.is-visible .sec-title .word:nth-child(2) { transition-delay: 0.06s; }
+  .section-head.is-visible .sec-title .word:nth-child(3) { transition-delay: 0.12s; }
+  .section-head.is-visible .sec-title .word:nth-child(4) { transition-delay: 0.18s; }
+  .section-head.is-visible .sec-title .word:nth-child(5) { transition-delay: 0.24s; }
+  .section-head.is-visible .sec-title .word:nth-child(n+6) { transition-delay: 0.30s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal, .stagger > *, .section-head .sec-title .word {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    .hero .inst-lockup, .hero .eyebrow, .hero .hero-title, .hero .deck,
+    .hero .byline, .hero .chips, .hero .jumpnav { animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+
+    <div class="inst-lockup">
+      <span class="inst-mark">N</span>
+      <span class="inst-text">
+        <span class="inst-primary">Kellogg School of Management</span>
+        <span class="inst-secondary">Northwestern University</span>
+      </span>
+    </div>
+
+    <div class="kicker">Kellogg<span class="dot"></span>MPD<span class="dot"></span>Pre-Read</div>
+    <h1 class="title">Bootstrapping <em>to AI</em></h1>
+    <p class="dek">A curated starter kit to get you fluent in the fundamentals before we meet in class. Ten short lessons — watch, read, play, repeat. You don't need to master everything. You need enough context to build alongside the tools.</p>
+    <div class="meta">
+      <span><strong>Reading time</strong>about 4 hours of video · a weekend of play</span>
+      <span><strong>Format</strong>Watch, read, build</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============== AUTHOR (top) ============== -->
+<section class="author" aria-label="About the author">
+  <div class="author-inner">
+    <div class="author-label">About the author</div>
+    <div class="author-avatar">
+      <img src="headshot.png" alt="John Renaldi" loading="lazy" />
+    </div>
+    <div>
+      <h3 class="author-name">John Renaldi</h3>
+      <p class="author-title">Professor, Northwestern University — Kellogg School of Management &amp; Segal Design Institute</p>
+      <div class="author-creds">Former CEO / Founder · Former Google Executive</div>
+      <p class="author-bio">John teaches product innovation and applied AI systems at Northwestern, and consults on AI integration strategy for companies building production systems. He delivers corporate workshops designed to upskill cross-functional teams — turning product, marketing, sales, and operations into builders who can ship alongside engineering.</p>
+      <div class="author-links">
+        <a href="mailto:jrenaldi@northwestern.edu">jrenaldi@northwestern.edu</a>
+        <a href="https://linkedin.com/in/renaldi" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/jrenaldi79" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<nav class="jumpnav" aria-label="Jump to section">
+  <div class="jumpnav-inner">
+    <span class="jumpnav-label">Lessons</span>
+    <ol>
+      <li><a href="#s1">Software crash course</a></li>
+      <li><a href="#s2">LLMs &amp; GenAI</a></li>
+      <li><a href="#s3">Agents &amp; MCP</a></li>
+      <li><a href="#s4">GitHub</a></li>
+      <li><a href="#s5">Claude Code</a></li>
+      <li><a href="#s6">Claude Cowork</a></li>
+      <li><a href="#s7">Start playing</a></li>
+      <li><a href="#s8">Evals</a></li>
+      <li><a href="#s9">Second brain</a></li>
+      <li><a href="#s10">Who to follow</a></li>
+    </ol>
+  </div>
+</nav>
+
+<article>
+
+  <!-- ============== LESSON 01 ============== -->
+  <section class="module" id="s1">
+    <div class="section-head">
+      <div class="section-num">LESSON 01 / FOUNDATIONS</div>
+      <h2 class="section-title">Crash course: <em>software development</em></h2>
+      <div class="section-sub">The vocabulary of the thing you're about to build with.</div>
+    </div>
+    <p class="intro">You don't need to become an engineer. You do need to recognize the parts of a system when your AI starts describing them to you. These three short videos cover the shape of the field end-to-end — frontend, backend, and the database underneath.</p>
+    <ul class="resources" data-accordion>
+
+      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">01</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Frontend, API, Backend and Database explained</span>
+          <span class="rmeta">Tamara Jost<span class="rsep">·</span>YouTube<span class="rsep">·</span>short explainer</span>
+          <span class="rdesc">A visual walkthrough of how the pieces of a web app fit together, using Airbnb as the running example. The clearest intro to "what lives where."</span>
+        </div>
+        <span class="rwatch">Watch</span>
+      </summary><div class="vembed"><div class="vembed-frame"><iframe data-src="https://www.youtube.com/embed/NzEYYemQ3_8?start=3" title="Frontend API Backend Database" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div></details></li>
+
+      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">02</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Backend web development — a complete overview</span>
+          <span class="rmeta">SuperSimpleDev<span class="rsep">·</span>YouTube</span>
+          <span class="rdesc">Tours the backend stack: languages, frameworks, databases, and APIs. When your AI talks about "the server" or "the DB," this is what it means.</span>
+        </div>
+        <span class="rwatch">Watch</span>
+      </summary><div class="vembed"><div class="vembed-frame"><iframe data-src="https://www.youtube.com/embed/XBu54nfzxAQ" title="Backend overview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div></details></li>
+
+      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">03</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Frontend web development — a complete overview</span>
+          <span class="rmeta">SuperSimpleDev<span class="rsep">·</span>YouTube</span>
+          <span class="rdesc">The companion to the backend video: HTML, CSS, JavaScript, and the modern frameworks (React, Vue, Svelte) that actually produce the UIs you use every day.</span>
+        </div>
+        <span class="rwatch">Watch</span>
+      </summary><div class="vembed"><div class="vembed-frame"><iframe data-src="https://www.youtube.com/embed/WG5ikvJ2TKA" title="Frontend overview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div></details></li>
+
+    </ul>
+  </section>
+
+  <!-- ============== LESSON 02 ============== -->
+  <section class="module" id="s2">
+    <div class="section-head">
+      <div class="section-num">LESSON 02 / MODELS</div>
+      <h2 class="section-title">Intro to <em>LLMs &amp; GenAI</em></h2>
+      <div class="section-sub">How the model actually works, and how to talk to it.</div>
+    </div>
+    <p class="intro">Start with what an LLM <em>is</em>, how it produces tokens, and what a context window actually holds. Then layer on prompting and context engineering — the craft of setting the model up to succeed.</p>
+    <ul class="resources" data-accordion>
+
+      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">01</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">How Large Language Models Work</span>
+          <span class="rmeta">IBM Technology<span class="rsep">·</span>YouTube</span>
+          <span class="rdesc">A clean definition of what an LLM is, how it relates to foundation models, and where these systems are already producing business value.</span>
+        </div>
+        <span class="rwatch">Watch</span>
+      </summary><div class="vembed"><div class="vembed-frame"><iframe data-src="https://www.youtube.com/embed/5sLYAQS9sWQ" title="How LLMs work" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div></details></li>
+
+      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">02</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">What is a Context Window?</span>
+          <span class="rmeta">IBM Technology<span class="rsep">·</span>YouTube</span>
+          <span class="rdesc">The model's working memory. Covers tokens, self-attention, and the real-world tradeoffs of "just make the context bigger."</span>
+        </div>
+        <span class="rwatch">Watch</span>
+      </summary><div class="vembed"><div class="vembed-frame"><iframe data-src="https://www.youtube.com/embed/-QVoIxEpFkM" title="Context window" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div></details></li>
+
+      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">03</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">How LLMs generate text</span>
+          <span class="rmeta">YouTube<span class="rsep">·</span>explainer</span>
+          <span class="rdesc">A step-by-step of how the model produces each next token — sampling, probabilities, and the moment where "hallucination" creeps in.</span>
+        </div>
+        <span class="rwatch">Watch</span>
+      </summary><div class="vembed"><div class="vembed-frame"><iframe data-src="https://www.youtube.com/embed/NKnZYvZA7w4" title="How LLMs generate text" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div></details></li>
+
+      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">04</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Most devs don't understand how LLM tokens work</span>
+          <span class="rmeta">Matt Pocock<span class="rsep">·</span>YouTube</span>
+          <span class="rdesc">How tokenization actually works, why "one word ≠ one token," and why the same prompt costs different amounts across providers.</span>
+        </div>
+        <span class="rwatch">Watch</span>
+      </summary><div class="vembed"><div class="vembed-frame"><iframe data-src="https://www.youtube.com/embed/nKSk_TiR8YA" title="Tokens" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div></details></li>
+
+      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">05</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Tracing the thoughts of a large language model</span>
+          <span class="rmeta">Anthropic<span class="rsep">·</span>YouTube</span>
+          <span class="rdesc">A peek inside the black box: interpretability research showing how Claude plans ahead internally and holds outputs together logically. Brief, mind-bending.</span>
+        </div>
+        <span class="rwatch">Watch</span>
+      </summary><div class="vembed"><div class="vembed-frame"><iframe data-src="https://www.youtube.com/embed/Bj9BD2D3DzA" title="Tracing the thoughts" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div></details></li>
+
+      <li class="row"><span class="rn">06</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Prompt Engineering Masterclass <span class="tag"><span class="pw-label">password</span> <span class="pw">mpd2AI</span></span></span>
+          <span class="rmeta">Gamma slides<span class="rsep">·</span>from class</span>
+        </div>
+        <a class="rlink" href="https://gamma.app/docs/AI-Prompt-Engineering-Masterclass-s1n4n1nw87xmw8t" target="_blank" rel="noopener">Open</a>
+      </li>
+
+      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">07</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Context Engineering vs. Prompt Engineering</span>
+          <span class="rmeta">IBM Technology<span class="rsep">·</span>YouTube</span>
+          <span class="rdesc">Why "prompt engineering" is giving way to <em>context engineering</em> — RAG, memory, state, and the infrastructure around the model that makes agentic systems actually work.</span>
+        </div>
+        <span class="rwatch">Watch</span>
+      </summary><div class="vembed"><div class="vembed-frame"><iframe data-src="https://www.youtube.com/embed/vD0E3EUb8-8" title="Context engineering" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div></details></li>
+
+    </ul>
+  </section>
+
+  <!-- ============== LESSON 03 ============== -->
+  <section class="module" id="s3">
+    <div class="section-head">
+      <div class="section-num">LESSON 03 / AGENTS</div>
+      <h2 class="section-title">Agents &amp; <em>MCP</em></h2>
+      <div class="section-sub">What turns a chatbot into something that can actually do work.</div>
+    </div>
+    <p class="intro">An <em>agent</em> is an LLM that can take actions — call tools, read files, hit APIs, loop. <em>MCP</em> is the open protocol that lets agents discover those tools in a standard way. These two videos give you the vocabulary and the mental model.</p>
+    <ul class="resources" data-accordion>
+
+      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">01</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">AI Agents Fundamentals in 21 Minutes</span>
+          <span class="rmeta">Tina Huang<span class="rsep">·</span>YouTube</span>
+          <span class="rdesc">The four design patterns every agent uses — reflection, tool use, planning, multi-agent coordination — and where the most common agent frameworks fit.</span>
+        </div>
+        <span class="rwatch">Watch</span>
+      </summary><div class="vembed"><div class="vembed-frame"><iframe data-src="https://www.youtube.com/embed/qU3fmidNbJE" title="AI Agents fundamentals" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div></details></li>
+
+      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">02</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">MCP vs API: Simplifying AI Agent Integration</span>
+          <span class="rmeta">IBM Technology<span class="rsep">·</span>YouTube<span class="rsep">·</span>13 min</span>
+          <span class="rdesc">MCP as "USB-C for AI agents." How the Model Context Protocol gives agents dynamic tool discovery and shared context — and how it layers on top of traditional APIs rather than replacing them.</span>
+        </div>
+        <span class="rwatch">Watch</span>
+      </summary><div class="vembed"><div class="vembed-frame"><iframe data-src="https://www.youtube.com/embed/7j1t3UZA1TY" title="MCP vs API" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div></details></li>
+
+    </ul>
+  </section>
+
+  <!-- ============== LESSON 04 ============== -->
+  <section class="module" id="s4">
+    <div class="section-head">
+      <div class="section-num">LESSON 04 / TOOLING</div>
+      <h2 class="section-title">Introduction to <em>GitHub</em></h2>
+      <div class="section-sub">The default substrate for how code — and increasingly, agent work — is stored and shared.</div>
+    </div>
+    <p class="intro">Even if you never write code yourself, you'll end up reading GitHub every day. It's where plugins live, where your agent's edits get reviewed, and where open-source AI projects ship.</p>
+    <ul class="resources" data-accordion>
+
+      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">01</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">How To Use GitHub For Beginners</span>
+          <span class="rmeta">corbin<span class="rsep">·</span>YouTube</span>
+          <span class="rdesc">The nouns you'll hear over and over: repos, branches, commits, pull requests, merges. Enough to follow along when someone says "open a PR."</span>
+        </div>
+        <span class="rwatch">Watch</span>
+      </summary><div class="vembed"><div class="vembed-frame"><iframe data-src="https://www.youtube.com/embed/a9u2yZvsqHA" title="GitHub for beginners" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div></details></li>
+
+    </ul>
+  </section>
+
+  <!-- ============== LESSON 05 ============== -->
+  <section class="module" id="s5">
+    <div class="section-head">
+      <div class="section-num">LESSON 05 / HARNESS</div>
+      <h2 class="section-title">Using <em>Claude Code</em></h2>
+      <div class="section-sub">The agentic coding environment we'll use across the course.</div>
+    </div>
+    <p class="intro">Claude Code is a terminal-based harness around Claude that can read and write files, run commands, and ship real software. It's our default when a task is mostly code.</p>
+    <ul class="resources" data-accordion>
+
+      <li class="row"><span class="rn">01</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Agentic Development — slides from class <span class="tag"><span class="pw-label">password</span> <span class="pw">prestoai</span></span></span>
+          <span class="rmeta">Gamma slides<span class="rsep">·</span>Module 10</span>
+        </div>
+        <a class="rlink" href="https://gamma.app/docs/Module-10-Agentic-Development-nxar0nt4p82bhzd" target="_blank" rel="noopener">Open</a>
+      </li>
+
+      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">02</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Master 80% of Claude Code in 26 Minutes</span>
+          <span class="rmeta">Skill Leap AI<span class="rsep">·</span>YouTube</span>
+          <span class="rdesc">A beginner-friendly tour — build a landing page, a small dashboard, and a utility tool using plain-English prompts. Watch once, then try to mirror it.</span>
+        </div>
+        <span class="rwatch">Watch</span>
+      </summary><div class="vembed"><div class="vembed-frame"><iframe data-src="https://www.youtube.com/embed/WCuwYLVE6j8" title="Claude Code intro" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div></details></li>
+
+    </ul>
+  </section>
+
+  <!-- ============== LESSON 06 ============== -->
+  <section class="module" id="s6">
+    <div class="section-head">
+      <div class="section-num">LESSON 06 / COWORK</div>
+      <h2 class="section-title">How to use <em>Claude Cowork</em></h2>
+      <div class="section-sub">The desktop companion for non-engineers — the home base for most of your workflows.</div>
+    </div>
+    <p class="intro">Cowork is where Claude meets your files, your apps, and your native desktop. Think of it as Claude Code for the rest of your work: plugins, skills, and MCP connectors wired into the tools you already use. Install it, open a folder, and try one of the workflows below.</p>
+    <ul class="resources" data-accordion>
+
+      <li class="row"><span class="rn">01</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Download Claude for desktop</span>
+          <span class="rmeta">Anthropic<span class="rsep">·</span>install</span>
+          <span class="rdesc">Claude's desktop app is where Cowork lives. Install it first — everything else assumes you're running it locally.</span>
+        </div>
+        <a class="rlink" href="https://claude.ai/download" target="_blank" rel="noopener">Install</a>
+      </li>
+
+      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">02</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Claude Cowork Clearly Explained (for beginners)</span>
+          <span class="rmeta">Eliot Prince<span class="rsep">·</span>YouTube</span>
+          <span class="rdesc">A calm beginner tour: organizing files, drafting documents, browsing the web, and coordinating multi-agent work. Good first video.</span>
+        </div>
+        <span class="rwatch">Watch</span>
+      </summary><div class="vembed"><div class="vembed-frame"><iframe data-src="https://www.youtube.com/embed/ZeWfksNXlbU" title="Cowork explained" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div></details></li>
+
+      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">03</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Claude Cowork Is the First AI That Feels Like a Real Employee</span>
+          <span class="rmeta">Skill Leap AI<span class="rsep">·</span>YouTube<span class="rsep">·</span>21 min</span>
+          <span class="rdesc">Seven concrete use cases — organizing a desktop full of screenshots, pulling data from Google Drive &amp; Calendar, running tasks autonomously. Watch this for the <em>"oh, I could actually delegate this"</em> moment.</span>
+        </div>
+        <span class="rwatch">Watch</span>
+      </summary><div class="vembed"><div class="vembed-frame"><iframe data-src="https://www.youtube.com/embed/56IeB1CZEYY" title="Cowork real employee" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div></details></li>
+
+      <li class="row"><span class="rn">04</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Pick a folder, drop in files, ask Claude to work with them</span>
+          <span class="rmeta">action item<span class="rsep">·</span>~15 min</span>
+          <span class="rdesc">Choose one real folder on your computer — class notes, a messy download pile, a draft. Let Cowork read it and ask you questions. This is the fastest way to build intuition.</span>
+        </div>
+      </li>
+
+      <li class="row"><span class="rn">05</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Install a plugin from the marketplace (try <em>product-kit</em> or <em>marketing</em>) and run a skill</span>
+          <span class="rmeta">action item<span class="rsep">·</span>~15 min</span>
+          <span class="rdesc">Plugins bundle skills, commands, and agents. Install one, run a single skill end-to-end, and notice how much of the scaffolding it replaces.</span>
+        </div>
+      </li>
+
+      <li class="row"><span class="rn">06</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Connect an MCP (Slack, Gmail, Notion) and run a multi-step workflow across tools</span>
+          <span class="rmeta">action item<span class="rsep">·</span>~20 min</span>
+          <span class="rdesc">Now the fun part: an agent that pulls from one app, writes to another, and summarizes in a third. Start with one simple chain and expand.</span>
+        </div>
+      </li>
+
+    </ul>
+    <div class="callout">
+      <strong>Start small.</strong> Pick one recurring task you do every week — a status report, competitive teardown, weekly digest — and build a Cowork workflow for it. The goal in the first week isn't mastery; it's noticing which parts of your job compress.
+    </div>
+  </section>
+
+  <!-- ============== LESSON 07 ============== -->
+  <section class="module" id="s7">
+    <div class="section-head">
+      <div class="section-num">LESSON 07 / PRACTICE</div>
+      <h2 class="section-title">Start <em>playing</em></h2>
+      <div class="section-sub">Spend a couple of hours in the tools before the next lesson. Then come back.</div>
+    </div>
+    <p class="intro">Build something small. Break it. Rebuild it. The muscle you're developing is <strong>taste</strong> — an intuition for when the model is doing real work and when it's bluffing. You get that by shipping, not by reading.</p>
+    <ul class="resources" data-accordion>
+
+      <li class="row"><span class="rn">01</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Install the Front End Design plugin from the Anthropic Marketplace inside Claude Code</span>
+          <span class="rmeta">action item<span class="rsep">·</span>plugin</span>
+          <span class="rdesc">Use it whenever you design a UI. It bakes in taste defaults so your first pass doesn't look like a generic AI artifact.</span>
+        </div>
+      </li>
+
+      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">02</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">The Only Claude Code Plugin You'll Ever Need (Superpowers)</span>
+          <span class="rmeta">Better Stack<span class="rsep">·</span>YouTube</span>
+          <span class="rdesc">Compares Claude Code's native Plan Mode to the Superpowers framework. Shows how structured, TDD-style agent workflows produce meaningfully better code.</span>
+        </div>
+        <span class="rwatch">Watch</span>
+      </summary><div class="vembed"><div class="vembed-frame"><iframe data-src="https://www.youtube.com/embed/lq3rzXP4_vs" title="Superpowers walkthrough" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div></details></li>
+
+      <li class="row"><span class="rn">03</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Pro setup: harness-engineering — read it, then install it</span>
+          <span class="rmeta">GitHub<span class="rsep">·</span>jrenaldi79</span>
+          <span class="rdesc">My opinionated harness for serious agentic work — plugins, skills, and conventions that assume you want repeatable results, not one-shot demos. Clone it, read the README, and install it when you're ready to graduate beyond casual use.</span>
+        </div>
+        <a class="rlink" href="https://github.com/jrenaldi79/harness-engineering" target="_blank" rel="noopener">GitHub</a>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- ============== LESSON 08 ============== -->
+  <section class="module" id="s8">
+    <div class="section-head">
+      <div class="section-num">LESSON 08 / QUALITY</div>
+      <h2 class="section-title">Evals</h2>
+      <div class="section-sub">How you know your AI is actually working.</div>
+    </div>
+    <p class="intro">Evals are the discipline that separates a demo from a product. If you can't measure whether your system is getting better, you're not engineering — you're vibing.</p>
+
+    <div class="pullquote">
+      Evals are to agents what performance reviews are to employees.
+      <span class="by">— John Renaldi</span>
+    </div>
+
+    <p class="intro" style="margin-top:32px;">You hire someone, you set expectations, you check in on how they're doing against those expectations, you coach them when they're off. Evals are the same feedback loop — just for a system that will run a million times instead of forty hours a week. These four resources give you the theory and the practice.</p>
+
+    <ul class="resources" data-accordion>
+
+      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">01</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">How to Build AI Evals in 2026 (Step-by-Step, No Hype)</span>
+          <span class="rmeta">Aakash Gupta<span class="rsep">·</span>YouTube</span>
+          <span class="rdesc">A pragmatic walkthrough: use real production traces, do real error analysis, bring in LLM judges, and structure it all with the data-task-scores framework.</span>
+        </div>
+        <span class="rwatch">Watch</span>
+      </summary><div class="vembed"><div class="vembed-frame"><iframe data-src="https://www.youtube.com/embed/J7N9FMouSKg" title="How to build AI evals" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div></details></li>
+
+      <li class="vitem"><details class="vdetails"><summary class="vsummary"><span class="rn">02</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">If You Don't Understand AI Evals, Don't Build AI</span>
+          <span class="rmeta">Aakash Gupta<span class="rsep">·</span>YouTube</span>
+          <span class="rdesc">The "why you can't skip this" companion video. Builds an eval from scratch against Linear's MCP server and talks through how teams sustain an eval culture past the first week.</span>
+        </div>
+        <span class="rwatch">Watch</span>
+      </summary><div class="vembed"><div class="vembed-frame"><iframe data-src="https://www.youtube.com/embed/71qvIkO9d_A" title="Understand AI evals" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div></details></li>
+
+      <li class="row"><span class="rn">03</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Demystifying evals for AI agents</span>
+          <span class="rmeta">Anthropic Engineering<span class="rsep">·</span>article</span>
+          <span class="rdesc">How Anthropic thinks about designing evals across agent types — coding, conversational, research, computer use — including grading strategies, handling non-determinism, and building eval harnesses production teams can actually run.</span>
+        </div>
+        <a class="rlink" href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents" target="_blank" rel="noopener">Read</a>
+      </li>
+
+      <li class="row"><span class="rn">04</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">How we build evals for Deep Agents</span>
+          <span class="rmeta">LangChain Blog<span class="rsep">·</span>article</span>
+          <span class="rdesc">LangChain's playbook: curate evals from production failures and trace data, group them by behavior category, and measure both correctness and efficiency (step ratio, latency) — not just accuracy.</span>
+        </div>
+        <a class="rlink" href="https://blog.langchain.com/how-we-build-evals-for-deep-agents/" target="_blank" rel="noopener">Read</a>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- ============== LESSON 09 ============== -->
+  <section class="module" id="s9">
+    <div class="section-head">
+      <div class="section-num">LESSON 09 / MEMORY</div>
+      <h2 class="section-title">Build a <em>second brain</em></h2>
+      <div class="section-sub">Start tiny. Let it compound.</div>
+    </div>
+    <p class="intro">A second brain is a persistent layer of memory between you and your tools. You don't need infrastructure to start — you need a single file you'll actually write in.</p>
+    <ul class="resources">
+      <li class="row"><span class="rn">01</span>
+        <div class="rlabel-wrap">
+          <span class="rtitle">Super-simple second-brain starter (for just you)</span>
+          <span class="rmeta">@NickSpisak_<span class="rsep">·</span>X</span>
+          <span class="rdesc">A minimalist pattern: a single text file, a few lightweight conventions, and the habit of writing into it daily. The compounding comes from consistency, not tooling.</span>
+        </div>
+        <a class="rlink" href="https://x.com/NickSpisak_/status/2040448463540830705?s=20" target="_blank" rel="noopener">Read</a>
+      </li>
+    </ul>
+  </section>
+
+  <hr class="gdiv" />
+
+  <!-- ============== LESSON 10 ============== -->
+  <section class="module" id="s10">
+    <div class="section-head">
+      <div class="section-num">LESSON 10 / SIGNAL</div>
+      <h2 class="section-title">Who to <em>follow</em></h2>
+      <div class="section-sub">A curated feed to keep you current after the course ends.</div>
+    </div>
+    <p class="intro">The AI field moves faster than any syllabus can keep up with. These are the voices I trust to separate signal from hype. Follow them on X and / or LinkedIn.</p>
+
+    <ul class="follows">
+      <li>
+        <div class="follow-head"><span class="handle">@karpathy</span><span class="handle-name">Andrej Karpathy</span></div>
+        <p>Former OpenAI researcher and Tesla AI director. His "build GPT from scratch" video is a rite of passage. Deep, well-taught neural-network fundamentals.</p>
+      </li>
+      <li>
+        <div class="follow-head"><span class="handle">@ryancarson</span><span class="handle-name">Ryan Carson</span></div>
+        <p>Founded Treehouse. Now focused on teaching non-technical people how to actually use AI tools at work. Practical, accessible adoption content.</p>
+      </li>
+      <li>
+        <div class="follow-head"><span class="handle">@jerryjliu0</span><span class="handle-name">Jerry Liu</span></div>
+        <p>Co-founder and CEO of LlamaIndex, the leading framework for RAG. Follow to understand how production AI systems retrieve and use context.</p>
+      </li>
+      <li>
+        <div class="follow-head"><span class="handle">@PawelHuryn</span><span class="handle-name">Pawel Huryn</span></div>
+        <p>Consistently high-quality AI PM frameworks and visual guides. One of the clearest voices on building AI products.</p>
+      </li>
+      <li>
+        <div class="follow-head"><span class="handle">@Saboo_Shubham_</span><span class="handle-name">Shubham Saboo</span></div>
+        <p>Sr. Google AI PM. Breaks down agents, RAG, and LLM architecture into digestible threads and tutorials.</p>
+      </li>
+      <li>
+        <div class="follow-head"><span class="handle">@ordax</span><span class="handle-name">Eduardo Ordax</span></div>
+        <p>AI Lead at AWS. Clear visual breakdowns of agentic AI design patterns, RAG, and enterprise AI.</p>
+      </li>
+      <li>
+        <div class="follow-head"><span class="handle">@emollick</span><span class="handle-name">Ethan Mollick</span></div>
+        <p>Wharton professor. Probably the most rigorous researcher posting publicly about AI's impact on work, education, and creativity. Essential.</p>
+      </li>
+      <li>
+        <div class="follow-head"><span class="handle">@petergyang</span><span class="handle-name">Peter Yang</span></div>
+        <p>PM and creator focused on AI product strategy and consumer product thinking. How AI features get built and shipped inside real companies.</p>
+      </li>
+      <li>
+        <div class="follow-head"><span class="handle">@bcherny</span><span class="handle-name">Boris Cherny</span></div>
+        <p>Founder of Claude Code. Author of Programming TypeScript. A senior engineer's perspective on how AI is changing how we write code.</p>
+      </li>
+      <li>
+        <div class="follow-head"><span class="handle">@AndrewYNg</span><span class="handle-name">Andrew Ng</span></div>
+        <p>Co-founder of Coursera, founder of deeplearning.ai. One of the most influential AI educators alive. AI trends, agentic workflows, learning resources.</p>
+      </li>
+      <li>
+        <div class="follow-head"><span class="handle">@omarsar0</span><span class="handle-name">Elvis Saravia</span></div>
+        <p>Runs DAIR.AI. Publishes the Prompt Engineering Guide. AI research literacy and practical technique breakdowns.</p>
+      </li>
+      <li>
+        <div class="follow-head"><span class="handle">@mattpocockuk</span><span class="handle-name">Matt Pocock</span></div>
+        <p>The go-to TypeScript educator. AI coding tools lean heavily on typed JS/TS — follow if you're building AI-powered apps.</p>
+      </li>
+      <li>
+        <div class="follow-head"><span class="handle">@akshay_pachaar</span><span class="handle-name">Akshay Pachaar</span></div>
+        <p>Hands-on tutorials on building with LLMs, agents, and AI tooling. Practical, builder-focused.</p>
+      </li>
+      <li>
+        <div class="follow-head"><span class="handle">@aakashgupta</span><span class="handle-name">Aakash Gupta</span></div>
+        <p>Product growth and PM content, increasingly focused on AI. How companies are monetizing and scaling AI features.</p>
+      </li>
+      <li>
+        <div class="follow-head"><span class="handle">@mattshumer_</span><span class="handle-name">Matt Shumer</span></div>
+        <p>CEO of HyperWrite. Opinionated takes on AI capabilities, agent architectures, and where the frontier is moving. High energy, early signal.</p>
+      </li>
+      <li>
+        <div class="follow-head"><span class="handle">@trq212</span><span class="handle-name">Thariq</span></div>
+        <p>Engineer at Anthropic on Claude Code. Technical deep-dives on how agentic coding tools actually work under the hood.</p>
+      </li>
+      <li>
+        <div class="follow-head"><span class="handle">@gregisenberg</span><span class="handle-name">Greg Isenberg</span></div>
+        <p>CEO of Late Checkout. Former advisor to Reddit and TikTok. Hosts the Startup Ideas Podcast.</p>
+      </li>
+    </ul>
+  </section>
+
+</article>
+
+<footer>
+  <span class="mark">Kellogg · MPD</span>
+  <span>Bootstrapping to AI · Pre-Read</span>
+</footer>
+
+<script>
+  // Accordion: opening one <details> closes any other open siblings in the same container.
+  // Lazy-loads the YouTube iframe src from data-src on first open and clears src on close to stop playback.
+  (function () {
+    document.querySelectorAll('[data-accordion]').forEach(function (container) {
+      var detailsList = container.querySelectorAll('details');
+      detailsList.forEach(function (d) {
+        var iframe = d.querySelector('iframe[data-src]');
+        if (iframe) iframe.setAttribute('data-original-src', iframe.getAttribute('data-src'));
+        d.addEventListener('toggle', function () {
+          if (d.open) {
+            detailsList.forEach(function (other) {
+              if (other !== d && other.open) other.open = false;
+            });
+            var f = d.querySelector('iframe[data-original-src]');
+            if (f && !f.src) f.src = f.getAttribute('data-original-src');
+          } else {
+            var f = d.querySelector('iframe');
+            if (f && f.src) f.removeAttribute('src');
+          }
+        });
+      });
+    });
+  })();
+
+  // -------------------------------------------------------------------
+  // Scroll-triggered reveal + section title word-splitting
+  // Mirrors the reference useInView pattern — once-in, stays in.
+  // -------------------------------------------------------------------
+  (function () {
+    var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // 1. Split each section title into word spans so they can stagger in
+    document.querySelectorAll('.section-head .sec-title').forEach(function (title) {
+      if (title.dataset.split) return;
+      var text = title.textContent.trim();
+      title.textContent = '';
+      text.split(/\s+/).forEach(function (w, i, arr) {
+        var span = document.createElement('span');
+        span.className = 'word';
+        span.textContent = w + (i < arr.length - 1 ? '\u00A0' : '');
+        title.appendChild(span);
+      });
+      title.dataset.split = '1';
+    });
+
+    // 2. Tag elements as reveal targets
+    var targets = [];
+    document.querySelectorAll('.section-head').forEach(function (el) { targets.push(el); });
+    document.querySelectorAll('.module .intro, .module .resources, .module .pullquote, .module .callout, .author, .module p, .module .follows')
+      .forEach(function (el) {
+        if (!el.classList.contains('reveal')) el.classList.add('reveal');
+        targets.push(el);
+      });
+    document.querySelectorAll('.resources').forEach(function (el) { el.classList.add('stagger'); });
+
+    if (prefersReduced) {
+      targets.forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+
+    // 3. IntersectionObserver — once-in behavior matches reference
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    targets.forEach(function (el) {
+      // If already in viewport on load (mid-page refresh), reveal immediately
+      var rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 40) {
+        el.classList.add('is-visible');
+      } else {
+        io.observe(el);
+      }
+    });
+  })();
+
+  // -------------------------------------------------------------------
+  // Smooth anchor scroll with header offset easing
+  // -------------------------------------------------------------------
+  (function () {
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var id = a.getAttribute('href').slice(1);
+        if (!id) return;
+        var target = document.getElementById(id);
+        if (!target) return;
+        e.preventDefault();
+        var y = target.getBoundingClientRect().top + window.scrollY - 16;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+        history.replaceState(null, '', '#' + id);
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
