@@ -54,19 +54,87 @@
 
   /* ---------- Hero ---------- */
   .hero {
-    background: var(--ink-900);
+    background:
+      radial-gradient(1100px 600px at 85% -10%, rgba(118,46,235,0.35) 0%, rgba(118,46,235,0) 55%),
+      radial-gradient(800px 500px at 10% 110%, rgba(8,145,178,0.22) 0%, rgba(8,145,178,0) 55%),
+      linear-gradient(180deg, #0E0B1B 0%, #0A0A0B 55%, #050507 100%);
     color: #F4F4F5;
     padding: 48px 32px 72px;
     border-bottom: 1px solid var(--ink-800);
     position: relative;
     overflow: hidden;
+    isolation: isolate;
   }
+  /* soft grid overlay — faint, for tactile depth */
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at 50% 40%, rgba(0,0,0,0.9), rgba(0,0,0,0) 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 40%, rgba(0,0,0,0.9), rgba(0,0,0,0) 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  /* bottom accent line */
   .hero::after {
     content: "";
     position: absolute;
     inset: auto 0 0 0;
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(139,92,246,0.6), transparent);
+    background: linear-gradient(to right, transparent, rgba(139,92,246,0.7), transparent);
+    z-index: 1;
+  }
+  .hero-inner { position: relative; z-index: 2; }
+  /* drifting glow — very slow, subtle */
+  .hero-glow {
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139,92,246,0.22) 0%, rgba(139,92,246,0) 70%);
+    top: -180px;
+    right: -120px;
+    filter: blur(20px);
+    animation: heroDrift 18s ease-in-out infinite alternate;
+    z-index: 0;
+    pointer-events: none;
+  }
+  @keyframes heroDrift {
+    0%   { transform: translate(0, 0) scale(1); opacity: 0.9; }
+    100% { transform: translate(-60px, 40px) scale(1.08); opacity: 0.7; }
+  }
+
+  /* ---------- Typewriter title cursor ---------- */
+  .title-type {
+    display: inline-block;
+    position: relative;
+  }
+  .title-type .type-visible { visibility: hidden; }
+  .title-type.is-typed .type-visible { visibility: visible; }
+  .title-type .type-live {
+    position: absolute;
+    top: 0; left: 0;
+    white-space: pre-wrap;
+  }
+  .title-type.is-typed .type-live { display: none; }
+  .type-cursor {
+    display: inline-block;
+    width: 0.06em;
+    height: 0.86em;
+    background: var(--accent-2);
+    margin-left: 0.06em;
+    vertical-align: -0.08em;
+    animation: typeBlink 0.85s step-end infinite;
+    box-shadow: 0 0 12px rgba(139,92,246,0.55);
+    border-radius: 1px;
+  }
+  @keyframes typeBlink {
+    0%, 49%  { opacity: 1; }
+    50%, 100%{ opacity: 0; }
   }
   .hero-inner {
     max-width: 64rem;
@@ -685,10 +753,10 @@
     to   { opacity: 1; }
   }
   .hero .inst-lockup { animation: heroFade 0.7s ease-out 0.05s both; }
-  .hero .eyebrow     { animation: heroRise 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.18s both; }
-  .hero .hero-title  { animation: heroRise 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.30s both; }
-  .hero .deck        { animation: heroRise 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.44s both; }
-  .hero .byline, .hero .chips, .hero .jumpnav { animation: heroRise 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.58s both; }
+  .hero .kicker      { animation: heroRise 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.18s both; }
+  .hero h1.title     { animation: heroRise 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.30s both; }
+  .hero .dek         { animation: heroRise 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 1.9s both; opacity: 0; }
+  .hero .meta        { animation: heroRise 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 2.15s both; opacity: 0; }
 
   /* Section title word slide — subtle */
   .section-head .sec-title .word {
@@ -712,14 +780,17 @@
       transform: none !important;
       transition: none !important;
     }
-    .hero .inst-lockup, .hero .eyebrow, .hero .hero-title, .hero .deck,
-    .hero .byline, .hero .chips, .hero .jumpnav { animation: none !important; }
+    .hero .inst-lockup, .hero .kicker, .hero h1.title,
+    .hero .dek, .hero .meta { animation: none !important; opacity: 1 !important; }
+    .hero .hero-glow { animation: none !important; }
+    .type-cursor { animation: none !important; }
   }
 </style>
 </head>
 <body>
 
 <header class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
   <div class="hero-inner">
 
     <div class="inst-lockup">
@@ -731,12 +802,8 @@
     </div>
 
     <div class="kicker">Kellogg<span class="dot"></span>MPD<span class="dot"></span>Pre-Read</div>
-    <h1 class="title">Bootstrapping <em>to AI</em></h1>
+    <h1 class="title"><span class="title-type" data-typewriter data-full="Bootstrapping &lt;em&gt;to AI&lt;/em&gt;"><span class="type-visible">Bootstrapping <em>to AI</em></span><span class="type-live" aria-hidden="true"></span></span></h1>
     <p class="dek">A curated starter kit to get you fluent in the fundamentals before we meet in class. Ten short lessons — watch, read, play, repeat. You don't need to master everything. You need enough context to build alongside the tools.</p>
-    <div class="meta">
-      <span><strong>Reading time</strong>about 4 hours of video · a weekend of play</span>
-      <span><strong>Format</strong>Watch, read, build</span>
-    </div>
   </div>
 </header>
 
@@ -1274,6 +1341,73 @@
           }
         });
       });
+    });
+  })();
+
+  // -------------------------------------------------------------------
+  // Typewriter on hero title — types "Bootstrapping to AI" with blinking cursor
+  // -------------------------------------------------------------------
+  (function () {
+    var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('[data-typewriter]').forEach(function (el) {
+      var live = el.querySelector('.type-live');
+      if (!live) return;
+
+      if (prefersReduced) {
+        el.classList.add('is-typed');
+        return;
+      }
+
+      // Tokens: each token is either plain text or an italic segment
+      // Type italic segment as italic HTML once we reach it
+      var tokens = [
+        { text: 'Bootstrapping ', italic: false },
+        { text: 'to AI',          italic: true  }
+      ];
+
+      var typed = '';
+      var tokenIdx = 0;
+      var charIdx = 0;
+      var startDelay = 650;   // wait for hero kicker to land
+      var charDelay = 70;     // per-character speed
+      var cursor = '<span class="type-cursor" aria-hidden="true"></span>';
+
+      function render() {
+        var html = '';
+        for (var i = 0; i < tokenIdx; i++) {
+          html += tokens[i].italic ? '<em>' + escape(tokens[i].text) + '</em>' : escape(tokens[i].text);
+        }
+        var current = tokens[tokenIdx] ? tokens[tokenIdx].text.slice(0, charIdx) : '';
+        if (tokens[tokenIdx] && tokens[tokenIdx].italic) {
+          html += '<em>' + escape(current) + '</em>';
+        } else {
+          html += escape(current);
+        }
+        live.innerHTML = html + cursor;
+      }
+      function escape(s) {
+        return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+
+      function step() {
+        if (tokenIdx >= tokens.length) {
+          // done — swap to the real (semantic) visible version and keep cursor blinking briefly
+          el.classList.add('is-typed');
+          return;
+        }
+        if (charIdx < tokens[tokenIdx].text.length) {
+          charIdx++;
+          render();
+          setTimeout(step, charDelay + (Math.random() * 40 - 10));
+        } else {
+          tokenIdx++;
+          charIdx = 0;
+          setTimeout(step, 140);
+        }
+      }
+
+      render();
+      setTimeout(step, startDelay);
     });
   })();
 
