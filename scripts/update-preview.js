@@ -42,6 +42,15 @@ function generateHTML({ title, reactMode }) {
   <script crossorigin src="https://unpkg.com/react@18/umd/react.${reactSuffix}.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.${reactSuffix}.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- Force the classic JSX runtime. React/ReactDOM are loaded as UMD globals (not ES modules),
+       but newer @babel/standalone defaults preset-react to the "automatic" runtime, which injects
+       \`import { jsx } from "react/jsx-runtime"\` into this inline script and renders the page blank.
+       Registering a classic-runtime preset and referencing it via data-presets fixes it. -->
+  <script>
+    Babel.registerPreset('react-classic', {
+      presets: [[Babel.availablePresets.react, { runtime: 'classic' }]],
+    });
+  </script>
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -50,7 +59,7 @@ function generateHTML({ title, reactMode }) {
 </head>
 <body>
   <div id="root"></div>
-  <script type="text/babel">
+  <script type="text/babel" data-presets="react-classic">
     const { useState, useEffect, useRef, useCallback, useMemo } = React;
 
 ${bundle}
